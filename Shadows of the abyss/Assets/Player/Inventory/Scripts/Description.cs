@@ -55,24 +55,23 @@ public class Description : MonoBehaviour
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
-
         Text text = GetComponentInParent<Canvas>().transform.Find("CursorSlot").GetComponentInChildren<Text>();
         if (collision.gameObject.tag == "Inventory" || collision.gameObject.tag == "ArmourInventory")
         {
             if (collision.gameObject.GetComponent<Slot>().rareName != "")
                 text.text += " <b><color=red>" + collision.gameObject.GetComponent<Slot>().rareName + "</color></b>";
             text.text = collision.gameObject.GetComponent<Slot>().itemDescription;
+            GetComponentInParent<Canvas>().transform.Find("CursorSlot").GetComponentInChildren<Text>().enabled = true;
+            gameObject.GetComponentsInChildren<SpriteRenderer>()[0].enabled = true;
+            gameObject.GetComponentsInChildren<SpriteRenderer>()[1].enabled = true;
+            gameObject.transform.localScale = new Vector3(text.preferredWidth + 2, text.preferredHeight + 2, 0f);
         }
-        GetComponentInParent<Canvas>().transform.Find("CursorSlot").GetComponentInChildren<Text>().enabled = true;
-        gameObject.GetComponentsInChildren<SpriteRenderer>()[0].enabled = true;
-        gameObject.GetComponentsInChildren<SpriteRenderer>()[1].enabled = true;
         if (text.text == "Empty")
         {
             GetComponentInParent<Canvas>().transform.Find("CursorSlot").GetComponentInChildren<Text>().enabled = false;
             gameObject.GetComponentsInChildren<SpriteRenderer>()[0].enabled = false;
             gameObject.GetComponentsInChildren<SpriteRenderer>()[1].enabled = false;
         }
-        gameObject.transform.localScale = new Vector3(text.preferredWidth + 2, text.preferredHeight + 2, 0f);
     }
     private void OnTriggerExit2D(Collider2D collision)
     {

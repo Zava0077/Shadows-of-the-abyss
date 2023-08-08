@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5002024612828116109}
   - component: {fileID: 5878234221502156919}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Out
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -54,7 +54,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7588046820502400781}
   - component: {fileID: 9057591690119932986}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Room1 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -137,7 +137,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8183734121741041822}
   - component: {fileID: 8779447972290186513}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Enter (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -220,7 +220,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1457370496232189648}
   - component: {fileID: 5777180622277858075}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Room1 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -303,7 +303,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1651437196258886791}
   - component: {fileID: 3965969703805088197}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Exit (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -386,7 +386,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2566556204514279240}
   - component: {fileID: 1120247249949855199}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Room1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -473,7 +473,7 @@ GameObject:
   - component: {fileID: 2181720614961248744}
   - component: {fileID: 7774416910710711373}
   - component: {fileID: 1842090898903091285}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: RoomLeft
   m_TagString: SpaceChecker
   m_Icon: {fileID: 0}

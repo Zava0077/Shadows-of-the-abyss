@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8757058124089284590}
   - component: {fileID: 8757058124089284584}
   - component: {fileID: 8757058124089284591}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -121,7 +121,7 @@ GameObject:
   - component: {fileID: 8757058124374279182}
   - component: {fileID: 8757058124374279176}
   - component: {fileID: 8757058124374279183}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -231,7 +231,7 @@ GameObject:
   - component: {fileID: 8757058124380502063}
   - component: {fileID: 8757058124380502057}
   - component: {fileID: 8757058124380502056}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -340,7 +340,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8757058124695849928}
   - component: {fileID: 8757058124695849929}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Exit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -424,7 +424,7 @@ GameObject:
   - component: {fileID: 8757058124717333353}
   - component: {fileID: 8757058124717333355}
   - component: {fileID: 8757058124717333354}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -534,7 +534,7 @@ GameObject:
   - component: {fileID: 8757058124782639232}
   - component: {fileID: 8757058124782639234}
   - component: {fileID: 8757058124782639233}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -643,7 +643,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8757058125131846191}
   - component: {fileID: 8757058125131846190}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Room1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -735,7 +735,7 @@ GameObject:
   - component: {fileID: 8757058125300496293}
   - component: {fileID: 8757058125300496295}
   - component: {fileID: 8757058125300496294}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -844,7 +844,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8757058125486143029}
   - component: {fileID: 8757058125486143030}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Enter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -927,7 +927,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8757058125558876361}
   - component: {fileID: 3653644352957084435}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Out
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -974,7 +974,7 @@ GameObject:
   - component: {fileID: 6617923768965574281}
   - component: {fileID: 7724557698575648939}
   - component: {fileID: 7464054080135501913}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: RoomBig
   m_TagString: SpaceChecker
   m_Icon: {fileID: 0}

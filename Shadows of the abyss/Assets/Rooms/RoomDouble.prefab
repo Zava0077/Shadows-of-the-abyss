@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7796964287131226568}
   - component: {fileID: 7796964287131226567}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Room1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,7 +93,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7796964287266979519}
   - component: {fileID: 7796964287266979518}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Exit (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -176,7 +176,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7796964287751480125}
   - component: {fileID: 7796964287751480124}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Room1 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -259,7 +259,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7796964287940577141}
   - component: {fileID: 7796964287940577140}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Exit (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -342,7 +342,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7796964288162913107}
   - component: {fileID: 894442632183646133}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -386,7 +386,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7796964288697972086}
   - component: {fileID: 7796964288697972085}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Enter (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -469,7 +469,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7796964288808919220}
   - component: {fileID: 8735391807094302232}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -517,7 +517,7 @@ GameObject:
   - component: {fileID: 1291923955449303064}
   - component: {fileID: 3532940728215604561}
   - component: {fileID: 8446428463795652683}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: RoomDouble
   m_TagString: SpaceChecker
   m_Icon: {fileID: 0}
@@ -640,7 +640,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7796964288936950234}
   - component: {fileID: 7796964288936950233}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Room1 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
