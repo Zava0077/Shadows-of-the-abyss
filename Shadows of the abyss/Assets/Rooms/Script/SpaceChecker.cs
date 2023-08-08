@@ -17,10 +17,13 @@ public class SpaceChecker : MonoBehaviour
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "SpaceChecker")
+        {
+            StartCoroutine(DestroyMap());
             isTriggered = true;
+        }
         retries = 0;
         cycles = 0;
-        StartCoroutine(DestroyMap());
+    
     }
     IEnumerator DestroyMap()
     {
