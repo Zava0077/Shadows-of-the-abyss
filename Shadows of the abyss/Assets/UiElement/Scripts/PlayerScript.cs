@@ -7,7 +7,7 @@ using UnityEngine.Assertions.Must;
 public class PlayerScript : MonoBehaviour
 {
     [SerializeField] private BoxCollider2D collider2D;
-    [SerializeField] private Rigidbody2D rb2d;
+    [SerializeField] public Rigidbody2D rb2d;
     private Vector2 movePosition;
     public int Speed = 5;
     public int Health;

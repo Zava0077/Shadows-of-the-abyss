@@ -89,7 +89,7 @@ public class SlotInteraction : Slot, IPointerClickHandler
     }
     void RightClick()
     {
-        if (slots[gameObject.GetComponent<Slot>().id].stacksAlready > 0 && ((CursorSlot.self.stacksAlready < CursorSlot.self.stackAmount && CursorSlot.self.type != "Empty")))
+        if (slots[gameObject.GetComponent<Slot>().id].stacksAlready > 0 && ((CursorSlot.self.stacksAlready < CursorSlot.self.stackAmount && CursorSlot.self.type != "Empty") && gameObject.GetComponent<Slot>().id < 16))
         {
             CursorSlot.self.damage = slots[gameObject.GetComponent<Slot>().id].damage;
             CursorSlot.self.iceDamage = slots[gameObject.GetComponent<Slot>().id].iceDamage;
@@ -124,7 +124,7 @@ public class SlotInteraction : Slot, IPointerClickHandler
             if (slots[gameObject.GetComponent<Slot>().id].stacksAlready == 0)
                 ToDefault(1);//удалять предмет с инвентаря
         }
-        else if (CursorSlot.self.type == "Empty")
+        else if (CursorSlot.self.type == "Empty" && slots[gameObject.GetComponent<Slot>().id].stackAmount > 0 && gameObject.GetComponent<Slot>().id < 16)
         {
             CursorSlot.self.damage = slots[gameObject.GetComponent<Slot>().id].damage;
             CursorSlot.self.iceDamage = slots[gameObject.GetComponent<Slot>().id].iceDamage;
@@ -159,7 +159,7 @@ public class SlotInteraction : Slot, IPointerClickHandler
             if (slots[gameObject.GetComponent<Slot>().id].stacksAlready == 0)
                 ToDefault(1);//удалять предмет с инвентаря
         }
-        else if (slots[gameObject.GetComponent<Slot>().id].type == "Empty")
+        else if (CursorSlot.self.stackAmount > 0 /*&& slots[gameObject.GetComponent<Slot>().id].stackAmount > 0 */&& slots[gameObject.GetComponent<Slot>().id].type == "Empty" && CursorSlot.self.type != "Empty" && gameObject.GetComponent<Slot>().id < 16)
         {
             slots[gameObject.GetComponent<Slot>().id].iceDamage= CursorSlot.self.iceDamage;
             slots[gameObject.GetComponent<Slot>().id].igniteDamage = CursorSlot.self.igniteDamage;
@@ -193,7 +193,7 @@ public class SlotInteraction : Slot, IPointerClickHandler
             if (slots[gameObject.GetComponent<Slot>().id].stacksAlready == 0)
                 ToDefault(1);//удалять предмет с инвентаря
         }
-        else
+        else if (CursorSlot.self.kind == slots[gameObject.GetComponent<Slot>().id].kind || CursorSlot.self.type == "Empty")
             Switch();
     }
     void Switch()

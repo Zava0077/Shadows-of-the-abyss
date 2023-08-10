@@ -8,8 +8,6 @@ public class SpaceChecker : MonoBehaviour
 {
     public static bool isTriggered;
     public static SpaceChecker self;
-    static int cycles;
-    static int retries;
     public SpaceChecker()
     {
         self = this;
@@ -18,23 +16,22 @@ public class SpaceChecker : MonoBehaviour
     {
         if (collision.gameObject.tag == "SpaceChecker")
         {
-            StartCoroutine(DestroyMap());
+            InvokeDestroyMap();
             isTriggered = true;
         }
-        retries = 0;
-        cycles = 0;
-    
+    }
+    public void InvokeDestroyMap()
+    {
+        StartCoroutine(DestroyMap());
     }
     IEnumerator DestroyMap()
     {
-        MapGeneration.roomsLeft = MapGeneration.roomsNum;
         for (int i = 0; i < MapGeneration.roomsNum; i++)
         {
             for (int j = 0; j < MapGeneration.roomsNum; j++)
             {
                 Destroy(MapGeneration.roomsQueue[i, j]);
                 MapGeneration.roomsQueue[i, j] = null;
-                MapGeneration.roomNum = -1;
             }
         }
         MapGeneration.rebuild = true;

@@ -64,7 +64,7 @@ public class Description : MonoBehaviour
             GetComponentInParent<Canvas>().transform.Find("CursorSlot").GetComponentInChildren<Text>().enabled = true;
             gameObject.GetComponentsInChildren<SpriteRenderer>()[0].enabled = true;
             gameObject.GetComponentsInChildren<SpriteRenderer>()[1].enabled = true;
-            gameObject.transform.localScale = new Vector3(text.preferredWidth + 2, text.preferredHeight + 2, 0f);
+            gameObject.transform.localScale = new Vector3(text.preferredWidth, text.preferredHeight, 0f);
         }
         if (text.text == "Empty")
         {

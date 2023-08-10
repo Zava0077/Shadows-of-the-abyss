@@ -21,14 +21,20 @@ public class MapGeneration : MonoBehaviour
     public static int[] splitRoomNumber;
     public static int[] splitedRoomNumber;
     public static int splitRoomsLeft;
-    public static int roomNum = -1;
+    public static int roomNum;
     public static int transitionNumber;
     public static int virtualRoomNum;
     public static int secondVirtualRoomNum;
     public static bool rebuild;
+    public static MapGeneration self;
+    public MapGeneration()
+    {
+        self = this;
+    }
     private void Awake()
     {
-        roomsNum = 64;
+        roomsNum = 12;
+        roomNum = -1;
         roomsLeft = roomsNum;
         Debug.Log(roomsNum);
         roomsQueue = new GameObject[roomsNum, roomsNum];
@@ -36,81 +42,28 @@ public class MapGeneration : MonoBehaviour
         splitedRoomNumber = new int[roomsNum];
         StartCoroutine(MapGenerator());
     }
+    public void InvokeAwake()
+    {
+        Awake();
+    }
     private void FixedUpdate()
     {
+        if (rebuild == false && roomNum < roomsNum)
+            SpaceChecker.self.InvokeDestroyMap();
+        if (roomNum > roomsNum)
+            SpaceChecker.self.InvokeDestroyMap();
         if (rebuild)
         {
             splitRoomsLeft = 0;
+            roomsLeft = roomsNum;
+            roomNum = -1;
             StartCoroutine(MapGenerator());
             rebuild = false;
         }
     }
     void Update()
     {
-      
 
-
-        //if (roomsLeft > 0 + splitRoomsLeft && timer > 0.5)
-        //{
-        //    roomNum++;
-        //    roomsLeft--;
-        //    timer = 0;
-        //    rebuilding = false;
-        //    int roomType = rnd.Next(0, rooms.Length);
-        //    roomsQueue[matrixLevel, roomNum] = Instantiate(rooms[roomType]);
-        //    if (roomsQueue[matrixLevel, roomNum].GetComponent<Room>().type == "Split")
-        //    {
-        //        splitRoomNumber[splitsNum] = roomNum;
-        //        splitsNum++;
-        //        splitRoomsLeft += roomsLeft / 2;
-        //    }
-        //    if (roomNum > 0 && !rebuilding)
-        //    {
-        //        transitionNumber = matrixLevel;
-        //        virtualRoomNum = roomNum - 1;
-        //        secondVirtualRoomNum = virtualRoomNum;
-        //        if (matrixLevel > 0 && roomsQueue[matrixLevel, roomNum - 1] == null)
-        //        {
-        //            transitionNumber = splitNum;
-        //            virtualRoomNum = splitRoomNumber[transitionNumber];
-        //            splitsNum--;
-        //            splitNum++;
-        //        }
-        //        Translation(transitionNumber, virtualRoomNum);
-        //    }
-        //}
-        //else if (splitRoomsLeft > 0 && timer > 0.5 && matrixLevel < roomsNum)
-        //{
-        //    matrixLevel++;
-        //    timer = 0;
-        //    splitRoomsLeft = 0;
-        //    splitedRoomNumber[matrixLevel] = roomNum;
-        //    roomNum = splitRoomNumber[matrixLevel];
-        //}
-        //if (SpaceChecker.isTriggered == true)
-        //{
-        //    if (cycles > 2)
-        //    {
-        //        roomsLeft = 0;
-        //        Destroy(roomsQueue[matrixLevel, roomNum - 1]);
-        //        return;
-        //    }
-        //    retries++;
-        //    roomsLeft++;
-        //    Destroy(roomsQueue[matrixLevel, roomNum - 1]);
-        //    SpaceChecker.isTriggered = false;
-        //    if (retries > 2)
-        //    {
-        //        Destroy(roomsQueue[matrixLevel, roomNum - 2]);
-        //        roomsLeft++;
-        //        retries = 0;
-        //        cycles++;
-        //        roomsQueue[matrixLevel, roomNum - 2] = null;
-        //    }
-        //    roomsQueue[matrixLevel, roomNum - 1] = null;
-        //    rebuilding = true;
-        //    return;
-        //}
     }
     void Translation(int transitionNumber, int virtualRoomNum)
     {
