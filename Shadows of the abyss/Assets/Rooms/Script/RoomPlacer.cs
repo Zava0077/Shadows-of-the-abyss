@@ -8,14 +8,15 @@ public class RoomPlacer : MonoBehaviour
 {
     public Room[] roomPrefabs;
     public Room startingRoom;
-
+    int dungeonSize;
     private Room[,] spawnedRooms;
     private void Start()
     {
-        spawnedRooms = new Room[12, 12];
-        spawnedRooms[6, 6] = startingRoom;
+        dungeonSize = 16;
+        spawnedRooms = new Room[dungeonSize, dungeonSize];
+        spawnedRooms[dungeonSize/2, dungeonSize/2] = startingRoom;
         
-        for(int i = 0;i<12;i++)
+        for(int i = 0;i< dungeonSize; i++)
         {
             PlaceOneRoom();
         }
@@ -26,7 +27,6 @@ public class RoomPlacer : MonoBehaviour
         int roomType = Random.Range(0, roomPrefabs.Length);
         string type = roomPrefabs[roomType].type;
         HashSet<Vector2Int> vacantPlaces = new HashSet<Vector2Int>();
-        HashSet<Vector2Int> vacantWidePlaces = new HashSet<Vector2Int>();
         for (int x = 0; x < spawnedRooms.GetLength(0);x++)
             for(int y = 0;y < spawnedRooms.GetLength(1);y++)
             {
@@ -40,7 +40,7 @@ public class RoomPlacer : MonoBehaviour
             }
         Room newRoom = Instantiate(roomPrefabs[roomType]);
         Vector2Int position = vacantPlaces.ElementAt(Random.Range(0, vacantPlaces.Count));
-        newRoom.transform.position = new Vector2(position.x-6, position.y-6) * 16;
+        newRoom.transform.position = new Vector2(position.x - dungeonSize / 2, position.y - dungeonSize / 2) * 16;
         spawnedRooms[position.x, position.y] = newRoom;
     }
     private void CreateTheDoor()

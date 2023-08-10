@@ -10,7 +10,6 @@ public class Inventory : MonoBehaviour
     public static List<Slot> objects = new List<Slot>();
     public static List<Slot> armourObjects = new List<Slot>();
     public static List<Slot> slots = new List<Slot>();
-    [SerializeField] GameObject gO;
     static bool isFull = false;
     public static Inventory self;
     public Inventory()
@@ -35,7 +34,7 @@ public class Inventory : MonoBehaviour
     }
     private void FixedUpdate()
     {
-
+       
     }
     public static bool IsInventoryFull(GameObject item)
     {
@@ -54,9 +53,6 @@ public class Inventory : MonoBehaviour
     public void PickUpItem(GameObject item) //
     {
         System.Random rnd = new System.Random();
-        string[] rareList = item.GetComponent<Slot>().rareList;
-        int[] rareChances = item.GetComponent<Slot>().rareChances;
-        int rareChance = rnd.Next(0,100);
         string rareName = "";
         if (slots[firstFreeSlot].stacksAlready < slots[firstFreeSlot].stackAmount && slots[firstFreeSlot].stacksAlready > 0 && slots[firstFreeSlot].idItem == item.GetComponent<Slot>().idItem)
             slots[firstFreeSlot].stacksAlready++;
