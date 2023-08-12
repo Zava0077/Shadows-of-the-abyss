@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity.VisualScripting;
 using UnityEngine.Assertions.Must;
+using UnityEngine.UIElements;
 
 public class PlayerScript : MonoBehaviour
 {
     [SerializeField] private BoxCollider2D collider2D;
     [SerializeField] public Rigidbody2D rb2d;
+    public GameObject objectToSpeak;
+    public bool readyToSpeak;
     private Vector2 movePosition;
     public int Speed = 5;
     public int Health;
@@ -43,5 +46,22 @@ public class PlayerScript : MonoBehaviour
     private void FixedUpdate()
     {
         rb2d.MovePosition(rb2d.position + movePosition * Time.deltaTime);
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "InteractionObject")
+        {
+            readyToSpeak = true;
+            objectToSpeak = collision.gameObject;
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.tag == "InteractionObject")
+        {
+            readyToSpeak = false;
+            Dialogue.self.isSpeaking = false;
+            objectToSpeak = null;
+        }
     }
 }

@@ -7,6 +7,8 @@ TagManager:
   - Inventory
   - ArmourInventory
   - SpaceChecker
+  - InteractionArea
+  - InteractionObject
   layers:
   - Default
   - TransparentFX

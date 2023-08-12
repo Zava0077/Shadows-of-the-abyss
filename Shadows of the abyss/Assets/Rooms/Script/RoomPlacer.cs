@@ -57,7 +57,7 @@ public class RoomPlacer : MonoBehaviour
                 if (x > 0 && spawnedRooms[x - 1, y] != null)
                 {
                     filledPlaces.Add(spawnedRooms[x - 1, y]);
-                    if (spawnedRooms[x, y].doorCount > 2 || spawnedRooms[x - 1, y].doorCount > 2)
+                    if (/* spawnedRooms[x, y].doorCount > 2 || */ spawnedRooms[x - 1, y].doorCount > 2)
                         chance = 10;
                     if (Random.Range(0, 100) < chance)
                     {
@@ -75,7 +75,7 @@ public class RoomPlacer : MonoBehaviour
                 if (y > 0 && spawnedRooms[x, y - 1] != null)
                 {
                     filledPlaces.Add(spawnedRooms[x, y - 1]);
-                    if (spawnedRooms[x, y].doorCount > 2 || spawnedRooms[x, y - 1].doorCount > 2)
+                    if (/* spawnedRooms[x, y].doorCount > 2 || */ spawnedRooms[x, y - 1].doorCount > 2)
                         chance = 10;
                     if (Random.Range(0, 100) < chance)
                     {
@@ -94,7 +94,7 @@ public class RoomPlacer : MonoBehaviour
                 if (x < maxX && spawnedRooms[x + 1, y] != null)
                 {
                     filledPlaces.Add(spawnedRooms[x + 1, y]);
-                    if (spawnedRooms[x, y].doorCount > 2 || spawnedRooms[x + 1, y].doorCount > 2)
+                    if (/* spawnedRooms[x, y].doorCount > 2 || */ spawnedRooms[x + 1, y].doorCount > 2)
                         chance = 10;
                     if (Random.Range(0, 100) < chance)
                     {
@@ -113,7 +113,7 @@ public class RoomPlacer : MonoBehaviour
                 if (y > maxY && spawnedRooms[x, y + 1] != null)
                 {
                     filledPlaces.Add(spawnedRooms[x, y + 1]);
-                    if (spawnedRooms[x, y].doorCount > 2 || spawnedRooms[x, y + 1].doorCount > 2)
+                    if (/* spawnedRooms[x, y].doorCount > 2 || */ spawnedRooms[x, y + 1].doorCount > 2)
                         chance = 10;
                     if (Random.Range(0, 100) < chance)
                     {
