@@ -19,11 +19,11 @@ public class Dialogue : MonoBehaviour
     public string[] phrasesEight;
     public string[] phrasesNine;
     [SerializeField] public Text text;
-    public bool isSpeaking;
+    public static bool isSpeaking;
     static string phrase = "";
     [SerializeField] GameObject panel;
     public static Dialogue self;
-    public bool isChoosing = true;
+    public static bool isChoosing = true;
     public int i = 0;
     public int k = 0;
     public Dialogue()

@@ -24,6 +24,7 @@ public class Entity : MonoBehaviour
             GameObject article;
             string[] rareList = gameObjects[i].GetComponent<Slot>().rareList;
             int[] rareChances = gameObjects[i].GetComponent<Slot>().rareChances;
+            Vector2 randomDirection;
             int ifChance = 0;
             if (dropChance < chance[i])
             {
@@ -108,9 +109,9 @@ public class Entity : MonoBehaviour
                 if (gameObjects[i].GetComponent<Slot>().stackAmount > 0)
                     secondDropChance /= 2;
                 else secondDropChance = 0;
+                article.transform.position += new Vector3((float)rnd.Next(-2,2)/10, (float)rnd.Next(-2, 2)/10);
             }
             gameObject.transform.localScale /= 100;
-
             if (rnd.Next(0, 100) < secondDropChance)
                 i--;
 

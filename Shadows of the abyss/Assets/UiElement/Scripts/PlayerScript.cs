@@ -60,7 +60,7 @@ public class PlayerScript : MonoBehaviour
         if (collision.tag == "InteractionObject")
         {
             readyToSpeak = false;
-            Dialogue.self.isSpeaking = false;
+            Dialogue.isSpeaking = false;
             objectToSpeak = null;
         }
     }

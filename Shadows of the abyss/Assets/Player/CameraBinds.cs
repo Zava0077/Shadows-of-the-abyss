@@ -40,31 +40,20 @@ public class CameraBinds : MonoBehaviour
         {
             isFPressed = false;
             dialogue.SetActive(true);
-            Dialogue.self.isSpeaking = true;
+            Dialogue.isSpeaking = true;
             Dialogue.self.speakingObject = PlayerScript.self.objectToSpeak;
         }
-
         if (Input.GetKeyDown(KeyCode.F) && dialogue.activeSelf)
             isFPressed = true;
-        if (Input.GetKeyUp(KeyCode.F) && isFPressed && dialogue.activeSelf)
+        if (Input.GetKeyUp(KeyCode.F) && isFPressed && dialogue.activeSelf || !PlayerScript.self.readyToSpeak)
         {
             dialogue.SetActive(false);
             Dialogue.self.i = 0;
             Dialogue.self.k = 0;
-            Dialogue.self.isChoosing = true;
-            Dialogue.self.isSpeaking = false;
+            Dialogue.isChoosing = true;
+            Dialogue.isSpeaking = false;
             Dialogue.self.text.text = "";
             isFPressed = false;
         }
-        if(!PlayerScript.self.readyToSpeak)
-        {
-            dialogue.SetActive(false);
-            Dialogue.self.i = 0;
-            Dialogue.self.k = 0;
-            Dialogue.self.isChoosing = true;
-            Dialogue.self.isSpeaking = false;
-            Dialogue.self.text.text = "";
-            isFPressed = false;
-        }
-    }
+     }
 }
