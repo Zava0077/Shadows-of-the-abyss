@@ -59,6 +59,7 @@ public class Description : MonoBehaviour
         Text text = parentPanel.transform.Find("CursorSlot").GetComponentInChildren<Text>();
         if (collision.gameObject.tag == "Inventory" || collision.gameObject.tag == "ArmourInventory")
         {
+            SlotInteraction.isHovered = true;
             if (collision.gameObject.GetComponent<Slot>().rareName != "")
                 text.text += " <b><color=red>" + collision.gameObject.GetComponent<Slot>().rareName + "</color></b>";
             text.text = collision.gameObject.GetComponent<Slot>().itemDescription;
@@ -78,6 +79,7 @@ public class Description : MonoBehaviour
     {
         if (collision.gameObject.tag == "Inventory" || collision.gameObject.tag == "ArmourInventory")
         {
+            SlotInteraction.isHovered = false;
             parentPanel.transform.Find("CursorSlot").GetComponentInChildren<Text>().enabled = false;
             gameObject.GetComponentsInChildren<SpriteRenderer>()[0].enabled = false;
             gameObject.GetComponentsInChildren<SpriteRenderer>()[1].enabled = false;

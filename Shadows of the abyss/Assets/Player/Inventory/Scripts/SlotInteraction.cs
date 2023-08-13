@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using Unity.VisualScripting;
 using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
@@ -38,16 +39,22 @@ public class SlotInteraction : Slot, IPointerClickHandler
     public static int[] bufferRareChances;
     static GameObject bufferWeapon;
     static Sprite bufferEmptySprite;
+    bool clickedInInventory;
     public static Sprite bufferSprite;
+    public static bool isHovered;
     [SerializeField] GameObject defaultSlot;
     private void Update()
     {
         cursor = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         cursor.z = 0;
+        if (Input.GetButtonDown("Fire1") && !isHovered && CursorSlot.self.type == "Usable")
+        {
+            ;//Event
+        }
     }
     private void FixedUpdate()
     {
-        
+     
     }
     public void OnPointerClick(PointerEventData eventData)
     {
@@ -63,6 +70,7 @@ public class SlotInteraction : Slot, IPointerClickHandler
     }
     public void DragItem()
     {
+        clickedInInventory = true;
         if(slots[gameObject.GetComponent<Slot>().id].stackAmount != 0 && slots[gameObject.GetComponent<Slot>().id].stacksAlready <= slots[gameObject.GetComponent<Slot>().id].stackAmount && CursorSlot.self.idItem == slots[gameObject.GetComponent<Slot>().id].idItem)
         {
             if(slots[gameObject.GetComponent<Slot>().id].stacksAlready < slots[gameObject.GetComponent<Slot>().id].stackAmount)
@@ -86,6 +94,7 @@ public class SlotInteraction : Slot, IPointerClickHandler
         {
             Switch();
         }
+        clickedInInventory = false;
     }
     void RightClick()
     {
