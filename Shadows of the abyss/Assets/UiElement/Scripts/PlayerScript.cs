@@ -9,7 +9,6 @@ public class PlayerScript : MonoBehaviour
 {
     [SerializeField] private BoxCollider2D collider2D;
     [SerializeField] public Rigidbody2D rb2d;
-    public GameObject objectToSpeak;
     public bool readyToSpeak;
     private Vector2 movePosition;
     public int Speed = 5;
@@ -52,7 +51,7 @@ public class PlayerScript : MonoBehaviour
         if (collision.tag == "InteractionObject")
         {
             readyToSpeak = true;
-            objectToSpeak = collision.gameObject;
+            Dialogue.self.speakingObject = collision.gameObject;
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
@@ -61,7 +60,7 @@ public class PlayerScript : MonoBehaviour
         {
             readyToSpeak = false;
             Dialogue.isSpeaking = false;
-            objectToSpeak = null;
+            Dialogue.self.speakingObject = null;
         }
     }
 }

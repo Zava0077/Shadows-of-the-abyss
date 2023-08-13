@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4856744348981641258}
   - component: {fileID: 581501455498459132}
   - component: {fileID: 6679033174346286180}
-  - component: {fileID: 8115645940640136515}
+  - component: {fileID: 3022467447976090791}
   m_Layer: 0
   m_Name: Object
   m_TagString: InteractionObject
@@ -131,7 +131,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &8115645940640136515
+--- !u!114 &3022467447976090791
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -140,13 +140,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 2245133990737518375}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea94b972e70083e46b22dedc3c5b37ec, type: 3}
+  m_Script: {fileID: 11500000, guid: 49dee8ca97cc57d46a9077fbd6f4282b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  phrases:
-  - '* strange pink square...'
-  - '* nothing happens'
-  - '* and again...'
+  phrases: []
+  phrasesOne: []
+  phrasesTwo: []
+  phrasesThree: []
+  phrasesFour: []
+  phrasesFive: []
+  phrasesSix: []
+  phrasesSeven: []
+  phrasesEight: []
+  phrasesNine: []
   text: {fileID: 0}
-  isSpeaking: 0
-  isChoosing: 0
+  panel: {fileID: 0}
