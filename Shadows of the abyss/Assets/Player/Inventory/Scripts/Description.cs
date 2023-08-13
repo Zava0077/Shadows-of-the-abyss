@@ -32,6 +32,7 @@ public class Description : MonoBehaviour
     [SerializeField] public string type;
     [SerializeField] GameObject weapon;
     [SerializeField] public int idItem;
+    [SerializeField] GameObject parentPanel;
     Vector3 cursor;
     Vector2 position;
     SpriteRenderer sR;
@@ -55,30 +56,31 @@ public class Description : MonoBehaviour
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
-
-        Text text = GetComponentInParent<Canvas>().transform.Find("CursorSlot").GetComponentInChildren<Text>();
+        Text text = parentPanel.transform.Find("CursorSlot").GetComponentInChildren<Text>();
         if (collision.gameObject.tag == "Inventory" || collision.gameObject.tag == "ArmourInventory")
         {
+            SlotInteraction.isHovered = true;
             if (collision.gameObject.GetComponent<Slot>().rareName != "")
                 text.text += " <b><color=red>" + collision.gameObject.GetComponent<Slot>().rareName + "</color></b>";
             text.text = collision.gameObject.GetComponent<Slot>().itemDescription;
+            parentPanel.transform.Find("CursorSlot").GetComponentInChildren<Text>().enabled = true;
+            gameObject.GetComponentsInChildren<SpriteRenderer>()[0].enabled = true;
+            gameObject.GetComponentsInChildren<SpriteRenderer>()[1].enabled = true;
+            gameObject.transform.localScale = new Vector3(text.preferredWidth, text.preferredHeight, 0f);
         }
-        GetComponentInParent<Canvas>().transform.Find("CursorSlot").GetComponentInChildren<Text>().enabled = true;
-        gameObject.GetComponentsInChildren<SpriteRenderer>()[0].enabled = true;
-        gameObject.GetComponentsInChildren<SpriteRenderer>()[1].enabled = true;
         if (text.text == "Empty")
         {
-            GetComponentInParent<Canvas>().transform.Find("CursorSlot").GetComponentInChildren<Text>().enabled = false;
+            parentPanel.transform.Find("CursorSlot").GetComponentInChildren<Text>().enabled = false;
             gameObject.GetComponentsInChildren<SpriteRenderer>()[0].enabled = false;
             gameObject.GetComponentsInChildren<SpriteRenderer>()[1].enabled = false;
         }
-        gameObject.transform.localScale = new Vector3(text.preferredWidth + 2, text.preferredHeight + 2, 0f);
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Inventory" || collision.gameObject.tag == "ArmourInventory")
         {
-            GetComponentInParent<Canvas>().transform.Find("CursorSlot").GetComponentInChildren<Text>().enabled = false;
+            SlotInteraction.isHovered = false;
+            parentPanel.transform.Find("CursorSlot").GetComponentInChildren<Text>().enabled = false;
             gameObject.GetComponentsInChildren<SpriteRenderer>()[0].enabled = false;
             gameObject.GetComponentsInChildren<SpriteRenderer>()[1].enabled = false;
         }

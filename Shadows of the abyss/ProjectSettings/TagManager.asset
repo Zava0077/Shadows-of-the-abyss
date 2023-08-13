@@ -6,15 +6,19 @@ TagManager:
   tags:
   - Inventory
   - ArmourInventory
+  - SpaceChecker
+  - InteractionArea
+  - InteractionObject
+  - Door
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
-  - 
-  - 
+  - Inventory
+  - Map
   - 
   - 
   - 
