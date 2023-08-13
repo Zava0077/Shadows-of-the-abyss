@@ -39,7 +39,6 @@ public class SlotInteraction : Slot, IPointerClickHandler
     public static int[] bufferRareChances;
     static GameObject bufferWeapon;
     static Sprite bufferEmptySprite;
-    bool clickedInInventory;
     public static Sprite bufferSprite;
     public static bool isHovered;
     [SerializeField] GameObject defaultSlot;
@@ -70,7 +69,6 @@ public class SlotInteraction : Slot, IPointerClickHandler
     }
     public void DragItem()
     {
-        clickedInInventory = true;
         if(slots[gameObject.GetComponent<Slot>().id].stackAmount != 0 && slots[gameObject.GetComponent<Slot>().id].stacksAlready <= slots[gameObject.GetComponent<Slot>().id].stackAmount && CursorSlot.self.idItem == slots[gameObject.GetComponent<Slot>().id].idItem)
         {
             if(slots[gameObject.GetComponent<Slot>().id].stacksAlready < slots[gameObject.GetComponent<Slot>().id].stackAmount)
@@ -94,7 +92,6 @@ public class SlotInteraction : Slot, IPointerClickHandler
         {
             Switch();
         }
-        clickedInInventory = false;
     }
     void RightClick()
     {
