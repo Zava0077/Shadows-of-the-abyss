@@ -398,7 +398,9 @@ MonoBehaviour:
   gameObjects:
   - {fileID: 8283065102806030095, guid: 4f0e945cf3598fb4b8f60d8332ad4ca3, type: 3}
   - {fileID: 8283065102806030095, guid: b55ffa99d21db3c479fd17ad9cad2341, type: 3}
-  chance: 6400000064000000
+  - {fileID: 8283065102806030095, guid: 8d128d32fea60f44bb8c407aa36248d5, type: 3}
+  - {fileID: 8283065102806030095, guid: 6e91cacfc99950342bc057c678945589, type: 3}
+  chance: 64000000640000006400000064000000
 --- !u!114 &89106861
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -440,6 +442,14 @@ MonoBehaviour:
   evasionChanceSummand: 0
   maxHpSummand: 0
   defenceSummand: 0
+  manaCostSummand: 0
+  weaponSizeSummand: 0
+  attackSpeedSummand: 0
+  secondUsageChanceSummand: 0
+  tripleAttackChanceSummand: 0
+  explChanceSummand: 0
+  explTypeEqualer: 0
+  weaponCooldownSummand: 0
   extraDescription: 
 --- !u!1001 &104073544
 PrefabInstance:
@@ -3339,6 +3349,7 @@ GameObject:
   - component: {fileID: 805274008}
   - component: {fileID: 805274010}
   - component: {fileID: 805274011}
+  - component: {fileID: 805274012}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -3379,6 +3390,7 @@ MonoBehaviour:
   collider2D: {fileID: 805274008}
   rb2d: {fileID: 805274009}
   readyToSpeak: 0
+  attackSpeed: 0.5
   Speed: 5
   Health: 100
   MaxHealth: 100
@@ -3598,6 +3610,90 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 1.2
+--- !u!114 &805274012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 805274005}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2abe56bc27246c428cf756fe5e0f4c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meleeProjectiler: {fileID: 6171172324314818687, guid: 8be23a09e27ff5047922bfbec4aaf2f0, type: 3}
+  rangeProjectiler: {fileID: 3256122533556306038, guid: 1b83213bc7a50b74c804ef3d4bf31498, type: 3}
+  projectilers:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  e: 0
+  n: 1
+  isAttacking: 0
+  isAbleToAttack: 0
+  id: 0
 --- !u!1 &847490937
 GameObject:
   m_ObjectHideFlags: 0
@@ -5152,6 +5248,14 @@ MonoBehaviour:
   pureResist: []
   evasionChance: []
   criticalChance: []
+  manaCost: 
+  weaponSize: 
+  tripleAttackChance: 
+  secondUsageChance: 
+  attackSpeed: 
+  explosionChance: 
+  explosionType: 
+  weaponCooldown: []
   hpValue: 0
   damageValue: 0
   iceDamageValue: 0
@@ -5170,6 +5274,15 @@ MonoBehaviour:
   evasionChanceValue: 0
   criticalChanceValue: 0
   rareName: 
+  manaCostValue: 0
+  weaponSizeValue: 0
+  tripleAttackChanceValue: 0
+  secondUsageChanceValue: 0
+  attackSpeedValue: 0
+  explosionChanceValue: 0
+  explosionTypeValue: 0
+  weaponCooldownValue: 0
+  weaponType: 
 --- !u!114 &1611095613
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7743,6 +7856,10 @@ PrefabInstance:
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5911610504763390302, guid: 654db4e90b5d0d04b9e196d986a42745, type: 3}
+      propertyPath: phrasesThree.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5911610504763390302, guid: 654db4e90b5d0d04b9e196d986a42745, type: 3}
       propertyPath: phrasesOne.Array.data[0]
       value: '* STOP'
       objectReference: {fileID: 0}
@@ -7774,9 +7891,17 @@ PrefabInstance:
       propertyPath: phrasesTwo.Array.data[3]
       value: '* WHAT DO YOU WANT?!'
       objectReference: {fileID: 0}
+    - target: {fileID: 5911610504763390302, guid: 654db4e90b5d0d04b9e196d986a42745, type: 3}
+      propertyPath: phrasesThree.Array.data[0]
+      value: '* i hate this stupid square'
+      objectReference: {fileID: 0}
+    - target: {fileID: 5911610504763390302, guid: 654db4e90b5d0d04b9e196d986a42745, type: 3}
+      propertyPath: phrasesThree.Array.data[1]
+      value: '* why is it here?'
+      objectReference: {fileID: 0}
     - target: {fileID: 7265402651087010526, guid: 654db4e90b5d0d04b9e196d986a42745, type: 3}
       propertyPath: m_Name
-      value: Object (1)
+      value: OrangeHater
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7797,15 +7922,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2245133990737518375, guid: 2a5a4f4c0e7e19749ac0e70abcab01e5, type: 3}
       propertyPath: m_Name
-      value: Object
+      value: PinkSquare
       objectReference: {fileID: 0}
     - target: {fileID: 3022467447976090791, guid: 2a5a4f4c0e7e19749ac0e70abcab01e5, type: 3}
       propertyPath: phrases.Array.size
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3022467447976090791, guid: 2a5a4f4c0e7e19749ac0e70abcab01e5, type: 3}
       propertyPath: phrases.Array.data[0]
-      value: '* speaking'
+      value: '* strange pink square'
+      objectReference: {fileID: 0}
+    - target: {fileID: 3022467447976090791, guid: 2a5a4f4c0e7e19749ac0e70abcab01e5, type: 3}
+      propertyPath: phrases.Array.data[1]
+      value: '* it doesn''t speak'
+      objectReference: {fileID: 0}
+    - target: {fileID: 3022467447976090791, guid: 2a5a4f4c0e7e19749ac0e70abcab01e5, type: 3}
+      propertyPath: phrases.Array.data[2]
+      value: '* and move'
+      objectReference: {fileID: 0}
+    - target: {fileID: 3022467447976090791, guid: 2a5a4f4c0e7e19749ac0e70abcab01e5, type: 3}
+      propertyPath: phrases.Array.data[3]
+      value: '* what''s the matter of-'
+      objectReference: {fileID: 0}
+    - target: {fileID: 3022467447976090791, guid: 2a5a4f4c0e7e19749ac0e70abcab01e5, type: 3}
+      propertyPath: phrases.Array.data[4]
+      value: '* -it being here?'
       objectReference: {fileID: 0}
     - target: {fileID: 3022467447976090791, guid: 2a5a4f4c0e7e19749ac0e70abcab01e5, type: 3}
       propertyPath: phrasesOne.Array.size

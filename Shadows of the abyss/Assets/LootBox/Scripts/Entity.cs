@@ -40,7 +40,7 @@ public class Entity : MonoBehaviour
                             ifChance = 0;
                             break;
                         }
-                        else k++;
+                        else continue;
                     }
 
                 article.GetComponent<Slot>().sprite = gameObjects[i].GetComponent<Slot>().sprite;
@@ -100,6 +100,16 @@ public class Entity : MonoBehaviour
                     description += "Critical chance: " + article.GetComponent<Slot>().criticalChance + "\r\n";
                 article.GetComponent<Slot>().kind = gameObjects[i].GetComponent<Slot>().kind;
                 article.GetComponent<Slot>().idItem = gameObjects[i].GetComponent<Slot>().idItem;
+                //
+                article.GetComponent<Slot>().manaCost += Prefixes.self.manaCostSummand;
+                article.GetComponent<Slot>().weaponSize += Prefixes.self.weaponSizeSummand;
+                article.GetComponent<Slot>().attackSpeed += Prefixes.self.attackSpeedSummand;
+                article.GetComponent<Slot>().secondUsageChance += Prefixes.self.secondUsageChanceSummand;
+                article.GetComponent<Slot>().tripleAttackChance += Prefixes.self.tripleAttackChanceSummand;
+                article.GetComponent<Slot>().explosionChance += Prefixes.self.explChanceSummand;
+                article.GetComponent<Slot>().explosionType = Prefixes.self.explTypeEqualer;
+                article.GetComponent<Slot>().weaponCooldown += Prefixes.self.weaponCooldownSummand;
+                //
                 if (description == "" && article.GetComponent<Slot>().itemDescription == "")
                     description = "Empty";
                 else if (description == "")

@@ -40,6 +40,15 @@ public class SlotInteraction : Slot, IPointerClickHandler
     static GameObject bufferWeapon;
     static Sprite bufferEmptySprite;
     public static Sprite bufferSprite;
+    //
+    public static int bufferManaCost;
+    public static int bufferWeaponSize;
+    public static int bufferAttackSpeed;
+    public static int bufferTripleAttackChance;
+    public static int bufferSecondUsageChance;
+    public static int bufferExplosionChance;
+    public static int bufferExplosionType;
+    public static float bufferWeaponCooldown;
     public static bool isHovered;
     [SerializeField] GameObject defaultSlot;
     private void Update()
@@ -123,6 +132,14 @@ public class SlotInteraction : Slot, IPointerClickHandler
             CursorSlot.self.rareList = slots[gameObject.GetComponent<Slot>().id].rareList;
             CursorSlot.self.rareChances = slots[gameObject.GetComponent<Slot>().id].rareChances;
             CursorSlot.self.rareName = slots[gameObject.GetComponent<Slot>().id].rareName;
+            CursorSlot.self.manaCost = slots[gameObject.GetComponent<Slot>().id].manaCost;
+            CursorSlot.self.weaponSize = slots[gameObject.GetComponent<Slot>().id].weaponSize;
+            CursorSlot.self.attackSpeed = slots[gameObject.GetComponent<Slot>().id].attackSpeed;
+            CursorSlot.self.tripleAttackChance = slots[gameObject.GetComponent<Slot>().id].tripleAttackChance;
+            CursorSlot.self.secondUsageChance = slots[gameObject.GetComponent<Slot>().id].secondUsageChance;
+            CursorSlot.self.explosionChance = slots[gameObject.GetComponent<Slot>().id].explosionChance;
+            CursorSlot.self.explosionType = slots[gameObject.GetComponent<Slot>().id].explosionType;
+            CursorSlot.self.weaponCooldown = slots[gameObject.GetComponent<Slot>().id].weaponCooldown;
             CursorSlot.self.stacksAlready++;
             slots[gameObject.GetComponent<Slot>().id].stacksAlready--;
             if (CursorSlot.self.stacksAlready == 0)
@@ -158,6 +175,14 @@ public class SlotInteraction : Slot, IPointerClickHandler
             CursorSlot.self.rareList = slots[gameObject.GetComponent<Slot>().id].rareList;
             CursorSlot.self.rareChances = slots[gameObject.GetComponent<Slot>().id].rareChances;
             CursorSlot.self.rareName = slots[gameObject.GetComponent<Slot>().id].rareName;
+            CursorSlot.self.manaCost = slots[gameObject.GetComponent<Slot>().id].manaCost;
+            CursorSlot.self.weaponSize = slots[gameObject.GetComponent<Slot>().id].weaponSize;
+            CursorSlot.self.attackSpeed = slots[gameObject.GetComponent<Slot>().id].attackSpeed;
+            CursorSlot.self.tripleAttackChance = slots[gameObject.GetComponent<Slot>().id].tripleAttackChance;
+            CursorSlot.self.secondUsageChance = slots[gameObject.GetComponent<Slot>().id].secondUsageChance;
+            CursorSlot.self.explosionChance = slots[gameObject.GetComponent<Slot>().id].explosionChance;
+            CursorSlot.self.explosionType = slots[gameObject.GetComponent<Slot>().id].explosionType;
+            CursorSlot.self.weaponCooldown = slots[gameObject.GetComponent<Slot>().id].weaponCooldown;
             CursorSlot.self.stacksAlready += Mathf.CeilToInt((float)(slots[gameObject.GetComponent<Slot>().id].stacksAlready) / 2);
             slots[gameObject.GetComponent<Slot>().id].stacksAlready -= Mathf.CeilToInt((float)(slots[gameObject.GetComponent<Slot>().id].stacksAlready) / 2);
             if (CursorSlot.self.stacksAlready == 0)
@@ -192,6 +217,14 @@ public class SlotInteraction : Slot, IPointerClickHandler
             slots[gameObject.GetComponent<Slot>().id].rareList = CursorSlot.self.rareList;
             slots[gameObject.GetComponent<Slot>().id].rareChances = CursorSlot.self.rareChances;
             slots[gameObject.GetComponent<Slot>().id].rareName = CursorSlot.self.rareName;
+            slots[gameObject.GetComponent<Slot>().id].manaCost = CursorSlot.self.manaCost;
+            slots[gameObject.GetComponent<Slot>().id].weaponSize = CursorSlot.self.weaponSize;
+            slots[gameObject.GetComponent<Slot>().id].attackSpeed = CursorSlot.self.attackSpeed;
+            slots[gameObject.GetComponent<Slot>().id].tripleAttackChance = CursorSlot.self.tripleAttackChance;
+            slots[gameObject.GetComponent<Slot>().id].secondUsageChance = CursorSlot.self.secondUsageChance;
+            slots[gameObject.GetComponent<Slot>().id].explosionChance = CursorSlot.self.explosionChance;
+            slots[gameObject.GetComponent<Slot>().id].explosionType = CursorSlot.self.explosionType;
+            slots[gameObject.GetComponent<Slot>().id].weaponCooldown = CursorSlot.self.weaponCooldown;
             CursorSlot.self.stacksAlready--;
             slots[gameObject.GetComponent<Slot>().id].stacksAlready++;
             if (CursorSlot.self.stacksAlready == 0)
@@ -231,6 +264,14 @@ public class SlotInteraction : Slot, IPointerClickHandler
         bufferRareList = CursorSlot.self.rareList;
         bufferRareChances = CursorSlot.self.rareChances;
         bufferRareName = CursorSlot.self.rareName;
+        bufferManaCost = CursorSlot.self.manaCost;
+        bufferWeaponSize = CursorSlot.self.weaponSize;
+        bufferAttackSpeed = CursorSlot.self.attackSpeed;
+        bufferTripleAttackChance = CursorSlot.self.tripleAttackChance;
+        bufferSecondUsageChance = CursorSlot.self.secondUsageChance;
+        bufferExplosionChance = CursorSlot.self.explosionChance;
+        bufferExplosionType = CursorSlot.self.explosionType;
+        bufferWeaponCooldown = CursorSlot.self.weaponCooldown;
         //
 
         CursorSlot.self.damage = slots[gameObject.GetComponent<Slot>().id].damage;
@@ -260,6 +301,14 @@ public class SlotInteraction : Slot, IPointerClickHandler
         CursorSlot.self.rareChances = slots[gameObject.GetComponent<Slot>().id].rareChances;
         CursorSlot.self.rareList = slots[gameObject.GetComponent<Slot>().id].rareList;
         CursorSlot.self.rareName = slots[gameObject.GetComponent<Slot>().id].rareName;
+        CursorSlot.self.manaCost = slots[gameObject.GetComponent<Slot>().id].manaCost;
+        CursorSlot.self.weaponSize = slots[gameObject.GetComponent<Slot>().id].weaponSize;
+        CursorSlot.self.attackSpeed = slots[gameObject.GetComponent<Slot>().id].attackSpeed;
+        CursorSlot.self.tripleAttackChance = slots[gameObject.GetComponent<Slot>().id].tripleAttackChance;
+        CursorSlot.self.secondUsageChance = slots[gameObject.GetComponent<Slot>().id].secondUsageChance;
+        CursorSlot.self.explosionChance = slots[gameObject.GetComponent<Slot>().id].explosionChance;
+        CursorSlot.self.explosionType = slots[gameObject.GetComponent<Slot>().id].explosionType;
+        CursorSlot.self.weaponCooldown = slots[gameObject.GetComponent<Slot>().id].weaponCooldown;
         //
         slots[gameObject.GetComponent<Slot>().id].damage = bufferDamage;
         slots[gameObject.GetComponent<Slot>().id].iceDamage = bufferIceDamage;
@@ -288,6 +337,14 @@ public class SlotInteraction : Slot, IPointerClickHandler
         slots[gameObject.GetComponent<Slot>().id].rareList = bufferRareList;
         slots[gameObject.GetComponent<Slot>().id].rareChances = bufferRareChances;
         slots[gameObject.GetComponent<Slot>().id].rareName = bufferRareName;
+        slots[gameObject.GetComponent<Slot>().id].manaCost = bufferManaCost;
+        slots[gameObject.GetComponent<Slot>().id].weaponSize = bufferWeaponSize;
+        slots[gameObject.GetComponent<Slot>().id].attackSpeed = bufferAttackSpeed;
+        slots[gameObject.GetComponent<Slot>().id].tripleAttackChance = bufferTripleAttackChance;
+        slots[gameObject.GetComponent<Slot>().id].secondUsageChance = bufferSecondUsageChance;
+        slots[gameObject.GetComponent<Slot>().id].explosionChance = bufferExplosionChance;
+        slots[gameObject.GetComponent<Slot>().id].explosionType = bufferExplosionType;
+        slots[gameObject.GetComponent<Slot>().id].weaponCooldown = bufferWeaponCooldown;
     } 
     void ToDefault(int i)
     {
@@ -321,6 +378,14 @@ public class SlotInteraction : Slot, IPointerClickHandler
                 CursorSlot.self.rareList = defaultSlot.GetComponent<Slot>().rareList;
                 CursorSlot.self.rareChances = defaultSlot.GetComponent<Slot>().rareChances;
                 CursorSlot.self.rareName = defaultSlot.GetComponent<Slot>().rareName;
+                CursorSlot.self.manaCost = defaultSlot.GetComponent<Slot>().manaCost;
+                CursorSlot.self.weaponSize = defaultSlot.GetComponent<Slot>().weaponSize;
+                CursorSlot.self.attackSpeed = defaultSlot.GetComponent<Slot>().attackSpeed;
+                CursorSlot.self.tripleAttackChance = defaultSlot.GetComponent<Slot>().tripleAttackChance;
+                CursorSlot.self.secondUsageChance = defaultSlot.GetComponent<Slot>().secondUsageChance;
+                CursorSlot.self.explosionChance = defaultSlot.GetComponent<Slot>().explosionChance;
+                CursorSlot.self.explosionType = defaultSlot.GetComponent<Slot>().explosionType;
+                CursorSlot.self.weaponCooldown = defaultSlot.GetComponent<Slot>().weaponCooldown;
                 break;
             case 1:
                 slots[gameObject.GetComponent<Slot>().id].damage = defaultSlot.GetComponent<Slot>().damage;
@@ -350,6 +415,14 @@ public class SlotInteraction : Slot, IPointerClickHandler
                 slots[gameObject.GetComponent<Slot>().id].rareList = defaultSlot.GetComponent<Slot>().rareList;
                 slots[gameObject.GetComponent<Slot>().id].rareChances = defaultSlot.GetComponent<Slot>().rareChances;
                 slots[gameObject.GetComponent<Slot>().id].rareName = defaultSlot.GetComponent<Slot>().rareName;
+                slots[gameObject.GetComponent<Slot>().id].manaCost = defaultSlot.GetComponent<Slot>().manaCost;
+                slots[gameObject.GetComponent<Slot>().id].weaponSize = defaultSlot.GetComponent<Slot>().weaponSize;
+                slots[gameObject.GetComponent<Slot>().id].attackSpeed = defaultSlot.GetComponent<Slot>().attackSpeed;
+                slots[gameObject.GetComponent<Slot>().id].tripleAttackChance = defaultSlot.GetComponent<Slot>().tripleAttackChance;
+                slots[gameObject.GetComponent<Slot>().id].secondUsageChance = defaultSlot.GetComponent<Slot>().secondUsageChance;
+                slots[gameObject.GetComponent<Slot>().id].explosionChance = defaultSlot.GetComponent<Slot>().explosionChance;
+                slots[gameObject.GetComponent<Slot>().id].explosionType = defaultSlot.GetComponent<Slot>().explosionType;
+                slots[gameObject.GetComponent<Slot>().id].weaponCooldown = defaultSlot.GetComponent<Slot>().weaponCooldown;
                 break;
         }
     }

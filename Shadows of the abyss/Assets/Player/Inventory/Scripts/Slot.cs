@@ -36,6 +36,15 @@ public class Slot : Inventory
     [SerializeField] public string itemDescription;
     [SerializeField] public string[] rareList;
     [SerializeField] public int[] rareChances;
+    //
+    [SerializeField] public int manaCost;
+    [SerializeField] public int weaponSize;
+    [SerializeField] public int attackSpeed;
+    [SerializeField] public int tripleAttackChance;
+    [SerializeField] public int secondUsageChance;
+    [SerializeField] public int explosionChance;
+    [SerializeField] public int explosionType;
+    [SerializeField] public float weaponCooldown;
     public string rareName;
     Text stacks;
     //Cold Lightning Fire Phys Poison Void Pure

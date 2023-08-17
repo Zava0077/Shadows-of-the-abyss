@@ -11,6 +11,9 @@ public class PlayerScript : MonoBehaviour
     [SerializeField] public Rigidbody2D rb2d;
     public bool readyToSpeak;
     private Vector2 movePosition;
+    //
+    public float attackSpeed = 0.5f;
+    //
     public int Speed = 5;
     public int Health;
     public int MaxHealth;

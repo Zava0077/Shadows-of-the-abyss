@@ -37,6 +37,15 @@ public class CursorSlot : MonoBehaviour
     [SerializeField] public string itemDescription;
     [SerializeField] public string[] rareList;
     [SerializeField] public int[] rareChances;
+    //
+    [SerializeField] public int manaCost;
+    [SerializeField] public int weaponSize;
+    [SerializeField] public int attackSpeed;
+    [SerializeField] public int tripleAttackChance;
+    [SerializeField] public int secondUsageChance;
+    [SerializeField] public int explosionChance;
+    [SerializeField] public int explosionType;
+    [SerializeField] public float weaponCooldown;
     public string rareName;
     Vector3 cursor;
     SpriteRenderer sR;

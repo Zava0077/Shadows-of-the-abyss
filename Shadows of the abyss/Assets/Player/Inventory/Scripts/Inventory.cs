@@ -85,6 +85,14 @@ public class Inventory : MonoBehaviour
             slots[firstFreeSlot].rareList = item.GetComponent<Slot>().rareList;
             slots[firstFreeSlot].rareChances = item.GetComponent<Slot>().rareChances;
             slots[firstFreeSlot].rareName = rareName;
+            slots[firstFreeSlot].manaCost = item.GetComponent<Slot>().manaCost;
+            slots[firstFreeSlot].weaponSize = item.GetComponent<Slot>().weaponSize;
+            slots[firstFreeSlot].attackSpeed = item.GetComponent<Slot>().attackSpeed;
+            slots[firstFreeSlot].tripleAttackChance = item.GetComponent<Slot>().tripleAttackChance;
+            slots[firstFreeSlot].secondUsageChance = item.GetComponent<Slot>().secondUsageChance;
+            slots[firstFreeSlot].explosionChance = item.GetComponent<Slot>().explosionChance;
+            slots[firstFreeSlot].explosionType = item.GetComponent<Slot>().explosionType;
+            slots[firstFreeSlot].weaponCooldown = item.GetComponent<Slot>().weaponCooldown;
         }
     }
     static void FreeSlotDetector(int freeSlotId)

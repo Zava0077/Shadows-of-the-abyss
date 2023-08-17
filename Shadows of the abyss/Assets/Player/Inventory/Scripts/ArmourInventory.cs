@@ -26,6 +26,14 @@ public class ArmourInventory : MonoBehaviour
     public float[] pureResist;
     public float[] evasionChance;
     public float[] criticalChance;
+    public int[] manaCost;
+    public int[] weaponSize;
+    public int[] tripleAttackChance;
+    public int[] secondUsageChance;
+    public int[] attackSpeed;
+    public int[] explosionChance; 
+    public int[] explosionType;
+    public float[] weaponCooldown;
     public float hpValue;
     public float damageValue;
     public float iceDamageValue;
@@ -44,6 +52,15 @@ public class ArmourInventory : MonoBehaviour
     public float evasionChanceValue;
     public float criticalChanceValue;
     public string rareName;
+    public int manaCostValue;
+    public int weaponSizeValue;
+    public int tripleAttackChanceValue;
+    public int secondUsageChanceValue;
+    public float attackSpeedValue;
+    public int explosionChanceValue;
+    public int explosionTypeValue;
+    public float weaponCooldownValue;
+    public string weaponType;
 
     public static ArmourInventory self;
     public ArmourInventory()
@@ -76,6 +93,14 @@ public class ArmourInventory : MonoBehaviour
         pureResist = new float[armourSlots.Count];
         evasionChance = new float[armourSlots.Count];
         criticalChance = new float[armourSlots.Count];
+        manaCost = new int[armourSlots.Count];
+        weaponSize = new int[armourSlots.Count];
+        tripleAttackChance = new int[armourSlots.Count];
+        secondUsageChance = new int[armourSlots.Count];
+        attackSpeed = new int[armourSlots.Count];
+        explosionChance = new int[armourSlots.Count];
+        explosionType = new int[armourSlots.Count];
+        weaponCooldown = new float[armourSlots.Count];
     }
     private void FixedUpdate()
     {
@@ -102,6 +127,14 @@ public class ArmourInventory : MonoBehaviour
             pureResist[i] = Inventory.slots[i + 16].pureResist;
             evasionChance[i] = Inventory.slots[i + 16].evasionChance;
             criticalChance[i] = Inventory.slots[i + 16].criticalChance;
+            manaCost[i] = Inventory.slots[i + 16].manaCost;
+            weaponSize[i] = Inventory.slots[i + 16].weaponSize;
+            attackSpeed[i] = Inventory.slots[i + 16].attackSpeed;
+            tripleAttackChance[i] = Inventory.slots[i + 16].tripleAttackChance;
+            secondUsageChance[i] = Inventory.slots[i + 16].secondUsageChance;
+            explosionChance[i] = Inventory.slots[i + 16].explosionChance;
+            explosionType[i] = Inventory.slots[i + 16].explosionType;
+            weaponCooldown[i] = Inventory.slots[i + 16].weaponCooldown;
         }
     }
     void CalculateStats()
@@ -123,6 +156,14 @@ public class ArmourInventory : MonoBehaviour
         pureResistValue = 0;
         evasionChanceValue = 0;
         criticalChanceValue = 0;
+        manaCostValue = 0;
+        weaponSizeValue = 0;
+        attackSpeedValue = 0;
+        tripleAttackChanceValue = 0;
+        secondUsageChanceValue = 0;
+        explosionChanceValue = 0;
+        explosionTypeValue = 0;
+        weaponCooldownValue = 0;
         CheckItems();
         for (int i = 0; i < armourSlots.Count; i++)
         {
@@ -143,6 +184,15 @@ public class ArmourInventory : MonoBehaviour
             pureResistValue += Inventory.slots[i + 16].pureResist;
             evasionChanceValue += Inventory.slots[i + 16].evasionChance;
             criticalChanceValue += Inventory.slots[i + 16].criticalChance;
+            manaCostValue += Inventory.slots[i + 16].manaCost;
+            weaponSizeValue += Inventory.slots[i + 16].weaponSize;
+            attackSpeedValue += (float)Inventory.slots[i + 16].attackSpeed/100;
+            tripleAttackChanceValue += Inventory.slots[i + 16].tripleAttackChance;
+            secondUsageChanceValue += Inventory.slots[i + 16].secondUsageChance;
+            explosionChanceValue += Inventory.slots[i + 16].explosionChance;
+            explosionTypeValue += Inventory.slots[i + 16].explosionType;
+            weaponCooldownValue += Inventory.slots[i + 16].weaponCooldown;
+            weaponType = armourSlots[4].type;
         }
     }
 }
