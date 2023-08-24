@@ -46,6 +46,17 @@ public class CursorSlot : MonoBehaviour
     [SerializeField] public int explosionChance;
     [SerializeField] public int explosionType;
     [SerializeField] public float weaponCooldown;
+    [SerializeField] public float createProjectileChance;
+    [SerializeField] public int spikes;
+    [SerializeField] public int pierce;
+    [SerializeField] public int extraPierceChance;
+    //[SerializeField] public GameObject[] inscriptions;
+    [SerializeField] public Insctiprions inscriptions = new Insctiprions();
+    //
+    [SerializeField] public Sprite projectileSprite;
+    [SerializeField] public Sprite weaponSprite;
+    //
+    [SerializeField] public int inscriptionNum;
     public string rareName;
     Vector3 cursor;
     SpriteRenderer sR;

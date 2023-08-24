@@ -166,13 +166,18 @@ public class RoomPlacer : MonoBehaviour
                 if (neighbours == 2)
                     potentianSecretRoomPlaces.Add(new Vector2Int(x, y));
             }
-        Vector2Int position = potentianSecretRoomPlaces.ElementAt(Random.Range(0, potentianSecretRoomPlaces.Count));
-        if (position != new Vector2(0, 0))
+        Vector2Int position;
+        if (potentianSecretRoomPlaces.Count != 0)
         {
-            Room newRoom = Instantiate(secretRoom);
-            newRoom.transform.position = new Vector2(position.x - dungeonSize / 2, position.y - dungeonSize / 2) * 16;
-            spawnedRooms[position.x, position.y] = newRoom;
+            position = potentianSecretRoomPlaces.ElementAt(Random.Range(0, potentianSecretRoomPlaces.Count));
+            //if (position != new Vector2(0, 0))
+            //{
+                Room newRoom = Instantiate(secretRoom);
+                newRoom.transform.position = new Vector2(position.x - dungeonSize / 2, position.y - dungeonSize / 2) * 16;
+                spawnedRooms[position.x, position.y] = newRoom;
+            //}
         }
+   
     }
     void TreasureRoom()
     {

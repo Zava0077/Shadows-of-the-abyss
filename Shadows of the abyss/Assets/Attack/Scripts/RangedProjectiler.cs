@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 
 public class RangedProjectiler : MonoBehaviour
@@ -13,18 +14,22 @@ public class RangedProjectiler : MonoBehaviour
     public int secondAttackChance;
     public bool isCreated;
     public GameObject projectile;
+    Sprite bulletSprite;
     private void Awake()
     {
-        secondAttackChance = 0;
+        secondAttackChance = ArmourInventory.self.secondUsageChanceValue;
+        bulletSprite = ArmourInventory.armourSlots[4].projectileSprite;
     }
     void Update()
     {
+        
         Vector3 diference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
         float rotateZ = Mathf.Atan2(diference.y, diference.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0f, 0f, rotateZ + rotateZShift);
         if (!isCreated)
         {
-            Instantiate(projectile, this.gameObject.transform.position, this.gameObject.transform.rotation, this.gameObject.transform.parent.transform.parent);
+            GameObject weapon = Instantiate(projectile, this.gameObject.transform.position, this.gameObject.transform.rotation, this.gameObject.transform.parent.transform.parent);
+            weapon.GetComponent<SpriteRenderer>().sprite = bulletSprite;
             isCreated = true;
         }
         if (Random.Range(1, 100) <= secondAttackChance)

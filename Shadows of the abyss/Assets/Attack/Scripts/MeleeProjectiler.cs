@@ -25,18 +25,19 @@ public class MeleeProjectiler : MonoBehaviour
         Vector3 diference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
         float rotateZ = Mathf.Atan2(diference.y, diference.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0f, 0f, rotateZ + rotateZShift);
-        if (Random.Range(1, 100) <= createWaveChance && !isCreated)
+        if (Random.Range(1, 100) <= ArmourInventory.self.createProjectileChanceValue && !isCreated)
         {
             Instantiate(wave, this.gameObject.transform.position, this.gameObject.transform.rotation, this.gameObject.transform.parent.transform.parent);
             isCreated = true;
         }
-        if (Random.Range(1, 100) <= secondAttackChance)
+        if (Random.Range(1, 100) <= ArmourInventory.self.secondUsageChanceValue)
         {
-            Attack.self.AttackInvoker();
+            //Attack.self.AttackInvoker();
             Invoke(nameof(Destroying), PlayerScript.self.attackSpeed);
         }
         else
-            Invoke(nameof(FullDestroying), PlayerScript.self.attackSpeed); 
+            Invoke(nameof(FullDestroying), PlayerScript.self.attackSpeed);
+
     }
     void FullDestroying()
     {
@@ -44,12 +45,15 @@ public class MeleeProjectiler : MonoBehaviour
         Attack.self.e = 0;
         Attack.self.n = 1;
         Attack.self.id = 0;
+        Attack.self.isAttacking = false;
         Destroy(gameObject);
-        CancelInvoke(nameof(Destroying));
+        CancelInvoke(nameof(FullDestroying));
     }
     void Destroying()
     {
         Destroy(gameObject);
+        Attack.self.isAttacking = true;
+        Attack.self.isAbleToAttack = false;
         CancelInvoke(nameof(Destroying));
     }
     private void OnTriggerEnter2D(Collider2D collision)

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 9047657002591364943}
   - component: {fileID: 1198719410411151621}
   - component: {fileID: -2268303626492903351}
+  - component: {fileID: 6751858720800780782}
   m_Layer: 5
   m_Name: Bow
   m_TagString: Untagged
@@ -145,6 +146,15 @@ MonoBehaviour:
   explosionChance: 0
   explosionType: 0
   weaponCooldown: 0.5
+  createProjectileChance: 0
+  spikes: 0
+  pierce: 0
+  extraPierceChance: 0
+  inscriptions: {fileID: 6751858720800780782}
+  projectileSprite: {fileID: 21300000, guid: 2c978a079bdca7944b15148f9b70cfcd, type: 3}
+  weaponSprite: {fileID: 21300000, guid: df879b6a4acbff842bc6ae843a4dd07f, type: 3}
+  inscriptionNum: 4
+  canBeReplaced: 1
   rareName: 
 --- !u!114 &9047657002591364943
 MonoBehaviour:
@@ -230,3 +240,307 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &6751858720800780782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8283065102806030095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 687aadc80e536d941b865ed4feaee8de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hp:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  damage:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  iceDamage:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  igniteDamage:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  lightningDamage:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  poisonDamage:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  voidDamage:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  pureDamage:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  defence:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  iceResist:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  igniteResist:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  lightningResist:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  poisonResist:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  voidResist:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  pureResist:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  evasionChance:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  criticalChance:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  stackAmount: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
+  stacksAlready: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
+  kind: 08000000080000000800000008000000080000000800000008000000080000000800000008000000
+  type:
+  - Empty
+  - Empty
+  - Empty
+  - Empty
+  - Empty
+  - Empty
+  - Empty
+  - Empty
+  - Empty
+  - Empty
+  sprite:
+  - {fileID: 21300000, guid: 59a39c1bbaad10949bd53e406701b335, type: 3}
+  - {fileID: 21300000, guid: 59a39c1bbaad10949bd53e406701b335, type: 3}
+  - {fileID: 21300000, guid: 59a39c1bbaad10949bd53e406701b335, type: 3}
+  - {fileID: 21300000, guid: 59a39c1bbaad10949bd53e406701b335, type: 3}
+  - {fileID: 21300000, guid: 59a39c1bbaad10949bd53e406701b335, type: 3}
+  - {fileID: 21300000, guid: 59a39c1bbaad10949bd53e406701b335, type: 3}
+  - {fileID: 21300000, guid: 59a39c1bbaad10949bd53e406701b335, type: 3}
+  - {fileID: 21300000, guid: 59a39c1bbaad10949bd53e406701b335, type: 3}
+  - {fileID: 21300000, guid: 59a39c1bbaad10949bd53e406701b335, type: 3}
+  - {fileID: 21300000, guid: 59a39c1bbaad10949bd53e406701b335, type: 3}
+  idItem: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
+  itemDescription:
+  - Empty
+  - Empty
+  - Empty
+  - Empty
+  - Empty
+  - Empty
+  - Empty
+  - Empty
+  - Empty
+  - Empty
+  manaCost: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
+  weaponSize: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
+  attackSpeed: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
+  tripleAttackChance: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
+  secondUsageChance: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
+  explosionChance: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
+  explosionType: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
+  weaponCooldown:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  createProjectileChance:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  spikes: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
+  pierce: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
+  extraPierceChance: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
+  hpValue: 0
+  damageValue: 0
+  iceDamageValue: 0
+  igniteDamageValue: 0
+  lightningDamageValue: 0
+  poisonDamageValue: 0
+  voidDamageValue: 0
+  pureDamageValue: 0
+  defenceValue: 0
+  iceResistValue: 0
+  igniteResistValue: 0
+  lightningResistValue: 0
+  poisonResistValue: 0
+  voidResistValue: 0
+  pureResistValue: 0
+  evasionChanceValue: 0
+  criticalChanceValue: 0
+  stackAmountValue: 0
+  stacksAlreadyValue: 0
+  kindValue: 0
+  typeValue: 
+  spriteValue: {fileID: 0}
+  idItemValue: 0
+  itemDescriptionValue: 
+  manaCostValue: 0
+  weaponSizeValue: 0
+  attackSpeedValue: 0
+  tripleAttackChanceValue: 0
+  secondUsageChanceValue: 0
+  explosionChanceValue: 0
+  explosionTypeValue: 0
+  weaponCooldownValue: 0
+  createProjectileChanceValue: 0
+  spikesValue: 0
+  pierceValue: 0
+  extraPierceChanceValue: 0

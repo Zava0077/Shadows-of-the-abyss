@@ -9,6 +9,7 @@ public class Attack : MonoBehaviour
     public GameObject meleeProjectiler;
     public GameObject rangeProjectiler;
     public GameObject[] projectilers = new GameObject[4096];
+    Sprite weaponSprite;
     public static Attack self;
     public int e = 0;
     public int n = 1;
@@ -30,6 +31,7 @@ public class Attack : MonoBehaviour
     {
         if (Input.GetButton("Fire1") && !SlotInteraction.isHovered && CursorSlot.self.type == "Empty" && isAbleToAttack)
         {
+            weaponSprite = ArmourInventory.armourSlots[4].weaponSprite;
             isAttacking = true;
         }
     }
@@ -72,7 +74,7 @@ public class Attack : MonoBehaviour
                         PlayerScript.self.Mana -= ArmourInventory.self.manaCostValue;
                         RangeAttack();
                     }
-                    else Debug.Log("Не хватка маны!");
+                    else Debug.Log("Нехватка маны!");
                     break;
                     
             }
@@ -83,7 +85,7 @@ public class Attack : MonoBehaviour
     {
         isAbleToAttack = false;
         projectilers[id] = meleeProjectiler;
-        if (Random.Range(1, 100) <= tripleAttackChance)
+        if (Random.Range(1, 100) <= ArmourInventory.self.tripleAttackChanceValue)
         {
             id++;
             projectilers[id] = meleeProjectiler;
@@ -95,13 +97,15 @@ public class Attack : MonoBehaviour
         {
             if (i % 2 == 0 && projectilers[i] != null && projectilers[e] != null)
             {
-                Instantiate(projectilers[e], transform.position, Quaternion.identity, transform);
+                GameObject weapon = Instantiate(projectilers[e], transform.position, Quaternion.identity, transform);
+                weapon.GetComponentInChildren<SpriteRenderer>().sprite = weaponSprite;
                 projectilers[e].GetComponent<MeleeProjectiler>().rotateZShift = 30 * e;
                 e++;
             }
             else if (projectilers[i] != null && projectilers[e] != null)
             {
-                Instantiate(projectilers[e], transform.position, Quaternion.identity, transform);
+                GameObject weapon = Instantiate(projectilers[e], transform.position, Quaternion.identity, transform);
+                weapon.GetComponentInChildren<SpriteRenderer>().sprite = weaponSprite;
                 projectilers[e].GetComponent<MeleeProjectiler>().rotateZShift = -30 * n;
                 n++;
             }
@@ -111,7 +115,7 @@ public class Attack : MonoBehaviour
     {
         isAbleToAttack = false;
         projectilers[id] = rangeProjectiler;
-        if (Random.Range(1, 100) <= tripleAttackChance)
+        if (Random.Range(1, 100) <= ArmourInventory.self.tripleAttackChanceValue)
         {
             id++;
             projectilers[id] = rangeProjectiler;
@@ -123,13 +127,15 @@ public class Attack : MonoBehaviour
         {
             if (i % 2 == 0 && projectilers[i] != null && projectilers[e] != null)
             {
-                Instantiate(projectilers[e], transform.position, Quaternion.identity, transform);
+                GameObject weapon = Instantiate(projectilers[e], transform.position, Quaternion.identity, transform);
+                weapon.GetComponentInChildren<SpriteRenderer>().sprite = weaponSprite;
                 projectilers[e].GetComponent<RangedProjectiler>().rotateZShift = 30 * e;
                 e++;
             }
             else if (projectilers[i] != null && projectilers[e] != null)
             {
-                Instantiate(projectilers[e], transform.position, Quaternion.identity, transform);
+                GameObject weapon = Instantiate(projectilers[e], transform.position, Quaternion.identity, transform);
+                weapon.GetComponentInChildren<SpriteRenderer>().sprite = weaponSprite;
                 projectilers[e].GetComponent<RangedProjectiler>().rotateZShift = -30 * n;
                 n++;
             }

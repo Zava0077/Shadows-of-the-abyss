@@ -45,6 +45,19 @@ public class Slot : Inventory
     [SerializeField] public int explosionChance;
     [SerializeField] public int explosionType;
     [SerializeField] public float weaponCooldown;
+    [SerializeField] public float createProjectileChance;
+    // add spikes and pierce+extraPierceChance gameObjectsArray
+    [SerializeField] public int spikes;
+    [SerializeField] public int pierce;
+    [SerializeField] public int extraPierceChance;
+    //[SerializeField] public GameObject[] inscriptions;
+    [SerializeField] public Insctiprions inscriptions = new Insctiprions();
+    //
+    [SerializeField] public Sprite projectileSprite;
+    [SerializeField] public Sprite weaponSprite;
+    //
+    [SerializeField] public int inscriptionNum;
+    public bool canBeReplaced = true;
     public string rareName;
     Text stacks;
     //Cold Lightning Fire Phys Poison Void Pure
@@ -56,7 +69,8 @@ public class Slot : Inventory
     Image sR;
     private void Awake()
     {
-        stacks = GetComponentInChildren<Text>();
+        if(GetComponentInChildren<Text>() != null)
+            stacks = GetComponentInChildren<Text>();
         sR = GetComponent<Image>();
         if (sprite != null)
             sR.sprite = sprite;
@@ -66,9 +80,10 @@ public class Slot : Inventory
         if (type == "Empty")
             sR.sprite = emptySprite;
         else sR.sprite = sprite;
-        stacks.text = slots[id].stacksAlready.ToString();
-        if (stacksAlready == 0)
+        if(slots[id].stacksAlready != 0)
+            stacks.text = slots[id].stacksAlready.ToString();
+        if (stacksAlready == 0 && stacks != null)
             stacks.enabled = false;
-        else stacks.enabled = true;
+        else if(stacks != null) stacks.enabled = true;
     }
 }

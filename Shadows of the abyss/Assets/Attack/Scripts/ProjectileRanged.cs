@@ -15,18 +15,18 @@ public class ProjectileRanged : MonoBehaviour
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-       
-        createProjChance = 100;
+        createProjChance = 0; //
     }
     void Update()
     {
-        if (isCrit && Random.Range(1, 100) < createProjChance)
+        if (isCrit && Random.Range(1, 100) < ArmourInventory.self.createProjectileChanceValue)
         {
             int rand = Random.Range(-1, 1);
             if (rand == 0)
                 direction = 1;
             else direction = -1;
-            Instantiate(projectile, gameObject.transform.position, Quaternion.Euler(0f,0f, transform.rotation.z + 30 * direction), this.gameObject.transform.parent);
+            GameObject bullet = Instantiate(projectile, gameObject.transform.position, Quaternion.Euler(0f, 0f, transform.rotation.z + 30 * direction), this.gameObject.transform.parent);
+            bullet.GetComponent<SpriteRenderer>().sprite = transform.gameObject.GetComponent<SpriteRenderer>().sprite;
             isCrit = false;
         }
         rb.velocity = transform.right * projectileSpeed;

@@ -10,6 +10,7 @@ TagManager:
   - InteractionArea
   - InteractionObject
   - Door
+  - InscriptionsInventory
   layers:
   - Default
   - TransparentFX

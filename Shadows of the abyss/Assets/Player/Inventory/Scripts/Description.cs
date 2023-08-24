@@ -33,6 +33,7 @@ public class Description : MonoBehaviour
     [SerializeField] GameObject weapon;
     [SerializeField] public int idItem;
     [SerializeField] GameObject parentPanel;
+    static public bool isChoosingSlot;
     Vector3 cursor;
     Vector2 position;
     SpriteRenderer sR;
@@ -60,13 +61,20 @@ public class Description : MonoBehaviour
         if (collision.gameObject.tag == "Inventory" || collision.gameObject.tag == "ArmourInventory")
         {
             SlotInteraction.isHovered = true;
+            if(isChoosingSlot)
+            {
+                SlotInteraction.hoveredId = collision.gameObject.GetComponent<Slot>().id;
+                Inventory.slots[SlotInteraction.hoveredId].canBeReplaced = false;
+                isChoosingSlot = false;
+                Inventory.self.GetFeatures();
+            }
             if (collision.gameObject.GetComponent<Slot>().rareName != "")
                 text.text += " <b><color=red>" + collision.gameObject.GetComponent<Slot>().rareName + "</color></b>";
             text.text = collision.gameObject.GetComponent<Slot>().itemDescription;
             parentPanel.transform.Find("CursorSlot").GetComponentInChildren<Text>().enabled = true;
             gameObject.GetComponentsInChildren<SpriteRenderer>()[0].enabled = true;
             gameObject.GetComponentsInChildren<SpriteRenderer>()[1].enabled = true;
-            gameObject.transform.localScale = new Vector3(text.preferredWidth, text.preferredHeight, 0f);
+            gameObject.transform.localScale = new Vector3(text.preferredWidth + 2f, text.preferredHeight + 2f, 0f);
         }
         if (text.text == "Empty")
         {

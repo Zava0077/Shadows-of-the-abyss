@@ -6,6 +6,7 @@ using Unity.VisualScripting;
 
 public class Entity : MonoBehaviour
 {
+    [SerializeField] GameObject inscription;
     public void Die(GameObject[] gameObjects, int[] chance)
     {
         Drop(gameObjects, chance);
@@ -30,7 +31,9 @@ public class Entity : MonoBehaviour
             {
                 article = Instantiate(gameObjects[i], gameObject.transform.position, Quaternion.identity);
                 string description = "";
-                if (gameObjects[i].GetComponent<Slot>().type != "Usable" && gameObjects[i].GetComponent<Slot>().type != "Empty")
+                rareName = "";
+                Prefixes.self.extraDescription = "";
+                if (gameObjects[i].GetComponent<Slot>().type != "Usable" && gameObjects[i].GetComponent<Slot>().type != "Empty" && gameObjects[i].GetComponent<Slot>().type != "Scroll")
                     for (int k = 0; k < rareList.Length; k++)
                     {
                         ifChance += rareChances[k];
@@ -42,73 +45,99 @@ public class Entity : MonoBehaviour
                         }
                         else continue;
                     }
-
                 article.GetComponent<Slot>().sprite = gameObjects[i].GetComponent<Slot>().sprite;
                 article.GetComponent<Slot>().rareName = rareName;
                 Prefixes.self.PrefixChooser(rareName, gameObjects[i].GetComponent<Slot>().damage, article);
                 description += article.GetComponent<Slot>().rareName + " " + article.GetComponent<Slot>().itemDescription + "\r\n";
-                article.GetComponent<Slot>().damage +=  Prefixes.self.damageSummand;
+                article.GetComponent<Slot>().damage += Prefixes.self.damageSummand;
                 if (article.GetComponent<Slot>().damage > 0)
                     description += "Damage: " + article.GetComponent<Slot>().damage + "\r\n";
                 article.GetComponent<Slot>().iceDamage += Prefixes.self.iceDamageSummand;
                 if (article.GetComponent<Slot>().iceDamage > 0)
                     description += "Ice damage: " + article.GetComponent<Slot>().iceDamage + "\r\n";
-                article.GetComponent<Slot>().igniteDamage +=  Prefixes.self.igniteDamageSummand; 
+                article.GetComponent<Slot>().igniteDamage += Prefixes.self.igniteDamageSummand;
                 if (article.GetComponent<Slot>().igniteDamage > 0)
                     description += "Ignite damage: " + article.GetComponent<Slot>().igniteDamage + "\r\n";
-                article.GetComponent<Slot>().lightningDamage +=  Prefixes.self.lightningDamageSummand;
+                article.GetComponent<Slot>().lightningDamage += Prefixes.self.lightningDamageSummand;
                 if (article.GetComponent<Slot>().lightningDamage > 0)
                     description += "Ligtning damage: " + article.GetComponent<Slot>().lightningDamage + "\r\n";
-                article.GetComponent<Slot>().poisonDamage +=  Prefixes.self.poisonDamageSummand;
+                article.GetComponent<Slot>().poisonDamage += Prefixes.self.poisonDamageSummand;
                 if (article.GetComponent<Slot>().poisonDamage > 0)
                     description += "Poison damage: " + article.GetComponent<Slot>().poisonDamage + "\r\n";
-                article.GetComponent<Slot>().voidDamage +=  Prefixes.self.voidDamageSummand;
+                article.GetComponent<Slot>().voidDamage += Prefixes.self.voidDamageSummand;
                 if (article.GetComponent<Slot>().voidDamage > 0)
                     description += "Void damage: " + article.GetComponent<Slot>().voidDamage + "\r\n";
-                article.GetComponent<Slot>().pureDamage +=  Prefixes.self.pureDamageSummand;
+                article.GetComponent<Slot>().pureDamage += Prefixes.self.pureDamageSummand;
                 if (article.GetComponent<Slot>().pureDamage > 0)
                     description += "Pure damage: " + article.GetComponent<Slot>().damage + "\r\n";
-                article.GetComponent<Slot>().defence +=  Prefixes.self.defenceSummand;
+                article.GetComponent<Slot>().defence += Prefixes.self.defenceSummand;
                 if (article.GetComponent<Slot>().defence > 0)
                     description += "Defence: " + article.GetComponent<Slot>().defence + "\r\n";
-                article.GetComponent<Slot>().iceResist +=  Prefixes.self.iceResistSummand;
+                article.GetComponent<Slot>().iceResist += Prefixes.self.iceResistSummand;
                 if (article.GetComponent<Slot>().iceResist > 0)
                     description += "Ice resist: " + article.GetComponent<Slot>().iceResist + "\r\n";
-                article.GetComponent<Slot>().igniteResist +=  Prefixes.self.igniteResistSummand;
+                article.GetComponent<Slot>().igniteResist += Prefixes.self.igniteResistSummand;
                 if (article.GetComponent<Slot>().igniteResist > 0)
                     description += "Ignite resist: " + article.GetComponent<Slot>().igniteResist + "\r\n";
                 article.GetComponent<Slot>().lightningResist += Prefixes.self.lightningResistSummand;
                 if (article.GetComponent<Slot>().lightningResist > 0)
                     description += "Lightning resist: " + article.GetComponent<Slot>().lightningResist + "\r\n";
-                article.GetComponent<Slot>().poisonResist +=  Prefixes.self.poisonResistSummand;
+                article.GetComponent<Slot>().poisonResist += Prefixes.self.poisonResistSummand;
                 if (article.GetComponent<Slot>().poisonResist > 0)
                     description += "Poison resist: " + article.GetComponent<Slot>().poisonResist + "\r\n";
-                article.GetComponent<Slot>().voidResist +=  Prefixes.self.voidResistSummand;
+                article.GetComponent<Slot>().voidResist += Prefixes.self.voidResistSummand;
                 if (article.GetComponent<Slot>().voidResist > 0)
                     description += "Void resist: " + article.GetComponent<Slot>().voidResist + "\r\n";
-                article.GetComponent<Slot>().pureResist +=  Prefixes.self.pureResistSummand;
+                article.GetComponent<Slot>().pureResist += Prefixes.self.pureResistSummand;
                 if (article.GetComponent<Slot>().pureResist > 0)
                     description += "Pure resist: " + article.GetComponent<Slot>().pureResist + "\r\n";
-                article.GetComponent<Slot>().hp +=  Prefixes.self.maxHpSummand;
+                article.GetComponent<Slot>().hp += Prefixes.self.maxHpSummand;
                 if (article.GetComponent<Slot>().hp > 0)
                     description += "Max HP: +" + article.GetComponent<Slot>().hp + "\r\n";
-                article.GetComponent<Slot>().evasionChance +=  Prefixes.self.evasionChanceSummand;
+                article.GetComponent<Slot>().evasionChance += Prefixes.self.evasionChanceSummand;
                 if (article.GetComponent<Slot>().evasionChance > 0)
                     description += "Evasion chance: " + article.GetComponent<Slot>().evasionChance + "\r\n";
-                article.GetComponent<Slot>().criticalChance +=  Prefixes.self.criticalChanceSummand;
+                article.GetComponent<Slot>().criticalChance += Prefixes.self.criticalChanceSummand;
                 if (article.GetComponent<Slot>().criticalChance > 0)
                     description += "Critical chance: " + article.GetComponent<Slot>().criticalChance + "\r\n";
                 article.GetComponent<Slot>().kind = gameObjects[i].GetComponent<Slot>().kind;
                 article.GetComponent<Slot>().idItem = gameObjects[i].GetComponent<Slot>().idItem;
                 //
                 article.GetComponent<Slot>().manaCost += Prefixes.self.manaCostSummand;
+                if (article.GetComponent<Slot>().manaCost > 0)
+                    description += "Mana cost: " + article.GetComponent<Slot>().manaCost + "\r\n";
                 article.GetComponent<Slot>().weaponSize += Prefixes.self.weaponSizeSummand;
+                if (article.GetComponent<Slot>().weaponSize > 0)
+                    description += "Size: " + article.GetComponent<Slot>().weaponSize + "\r\n";
                 article.GetComponent<Slot>().attackSpeed += Prefixes.self.attackSpeedSummand;
+                if (article.GetComponent<Slot>().attackSpeed > 0)
+                    description += "Speed: " + article.GetComponent<Slot>().attackSpeed + "\r\n";
                 article.GetComponent<Slot>().secondUsageChance += Prefixes.self.secondUsageChanceSummand;
+                if (article.GetComponent<Slot>().secondUsageChance > 0)
+                    description += "Second usage: " + article.GetComponent<Slot>().secondUsageChance + "\r\n";
                 article.GetComponent<Slot>().tripleAttackChance += Prefixes.self.tripleAttackChanceSummand;
+                if (article.GetComponent<Slot>().tripleAttackChance > 0)
+                    description += "Triple attack: " + article.GetComponent<Slot>().tripleAttackChance + "\r\n";
                 article.GetComponent<Slot>().explosionChance += Prefixes.self.explChanceSummand;
+                if (article.GetComponent<Slot>().explosionChance > 0)
+                    description += "Chance of explotion: " + article.GetComponent<Slot>().explosionChance + "\r\n";
                 article.GetComponent<Slot>().explosionType = Prefixes.self.explTypeEqualer;
                 article.GetComponent<Slot>().weaponCooldown += Prefixes.self.weaponCooldownSummand;
+                if (article.GetComponent<Slot>().weaponCooldown > 0)
+                    description += "Cooldown: " + article.GetComponent<Slot>().weaponCooldown + "\r\n";
+                article.GetComponent<Slot>().createProjectileChance += Prefixes.self.createProjectileChanceSummand;
+                if (article.GetComponent<Slot>().createProjectileChance > 0)
+                    description += "Create projectile chance: " + article.GetComponent<Slot>().createProjectileChance + "\r\n";
+
+                article.GetComponent<Slot>().spikes += Prefixes.self.spikes;
+                if (article.GetComponent<Slot>().spikes > 0)
+                    description += "Spikes: " + article.GetComponent<Slot>().spikes + "\r\n";
+                //
+                for (int j = 0; j < 10; j++)
+                {
+                    //GameObject insc = Instantiate(inscription);
+                    //article.GetComponent<Slot>().inscriptions[j] = insc; //создать скрипт инскрипшионс, там хранить все переменные в виде массива [10] в скрипте слот создать список, хранящий этот скрипт, таким образом он будет переносится из слота в слот.
+                }
                 //
                 if (description == "" && article.GetComponent<Slot>().itemDescription == "")
                     description = "Empty";
@@ -119,7 +148,7 @@ public class Entity : MonoBehaviour
                 if (gameObjects[i].GetComponent<Slot>().stackAmount > 0)
                     secondDropChance /= 2;
                 else secondDropChance = 0;
-                article.transform.position += new Vector3((float)rnd.Next(-2,2)/10, (float)rnd.Next(-2, 2)/10);
+                article.transform.position += new Vector3((float)rnd.Next(-2, 2) / 10, (float)rnd.Next(-2, 2) / 10);
             }
             gameObject.transform.localScale /= 100;
             if (rnd.Next(0, 100) < secondDropChance)
