@@ -34,7 +34,6 @@ public class RangedProjectiler : MonoBehaviour
         }
         if (Random.Range(1, 100) <= secondAttackChance)
         {
-            Attack.self.AttackInvoker();
             Invoke(nameof(Destroying), PlayerScript.self.attackSpeed);
         }
         else
@@ -46,12 +45,15 @@ public class RangedProjectiler : MonoBehaviour
         Attack.self.e = 0;
         Attack.self.n = 1;
         Attack.self.id = 0;
+        Attack.self.isAttacking = false;
         Destroy(gameObject);
-        CancelInvoke(nameof(Destroying));
+        CancelInvoke(nameof(FullDestroying));
     }
     void Destroying()
     {
         Destroy(gameObject);
+        Attack.self.isAttacking = true;
+        Attack.isAbleToAttack = false;
         CancelInvoke(nameof(Destroying));
     }
     private void OnTriggerEnter2D(Collider2D collision)

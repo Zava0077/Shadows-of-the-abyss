@@ -53,7 +53,7 @@ public class MeleeProjectiler : MonoBehaviour
     {
         Destroy(gameObject);
         Attack.self.isAttacking = true;
-        Attack.self.isAbleToAttack = false;
+        Attack.isAbleToAttack = false;
         CancelInvoke(nameof(Destroying));
     }
     private void OnTriggerEnter2D(Collider2D collision)

@@ -14,7 +14,7 @@ public class Attack : MonoBehaviour
     public int e = 0;
     public int n = 1;
     public bool isAttacking;
-    public bool isAbleToAttack;
+    public static bool isAbleToAttack;
     public Attack()
     {
         self = this;
@@ -25,6 +25,8 @@ public class Attack : MonoBehaviour
     {
         tripleAttackChance = 0;
         isAbleToAttack = true;
+        e = 0;
+        n = 1;
         id = 0;
     }
     private void Update()
@@ -56,10 +58,13 @@ public class Attack : MonoBehaviour
     }
     public void Attacking()
     {
-        if (e == projectilers.Length || id == projectilers.Length)
-            ;
-        else
+        if (e >= projectilers.Length - 1 || id >= projectilers.Length - 1)
         {
+            e = 0;
+            n = 1;
+            id = 0;
+            projectilers = new GameObject[4096];
+        }
             switch(ArmourInventory.self.weaponType)
             {
                 case "Melee":
@@ -78,7 +83,6 @@ public class Attack : MonoBehaviour
                     break;
                     
             }
-        }
         CancelInvoke(nameof(Attacking));
     }
     void MeleeAttack()
@@ -87,10 +91,21 @@ public class Attack : MonoBehaviour
         projectilers[id] = meleeProjectiler;
         if (Random.Range(1, 100) <= ArmourInventory.self.tripleAttackChanceValue)
         {
-            id++;
-            projectilers[id] = meleeProjectiler;
-            id++;
-            projectilers[id] = meleeProjectiler;
+            if (id < projectilers.Length && id + 1 < projectilers.Length && id + 2 < projectilers.Length)
+            {
+                id++;
+                projectilers[id] = meleeProjectiler;
+                id++;
+                projectilers[id] = meleeProjectiler;
+            }
+            else
+            {
+                projectilers = new GameObject[4096];
+                id = 0;
+                projectilers[id] = meleeProjectiler;
+                id++;
+                projectilers[id] = meleeProjectiler;
+            }
         }
         id++;
         for (int i = 0; i < projectilers.Length - 1; i++)
