@@ -4885,21 +4885,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 805274005}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 25e5b8809739d674398ca8bff262d209, type: 3}
+  m_Script: {fileID: 11500000, guid: 7d872d1ad70447c41af10216073eab21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MaxHealth: 100
+  Health: 100
+  Armor: 0
+  Speed: 5
+  FireRes: 0
+  LightningRes: 0
+  ColdRes: 0
+  PoisonRes: 0
+  PhysicalRes: 0
+  VoidRes: 0
+  Evasion: 0
   collider2D: {fileID: 805274008}
   rb2d: {fileID: 805274009}
   readyToSpeak: 0
-  attackSpeed: 0.5
-  Speed: 5
-  Health: 100
-  MaxHealth: 100
   Mana: 200
   MaxMana: 200
   Camera: {fileID: 519420031}
-  game: {fileID: 0}
-  game2: {fileID: 0}
 --- !u!61 &805274008
 BoxCollider2D:
   m_ObjectHideFlags: 0
