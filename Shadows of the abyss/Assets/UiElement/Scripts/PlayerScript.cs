@@ -76,6 +76,9 @@ public class PlayerScript : Creature
         {
             _oneSecTimer -= 1f;
             DamageType.GetDamage(collision.GetComponent<Creature>(), 0, DamageType.DamageTypes.Physical);
+
+        }
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "InteractionObject")

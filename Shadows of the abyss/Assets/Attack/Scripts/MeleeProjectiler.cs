@@ -33,10 +33,10 @@ public class MeleeProjectiler : MonoBehaviour
         if (Random.Range(1, 100) <= ArmourInventory.self.secondUsageChanceValue)
         {
             //Attack.self.AttackInvoker();
-            Invoke(nameof(Destroying), PlayerScript.self.attackSpeed);
+            Invoke(nameof(Destroying), ArmourInventory.self.attackSpeedValue);
         }
         else
-            Invoke(nameof(FullDestroying), PlayerScript.self.attackSpeed);
+            Invoke(nameof(FullDestroying), ArmourInventory.self.attackSpeedValue);
 
     }
     void FullDestroying()
