@@ -20,7 +20,6 @@ public class PlayerScript : Creature
     public static PlayerScript self;
     float _oneSecTimer = 0;
     public Camera Camera;
-    public bool readyToSpeak;
     public PlayerScript() 
     {
         MaxHealth = 100;
