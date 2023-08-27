@@ -24,6 +24,16 @@ public class Prefixes : MonoBehaviour
     public float evasionChanceSummand;
     public float maxHpSummand;
     public float defenceSummand;
+    public int manaCostSummand;
+    public int weaponSizeSummand;
+    public int attackSpeedSummand;
+    public int secondUsageChanceSummand;
+    public int tripleAttackChanceSummand;
+    public int explChanceSummand;
+    public int explTypeEqualer;
+    public float weaponCooldownSummand;
+    public float createProjectileChanceSummand;
+    public int spikes;
     public string extraDescription = "";
     public static Prefixes self;
     public Prefixes()
@@ -51,6 +61,17 @@ public class Prefixes : MonoBehaviour
                 maxHpSummand = 0;
                 defenceSummand = 0;
                 criticalChanceSummand = 10;
+                manaCostSummand = 0;
+                weaponSizeSummand = 0;
+                attackSpeedSummand = 0;
+                secondUsageChanceSummand = 0;//
+                tripleAttackChanceSummand = 0;//
+                explChanceSummand = 0;//
+                explTypeEqualer = 0;//
+                weaponCooldownSummand = 0;
+                createProjectileChanceSummand = 0;//
+                spikes = 0;
+                extraDescription = "";
                 break;
             case "Great":
                 damageSummand = 10;
@@ -69,6 +90,17 @@ public class Prefixes : MonoBehaviour
                 maxHpSummand = 0;
                 defenceSummand = 0;
                 criticalChanceSummand = 5;
+                manaCostSummand = 0;
+                weaponSizeSummand = 0;
+                attackSpeedSummand = 0;
+                secondUsageChanceSummand = 0;//
+                tripleAttackChanceSummand = 0;//
+                explChanceSummand = 0;//
+                explTypeEqualer = 0;//
+                weaponCooldownSummand = 0;
+                createProjectileChanceSummand = 0;//
+                spikes = 0;
+                extraDescription = "";
                 break;
             case "Ignite":
                 damageSummand = 0;
@@ -87,8 +119,76 @@ public class Prefixes : MonoBehaviour
                 maxHpSummand = 0;
                 defenceSummand = 0;
                 criticalChanceSummand = 5;
+                manaCostSummand = 0;
+                weaponSizeSummand = 0;
+                attackSpeedSummand = 0;
+                secondUsageChanceSummand = 0;//
+                tripleAttackChanceSummand = 0;//
+                explChanceSummand = 0;//
+                explTypeEqualer = 0;//
+                weaponCooldownSummand = 0;
+                createProjectileChanceSummand = 0;//
+                spikes = 0;
                 extraDescription = "Converts all physical damage into damage by fire";
                 DamageDefaulter(item);
+                break;
+            case "Fast":
+                damageSummand = -2;
+                iceDamageSummand = 0;
+                igniteDamageSummand = 0;
+                voidDamageSummand = 0;
+                pureDamageSummand = 0;
+                poisonDamageSummand = 0;
+                lightningResistSummand = 0;
+                iceResistSummand = 0;
+                igniteResistSummand = 0;
+                voidResistSummand = 0;
+                pureResistSummand = 0;
+                poisonResistSummand = 0;
+                lightningResistSummand = 0;
+                maxHpSummand = 0;
+                defenceSummand = 0;
+                criticalChanceSummand = 0;
+                manaCostSummand = 0;
+                weaponSizeSummand = 0;
+                attackSpeedSummand = -item.GetComponent<Slot>().attackSpeed/2;
+                secondUsageChanceSummand = 0;//
+                tripleAttackChanceSummand = 0;//
+                explChanceSummand = 0;//
+                explTypeEqualer = 0;//
+                weaponCooldownSummand = -0.2f;
+                createProjectileChanceSummand = 0;//
+                spikes = 0;
+                extraDescription = "Small, but Fast!";
+                break;
+            case "":
+                damageSummand = 0;
+                iceDamageSummand = 0;
+                igniteDamageSummand = 0;
+                voidDamageSummand = 0;
+                pureDamageSummand = 0;
+                poisonDamageSummand = 0;
+                lightningResistSummand = 0;
+                iceResistSummand = 0;
+                igniteResistSummand = 0;
+                voidResistSummand = 0;
+                pureResistSummand = 0;
+                poisonResistSummand = 0;
+                lightningResistSummand = 0;
+                maxHpSummand = 0;
+                defenceSummand = 0;
+                criticalChanceSummand = 0;
+                manaCostSummand = 0;
+                weaponSizeSummand = 0;
+                attackSpeedSummand = 0;
+                secondUsageChanceSummand = 0;//
+                tripleAttackChanceSummand = 0;//
+                explChanceSummand = 0;//
+                explTypeEqualer = 0;//
+                weaponCooldownSummand = 0;
+                createProjectileChanceSummand = 0;//
+                spikes = 0;
+                extraDescription = "";
                 break;
         }
     }

@@ -7,14 +7,20 @@ public class CameraBinds : MonoBehaviour
 {
     [SerializeField] GameObject panel;
     [SerializeField] GameObject dialogue;
+    [SerializeField] GameObject inscMenu;
+    public static CameraBinds self;
+    public CameraBinds()
+    {
+        self = this;
+    }
     bool isIPressed;
     bool isFPressed;
     void Update()
     {
-        Inventory();
+        OpenInventory();
         DialogueBox();
     }
-    void Inventory()
+    void OpenInventory()
     {
         if (Input.GetKeyDown(KeyCode.I))
             isIPressed = true;
@@ -36,16 +42,20 @@ public class CameraBinds : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.F))
             isFPressed = true;
-        if (Input.GetKeyUp(KeyCode.F) && isFPressed && !dialogue.activeSelf && PlayerScript.self.readyToSpeak)
+        if (Input.GetKeyUp(KeyCode.F) && isFPressed && !dialogue.activeSelf && PlayerScript.self.readyToSpeak && !SlotInteraction.isHovered)
         {
             isFPressed = false;
             dialogue.SetActive(true);
             Dialogue.isSpeaking = true;
             //Dialogue.self.speakingObject = PlayerScript.self.objectToSpeak;
         }
+        else if (Input.GetKeyUp(KeyCode.F) && isFPressed && SlotInteraction.isHovered && !inscMenu.activeSelf) //+если кол-во слотов больше 0
+        {
+            IncriptionMenu();
+        }
         if (Input.GetKeyDown(KeyCode.F) && dialogue.activeSelf)
             isFPressed = true;
-        if (Input.GetKeyUp(KeyCode.F) && isFPressed && dialogue.activeSelf || !PlayerScript.self.readyToSpeak)
+        if ((Input.GetKeyUp(KeyCode.F) && isFPressed && dialogue.activeSelf || !PlayerScript.self.readyToSpeak) && !SlotInteraction.isHovered)
         {
             dialogue.SetActive(false);
             Dialogue.i = 0;
@@ -55,5 +65,17 @@ public class CameraBinds : MonoBehaviour
             Dialogue.self.text.text = "";
             isFPressed = false;
         }
-     }
+    }
+    void IncriptionMenu()
+    {
+        isFPressed = false;
+        Description.isChoosingSlot = true;
+        inscMenu.SetActive(true);
+    }
+    public void ExitIncriptionMenu()
+    {
+        Inventory.self.AcceptFeatures();
+        Inventory.slots[SlotInteraction.hoveredId].canBeReplaced = true;
+        inscMenu.SetActive(false);
+    }
 }
