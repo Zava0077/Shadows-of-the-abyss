@@ -4,16 +4,22 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Enemy
+  - Inventory
+  - ArmourInventory
+  - SpaceChecker
+  - InteractionArea
+  - InteractionObject
+  - Door
+  - InscriptionsInventory
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
-  - 
-  - 
+  - Inventory
+  - Map
   - 
   - 
   - 

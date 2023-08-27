@@ -18,6 +18,7 @@ public class PlayerScript : Creature
     public static PlayerScript self;
     float _oneSecTimer = 0;
     public Camera Camera;
+    public bool readyToSpeak;
     public PlayerScript() 
     {
         MaxHealth = 100;
@@ -42,6 +43,7 @@ public class PlayerScript : Creature
     {
         collider2D = GetComponent<BoxCollider2D>();
         rb2d = GetComponent<Rigidbody2D>();
+        Camera = GetComponentInChildren<Camera>();
     }
 
     // Update is called once per frame
