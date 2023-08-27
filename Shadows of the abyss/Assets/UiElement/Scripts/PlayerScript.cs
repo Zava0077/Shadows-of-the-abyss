@@ -7,11 +7,13 @@ using System;
 using static UnityEngine.GraphicsBuffer;
 using TMPro;
 using UnityEditor.UIElements;
+using UnityEngine.UIElements;
 
 public class PlayerScript : Creature
 {
     [SerializeField] private BoxCollider2D collider2D;
-    [SerializeField] private Rigidbody2D rb2d;
+    [SerializeField] public Rigidbody2D rb2d;
+    public bool readyToSpeak;
     private Vector2 movePosition;
     public int Mana;
     public int MaxMana = 200;
@@ -50,7 +52,7 @@ public class PlayerScript : Creature
     void Update()
     {
         Limits();
-        #region Камера
+        #region пїЅпїЅпїЅпїЅпїЅпїЅ
         Vector2 MousePosition = Camera.ScreenToWorldPoint(Input.mousePosition);
         Vector2 moveInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         movePosition = moveInput * Speed;
@@ -75,6 +77,21 @@ public class PlayerScript : Creature
         {
             _oneSecTimer -= 1f;
             DamageType.GetDamage(collision.GetComponent<Creature>(), 0, DamageType.DamageTypes.Physical);
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "InteractionObject")
+        {
+            readyToSpeak = true;
+            Dialogue.self.speakingObject = collision.gameObject;
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.tag == "InteractionObject")
+        {
+            readyToSpeak = false;
+            Dialogue.isSpeaking = false;
+            Dialogue.self.speakingObject = null;
         }
     }
 }
