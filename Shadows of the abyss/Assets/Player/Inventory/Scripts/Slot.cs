@@ -63,9 +63,9 @@ public class Slot : Inventory
     //Cold Lightning Fire Phys Poison Void Pure
     public Slot()
     {
-        self = this;
+        insctance = this;
     }
-    public static Slot self;
+    public static Slot insctance;
     Image sR;
     private void Awake()
     {

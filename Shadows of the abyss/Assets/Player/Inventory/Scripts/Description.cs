@@ -52,7 +52,7 @@ public class Description : MonoBehaviour
     {
         cursor = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         cursor.z = 0;
-        position = new Vector2(cursor.x ,cursor.y);
+        position = new Vector2(cursor.x,cursor.y);
         GetComponent<Transform>().position = position;
     }
     private void OnTriggerStay2D(Collider2D collision)
@@ -74,7 +74,7 @@ public class Description : MonoBehaviour
             parentPanel.transform.Find("CursorSlot").GetComponentInChildren<Text>().enabled = true;
             gameObject.GetComponentsInChildren<SpriteRenderer>()[0].enabled = true;
             gameObject.GetComponentsInChildren<SpriteRenderer>()[1].enabled = true;
-            gameObject.transform.localScale = new Vector3(text.preferredWidth + 2f, text.preferredHeight + 2f, 0f);
+            gameObject.transform.localScale = new Vector3(text.preferredWidth + 4f, text.preferredHeight + 1f, 0f);
         }
         if (text.text == "Empty")
         {

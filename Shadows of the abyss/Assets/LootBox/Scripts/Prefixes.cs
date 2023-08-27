@@ -151,7 +151,7 @@ public class Prefixes : MonoBehaviour
                 criticalChanceSummand = 0;
                 manaCostSummand = 0;
                 weaponSizeSummand = 0;
-                attackSpeedSummand = -20;
+                attackSpeedSummand = -item.GetComponent<Slot>().attackSpeed/2;
                 secondUsageChanceSummand = 0;//
                 tripleAttackChanceSummand = 0;//
                 explChanceSummand = 0;//

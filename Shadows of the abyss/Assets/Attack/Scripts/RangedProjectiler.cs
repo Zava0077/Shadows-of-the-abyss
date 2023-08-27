@@ -22,7 +22,6 @@ public class RangedProjectiler : MonoBehaviour
     }
     void Update()
     {
-        
         Vector3 diference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
         float rotateZ = Mathf.Atan2(diference.y, diference.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0f, 0f, rotateZ + rotateZShift);
@@ -43,17 +42,16 @@ public class RangedProjectiler : MonoBehaviour
     {
         Attack.self.projectilers = new GameObject[4096];
         Attack.self.e = 0;
-        Attack.self.n = 1;
         Attack.self.id = 0;
         Attack.self.isAttacking = false;
         Destroy(gameObject);
+        Attack.self.IsAbleToAttackInvoker();
         CancelInvoke(nameof(FullDestroying));
     }
     void Destroying()
     {
         Destroy(gameObject);
         Attack.self.isAttacking = true;
-        Attack.isAbleToAttack = false;
         CancelInvoke(nameof(Destroying));
     }
     private void OnTriggerEnter2D(Collider2D collision)

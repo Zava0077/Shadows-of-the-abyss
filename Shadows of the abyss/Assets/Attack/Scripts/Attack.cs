@@ -8,11 +8,10 @@ public class Attack : MonoBehaviour
 {
     public GameObject meleeProjectiler;
     public GameObject rangeProjectiler;
-    public GameObject[] projectilers = new GameObject[4096];
+    public GameObject[] projectilers;
     Sprite weaponSprite;
     public static Attack self;
     public int e = 0;
-    public int n = 1;
     public bool isAttacking;
     public static bool isAbleToAttack;
     public Attack()
@@ -25,32 +24,39 @@ public class Attack : MonoBehaviour
     {
         tripleAttackChance = 0;
         isAbleToAttack = true;
+        projectilers = new GameObject[4096];
         e = 0;
-        n = 1;
         id = 0;
     }
     private void Update()
     {
-        if (Input.GetButton("Fire1") && !SlotInteraction.isHovered && CursorSlot.self.type == "Empty" && isAbleToAttack)
+        if (Input.GetButton("Fire1") && !SlotInteraction.isHovered && CursorSlot.self.type == "Empty" && isAbleToAttack && (ArmourInventory.self.weaponType != "Empty" && ArmourInventory.self.weaponType != ""))
         {
             weaponSprite = ArmourInventory.armourSlots[4].weaponSprite;
             isAttacking = true;
         }
+        if (ArmourInventory.self.weaponType == "Empty" || ArmourInventory.self.weaponType == "")
+            isAbleToAttack = true;
     }
     private void FixedUpdate()
     {
         if(isAttacking)
         {
             Attacking();
-            Invoke(nameof(IsAbleToAttackReseter), ArmourInventory.self.attackSpeedValue + ArmourInventory.self.weaponCooldownValue);
+            isAbleToAttack = false;
             isAttacking = false;
         }
     } 
+    public void IsAbleToAttackInvoker()
+    {
+        Invoke(nameof(IsAbleToAttackReseter), ArmourInventory.self.weaponCooldownValue);
+    }
     void IsAbleToAttackReseter()
     {
         isAbleToAttack = true;
         MeleeProjectiler.self.isCreated = false;
         RangedProjectiler.self.isCreated = false;
+        CancelInvoke(nameof(IsAbleToAttackReseter));
     }
     public void AttackInvoker()
     {
@@ -61,68 +67,50 @@ public class Attack : MonoBehaviour
         if (e >= projectilers.Length - 1 || id >= projectilers.Length - 1)
         {
             e = 0;
-            n = 1;
             id = 0;
             projectilers = new GameObject[4096];
         }
-            switch(ArmourInventory.self.weaponType)
-            {
-                case "Melee":
-                    MeleeAttack();
-                    break;
-                case "Ranged":
+        switch (ArmourInventory.self.weaponType)
+        {
+            case "Melee":
+                MeleeAttack();
+                break;
+            case "Ranged":
+                RangeAttack();
+                break;
+            case "Mage":
+                if (PlayerScript.self.Mana > 0)
+                {
+                    PlayerScript.self.Mana -= ArmourInventory.self.manaCostValue;
                     RangeAttack();
-                    break;
-                case "Mage":
-                    if (PlayerScript.self.Mana > 0)
-                    {
-                        PlayerScript.self.Mana -= ArmourInventory.self.manaCostValue;
-                        RangeAttack();
-                    }
-                    else Debug.Log("Нехватка маны!");
-                    break;
-                    
-            }
+                }
+                else Debug.Log("Нехватка маны!");
+                break;
+
+        }
         CancelInvoke(nameof(Attacking));
     }
     void MeleeAttack()
     {
+       
         isAbleToAttack = false;
         projectilers[id] = meleeProjectiler;
-        if (Random.Range(1, 100) <= ArmourInventory.self.tripleAttackChanceValue)
-        {
-            if (id < projectilers.Length && id + 1 < projectilers.Length && id + 2 < projectilers.Length)
-            {
-                id++;
-                projectilers[id] = meleeProjectiler;
-                id++;
-                projectilers[id] = meleeProjectiler;
-            }
-            else
-            {
-                projectilers = new GameObject[4096];
-                id = 0;
-                projectilers[id] = meleeProjectiler;
-                id++;
-                projectilers[id] = meleeProjectiler;
-            }
-        }
+        TripleAttack(ArmourInventory.self.tripleAttackChanceValue, meleeProjectiler, 2, Random.Range(1, 100));
         id++;
         for (int i = 0; i < projectilers.Length - 1; i++)
         {
-            if (i % 2 == 0 && projectilers[i] != null && projectilers[e] != null)
+            //if (e >= projectilers.Length - 1 || id >= projectilers.Length - 1)
+            //{
+            //    e = 0;
+            //    id = 0;
+            //    projectilers = new GameObject[4096];
+            //}
+            if (/*i % 2 == 0 && */projectilers[i] != null && projectilers[e] != null)
             {
                 GameObject weapon = Instantiate(projectilers[e], transform.position, Quaternion.identity, transform);
                 weapon.GetComponentInChildren<SpriteRenderer>().sprite = weaponSprite;
-                projectilers[e].GetComponent<MeleeProjectiler>().rotateZShift = 30 * e;
+                projectilers[e].GetComponent<MeleeProjectiler>().rotateZShift = 30 * e - id/2;
                 e++;
-            }
-            else if (projectilers[i] != null && projectilers[e] != null)
-            {
-                GameObject weapon = Instantiate(projectilers[e], transform.position, Quaternion.identity, transform);
-                weapon.GetComponentInChildren<SpriteRenderer>().sprite = weaponSprite;
-                projectilers[e].GetComponent<MeleeProjectiler>().rotateZShift = -30 * n;
-                n++;
             }
         }
     }
@@ -130,29 +118,42 @@ public class Attack : MonoBehaviour
     {
         isAbleToAttack = false;
         projectilers[id] = rangeProjectiler;
-        if (Random.Range(1, 100) <= ArmourInventory.self.tripleAttackChanceValue)
-        {
-            id++;
-            projectilers[id] = rangeProjectiler;
-            id++;
-            projectilers[id] = rangeProjectiler;
-        }
+        TripleAttack(ArmourInventory.self.tripleAttackChanceValue, rangeProjectiler,2, Random.Range(1,100));
         id++;
         for (int i = 0; i < projectilers.Length - 1; i++)
         {
-            if (i % 2 == 0 && projectilers[i] != null && projectilers[e] != null)
+            if (e >= projectilers.Length)
+                e = 0;
+          if (/*i % 2 == 0 && */projectilers[i] != null && projectilers[e] != null)
             {
                 GameObject weapon = Instantiate(projectilers[e], transform.position, Quaternion.identity, transform);
                 weapon.GetComponentInChildren<SpriteRenderer>().sprite = weaponSprite;
-                projectilers[e].GetComponent<RangedProjectiler>().rotateZShift = 30 * e;
+                projectilers[e].GetComponent<RangedProjectiler>().rotateZShift = 30 * e - id/2;
                 e++;
             }
-            else if (projectilers[i] != null && projectilers[e] != null)
+        }
+    }
+    void TripleAttack(float chance,GameObject projectiler, int attacksNum, int slotMachineNumber)
+    {
+        if (slotMachineNumber <= chance)
+        {
+            if (slotMachineNumber <= chance * 0.5f)
+                attacksNum++;
+            if (id < projectilers.Length && id + 1 < projectilers.Length && id + 2 < projectilers.Length)
             {
-                GameObject weapon = Instantiate(projectilers[e], transform.position, Quaternion.identity, transform);
-                weapon.GetComponentInChildren<SpriteRenderer>().sprite = weaponSprite;
-                projectilers[e].GetComponent<RangedProjectiler>().rotateZShift = -30 * n;
-                n++;
+                for (int i = 0; i < attacksNum; i++)
+                {
+                    id++;
+                    projectilers[id] = projectiler;
+                }
+            }
+            else
+            {
+                projectilers = new GameObject[4096];
+                id = 0;
+                projectilers[id] = projectiler;
+                id++;
+                projectilers[id] = projectiler;
             }
         }
     }

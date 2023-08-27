@@ -209,5 +209,11 @@ public class ArmourInventory : MonoBehaviour
             hpValue += Inventory.slots[i + 16].hp + Inventory.slots[i + 16].inscriptions.hpValue;
             weaponType = armourSlots[4].type;
         }
+        CapParameters();
+    }
+    void CapParameters()
+    {
+        if (weaponCooldownValue <= 0.1f || Inventory.slots[4].type != "Empty")
+            weaponCooldownValue = 0.1f;
     }
 }

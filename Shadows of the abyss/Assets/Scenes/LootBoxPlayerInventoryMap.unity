@@ -5191,9 +5191,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   e: 0
-  n: 1
   isAttacking: 0
-  isAbleToAttack: 0
   id: 0
 --- !u!1 &847490937
 GameObject:
