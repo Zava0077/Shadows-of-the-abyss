@@ -4,19 +4,23 @@ using UnityEngine;
 using Unity.VisualScripting;
 using UnityEngine.Assertions.Must;
 using System;
+using static UnityEngine.GraphicsBuffer;
+using TMPro;
+using UnityEditor.UIElements;
 
 public class PlayerScript : Creature
 {
     [SerializeField] private BoxCollider2D collider2D;
     [SerializeField] private Rigidbody2D rb2d;
     private Vector2 movePosition;
-    public int MaxHealth = 100;
     public int Mana;
     public int MaxMana = 200;
     public static PlayerScript self;
+    float _oneSecTimer = 0;
     public Camera Camera;
     public PlayerScript() 
     {
+        MaxHealth = 100;
         Health = 100;
         Mana = 200;
         Speed = 5;
@@ -43,40 +47,7 @@ public class PlayerScript : Creature
     // Update is called once per frame
     void Update()
     {
-        #region Ограничения
-        if (FireRes > 0.75)
-        {
-            FireRes = 0.75;
-        }
-        if (ColdRes > 0.75)
-        {
-            ColdRes = 0.75;
-        }
-        if (LightningRes > 0.75)
-        {
-            LightningRes = 0.75;
-        }
-        if (PhysicalRes > 0.75)
-        {
-            PhysicalRes = 0.75;
-        }
-        if (PoisonRes > 0.75)
-        {
-            PoisonRes = 0.75;
-        }
-        if (VoidRes > 0.75)
-        {
-            VoidRes = 0.75;
-        }
-        if(Health > MaxHealth)
-        {
-            Health = MaxHealth;
-        }
-        if(Evasion > 50)
-        {
-            Evasion = 50;
-        }
-        #endregion
+        Limits();
         #region Камера
         Vector2 MousePosition = Camera.ScreenToWorldPoint(Input.mousePosition);
         Vector2 moveInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
@@ -93,5 +64,15 @@ public class PlayerScript : Creature
     private void FixedUpdate()
     {
         rb2d.MovePosition(rb2d.position + movePosition * Time.deltaTime);
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        _oneSecTimer += Time.deltaTime;
+        if (_oneSecTimer >= 1f)
+        {
+            _oneSecTimer -= 1f;
+            DamageType.GetDamage(collision.GetComponent<Creature>(), 0, DamageType.DamageTypes.Physical);
+        }
     }
 }

@@ -1,43 +1,46 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.AI;
 
 public class Bat : Creature
 {
-    private Transform target;
+    [SerializeField] private Transform target;
+    NavMeshAgent agent;
     private Vector2 playerPos;
     private int Damage = 5;
     float _oneSecTimer = 0;
+    private Image HealthBar;
     void Start()
     {
         Health = 10;
-        Armor = 3;
-        Speed = 3;
+        MaxHealth = 10;
+        Armor = 1;
+        Speed = 2;
         //resistance
-        FireRes = 10;
-        ColdRes = 10;
-        LightningRes = 10;
-        PhysicalRes = 10;
-        PoisonRes = 10;
-        VoidRes = 10;
+        FireRes = 0.1;
+        ColdRes = 0.1;
+        LightningRes = 0.1;
+        PhysicalRes = 0.1;
+        PoisonRes = 0.1;
+        VoidRes = 0.1;
 
-
+        agent = GetComponent<NavMeshAgent>();
         target = PlayerScript.self.gameObject.transform;
+        agent.updateRotation = false;
+        agent.updateUpAxis = false;
+        agent.speed = Speed;
+        HealthBar = GetComponentInChildren<Image>();
     }
 
-    void Update()
-    {
-        if(Health <= 0)
-        {
-            Die();
-        }
-    }
 
-    private void FixedUpdate()
+    private void Update()
     {
-        playerPos = new Vector2(target.position.x, target.position.y);
-        Vector3 pos = Vector3.Lerp(transform.position, transform.position + new Vector3(playerPos.x - transform.position.x, playerPos.y - transform.position.y).normalized, Time.deltaTime);
-        transform.position = pos;
+        Limits();
+        HealthBar.fillAmount = (float)Health / (float)MaxHealth;
+        agent.SetDestination(target.position);
     }
 
     private void OnTriggerStay2D(Collider2D collision)
