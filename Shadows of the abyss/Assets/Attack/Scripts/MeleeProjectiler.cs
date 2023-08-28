@@ -58,5 +58,9 @@ public class MeleeProjectiler : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //DamageEvent
+        if(collision.tag == "Enemy")
+        {
+
+        }
     }
 }

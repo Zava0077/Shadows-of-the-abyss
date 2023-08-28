@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 3496845626117115566}
   m_Layer: 0
   m_Name: ProjectileRotation
-  m_TagString: Untagged
+  m_TagString: Attack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -129,7 +129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 937d926e703e2d347ac42c55184eb8b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotateZShift: 330
+  rotateZShift: 0
   secondAttackChance: 0
   createWaveChance: 0
   isCreated: 0

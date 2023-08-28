@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.AI;
 
-public class Bat : Creature
+public class Bat : Entity
 {
     [SerializeField] private Transform target;
     NavMeshAgent agent;
@@ -45,13 +45,16 @@ public class Bat : Creature
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        _oneSecTimer += Time.deltaTime;
-        if(_oneSecTimer >= 1f)
+        if(collision.tag == "Attack")
         {
-            _oneSecTimer -= 1f;
-            if (collision.transform == target.transform)
+            _oneSecTimer += Time.deltaTime;
+            if (_oneSecTimer >= 1f)
             {
-                DamageType.GetDamage(PlayerScript.self, 5, DamageType.DamageTypes.Physical);
+                _oneSecTimer -= 1f;
+                if (collision.transform == target.transform)
+                {
+                    DamageType.GetDamage(PlayerScript.self, 5, DamageType.DamageTypes.Physical);
+                }
             }
         }
     }
