@@ -92,7 +92,6 @@ public class Attack : MonoBehaviour
     }
     void MeleeAttack()
     {
-       
         isAbleToAttack = false;
         projectilers[id] = meleeProjectiler;
         TripleAttack(ArmourInventory.self.tripleAttackChanceValue, meleeProjectiler, 2, Random.Range(1, 100));

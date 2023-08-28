@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
+using UnityEditor.UI;
 using UnityEngine;
 
 public class MeleeProjectiler : MonoBehaviour
@@ -10,6 +10,7 @@ public class MeleeProjectiler : MonoBehaviour
     {
         self = this;
     }
+    List<GameObject> enemies = new List<GameObject>();
     public float rotateZShift;
     public int secondAttackChance;
     public int createWaveChance;
@@ -58,8 +59,9 @@ public class MeleeProjectiler : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //DamageEvent
-        List<GameObject> enemies = new List<GameObject>();
-        if(collision.tag == "Enemy" && !enemies.Contains(collision.gameObject))
+        
+        enemies.Add(gameObject);
+        if (collision.tag == "Enemy" && !enemies.Contains(collision.gameObject))
         {
             DamageType.GetDamage(collision.gameObject.GetComponent<Entity>(), ArmourInventory.self.damageValue, DamageType.DamageTypes.Physical);
             DamageType.GetDamage(collision.gameObject.GetComponent<Entity>(), ArmourInventory.self.iceDamageValue, DamageType.DamageTypes.Cold);

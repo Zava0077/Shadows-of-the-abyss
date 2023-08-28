@@ -1,11 +1,14 @@
+using NavMeshPlus.Components;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class RoomPlacer : MonoBehaviour
 {
+    [SerializeField] private NavMeshSurface navMash;
     public Room[] roomPrefabs;
     public Room secretRoom;
     public Room treasureRoom;
@@ -21,12 +24,16 @@ public class RoomPlacer : MonoBehaviour
         spawnedRooms[dungeonSize / 2, dungeonSize / 2] = startingRoom;
 
         for (int i = 0; i < dungeonSize; i++)
-        {
             PlaceOneRoom();
-        }
         CreateTheDoor();
         SecretRoom();
         TreasureRoom();
+        Invoke(nameof(NavMeshBulider),Time.deltaTime);
+    }
+    void NavMeshBulider()
+    {
+        navMash.BuildNavMesh();
+        CancelInvoke(nameof(NavMeshBulider));
     }
     private void PlaceOneRoom()
     {

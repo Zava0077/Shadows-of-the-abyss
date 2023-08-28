@@ -17,6 +17,7 @@ public class ProjectileRanged : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         createProjChance = 0; //
     }
+    List<GameObject> enemies = new List<GameObject>();
     void Update()
     {
         if (isCrit && Random.Range(1, 100) < ArmourInventory.self.createProjectileChanceValue)
@@ -40,7 +41,8 @@ public class ProjectileRanged : MonoBehaviour
     {
         if (collision.tag == "Wall")
             Destroy(gameObject);
-        List<GameObject> enemies = new List<GameObject>();
+       
+        enemies.Add(gameObject);
         if (collision.tag == "Enemy" && !enemies.Contains(collision.gameObject))
         {
             DamageType.GetDamage(collision.gameObject.GetComponent<Entity>(), ArmourInventory.self.damageValue, DamageType.DamageTypes.Physical);

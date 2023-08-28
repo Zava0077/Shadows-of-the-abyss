@@ -55,17 +55,6 @@ public class Entity : MonoBehaviour
             Evasion = 50;
         }
         #endregion
-        if (Health <= 0)
-        {
-            if (gameObject.tag == "Player")
-            {
-                Debug.Log("hhui");
-            }
-            else
-            {
-                Destroy(gameObject);
-            }
-        }
     }
     public void Die(GameObject[] gameObjects, int[] chance)
     {

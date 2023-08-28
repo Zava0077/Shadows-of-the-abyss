@@ -8,6 +8,8 @@ using UnityEngine.AI;
 public class Bat : Entity
 {
     [SerializeField] private Transform target;
+    public GameObject[] drop;
+    public int[] dropChances;
     NavMeshAgent agent;
     private Vector2 playerPos;
     private int Damage = 5;
@@ -27,11 +29,11 @@ public class Bat : Entity
         PoisonRes = 0.1;
         VoidRes = 0.1;
 
-        //agent = GetComponent<NavMeshAgent>();
-        //target = PlayerScript.self.gameObject.transform;
-        //agent.updateRotation = false;
-        //agent.updateUpAxis = false;
-        //agent.speed = Speed;
+        agent = GetComponent<NavMeshAgent>();
+        target = PlayerScript.self.gameObject.transform;
+        agent.updateRotation = false;
+        agent.updateUpAxis = false;
+        agent.speed = Speed;
         HealthBar = GetComponentInChildren<Image>();
     }
 
@@ -39,8 +41,10 @@ public class Bat : Entity
     private void Update()
     {
         Limits();
+        if (Health <= 0)
+            Die(drop,dropChances);
         HealthBar.fillAmount = (float)Health / (float)MaxHealth;
-        //agent.SetDestination(target.position);
+        agent.SetDestination(target.position);
     }
 
     private void OnTriggerStay2D(Collider2D collision)
