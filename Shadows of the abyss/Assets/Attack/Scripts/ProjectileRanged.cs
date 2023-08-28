@@ -41,10 +41,9 @@ public class ProjectileRanged : MonoBehaviour
     {
         if (collision.tag == "Wall")
             Destroy(gameObject);
-       
-        enemies.Add(gameObject);
         if (collision.tag == "Enemy" && !enemies.Contains(collision.gameObject))
         {
+            enemies.Add(collision.gameObject);
             DamageType.GetDamage(collision.gameObject.GetComponent<Entity>(), ArmourInventory.self.damageValue, DamageType.DamageTypes.Physical);
             DamageType.GetDamage(collision.gameObject.GetComponent<Entity>(), ArmourInventory.self.iceDamageValue, DamageType.DamageTypes.Cold);
             DamageType.GetDamage(collision.gameObject.GetComponent<Entity>(), ArmourInventory.self.igniteDamageValue, DamageType.DamageTypes.Fire);

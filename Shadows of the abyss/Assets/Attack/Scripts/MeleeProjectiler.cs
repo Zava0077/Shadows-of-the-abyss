@@ -47,6 +47,7 @@ public class MeleeProjectiler : MonoBehaviour
         Attack.self.id = 0;
         Attack.self.isAttacking = false;
         Destroy(gameObject);
+        enemies.Clear();
         Attack.self.IsAbleToAttackInvoker();
         CancelInvoke(nameof(FullDestroying));
     }
@@ -54,15 +55,15 @@ public class MeleeProjectiler : MonoBehaviour
     {
         Destroy(gameObject);
         Attack.self.isAttacking = true;
+        enemies.Clear();
         CancelInvoke(nameof(Destroying));
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //DamageEvent
-        
-        enemies.Add(gameObject);
         if (collision.tag == "Enemy" && !enemies.Contains(collision.gameObject))
         {
+            enemies.Add(collision.gameObject);
             DamageType.GetDamage(collision.gameObject.GetComponent<Entity>(), ArmourInventory.self.damageValue, DamageType.DamageTypes.Physical);
             DamageType.GetDamage(collision.gameObject.GetComponent<Entity>(), ArmourInventory.self.iceDamageValue, DamageType.DamageTypes.Cold);
             DamageType.GetDamage(collision.gameObject.GetComponent<Entity>(), ArmourInventory.self.igniteDamageValue, DamageType.DamageTypes.Fire);
