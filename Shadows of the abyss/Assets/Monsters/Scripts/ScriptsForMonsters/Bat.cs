@@ -45,17 +45,6 @@ public class Bat : Entity
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if(collision.tag == "Attack")
-        {
-            _oneSecTimer += Time.deltaTime;
-            if (_oneSecTimer >= 1f)
-            {
-                _oneSecTimer -= 1f;
-                if (collision.transform == target.transform)
-                {
-                    DamageType.GetDamage(PlayerScript.self, 5, DamageType.DamageTypes.Physical);
-                }
-            }
-        }
+
     }
 }

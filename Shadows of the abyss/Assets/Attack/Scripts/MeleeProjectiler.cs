@@ -60,7 +60,7 @@ public class MeleeProjectiler : MonoBehaviour
         //DamageEvent
         if(collision.tag == "Enemy")
         {
-
+            DamageType.GetDamage(collision.gameObject.GetComponent<Entity>(), ArmourInventory.self.damageValue, DamageType.DamageTypes.Physical);
         }
     }
 }

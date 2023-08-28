@@ -16,7 +16,7 @@ public class DamageType : MonoBehaviour
         Pure
     }
 
-    static public void GetDamage(Creature TakeDamage, int Damage, DamageTypes type)
+    static public void GetDamage(Entity TakeDamage, float Damage, DamageTypes type)
     {
         if (UnityEngine.Random.Range(1, 100) > PlayerScript.self.Evasion)
         {
