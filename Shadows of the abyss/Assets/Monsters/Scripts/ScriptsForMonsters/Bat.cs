@@ -15,9 +15,9 @@ public class Bat : Entity
     private Image HealthBar;
     void Start()
     {
-        Health = 10;
-        MaxHealth = 10;
-        Armor = 1;
+        Health = 30;
+        MaxHealth = 30;
+        Armor = 5;
         Speed = 2;
         //resistance
         FireRes = 0.1;
@@ -27,11 +27,11 @@ public class Bat : Entity
         PoisonRes = 0.1;
         VoidRes = 0.1;
 
-        agent = GetComponent<NavMeshAgent>();
-        target = PlayerScript.self.gameObject.transform;
-        agent.updateRotation = false;
-        agent.updateUpAxis = false;
-        agent.speed = Speed;
+        //agent = GetComponent<NavMeshAgent>();
+        //target = PlayerScript.self.gameObject.transform;
+        //agent.updateRotation = false;
+        //agent.updateUpAxis = false;
+        //agent.speed = Speed;
         HealthBar = GetComponentInChildren<Image>();
     }
 
@@ -40,7 +40,7 @@ public class Bat : Entity
     {
         Limits();
         HealthBar.fillAmount = (float)Health / (float)MaxHealth;
-        agent.SetDestination(target.position);
+        //agent.SetDestination(target.position);
     }
 
     private void OnTriggerStay2D(Collider2D collision)

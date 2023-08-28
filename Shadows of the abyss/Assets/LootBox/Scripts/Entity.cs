@@ -12,7 +12,6 @@ public class Entity : MonoBehaviour
     public int Armor;
     public float Speed;
     public double FireRes;
-    public bool isInvincible;
     public double LightningRes;
     public double ColdRes;
     public double PoisonRes;

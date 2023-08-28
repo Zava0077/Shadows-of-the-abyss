@@ -71,13 +71,7 @@ public class PlayerScript : Creature
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        _oneSecTimer += Time.deltaTime;
-        if (_oneSecTimer >= 1f)
-        {
-            _oneSecTimer -= 1f;
-            DamageType.GetDamage(collision.GetComponent<Creature>(), 0, DamageType.DamageTypes.Physical);
 
-        }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
