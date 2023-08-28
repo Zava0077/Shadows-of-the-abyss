@@ -3,10 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using Unity.VisualScripting;
+using UnityEngine.AI;
+using UnityEngine.UIElements;
 
 public class Entity : MonoBehaviour
 {
     [SerializeField] GameObject inscription;
+    public bool isPushing;
+    Vector2 pushFrom;
+    Vector2 pushTo;
+    float pushingCoefficient;
     public int MaxHealth;
     public int Health;
     public int Armor;
@@ -55,6 +61,31 @@ public class Entity : MonoBehaviour
             Evasion = 50;
         }
         #endregion
+    }
+    public void PushActivator(int health, int damage,Vector2 from, Vector2 to)
+    {
+        float coefficient;
+        if (isPushing == false)
+            isPushing = true;
+        if (damage > health)
+            damage = health;
+        coefficient = (float)damage / (float)health;
+        pushingCoefficient = 1 + coefficient;
+        pushFrom = from;
+        pushTo = to;
+        gameObject.GetComponent<NavMeshAgent>().enabled = false;
+        Invoke(nameof(PushReset), 0.1f);
+    }
+    public void Pushing()
+    {
+        if (isPushing)
+            transform.position += Vector3.Lerp(Vector3.zero, new Vector2(pushTo.x - pushFrom.x, pushTo.y - pushFrom.y).normalized * pushingCoefficient, Time.deltaTime);
+    }
+    void PushReset()
+    {
+        isPushing = false;
+        gameObject.GetComponent<NavMeshAgent>().enabled = true;
+        CancelInvoke(nameof(PushReset));
     }
     public void Die(GameObject[] gameObjects, int[] chance)
     {

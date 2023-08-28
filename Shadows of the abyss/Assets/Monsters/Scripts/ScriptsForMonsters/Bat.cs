@@ -41,6 +41,7 @@ public class Bat : Entity
     private void Update()
     {
         Limits();
+        Pushing();
         if (Health <= 0)
             Die(drop,dropChances);
         HealthBar.fillAmount = (float)Health / (float)MaxHealth;

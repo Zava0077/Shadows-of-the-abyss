@@ -1,10 +1,13 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class DamageType : MonoBehaviour
 {
+    float oneSecTimer;
     public enum DamageTypes
     {
         Cold,
@@ -62,10 +65,12 @@ public class DamageType : MonoBehaviour
             TakingDamage = Math.Ceiling(TakingDamage);
             if (TakingDamage <= 0)
             {
+                TakeDamage.gameObject.GetComponent<Entity>().PushActivator(TakeDamage.Health, 1,PlayerScript.self.gameObject.transform.position,TakeDamage.transform.position);
                 TakeDamage.Health -= 1;
             }
             else
             {
+                TakeDamage.gameObject.GetComponent<Entity>().PushActivator(TakeDamage.Health, (int)TakingDamage, PlayerScript.self.gameObject.transform.position, TakeDamage.transform.position);
                 TakeDamage.Health -= (int)TakingDamage;
             }
         }
