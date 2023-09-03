@@ -138,8 +138,8 @@ public class Insctiprions : MonoBehaviour
             secondUsageChanceValue += secondUsageChance[i];
             explosionChanceValue += explosionChance[i];
             explosionTypeValue += explosionType[i];
-            weaponCooldownValue += hp[i];
-            createProjectileChanceValue += hp[i];
+            weaponCooldownValue += weaponCooldown[i];
+            createProjectileChanceValue += createProjectileChance[i];
             spikesValue += spikes[i];
             pierceValue += pierce[i];
             extraPierceChanceValue += extraPierceChance[i];

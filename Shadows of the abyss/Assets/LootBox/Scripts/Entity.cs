@@ -1,15 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
 using Unity.VisualScripting;
 using UnityEngine.AI;
 using UnityEngine.UIElements;
+using UnityEngine.UI;
+using Unity.Mathematics;
 
 public class Entity : MonoBehaviour
 {
     [SerializeField] GameObject inscription;
+    [SerializeField] GameObject damageNumber;
     public bool isPushing;
+    bool _numberCreated;
     Vector2 pushFrom;
     Vector2 pushTo;
     float pushingCoefficient;
@@ -62,29 +65,42 @@ public class Entity : MonoBehaviour
         }
         #endregion
     }
-    public void PushActivator(int health, int damage,Vector2 from, Vector2 to)
+    public void PushActivator(int health, int damage, Vector2 from, Vector2 to)
     {
         float coefficient;
         if (isPushing == false)
             isPushing = true;
         if (damage > health)
             damage = health;
+        if (!_numberCreated)
+        {
+            GameObject number = Instantiate(damageNumber, transform.position + new Vector3((float)UnityEngine.Random.Range(-100, 100) / 200, (float)UnityEngine.Random.Range(-100, 100) / 200), Quaternion.identity, transform);
+            number.GetComponentsInChildren<Text>()[0].text = damage.ToString();
+            number.GetComponentsInChildren<Text>()[1].text = damage.ToString();
+            _numberCreated = true;
+        }
         coefficient = (float)damage / (float)health;
         pushingCoefficient = 1 + coefficient;
         pushFrom = from;
         pushTo = to;
         gameObject.GetComponent<NavMeshAgent>().enabled = false;
+        if(Attack.isAbleToAttack)
+            _numberCreated = false;
         Invoke(nameof(PushReset), 0.1f);
     }
     public void Pushing()
     {
         if (isPushing)
+        {
+            gameObject.GetComponentInChildren<SpriteRenderer>().color = Color.white;
             transform.position += Vector3.Lerp(Vector3.zero, new Vector2(pushTo.x - pushFrom.x, pushTo.y - pushFrom.y).normalized * pushingCoefficient, Time.deltaTime);
+        }         
     }
     void PushReset()
     {
         isPushing = false;
         gameObject.GetComponent<NavMeshAgent>().enabled = true;
+        _numberCreated = false;
         CancelInvoke(nameof(PushReset));
     }
     public void Die(GameObject[] gameObjects, int[] chance)
@@ -131,87 +147,90 @@ public class Entity : MonoBehaviour
                 description += article.GetComponent<Slot>().rareName + " " + article.GetComponent<Slot>().itemDescription + "\r\n";
                 article.GetComponent<Slot>().damage += Prefixes.self.damageSummand;
                 if (article.GetComponent<Slot>().damage > 0)
-                    description += "Damage: " + article.GetComponent<Slot>().damage + "\r\n";
+                    description += "Damage: " + "<color=red>" +article.GetComponent<Slot>().damage + "</color>" + "\r\n";
                 article.GetComponent<Slot>().iceDamage += Prefixes.self.iceDamageSummand;
                 if (article.GetComponent<Slot>().iceDamage > 0)
-                    description += "Ice damage: " + article.GetComponent<Slot>().iceDamage + "\r\n";
+                    description += "Ice damage: " + "<color=red>" +article.GetComponent<Slot>().iceDamage + "</color>" + "\r\n";
                 article.GetComponent<Slot>().igniteDamage += Prefixes.self.igniteDamageSummand;
                 if (article.GetComponent<Slot>().igniteDamage > 0)
-                    description += "Ignite damage: " + article.GetComponent<Slot>().igniteDamage + "\r\n";
+                    description += "Ignite damage: " + "<color=red>" +article.GetComponent<Slot>().igniteDamage + "</color>" + "\r\n";
                 article.GetComponent<Slot>().lightningDamage += Prefixes.self.lightningDamageSummand;
                 if (article.GetComponent<Slot>().lightningDamage > 0)
-                    description += "Ligtning damage: " + article.GetComponent<Slot>().lightningDamage + "\r\n";
+                    description += "Ligtning damage: " + "<color=red>" +article.GetComponent<Slot>().lightningDamage + "</color>" + "\r\n";
                 article.GetComponent<Slot>().poisonDamage += Prefixes.self.poisonDamageSummand;
                 if (article.GetComponent<Slot>().poisonDamage > 0)
-                    description += "Poison damage: " + article.GetComponent<Slot>().poisonDamage + "\r\n";
+                    description += "Poison damage: " + "<color=red>" +article.GetComponent<Slot>().poisonDamage + "</color>" + "\r\n";
                 article.GetComponent<Slot>().voidDamage += Prefixes.self.voidDamageSummand;
                 if (article.GetComponent<Slot>().voidDamage > 0)
-                    description += "Void damage: " + article.GetComponent<Slot>().voidDamage + "\r\n";
+                    description += "Void damage: " + "<color=red>" +article.GetComponent<Slot>().voidDamage + "</color>" + "\r\n";
                 article.GetComponent<Slot>().pureDamage += Prefixes.self.pureDamageSummand;
                 if (article.GetComponent<Slot>().pureDamage > 0)
-                    description += "Pure damage: " + article.GetComponent<Slot>().damage + "\r\n";
+                    description += "Pure damage: " + "<color=red>" +article.GetComponent<Slot>().damage + "</color>" + "\r\n";
                 article.GetComponent<Slot>().defence += Prefixes.self.defenceSummand;
                 if (article.GetComponent<Slot>().defence > 0)
-                    description += "Defence: " + article.GetComponent<Slot>().defence + "\r\n";
+                    description += "Defence: " + "<color=red>" +article.GetComponent<Slot>().defence + "</color>" + "\r\n";
                 article.GetComponent<Slot>().iceResist += Prefixes.self.iceResistSummand;
                 if (article.GetComponent<Slot>().iceResist > 0)
-                    description += "Ice resist: " + article.GetComponent<Slot>().iceResist + "\r\n";
+                    description += "Ice resist: " + "<color=red>" +article.GetComponent<Slot>().iceResist + "</color>" + "\r\n";
                 article.GetComponent<Slot>().igniteResist += Prefixes.self.igniteResistSummand;
                 if (article.GetComponent<Slot>().igniteResist > 0)
-                    description += "Ignite resist: " + article.GetComponent<Slot>().igniteResist + "\r\n";
+                    description += "Ignite resist: " + "<color=red>" +article.GetComponent<Slot>().igniteResist + "</color>" + "\r\n";
                 article.GetComponent<Slot>().lightningResist += Prefixes.self.lightningResistSummand;
                 if (article.GetComponent<Slot>().lightningResist > 0)
-                    description += "Lightning resist: " + article.GetComponent<Slot>().lightningResist + "\r\n";
+                    description += "Lightning resist: " + "<color=red>" +article.GetComponent<Slot>().lightningResist + "</color>" + "\r\n";
                 article.GetComponent<Slot>().poisonResist += Prefixes.self.poisonResistSummand;
                 if (article.GetComponent<Slot>().poisonResist > 0)
-                    description += "Poison resist: " + article.GetComponent<Slot>().poisonResist + "\r\n";
+                    description += "Poison resist: " + "<color=red>" +article.GetComponent<Slot>().poisonResist + "</color>" + "\r\n";
                 article.GetComponent<Slot>().voidResist += Prefixes.self.voidResistSummand;
                 if (article.GetComponent<Slot>().voidResist > 0)
-                    description += "Void resist: " + article.GetComponent<Slot>().voidResist + "\r\n";
+                    description += "Void resist: " + "<color=red>" +article.GetComponent<Slot>().voidResist + "</color>" + "\r\n";
                 article.GetComponent<Slot>().pureResist += Prefixes.self.pureResistSummand;
                 if (article.GetComponent<Slot>().pureResist > 0)
-                    description += "Pure resist: " + article.GetComponent<Slot>().pureResist + "\r\n";
+                    description += "Pure resist: " + "<color=red>" +article.GetComponent<Slot>().pureResist + "</color>" + "\r\n";
                 article.GetComponent<Slot>().hp += Prefixes.self.maxHpSummand;
                 if (article.GetComponent<Slot>().hp > 0)
-                    description += "Max HP: +" + article.GetComponent<Slot>().hp + "\r\n";
+                    description += "Max HP: +" + article.GetComponent<Slot>().hp + "</color>" + "\r\n";
                 article.GetComponent<Slot>().evasionChance += Prefixes.self.evasionChanceSummand;
                 if (article.GetComponent<Slot>().evasionChance > 0)
-                    description += "Evasion chance: " + article.GetComponent<Slot>().evasionChance + "\r\n";
+                    description += "Evasion chance: " + "<color=red>" +article.GetComponent<Slot>().evasionChance + "</color>" + "\r\n";
                 article.GetComponent<Slot>().criticalChance += Prefixes.self.criticalChanceSummand;
                 if (article.GetComponent<Slot>().criticalChance > 0)
-                    description += "Critical chance: " + article.GetComponent<Slot>().criticalChance + "\r\n";
+                    description += "Critical chance: " + "<color=red>" +article.GetComponent<Slot>().criticalChance + "</color>" + "\r\n";
                 article.GetComponent<Slot>().kind = gameObjects[i].GetComponent<Slot>().kind;
                 article.GetComponent<Slot>().idItem = gameObjects[i].GetComponent<Slot>().idItem;
                 //
                 article.GetComponent<Slot>().manaCost += Prefixes.self.manaCostSummand;
                 if (article.GetComponent<Slot>().manaCost > 0)
-                    description += "Mana cost: " + article.GetComponent<Slot>().manaCost + "\r\n";
+                    description += "Mana cost: " + "<color=red>" +article.GetComponent<Slot>().manaCost + "</color>" + "\r\n";
                 article.GetComponent<Slot>().weaponSize += Prefixes.self.weaponSizeSummand;
                 if (article.GetComponent<Slot>().weaponSize > 0)
-                    description += "Size: " + article.GetComponent<Slot>().weaponSize + "\r\n";
+                    description += "Size: " + "<color=red>" +article.GetComponent<Slot>().weaponSize + "</color>" + "\r\n";
                 article.GetComponent<Slot>().attackSpeed += Prefixes.self.attackSpeedSummand;
                 if (article.GetComponent<Slot>().attackSpeed > 0)
-                    description += "Speed: " + article.GetComponent<Slot>().attackSpeed + "\r\n";
+                    description += "Speed: " + "<color=red>" +article.GetComponent<Slot>().attackSpeed + "</color>" + "\r\n";
                 article.GetComponent<Slot>().secondUsageChance += Prefixes.self.secondUsageChanceSummand;
                 if (article.GetComponent<Slot>().secondUsageChance > 0)
-                    description += "Second usage: " + article.GetComponent<Slot>().secondUsageChance + "\r\n";
+                    description += "Second usage: " + "<color=red>" +article.GetComponent<Slot>().secondUsageChance + "</color>" + "\r\n";
                 article.GetComponent<Slot>().tripleAttackChance += Prefixes.self.tripleAttackChanceSummand;
                 if (article.GetComponent<Slot>().tripleAttackChance > 0)
-                    description += "Triple attack: " + article.GetComponent<Slot>().tripleAttackChance + "\r\n";
+                    description += "Triple attack: " + "<color=red>" +article.GetComponent<Slot>().tripleAttackChance + "</color>" + "\r\n";
                 article.GetComponent<Slot>().explosionChance += Prefixes.self.explChanceSummand;
                 if (article.GetComponent<Slot>().explosionChance > 0)
-                    description += "Chance of explotion: " + article.GetComponent<Slot>().explosionChance + "\r\n";
+                    description += "Chance of explotion: " + "<color=red>" +article.GetComponent<Slot>().explosionChance + "</color>" + "\r\n";
                 article.GetComponent<Slot>().explosionType = Prefixes.self.explTypeEqualer;
                 article.GetComponent<Slot>().weaponCooldown += Prefixes.self.weaponCooldownSummand;
                 if (article.GetComponent<Slot>().weaponCooldown > 0)
-                    description += "Cooldown: " + article.GetComponent<Slot>().weaponCooldown + "\r\n";
+                    description += "Cooldown: " + "<color=red>" +article.GetComponent<Slot>().weaponCooldown + "</color>" + "\r\n";
                 article.GetComponent<Slot>().createProjectileChance += Prefixes.self.createProjectileChanceSummand;
                 if (article.GetComponent<Slot>().createProjectileChance > 0)
-                    description += "Create projectile chance: " + article.GetComponent<Slot>().createProjectileChance + "\r\n";
+                    description += "Create projectile chance: " + "<color=red>" +article.GetComponent<Slot>().createProjectileChance + "</color>" + "\r\n";
 
                 article.GetComponent<Slot>().spikes += Prefixes.self.spikes;
                 if (article.GetComponent<Slot>().spikes > 0)
-                    description += "Spikes: " + article.GetComponent<Slot>().spikes + "\r\n";
+                    description += "Spikes: " + "<color=red>" +article.GetComponent<Slot>().spikes + "</color>" + "\r\n";
+                article.GetComponent<Slot>().inscriptionNum += Prefixes.self.inscSummand;
+                if (article.GetComponent<Slot>().inscriptionNum > 0)
+                    description += "Incrtiption slots: " + "<color=red>" +article.GetComponent<Slot>().inscriptionNum + "</color>" + "\r\n";
                 //
                 for (int j = 0; j < 10; j++)
                 {

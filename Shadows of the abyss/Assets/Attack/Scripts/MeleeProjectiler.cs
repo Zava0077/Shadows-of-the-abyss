@@ -18,20 +18,21 @@ public class MeleeProjectiler : MonoBehaviour
     public GameObject wave;
     private void Awake()
     {
-        secondAttackChance = 0;
-        createWaveChance = 0;
+        secondAttackChance = Random.Range(1, 100);
+        createWaveChance = Random.Range(1, 100);
     }
     void Update()
     {
         Vector3 diference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
         float rotateZ = Mathf.Atan2(diference.y, diference.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0f, 0f, rotateZ + rotateZShift);
-        if (Random.Range(1, 100) <= ArmourInventory.self.createProjectileChanceValue && !isCreated)
+        if (createWaveChance <= ArmourInventory.self.createProjectileChanceValue && !isCreated)
         {
-            Instantiate(wave, this.gameObject.transform.position, this.gameObject.transform.rotation, this.gameObject.transform.parent.transform.parent);
+            GameObject bullet = Instantiate(wave, this.gameObject.transform.position, this.gameObject.transform.rotation, this.gameObject.transform.parent.parent);
+            bullet.GetComponentInChildren<SpriteRenderer>().sprite = ArmourInventory.armourSlots[4].projectileSprite;
             isCreated = true;
         }
-        if (Random.Range(1, 100) <= ArmourInventory.self.secondUsageChanceValue)
+        if (secondAttackChance <= ArmourInventory.self.secondUsageChanceValue)
         {
             //Attack.self.AttackInvoker();
             Invoke(nameof(Destroying), ArmourInventory.self.attackSpeedValue);
@@ -64,13 +65,13 @@ public class MeleeProjectiler : MonoBehaviour
         if (collision.tag == "Enemy" && !enemies.Contains(collision.gameObject))
         {
             enemies.Add(collision.gameObject);
-            DamageType.GetDamage(collision.gameObject.GetComponent<Entity>(), ArmourInventory.self.damageValue, DamageType.DamageTypes.Physical);
-            DamageType.GetDamage(collision.gameObject.GetComponent<Entity>(), ArmourInventory.self.iceDamageValue, DamageType.DamageTypes.Cold);
-            DamageType.GetDamage(collision.gameObject.GetComponent<Entity>(), ArmourInventory.self.igniteDamageValue, DamageType.DamageTypes.Fire);
-            DamageType.GetDamage(collision.gameObject.GetComponent<Entity>(), ArmourInventory.self.lightningDamageValue, DamageType.DamageTypes.Lightning);
-            DamageType.GetDamage(collision.gameObject.GetComponent<Entity>(), ArmourInventory.self.poisonDamageValue, DamageType.DamageTypes.Poison);
-            DamageType.GetDamage(collision.gameObject.GetComponent<Entity>(), ArmourInventory.self.pureDamageValue, DamageType.DamageTypes.Pure);
-            DamageType.GetDamage(collision.gameObject.GetComponent<Entity>(), ArmourInventory.self.voidDamageValue, DamageType.DamageTypes.Void);
+            if (ArmourInventory.self.damageValue != 0) DamageType.GetDamage(collision.gameObject.GetComponent<Entity>(), ArmourInventory.self.damageValue, DamageType.DamageTypes.Physical);
+            if (ArmourInventory.self.iceDamageValue != 0) DamageType.GetDamage(collision.gameObject.GetComponent<Entity>(), ArmourInventory.self.iceDamageValue, DamageType.DamageTypes.Cold);
+            if (ArmourInventory.self.igniteDamageValue != 0) DamageType.GetDamage(collision.gameObject.GetComponent<Entity>(), ArmourInventory.self.igniteDamageValue, DamageType.DamageTypes.Fire);
+            if (ArmourInventory.self.lightningDamageValue != 0) DamageType.GetDamage(collision.gameObject.GetComponent<Entity>(), ArmourInventory.self.lightningDamageValue, DamageType.DamageTypes.Lightning);
+            if (ArmourInventory.self.poisonDamageValue != 0) DamageType.GetDamage(collision.gameObject.GetComponent<Entity>(), ArmourInventory.self.poisonDamageValue, DamageType.DamageTypes.Poison);
+            if (ArmourInventory.self.pureDamageValue != 0) DamageType.GetDamage(collision.gameObject.GetComponent<Entity>(), ArmourInventory.self.pureDamageValue, DamageType.DamageTypes.Pure);
+            if (ArmourInventory.self.voidDamageValue != 0) DamageType.GetDamage(collision.gameObject.GetComponent<Entity>(), ArmourInventory.self.voidDamageValue, DamageType.DamageTypes.Void);
         }
     }
 }

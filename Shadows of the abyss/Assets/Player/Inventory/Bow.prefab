@@ -148,7 +148,7 @@ MonoBehaviour:
   weaponCooldown: 0.5
   createProjectileChance: 0
   spikes: 0
-  pierce: 0
+  pierce: 1
   extraPierceChance: 0
   inscriptions: {fileID: 6751858720800780782}
   projectileSprite: {fileID: 21300000, guid: 2c978a079bdca7944b15148f9b70cfcd, type: 3}

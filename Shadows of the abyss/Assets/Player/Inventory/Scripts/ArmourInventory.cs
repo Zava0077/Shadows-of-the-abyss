@@ -109,6 +109,10 @@ public class ArmourInventory : MonoBehaviour
         explosionChance = new int[armourSlots.Count];
         explosionType = new int[armourSlots.Count];
         weaponCooldown = new float[armourSlots.Count];
+        createProjectileChance = new float[armourSlots.Count];
+        spikes = new int[armourSlots.Count];
+        pierce = new int[armourSlots.Count];
+        extraPierceChance = new int[armourSlots.Count];
         transform.parent.gameObject.SetActive(false);
     }
     private void FixedUpdate()
@@ -144,6 +148,10 @@ public class ArmourInventory : MonoBehaviour
             explosionChance[i] = Inventory.slots[i + 16].explosionChance;
             explosionType[i] = Inventory.slots[i + 16].explosionType;
             weaponCooldown[i] = Inventory.slots[i + 16].weaponCooldown;
+            createProjectileChance[i] = Inventory.slots[i + 16].createProjectileChance;
+            spikes[i] = Inventory.slots[i + 16].spikes;
+            pierce[i] = Inventory.slots[i + 16].pierce;
+            extraPierceChance[i] = Inventory.slots[i + 16].extraPierceChance;
         }
     }
     void CalculateStats()
@@ -173,6 +181,10 @@ public class ArmourInventory : MonoBehaviour
         explosionChanceValue = 0;
         explosionTypeValue = 0;
         weaponCooldownValue = 0;
+        createProjectileChanceValue = 0;
+        spikesValue = 0;
+        pierceValue = 0;
+        extraPierceChanceValue = 0;
         CheckItems();
         for (int i = 0; i < armourSlots.Count; i++)
         {
@@ -194,6 +206,9 @@ public class ArmourInventory : MonoBehaviour
                 explosionTypeValue += Inventory.slots[i + 16].explosionType + Inventory.slots[i + 16].inscriptions.explosionTypeValue;
                 weaponCooldownValue += Inventory.slots[i + 16].weaponCooldown + Inventory.slots[i + 16].inscriptions.weaponCooldownValue;
                 criticalChanceValue += Inventory.slots[i + 16].criticalChance + Inventory.slots[i + 16].inscriptions.criticalChanceValue;
+                createProjectileChanceValue += Inventory.slots[i + 16].createProjectileChance + Inventory.slots[i + 16].inscriptions.createProjectileChanceValue;
+                pierceValue += Inventory.slots[i + 16].pierce + Inventory.slots[i + 16].inscriptions.pierceValue;
+                extraPierceChanceValue += Inventory.slots[i + 16].extraPierceChance + Inventory.slots[i + 16].inscriptions.extraPierceChanceValue;
             }
             if (i == 0 || i == 8 || i == 2 || i == 6 || i == 10 || i == 1 || i == 5 || i == 9)
             {
@@ -205,6 +220,7 @@ public class ArmourInventory : MonoBehaviour
                 voidResistValue += Inventory.slots[i + 16].voidResist + Inventory.slots[i + 16].inscriptions.voidResistValue;
                 pureResistValue += Inventory.slots[i + 16].pureResist + Inventory.slots[i + 16].inscriptions.pureResistValue;
                 evasionChanceValue += Inventory.slots[i + 16].evasionChance + Inventory.slots[i + 16].inscriptions.evasionChanceValue;
+                spikesValue += Inventory.slots[i + 16].spikes + Inventory.slots[i + 16].inscriptions.spikesValue;
             }
             hpValue += Inventory.slots[i + 16].hp + Inventory.slots[i + 16].inscriptions.hpValue;
             weaponType = armourSlots[4].type;

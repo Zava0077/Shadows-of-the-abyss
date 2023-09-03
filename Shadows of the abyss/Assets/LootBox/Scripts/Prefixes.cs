@@ -34,6 +34,7 @@ public class Prefixes : MonoBehaviour
     public float weaponCooldownSummand;
     public float createProjectileChanceSummand;
     public int spikes;
+    public int inscSummand;
     public string extraDescription = "";
     public static Prefixes self;
     public Prefixes()
@@ -42,153 +43,62 @@ public class Prefixes : MonoBehaviour
     }
     public void PrefixChooser(string prefix, float rememberDamage, GameObject item)
     {
+        damageSummand = 0;
+        iceDamageSummand = 0;
+        igniteDamageSummand = 0;
+        voidDamageSummand = 0;
+        pureDamageSummand = 0;
+        poisonDamageSummand = 0;
+        lightningDamageSummand = 0;
+        iceResistSummand = 0;
+        igniteResistSummand = 0;
+        voidResistSummand = 0;
+        pureResistSummand = 0;
+        poisonResistSummand = 0;
+        lightningResistSummand = 0;
+        criticalChanceSummand = 0;
+        evasionChanceSummand = 0;
+        maxHpSummand = 0;
+        defenceSummand = 0;
+        manaCostSummand = 0;
+        weaponSizeSummand = 0;
+        attackSpeedSummand = 0;
+        secondUsageChanceSummand = 0;
+        tripleAttackChanceSummand = 0;
+        explChanceSummand = 0;
+        explTypeEqualer = 0;
+        weaponCooldownSummand = 0;
+        createProjectileChanceSummand = 0;
+        spikes = 0;
+        inscSummand = 0;
+        extraDescription = "";
         switch (prefix)
         {
             case "Distructive":
                 damageSummand = 5;
-                iceDamageSummand = 0;
-                igniteDamageSummand = 0;
-                voidDamageSummand = 0;
-                pureDamageSummand = 0;
-                poisonDamageSummand = 0;
-                lightningResistSummand = 0;
-                iceResistSummand = 0;
-                igniteResistSummand = 0;
-                voidResistSummand = 0;
-                pureResistSummand = 0;
-                poisonResistSummand = 0;
-                lightningResistSummand = 0;
-                maxHpSummand = 0;
-                defenceSummand = 0;
                 criticalChanceSummand = 10;
-                manaCostSummand = 0;
-                weaponSizeSummand = 0;
-                attackSpeedSummand = 0;
-                secondUsageChanceSummand = 0;//
-                tripleAttackChanceSummand = 0;//
-                explChanceSummand = 0;//
-                explTypeEqualer = 0;//
-                weaponCooldownSummand = 0;
-                createProjectileChanceSummand = 0;//
-                spikes = 0;
+                inscSummand = -1;
                 extraDescription = "";
                 break;
             case "Great":
                 damageSummand = 10;
-                iceDamageSummand = 0;
-                igniteDamageSummand = 0;
-                voidDamageSummand = 0;
-                pureDamageSummand = 0;
-                poisonDamageSummand = 0;
-                lightningDamageSummand = 0;
-                iceResistSummand = 0;
-                igniteResistSummand = 0;
-                voidResistSummand = 0;
-                pureResistSummand = 0;
-                poisonResistSummand = 0;
-                lightningResistSummand = 0;
-                maxHpSummand = 0;
-                defenceSummand = 0;
                 criticalChanceSummand = 5;
-                manaCostSummand = 0;
-                weaponSizeSummand = 0;
-                attackSpeedSummand = 0;
-                secondUsageChanceSummand = 0;//
-                tripleAttackChanceSummand = 0;//
-                explChanceSummand = 0;//
-                explTypeEqualer = 0;//
-                weaponCooldownSummand = 0;
-                createProjectileChanceSummand = 0;//
-                spikes = 0;
+                inscSummand = -2;
                 extraDescription = "";
                 break;
             case "Ignite":
-                damageSummand = 0;
-                iceDamageSummand = 0;
                 igniteDamageSummand = rememberDamage + 5;
-                voidDamageSummand = 0;
-                pureDamageSummand = 0;
-                poisonDamageSummand = 0;
-                lightningDamageSummand = 0;
-                iceResistSummand = 0;
-                igniteResistSummand = 0;
-                voidResistSummand = 0;
-                pureResistSummand = 0;
-                poisonResistSummand = 0;
-                lightningResistSummand = 0;
-                maxHpSummand = 0;
-                defenceSummand = 0;
                 criticalChanceSummand = 5;
-                manaCostSummand = 0;
-                weaponSizeSummand = 0;
-                attackSpeedSummand = 0;
-                secondUsageChanceSummand = 0;//
-                tripleAttackChanceSummand = 0;//
-                explChanceSummand = 0;//
-                explTypeEqualer = 0;//
-                weaponCooldownSummand = 0;
-                createProjectileChanceSummand = 0;//
-                spikes = 0;
+                inscSummand = 1;
                 extraDescription = "Converts all physical damage into damage by fire";
                 DamageDefaulter(item);
                 break;
             case "Fast":
                 damageSummand = -2;
-                iceDamageSummand = 0;
-                igniteDamageSummand = 0;
-                voidDamageSummand = 0;
-                pureDamageSummand = 0;
-                poisonDamageSummand = 0;
-                lightningResistSummand = 0;
-                iceResistSummand = 0;
-                igniteResistSummand = 0;
-                voidResistSummand = 0;
-                pureResistSummand = 0;
-                poisonResistSummand = 0;
-                lightningResistSummand = 0;
-                maxHpSummand = 0;
-                defenceSummand = 0;
-                criticalChanceSummand = 0;
-                manaCostSummand = 0;
-                weaponSizeSummand = 0;
-                attackSpeedSummand = -item.GetComponent<Slot>().attackSpeed/2;
-                secondUsageChanceSummand = 0;//
-                tripleAttackChanceSummand = 0;//
-                explChanceSummand = 0;//
-                explTypeEqualer = 0;//
+                attackSpeedSummand = -item.GetComponent<Slot>().attackSpeed / 2;
                 weaponCooldownSummand = -0.2f;
-                createProjectileChanceSummand = 0;//
-                spikes = 0;
+                inscSummand = 1;
                 extraDescription = "Small, but Fast!";
-                break;
-            case "":
-                damageSummand = 0;
-                iceDamageSummand = 0;
-                igniteDamageSummand = 0;
-                voidDamageSummand = 0;
-                pureDamageSummand = 0;
-                poisonDamageSummand = 0;
-                lightningResistSummand = 0;
-                iceResistSummand = 0;
-                igniteResistSummand = 0;
-                voidResistSummand = 0;
-                pureResistSummand = 0;
-                poisonResistSummand = 0;
-                lightningResistSummand = 0;
-                maxHpSummand = 0;
-                defenceSummand = 0;
-                criticalChanceSummand = 0;
-                manaCostSummand = 0;
-                weaponSizeSummand = 0;
-                attackSpeedSummand = 0;
-                secondUsageChanceSummand = 0;//
-                tripleAttackChanceSummand = 0;//
-                explChanceSummand = 0;//
-                explTypeEqualer = 0;//
-                weaponCooldownSummand = 0;
-                createProjectileChanceSummand = 0;//
-                spikes = 0;
-                extraDescription = "";
                 break;
         }
     }

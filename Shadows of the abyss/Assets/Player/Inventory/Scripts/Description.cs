@@ -67,6 +67,8 @@ public class Description : MonoBehaviour
                 Inventory.slots[SlotInteraction.hoveredId].canBeReplaced = false;
                 isChoosingSlot = false;
                 Inventory.self.GetFeatures();
+                if (Inventory.slots[SlotInteraction.hoveredId].inscriptionNum > 0)
+                    CameraBinds.self.inscMenu.SetActive(true);
             }
             if (collision.gameObject.GetComponent<Slot>().rareName != "")
                 text.text += " <b><color=red>" + collision.gameObject.GetComponent<Slot>().rareName + "</color></b>";

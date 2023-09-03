@@ -85,6 +85,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7959331729453559448}
   - component: {fileID: 6473791271978930405}
+  - component: {fileID: 7992941903440325151}
   - component: {fileID: 8914541300994786836}
   - component: {fileID: 1752848051327514323}
   m_Layer: 0
@@ -105,7 +106,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.8, y: 0.8, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 640113990460584361}
   - {fileID: 4409828428688535174}
@@ -123,6 +124,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3636a2d34084e747a88d553ac4b3ac4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inscription: {fileID: 0}
+  damageNumber: {fileID: 8876075413993053991, guid: ffdcf7578ab47f24c996a53c18f8be63, type: 3}
+  isPushing: 0
   MaxHealth: 0
   Health: 0
   Armor: 0
@@ -135,6 +139,34 @@ MonoBehaviour:
   VoidRes: 0
   Evasion: 0
   target: {fileID: 0}
+  drop: []
+  dropChances: 
+--- !u!114 &7992941903440325151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3787036419851631608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc52b98433cb6374f935a7fbcd736f9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inscription: {fileID: 0}
+  damageNumber: {fileID: 8876075413993053991, guid: ffdcf7578ab47f24c996a53c18f8be63, type: 3}
+  isPushing: 0
+  MaxHealth: 0
+  Health: 0
+  Armor: 0
+  Speed: 0
+  FireRes: 0
+  LightningRes: 0
+  ColdRes: 0
+  PoisonRes: 0
+  PhysicalRes: 0
+  VoidRes: 0
+  Evasion: 0
 --- !u!195 &8914541300994786836
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -189,7 +221,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.003925264, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -200,7 +232,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.3, y: 1.3}
+  m_Size: {x: 0.8839184, y: 0.8603668}
   m_EdgeRadius: 0
 --- !u!1 &5325489121979005034
 GameObject:

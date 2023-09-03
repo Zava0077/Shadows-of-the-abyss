@@ -7,7 +7,7 @@ public class CameraBinds : MonoBehaviour
 {
     [SerializeField] GameObject panel;
     [SerializeField] GameObject dialogue;
-    [SerializeField] GameObject inscMenu;
+    [SerializeField] public GameObject inscMenu;
     public static CameraBinds self;
     public CameraBinds()
     {
@@ -70,7 +70,8 @@ public class CameraBinds : MonoBehaviour
     {
         isFPressed = false;
         Description.isChoosingSlot = true;
-        inscMenu.SetActive(true);
+        //if (Inventory.slots[SlotInteraction.hoveredId].inscriptionNum > 0)
+        //    inscMenu.SetActive(true);
     }
     public void ExitIncriptionMenu()
     {

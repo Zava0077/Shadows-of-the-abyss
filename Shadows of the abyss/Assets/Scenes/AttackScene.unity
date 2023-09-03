@@ -625,35 +625,6 @@ Transform:
   - {fileID: 186285784}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &79759752 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3787036419851631608, guid: f1aa3b03aaf21cb48a03b562f0f662ac, type: 3}
-  m_PrefabInstance: {fileID: 2980655542577501889}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &79759757
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 79759752}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc52b98433cb6374f935a7fbcd736f9b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inscription: {fileID: 0}
-  MaxHealth: 0
-  Health: 0
-  Armor: 0
-  Speed: 0
-  FireRes: 0
-  LightningRes: 0
-  ColdRes: 0
-  PoisonRes: 0
-  PhysicalRes: 0
-  VoidRes: 0
-  Evasion: 0
 --- !u!1 &89106857
 GameObject:
   m_ObjectHideFlags: 0
@@ -754,6 +725,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inscription: {fileID: 1584044522010320967, guid: 0c97c6d812d38d5459116509ab90b091, type: 3}
+  damageNumber: {fileID: 0}
+  isPushing: 0
   MaxHealth: 0
   Health: 0
   Armor: 0
@@ -774,7 +747,8 @@ MonoBehaviour:
   - {fileID: 8283065102806030095, guid: eab272ad833f8d04db4852c1c7590890, type: 3}
   - {fileID: 8283065102806030095, guid: 3cf2a02aff0f8b24c8300f0ac207f8fe, type: 3}
   - {fileID: 8283065102806030095, guid: 199fb4b48a41a5a4491ef76db93ab786, type: 3}
-  chance: 6400000064000000640000006400000064000000640000006400000064000000
+  - {fileID: 8283065102806030095, guid: 380fcc20b2f44f94d868a53b9eb401bb, type: 3}
+  chance: 640000006400000064000000640000006400000064000000640000006400000064000000
 --- !u!114 &89106861
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -788,6 +762,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inscription: {fileID: 0}
+  damageNumber: {fileID: 0}
+  isPushing: 0
   MaxHealth: 0
   Health: 0
   Armor: 0
@@ -15968,6 +15944,34 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 640113990460584361, guid: f1aa3b03aaf21cb48a03b562f0f662ac, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.76
+      objectReference: {fileID: 0}
+    - target: {fileID: 640113990460584361, guid: f1aa3b03aaf21cb48a03b562f0f662ac, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.76
+      objectReference: {fileID: 0}
+    - target: {fileID: 640113990460584361, guid: f1aa3b03aaf21cb48a03b562f0f662ac, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.76
+      objectReference: {fileID: 0}
+    - target: {fileID: 640113990460584361, guid: f1aa3b03aaf21cb48a03b562f0f662ac, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2249981737019646301, guid: f1aa3b03aaf21cb48a03b562f0f662ac, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2249981737019646301, guid: f1aa3b03aaf21cb48a03b562f0f662ac, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2249981737019646301, guid: f1aa3b03aaf21cb48a03b562f0f662ac, type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3787036419851631608, guid: f1aa3b03aaf21cb48a03b562f0f662ac, type: 3}
       propertyPath: m_Name
       value: Bat
@@ -16028,17 +16032,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8914541300994786836, guid: f1aa3b03aaf21cb48a03b562f0f662ac, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3787036419851631608, guid: f1aa3b03aaf21cb48a03b562f0f662ac, type: 3}
-      insertIndex: 2
-      addedObject: {fileID: 79759757}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1aa3b03aaf21cb48a03b562f0f662ac, type: 3}
 --- !u!1001 &4521377397341542212
 PrefabInstance:

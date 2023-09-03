@@ -41,6 +41,7 @@ public class Bat : Entity
     private void Update()
     {
         Limits();
+        GetComponentInChildren<SpriteRenderer>().color = Color.black;
         Pushing();
         if (Health <= 0)
             Die(drop,dropChances);
