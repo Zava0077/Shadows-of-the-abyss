@@ -11,6 +11,9 @@ public class SlotInteraction : Slot, IPointerClickHandler
 {
     Vector3 cursor;
     bool isFolowing;
+
+    static Dictionary<float,string> bufferValues = new Dictionary<float,string>();
+
     public static float bufferHp;
     public static float bufferDamage;
     public static float bufferIceDamage;
@@ -122,6 +125,8 @@ public class SlotInteraction : Slot, IPointerClickHandler
     {
         if (slots[gameObject.GetComponent<Slot>().id].stacksAlready > 0 && ((CursorSlot.self.stacksAlready < CursorSlot.self.stackAmount && CursorSlot.self.type != "Empty") && gameObject.GetComponent<Slot>().id < 16))
         {
+            CursorSlot.self.values = slots[gameObject.GetComponent<Slot>().id].values; //Применение всех свойств
+
             CursorSlot.self.damage = slots[gameObject.GetComponent<Slot>().id].damage;
             CursorSlot.self.iceDamage = slots[gameObject.GetComponent<Slot>().id].iceDamage;
             CursorSlot.self.igniteDamage = slots[gameObject.GetComponent<Slot>().id].igniteDamage;
@@ -208,6 +213,8 @@ public class SlotInteraction : Slot, IPointerClickHandler
         }
         else if (CursorSlot.self.type == "Empty" && slots[gameObject.GetComponent<Slot>().id].stackAmount > 0 && gameObject.GetComponent<Slot>().id < 16)
         {
+            CursorSlot.self.values = slots[gameObject.GetComponent<Slot>().id].values;
+
             CursorSlot.self.damage = slots[gameObject.GetComponent<Slot>().id].damage;
             CursorSlot.self.iceDamage = slots[gameObject.GetComponent<Slot>().id].iceDamage;
             CursorSlot.self.igniteDamage = slots[gameObject.GetComponent<Slot>().id].igniteDamage;
@@ -248,7 +255,6 @@ public class SlotInteraction : Slot, IPointerClickHandler
             CursorSlot.self.spikes = slots[gameObject.GetComponent<Slot>().id].spikes;
             CursorSlot.self.pierce = slots[gameObject.GetComponent<Slot>().id].pierce;
             CursorSlot.self.extraPierceChance = slots[gameObject.GetComponent<Slot>().id].extraPierceChance;
-            //CursorSlot.self.inscriptions = slots[gameObject.GetComponent<Slot>().id].inscriptions;
             CursorSlot.self.inscriptionNum = slots[gameObject.GetComponent<Slot>().id].inscriptionNum;
             //
             CursorSlot.self.inscriptions.damage = slots[gameObject.GetComponent<Slot>().id].inscriptions.damage;
@@ -296,27 +302,29 @@ public class SlotInteraction : Slot, IPointerClickHandler
         }
         else if (CursorSlot.self.stackAmount > 0 /*&& slots[gameObject.GetComponent<Slot>().id].stackAmount > 0 */&& slots[gameObject.GetComponent<Slot>().id].type == "Empty" && CursorSlot.self.type != "Empty" && gameObject.GetComponent<Slot>().id < 16)
         {
-            slots[gameObject.GetComponent<Slot>().id].iceDamage= CursorSlot.self.iceDamage;
+            CursorSlot.self.values = slots[gameObject.GetComponent<Slot>().id].values;
+
+            slots[gameObject.GetComponent<Slot>().id].iceDamage = CursorSlot.self.iceDamage;
             slots[gameObject.GetComponent<Slot>().id].igniteDamage = CursorSlot.self.igniteDamage;
-            slots[gameObject.GetComponent<Slot>().id].lightningDamage= CursorSlot.self.lightningDamage;
-            slots[gameObject.GetComponent<Slot>().id].poisonDamage= CursorSlot.self.poisonDamage;
-            slots[gameObject.GetComponent<Slot>().id].voidDamage =   CursorSlot.self.voidDamage;
-            slots[gameObject.GetComponent<Slot>().id].pureDamage= CursorSlot.self.pureDamage;
-            slots[gameObject.GetComponent<Slot>().id].defence= CursorSlot.self.defence;
-            slots[gameObject.GetComponent<Slot>().id].iceResist=CursorSlot.self.iceResist;
-            slots[gameObject.GetComponent<Slot>().id].igniteResist= CursorSlot.self.igniteResist;
-            slots[gameObject.GetComponent<Slot>().id].lightningResist= CursorSlot.self.lightningResist;
-            slots[gameObject.GetComponent<Slot>().id].poisonResist= CursorSlot.self.poisonResist;
-            slots[gameObject.GetComponent<Slot>().id].voidResist= CursorSlot.self.voidResist;
-            slots[gameObject.GetComponent<Slot>().id].pureResist =CursorSlot.self.pureResist;
-            slots[gameObject.GetComponent<Slot>().id].type= CursorSlot.self.type;
-            slots[gameObject.GetComponent<Slot>().id].sprite =CursorSlot.self.sprite;
-            slots[gameObject.GetComponent<Slot>().id].hp =CursorSlot.self.hp;
-            slots[gameObject.GetComponent<Slot>().id].evasionChance =CursorSlot.self.evasionChance;
+            slots[gameObject.GetComponent<Slot>().id].lightningDamage = CursorSlot.self.lightningDamage;
+            slots[gameObject.GetComponent<Slot>().id].poisonDamage = CursorSlot.self.poisonDamage;
+            slots[gameObject.GetComponent<Slot>().id].voidDamage = CursorSlot.self.voidDamage;
+            slots[gameObject.GetComponent<Slot>().id].pureDamage = CursorSlot.self.pureDamage;
+            slots[gameObject.GetComponent<Slot>().id].defence = CursorSlot.self.defence;
+            slots[gameObject.GetComponent<Slot>().id].iceResist = CursorSlot.self.iceResist;
+            slots[gameObject.GetComponent<Slot>().id].igniteResist = CursorSlot.self.igniteResist;
+            slots[gameObject.GetComponent<Slot>().id].lightningResist = CursorSlot.self.lightningResist;
+            slots[gameObject.GetComponent<Slot>().id].poisonResist = CursorSlot.self.poisonResist;
+            slots[gameObject.GetComponent<Slot>().id].voidResist = CursorSlot.self.voidResist;
+            slots[gameObject.GetComponent<Slot>().id].pureResist = CursorSlot.self.pureResist;
+            slots[gameObject.GetComponent<Slot>().id].type = CursorSlot.self.type;
+            slots[gameObject.GetComponent<Slot>().id].sprite = CursorSlot.self.sprite;
+            slots[gameObject.GetComponent<Slot>().id].hp = CursorSlot.self.hp;
+            slots[gameObject.GetComponent<Slot>().id].evasionChance = CursorSlot.self.evasionChance;
             slots[gameObject.GetComponent<Slot>().id].criticalChance = CursorSlot.self.criticalChance;
-            slots[gameObject.GetComponent<Slot>().id].kind =CursorSlot.self.kind;
-            slots[gameObject.GetComponent<Slot>().id].stackAmount =CursorSlot.self.stackAmount;
-            slots[gameObject.GetComponent<Slot>().id].idItem=CursorSlot.self.idItem;
+            slots[gameObject.GetComponent<Slot>().id].kind = CursorSlot.self.kind;
+            slots[gameObject.GetComponent<Slot>().id].stackAmount = CursorSlot.self.stackAmount;
+            slots[gameObject.GetComponent<Slot>().id].idItem = CursorSlot.self.idItem;
             slots[gameObject.GetComponent<Slot>().id].itemDescription = CursorSlot.self.itemDescription;
             slots[gameObject.GetComponent<Slot>().id].rareList = CursorSlot.self.rareList;
             slots[gameObject.GetComponent<Slot>().id].rareChances = CursorSlot.self.rareChances;
@@ -336,7 +344,6 @@ public class SlotInteraction : Slot, IPointerClickHandler
             slots[gameObject.GetComponent<Slot>().id].pierce = CursorSlot.self.pierce;
             slots[gameObject.GetComponent<Slot>().id].extraPierceChance = CursorSlot.self.extraPierceChance;
             slots[gameObject.GetComponent<Slot>().id].inscriptionNum = CursorSlot.self.inscriptionNum;
-            //[gameObject.GetComponent<Slot>().id].inscriptions = CursorSlot.self.inscriptions;
             //
             slots[gameObject.GetComponent<Slot>().id].inscriptions.iceDamage = CursorSlot.self.inscriptions.iceDamage;
             slots[gameObject.GetComponent<Slot>().id].inscriptions.igniteDamage = CursorSlot.self.inscriptions.igniteDamage;
@@ -433,8 +440,7 @@ public class SlotInteraction : Slot, IPointerClickHandler
         bufferPierce = CursorSlot.self.pierce;
         bufferExtraPierceChance = CursorSlot.self.extraPierceChance;
         bufferInscNum = CursorSlot.self.inscriptionNum;
-        //bufferInscriptions = CursorSlot.self.inscriptions;
-        //
+
         bufferInscriptions.damage = CursorSlot.self.inscriptions.damage;
         bufferInscriptions.iceDamage = CursorSlot.self.inscriptions.iceDamage;
         bufferInscriptions.igniteDamage = CursorSlot.self.inscriptions.igniteDamage;
@@ -471,6 +477,7 @@ public class SlotInteraction : Slot, IPointerClickHandler
         bufferInscriptions.pierce = CursorSlot.self.inscriptions.pierce;
         bufferInscriptions.extraPierceChance = CursorSlot.self.inscriptions.extraPierceChance;
         //
+        CursorSlot.self.values = slots[gameObject.GetComponent<Slot>().id].values;
 
         CursorSlot.self.damage = slots[gameObject.GetComponent<Slot>().id].damage;
         CursorSlot.self.iceDamage = slots[gameObject.GetComponent<Slot>().id].iceDamage;
@@ -514,7 +521,6 @@ public class SlotInteraction : Slot, IPointerClickHandler
         CursorSlot.self.pierce = slots[gameObject.GetComponent<Slot>().id].pierce;
         CursorSlot.self.extraPierceChance = slots[gameObject.GetComponent<Slot>().id].extraPierceChance;
         CursorSlot.self.inscriptionNum = slots[gameObject.GetComponent<Slot>().id].inscriptionNum;
-        //CursorSlot.self.inscriptions = slots[gameObject.GetComponent<Slot>().id].inscriptions;
         //
         CursorSlot.self.inscriptions.damage = slots[gameObject.GetComponent<Slot>().id].inscriptions.damage;
         CursorSlot.self.inscriptions.iceDamage = slots[gameObject.GetComponent<Slot>().id].inscriptions.iceDamage;
@@ -595,7 +601,6 @@ public class SlotInteraction : Slot, IPointerClickHandler
         slots[gameObject.GetComponent<Slot>().id].pierce = bufferPierce;
         slots[gameObject.GetComponent<Slot>().id].extraPierceChance = bufferExtraPierceChance;
         slots[gameObject.GetComponent<Slot>().id].inscriptionNum = bufferInscNum;
-        //slots[gameObject.GetComponent<Slot>().id].inscriptions = bufferInscriptions;
         //
         slots[gameObject.GetComponent<Slot>().id].inscriptions.damage = bufferInscriptions.damage;
         slots[gameObject.GetComponent<Slot>().id].inscriptions.iceDamage = bufferInscriptions.iceDamage;

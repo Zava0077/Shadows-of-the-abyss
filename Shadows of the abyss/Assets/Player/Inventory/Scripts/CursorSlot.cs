@@ -8,6 +8,9 @@ using UnityEngine.UI;
 
 public class CursorSlot : MonoBehaviour
 {
+    [SerializeField] public float[] values;
+    [SerializeField] public string[] valuesNames;
+    #region OldCode
     [SerializeField] public float hp;
     [SerializeField] public float damage;
     [SerializeField] public float iceDamage;
@@ -57,6 +60,7 @@ public class CursorSlot : MonoBehaviour
     [SerializeField] public Sprite weaponSprite;
     //
     [SerializeField] public int inscriptionNum;
+    #endregion
     public string rareName;
     Vector3 cursor;
     SpriteRenderer sR;

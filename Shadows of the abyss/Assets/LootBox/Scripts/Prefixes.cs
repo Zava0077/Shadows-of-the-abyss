@@ -37,6 +37,7 @@ public class Prefixes : MonoBehaviour
     public int inscSummand;
     public string extraDescription = "";
     public static Prefixes self;
+    public string qualityColor;
     public Prefixes()
     {
         self = this;
@@ -71,6 +72,7 @@ public class Prefixes : MonoBehaviour
         createProjectileChanceSummand = 0;
         spikes = 0;
         inscSummand = 0;
+        qualityColor = "#b80000";
         extraDescription = "";
         switch (prefix)
         {
@@ -78,19 +80,21 @@ public class Prefixes : MonoBehaviour
                 damageSummand = 5;
                 criticalChanceSummand = 10;
                 inscSummand = -1;
+                qualityColor = "#ff1e00";
                 extraDescription = "";
                 break;
             case "Great":
                 damageSummand = 10;
                 criticalChanceSummand = 5;
                 inscSummand = -2;
+                qualityColor = "#9000ff";
                 extraDescription = "";
                 break;
             case "Ignite":
                 igniteDamageSummand = rememberDamage + 5;
                 criticalChanceSummand = 5;
                 inscSummand = 1;
-                extraDescription = "Converts all physical damage into damage by fire";
+                extraDescription = "<color=#ff5d00>Converts all physical damage into damage by fire</color>";
                 DamageDefaulter(item);
                 break;
             case "Fast":
@@ -98,7 +102,7 @@ public class Prefixes : MonoBehaviour
                 attackSpeedSummand = -item.GetComponent<Slot>().attackSpeed / 2;
                 weaponCooldownSummand = -0.2f;
                 inscSummand = 1;
-                extraDescription = "Small, but Fast!";
+                extraDescription = "<color=#2100a6>Small, but Fast!</color>";
                 break;
         }
     }

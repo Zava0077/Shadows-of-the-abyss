@@ -26,41 +26,19 @@ public class Inventory : MonoBehaviour
         for (int i = 0; i < objects.Count; i++)
         {
             if (i % 2 == 0)
-            {
                 slots.Add(objects[i]);
-                for(int k = 0; k<10;k++)
-                {
-                    //GameObject insc = Instantiate(inscriptionShape);
-                    //slots[slots.Count - 1].inscriptions[k] = insc;
-                }
-            }
 
         }
         for (int i = 0; i < armourObjects.Count; i++)
         {
             if (i % 2 == 0)
-            {
                 slots.Add(armourObjects[i]);
-                for (int k = 0; k < 10; k++)
-                {
-                    //GameObject insc = Instantiate(inscriptionShape);
-                    //slots[slots.Count - 1].inscriptions[k] = insc;
-                }
-            }
 
         }
         for (int i = 0; i < inscriptionObjects.Count; i++)
         {
             if (i % 2 == 0)
-            {
                 slots.Add(inscriptionObjects[i]);
-                for (int k = 0; k < 10; k++)
-                {
-                    //GameObject insc = Instantiate(inscriptionShape);
-                    //slots[slots.Count - 1].inscriptions[k] = insc;
-                }
-            }
-
         }
     }
     private void FixedUpdate()
@@ -89,6 +67,8 @@ public class Inventory : MonoBehaviour
             slots[firstFreeSlot].stacksAlready++;
         else
         {
+            slots[firstFreeSlot].values = item.GetComponent<Slot>().values; //Применение всех свойств
+
             slots[firstFreeSlot].damage = item.GetComponent<Slot>().damage;
             slots[firstFreeSlot].iceDamage = item.GetComponent<Slot>().iceDamage;
             slots[firstFreeSlot].igniteDamage = item.GetComponent<Slot>().igniteDamage;
