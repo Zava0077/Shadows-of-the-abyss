@@ -81,7 +81,7 @@ public class Attack : MonoBehaviour
             case "Mage":
                 if (PlayerScript.self.Mana > 0)
                 {
-                    PlayerScript.self.Mana -= ArmourInventory.self.manaCostValue;
+                    PlayerScript.self.Mana -= (int)ArmourInventory.self.manaCostValue;
                     RangeAttack();
                 }
                 else Debug.Log("Нехватка маны!");

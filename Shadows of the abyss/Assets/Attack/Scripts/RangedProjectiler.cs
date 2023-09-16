@@ -11,7 +11,7 @@ public class RangedProjectiler : MonoBehaviour
         self = this;
     }
     public float rotateZShift;
-    public int secondAttackChance;
+    public float secondAttackChance;
     public bool isCreated;
     public GameObject projectile;
     Sprite bulletSprite;

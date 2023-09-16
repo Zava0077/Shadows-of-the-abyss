@@ -68,7 +68,7 @@ public class Description : MonoBehaviour
                 SlotInteraction.hoveredId = collision.gameObject.GetComponent<Slot>().id;
                 isChoosingSlot = false;
                 Inventory.self.GetFeatures();
-                if (Inventory.slots[SlotInteraction.hoveredId].inscriptionNum > 0)
+                if (Inventory.slots[SlotInteraction.hoveredId].values[29] > 0)
                 {
                     Inventory.slots[SlotInteraction.hoveredId].canBeReplaced = false;
                     CameraBinds.self.inscMenu.SetActive(true);
@@ -77,7 +77,7 @@ public class Description : MonoBehaviour
             }
             text.text = collision.gameObject.GetComponent<Slot>().itemDescription;
             GameObject item = collision.gameObject;
-            for (int i = 0; i < item.GetComponent<Slot>().inscriptionNum; i++) // позже отдельно добавлять доп описание:
+            for (int i = 0; i < item.GetComponent<Slot>().values[29]; i++) // позже отдельно добавлять доп описание:
             {
                 if (item.GetComponent<Slot>().inscriptions.type[i] == "Empty") text.text += "\r\n" + "Slot " + (i + 1) + ": <Empty>";
                 else

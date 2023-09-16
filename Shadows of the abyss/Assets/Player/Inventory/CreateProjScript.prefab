@@ -105,51 +105,86 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a80ffead4ec418649a36b032a7d3cb67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 0
-  damage: 0
-  iceDamage: 0
-  igniteDamage: 0
-  lightningDamage: 0
-  poisonDamage: 0
-  voidDamage: 0
-  pureDamage: 0
-  defence: 0
-  iceResist: 0
-  igniteResist: 0
-  lightningResist: 0
-  poisonResist: 0
-  voidResist: 0
-  pureResist: 0
-  evasionChance: 0
-  criticalChance: 0
-  stackAmount: 0
-  stacksAlready: 0
+  values:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 25
+  - 0
+  - 0
+  - 0
+  - 8
+  - 0
+  - 8
+  - 0
+  - 0
+  valuesNames:
+  - Hp
+  - Defence
+  - Damage
+  - IceDamage
+  - IgniteDamage
+  - LightningDamage
+  - PoisonDamage
+  - VoidDamage
+  - PureDamage
+  - IceResist
+  - IgniteResist
+  - LightningDamage
+  - PoisonResist
+  - VoidResist
+  - EvasionChance
+  - CriticalChance
+  - ManaCost
+  - WeaponSize
+  - AttackSpeed
+  - TripleAttackChance
+  - SecondUsageChance
+  - ExplosionChance
+  - ExplosionType
+  - WeaponCoolDown
+  - CreateProjectileChance
+  - Spikes
+  - Pierce
+  - ExtraPierceChance
+  - IdItem
+  - Inscription slots
+  - Kind
+  - StackAmount
+  - StacksAlready
   kind: 8
   type: Scroll
-  weapon: {fileID: 0}
-  emptySprite: {fileID: 21300000, guid: 59a39c1bbaad10949bd53e406701b335, type: 3}
-  sprite: {fileID: 21300000, guid: fb32dba1cf081f34bae871db213b6f4e, type: 3}
   id: 0
-  idItem: 9
   itemDescription: "\u0414\u0440\u0435\u0432\u043D\u0438\u0439 \u0441\u0432\u0438\u0442\u043E\u043A"
   rareList: []
   rareChances: 
-  manaCost: 0
-  weaponSize: 0
-  attackSpeed: 0
-  tripleAttackChance: 0
-  secondUsageChance: 0
-  explosionChance: 0
-  explosionType: 0
-  weaponCooldown: 0
-  createProjectileChance: 25
-  spikes: 0
-  pierce: 0
-  extraPierceChance: 0
   inscriptions: {fileID: 4132735855773055484}
   projectileSprite: {fileID: 0}
   weaponSprite: {fileID: 0}
-  inscriptionNum: 0
+  weapon: {fileID: 0}
+  emptySprite: {fileID: 21300000, guid: 59a39c1bbaad10949bd53e406701b335, type: 3}
+  sprite: {fileID: 21300000, guid: fb32dba1cf081f34bae871db213b6f4e, type: 3}
   canBeReplaced: 1
   rareName: 
 --- !u!114 &9047657002591364943

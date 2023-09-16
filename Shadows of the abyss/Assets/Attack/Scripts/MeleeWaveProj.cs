@@ -6,8 +6,8 @@ public class MeleeWaveProj : MonoBehaviour
 {
     float projectileSpeed = 15f;
     Rigidbody2D rb;
-    int piercesCount; //
-    int pierceChance; //
+    float piercesCount; //
+    float pierceChance; //
     List<GameObject> enemies = new List<GameObject>();
     private void Awake()
     {

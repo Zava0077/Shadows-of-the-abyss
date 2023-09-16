@@ -4,6 +4,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.VFX;
 using System;
+using Unity.Mathematics;
 
 public class Inventory : MonoBehaviour
 {
@@ -49,7 +50,7 @@ public class Inventory : MonoBehaviour
     {
         for (int i = 0; i < slots.Count; i++)
         {
-            if (slots[i].type == "Empty" || (slots[i].type == item.GetComponent<Slot>().type && slots[i].stacksAlready < slots[i].stackAmount))
+            if (slots[i].type == "Empty" || (slots[i].type == item.GetComponent<Slot>().type && slots[i].values[32] < slots[i].values[31]))
             {
                 FreeSlotDetector(i);
                 return isFull = false;
@@ -63,54 +64,54 @@ public class Inventory : MonoBehaviour
     {
         System.Random rnd = new System.Random();
         string rareName = "";
-        if (slots[firstFreeSlot].stacksAlready < slots[firstFreeSlot].stackAmount && slots[firstFreeSlot].stacksAlready > 0 && slots[firstFreeSlot].idItem == item.GetComponent<Slot>().idItem)
-            slots[firstFreeSlot].stacksAlready++;
+        if (slots[firstFreeSlot].values[32] < slots[firstFreeSlot].values[31] && slots[firstFreeSlot].values[32] > 0 && slots[firstFreeSlot].values[28] == item.GetComponent<Slot>().values[28])
+            slots[firstFreeSlot].values[32]++;
         else
         {
             slots[firstFreeSlot].values = item.GetComponent<Slot>().values; //Применение всех свойств
 
-            slots[firstFreeSlot].damage = item.GetComponent<Slot>().damage;
-            slots[firstFreeSlot].iceDamage = item.GetComponent<Slot>().iceDamage;
-            slots[firstFreeSlot].igniteDamage = item.GetComponent<Slot>().igniteDamage;
-            slots[firstFreeSlot].lightningDamage = item.GetComponent<Slot>().lightningDamage;
-            slots[firstFreeSlot].poisonDamage = item.GetComponent<Slot>().poisonDamage;
-            slots[firstFreeSlot].voidDamage = item.GetComponent<Slot>().voidDamage;
-            slots[firstFreeSlot].pureDamage = item.GetComponent<Slot>().pureDamage;
-            slots[firstFreeSlot].defence = item.GetComponent<Slot>().defence;
-            slots[firstFreeSlot].iceResist = item.GetComponent<Slot>().iceResist;
-            slots[firstFreeSlot].igniteResist = item.GetComponent<Slot>().igniteResist;
-            slots[firstFreeSlot].lightningResist = item.GetComponent<Slot>().lightningResist;
-            slots[firstFreeSlot].poisonResist = item.GetComponent<Slot>().poisonResist;
-            slots[firstFreeSlot].voidResist = item.GetComponent<Slot>().voidResist;
-            slots[firstFreeSlot].pureResist = item.GetComponent<Slot>().pureResist;
+            //slots[firstFreeSlot].damage = item.GetComponent<Slot>().damage;
+            //slots[firstFreeSlot].iceDamage = item.GetComponent<Slot>().iceDamage;
+            //slots[firstFreeSlot].igniteDamage = item.GetComponent<Slot>().igniteDamage;
+            //slots[firstFreeSlot].lightningDamage = item.GetComponent<Slot>().lightningDamage;
+            //slots[firstFreeSlot].poisonDamage = item.GetComponent<Slot>().poisonDamage;
+            //slots[firstFreeSlot].voidDamage = item.GetComponent<Slot>().voidDamage;
+            //slots[firstFreeSlot].pureDamage = item.GetComponent<Slot>().pureDamage;
+            //slots[firstFreeSlot].defence = item.GetComponent<Slot>().defence;
+            //slots[firstFreeSlot].iceResist = item.GetComponent<Slot>().iceResist;
+            //slots[firstFreeSlot].igniteResist = item.GetComponent<Slot>().igniteResist;
+            //slots[firstFreeSlot].lightningResist = item.GetComponent<Slot>().lightningResist;
+            //slots[firstFreeSlot].poisonResist = item.GetComponent<Slot>().poisonResist;
+            //slots[firstFreeSlot].voidResist = item.GetComponent<Slot>().voidResist;
+            //slots[firstFreeSlot].pureResist = item.GetComponent<Slot>().pureResist;
             slots[firstFreeSlot].type = item.GetComponent<Slot>().type;
             slots[firstFreeSlot].sprite = item.GetComponent<Slot>().sprite;
-            slots[firstFreeSlot].hp = item.GetComponent<Slot>().hp;
-            slots[firstFreeSlot].evasionChance = item.GetComponent<Slot>().evasionChance;
-            slots[firstFreeSlot].criticalChance = item.GetComponent<Slot>().criticalChance;
-            slots[firstFreeSlot].kind = item.GetComponent<Slot>().kind;
-            slots[firstFreeSlot].stackAmount = item.GetComponent<Slot>().stackAmount;
-            slots[firstFreeSlot].stacksAlready = item.GetComponent<Slot>().stacksAlready;
-            slots[firstFreeSlot].idItem = item.GetComponent<Slot>().idItem;
+            //slots[firstFreeSlot].hp = item.GetComponent<Slot>().hp;
+            //slots[firstFreeSlot].evasionChance = item.GetComponent<Slot>().evasionChance;
+            //slots[firstFreeSlot].criticalChance = item.GetComponent<Slot>().criticalChance;
+            //slots[firstFreeSlot].kind = item.GetComponent<Slot>().kind;
+            //slots[firstFreeSlot].stackAmount = item.GetComponent<Slot>().stackAmount;
+            //slots[firstFreeSlot].stacksAlready = item.GetComponent<Slot>().stacksAlready;
+            //slots[firstFreeSlot].idItem = item.GetComponent<Slot>().idItem;
             slots[firstFreeSlot].itemDescription = item.GetComponent<Slot>().itemDescription.Replace("\\n","\n");
             slots[firstFreeSlot].rareList = item.GetComponent<Slot>().rareList;
             slots[firstFreeSlot].rareChances = item.GetComponent<Slot>().rareChances;
             slots[firstFreeSlot].rareName = rareName;
-            slots[firstFreeSlot].manaCost = item.GetComponent<Slot>().manaCost;
-            slots[firstFreeSlot].weaponSize = item.GetComponent<Slot>().weaponSize;
-            slots[firstFreeSlot].attackSpeed = item.GetComponent<Slot>().attackSpeed;
-            slots[firstFreeSlot].tripleAttackChance = item.GetComponent<Slot>().tripleAttackChance;
-            slots[firstFreeSlot].secondUsageChance = item.GetComponent<Slot>().secondUsageChance;
-            slots[firstFreeSlot].explosionChance = item.GetComponent<Slot>().explosionChance;
-            slots[firstFreeSlot].explosionType = item.GetComponent<Slot>().explosionType;
-            slots[firstFreeSlot].weaponCooldown = item.GetComponent<Slot>().weaponCooldown;
+            //slots[firstFreeSlot].manaCost = item.GetComponent<Slot>().manaCost;
+            //slots[firstFreeSlot].weaponSize = item.GetComponent<Slot>().weaponSize;
+            //slots[firstFreeSlot].attackSpeed = item.GetComponent<Slot>().attackSpeed;
+            //slots[firstFreeSlot].tripleAttackChance = item.GetComponent<Slot>().tripleAttackChance;
+            //slots[firstFreeSlot].secondUsageChance = item.GetComponent<Slot>().secondUsageChance;
+            //slots[firstFreeSlot].explosionChance = item.GetComponent<Slot>().explosionChance;
+            //slots[firstFreeSlot].explosionType = item.GetComponent<Slot>().explosionType;
+            //slots[firstFreeSlot].weaponCooldown = item.GetComponent<Slot>().weaponCooldown;
             slots[firstFreeSlot].weaponSprite = item.GetComponent<Slot>().weaponSprite;
             slots[firstFreeSlot].projectileSprite = item.GetComponent<Slot>().projectileSprite;
-            slots[firstFreeSlot].createProjectileChance = item.GetComponent<Slot>().createProjectileChance;
-            slots[firstFreeSlot].spikes = item.GetComponent<Slot>().spikes;
-            slots[firstFreeSlot].pierce = item.GetComponent<Slot>().pierce;
-            slots[firstFreeSlot].extraPierceChance = item.GetComponent<Slot>().extraPierceChance;
-            slots[firstFreeSlot].inscriptionNum = item.GetComponent<Slot>().inscriptionNum;
+            //slots[firstFreeSlot].createProjectileChance = item.GetComponent<Slot>().createProjectileChance;
+            //slots[firstFreeSlot].spikes = item.GetComponent<Slot>().spikes;
+            //slots[firstFreeSlot].pierce = item.GetComponent<Slot>().pierce;
+            //slots[firstFreeSlot].extraPierceChance = item.GetComponent<Slot>().extraPierceChance;
+            //slots[firstFreeSlot].inscriptionNum = item.GetComponent<Slot>().inscriptionNum;
             //
             slots[firstFreeSlot].inscriptions.iceDamage = item.GetComponent<Slot>().inscriptions.iceDamage;
             slots[firstFreeSlot].inscriptions.igniteDamage = item.GetComponent<Slot>().inscriptions.igniteDamage;
@@ -156,88 +157,86 @@ public class Inventory : MonoBehaviour
     public void GetFeatures()
     {
         //if (slots[SlotInteraction.hoveredId].GetComponent<Slot>().inscriptions.Count != 0)
-            for (int i = 0; i < InscriptionsInventory.inscriptionSlots.Count; i++)
-            {
-                //
-                InscriptionsInventory.inscriptionSlots[i].damage = slots[SlotInteraction.hoveredId].inscriptions.damage[i];
-                InscriptionsInventory.inscriptionSlots[i].iceDamage = slots[SlotInteraction.hoveredId].inscriptions.iceDamage[i];
-                InscriptionsInventory.inscriptionSlots[i].igniteDamage = slots[SlotInteraction.hoveredId].inscriptions.igniteDamage[i];
-                InscriptionsInventory.inscriptionSlots[i].lightningDamage = slots[SlotInteraction.hoveredId].inscriptions.lightningDamage[i];
-                InscriptionsInventory.inscriptionSlots[i].poisonDamage = slots[SlotInteraction.hoveredId].inscriptions.poisonDamage[i];
-                InscriptionsInventory.inscriptionSlots[i].voidDamage = slots[SlotInteraction.hoveredId].inscriptions.voidDamage[i];
-                InscriptionsInventory.inscriptionSlots[i].pureDamage = slots[SlotInteraction.hoveredId].inscriptions.pureDamage[i];
-                InscriptionsInventory.inscriptionSlots[i].defence = slots[SlotInteraction.hoveredId].inscriptions.defence[i];
-                InscriptionsInventory.inscriptionSlots[i].iceResist = slots[SlotInteraction.hoveredId].inscriptions.iceResist[i];
-                InscriptionsInventory.inscriptionSlots[i].igniteResist = slots[SlotInteraction.hoveredId].inscriptions.igniteResist[i];
-                InscriptionsInventory.inscriptionSlots[i].lightningResist = slots[SlotInteraction.hoveredId].inscriptions.lightningResist[i];
-                InscriptionsInventory.inscriptionSlots[i].poisonResist = slots[SlotInteraction.hoveredId].inscriptions.poisonResist[i];
-                InscriptionsInventory.inscriptionSlots[i].voidResist = slots[SlotInteraction.hoveredId].inscriptions.voidResist[i];
-                InscriptionsInventory.inscriptionSlots[i].pureResist = slots[SlotInteraction.hoveredId].inscriptions.pureResist[i];
-                InscriptionsInventory.inscriptionSlots[i].type = slots[SlotInteraction.hoveredId].inscriptions.type[i];
-                InscriptionsInventory.inscriptionSlots[i].sprite = slots[SlotInteraction.hoveredId].inscriptions.sprite[i];
-                InscriptionsInventory.inscriptionSlots[i].hp = slots[SlotInteraction.hoveredId].inscriptions.hp[i];
-                InscriptionsInventory.inscriptionSlots[i].evasionChance = slots[SlotInteraction.hoveredId].inscriptions.evasionChance[i];
-                InscriptionsInventory.inscriptionSlots[i].criticalChance = slots[SlotInteraction.hoveredId].inscriptions.criticalChance[i]; 
-                InscriptionsInventory.inscriptionSlots[i].kind = slots[SlotInteraction.hoveredId].inscriptions.kind[i];
-                InscriptionsInventory.inscriptionSlots[i].stackAmount = slots[SlotInteraction.hoveredId].inscriptions.stackAmount[i];
-                InscriptionsInventory.inscriptionSlots[i].stacksAlready = slots[SlotInteraction.hoveredId].inscriptions.stacksAlready[i];
-                InscriptionsInventory.inscriptionSlots[i].idItem = slots[SlotInteraction.hoveredId].inscriptions.idItem[i];
-                InscriptionsInventory.inscriptionSlots[i].itemDescription = slots[SlotInteraction.hoveredId].inscriptions.itemDescription[i];
-                InscriptionsInventory.inscriptionSlots[i].manaCost = slots[SlotInteraction.hoveredId].inscriptions.manaCost[i];
-                InscriptionsInventory.inscriptionSlots[i].weaponSize = slots[SlotInteraction.hoveredId].inscriptions.weaponSize[i];
-                InscriptionsInventory.inscriptionSlots[i].attackSpeed = slots[SlotInteraction.hoveredId].inscriptions.attackSpeed[i];
-                InscriptionsInventory.inscriptionSlots[i].tripleAttackChance = slots[SlotInteraction.hoveredId].inscriptions.tripleAttackChance[i];
-                InscriptionsInventory.inscriptionSlots[i].secondUsageChance = slots[SlotInteraction.hoveredId].inscriptions.secondUsageChance[i];
-                InscriptionsInventory.inscriptionSlots[i].explosionChance = slots[SlotInteraction.hoveredId].inscriptions.explosionChance[i];
-                InscriptionsInventory.inscriptionSlots[i].explosionType = slots[SlotInteraction.hoveredId].inscriptions.explosionType[i];
-                InscriptionsInventory.inscriptionSlots[i].weaponCooldown = slots[SlotInteraction.hoveredId].inscriptions.weaponCooldown[i];
-                InscriptionsInventory.inscriptionSlots[i].createProjectileChance = slots[SlotInteraction.hoveredId].inscriptions.createProjectileChance[i];
-                InscriptionsInventory.inscriptionSlots[i].spikes = slots[SlotInteraction.hoveredId].inscriptions.spikes[i];
-                InscriptionsInventory.inscriptionSlots[i].pierce = slots[SlotInteraction.hoveredId].inscriptions.pierce[i];
-                InscriptionsInventory.inscriptionSlots[i].extraPierceChance = slots[SlotInteraction.hoveredId].inscriptions.extraPierceChance[i];
-            }
+        for (int i = 0; i < InscriptionsInventory.inscriptionSlots.Count; i++)
+        {
+            //
+            InscriptionsInventory.inscriptionSlots[i].values[2] = slots[SlotInteraction.hoveredId].inscriptions.damage[i];
+            InscriptionsInventory.inscriptionSlots[i].values[3] = slots[SlotInteraction.hoveredId].inscriptions.iceDamage[i];
+            InscriptionsInventory.inscriptionSlots[i].values[4] = slots[SlotInteraction.hoveredId].inscriptions.igniteDamage[i];
+            InscriptionsInventory.inscriptionSlots[i].values[5] = slots[SlotInteraction.hoveredId].inscriptions.lightningDamage[i];
+            InscriptionsInventory.inscriptionSlots[i].values[6] = slots[SlotInteraction.hoveredId].inscriptions.poisonDamage[i];
+            InscriptionsInventory.inscriptionSlots[i].values[7] = slots[SlotInteraction.hoveredId].inscriptions.voidDamage[i];
+            InscriptionsInventory.inscriptionSlots[i].values[8] = slots[SlotInteraction.hoveredId].inscriptions.pureDamage[i];
+            InscriptionsInventory.inscriptionSlots[i].values[1] = slots[SlotInteraction.hoveredId].inscriptions.defence[i];
+            InscriptionsInventory.inscriptionSlots[i].values[9] = slots[SlotInteraction.hoveredId].inscriptions.iceResist[i];
+            InscriptionsInventory.inscriptionSlots[i].values[10] = slots[SlotInteraction.hoveredId].inscriptions.igniteResist[i];
+            InscriptionsInventory.inscriptionSlots[i].values[11] = slots[SlotInteraction.hoveredId].inscriptions.lightningResist[i];
+            InscriptionsInventory.inscriptionSlots[i].values[12] = slots[SlotInteraction.hoveredId].inscriptions.poisonResist[i];
+            InscriptionsInventory.inscriptionSlots[i].values[13] = slots[SlotInteraction.hoveredId].inscriptions.voidResist[i];
+            InscriptionsInventory.inscriptionSlots[i].type = slots[SlotInteraction.hoveredId].inscriptions.type[i];
+            InscriptionsInventory.inscriptionSlots[i].sprite = slots[SlotInteraction.hoveredId].inscriptions.sprite[i];
+            InscriptionsInventory.inscriptionSlots[i].values[0] = slots[SlotInteraction.hoveredId].inscriptions.hp[i];
+            InscriptionsInventory.inscriptionSlots[i].values[14] = slots[SlotInteraction.hoveredId].inscriptions.evasionChance[i];
+            InscriptionsInventory.inscriptionSlots[i].values[15] = slots[SlotInteraction.hoveredId].inscriptions.criticalChance[i];
+            InscriptionsInventory.inscriptionSlots[i].values[30] = slots[SlotInteraction.hoveredId].inscriptions.kind[i];
+            InscriptionsInventory.inscriptionSlots[i].values[31] = slots[SlotInteraction.hoveredId].inscriptions.stackAmount[i];
+            InscriptionsInventory.inscriptionSlots[i].values[32] = slots[SlotInteraction.hoveredId].inscriptions.stacksAlready[i];
+            InscriptionsInventory.inscriptionSlots[i].values[28] = slots[SlotInteraction.hoveredId].inscriptions.idItem[i];
+            InscriptionsInventory.inscriptionSlots[i].itemDescription = slots[SlotInteraction.hoveredId].inscriptions.itemDescription[i];
+            InscriptionsInventory.inscriptionSlots[i].values[16] = slots[SlotInteraction.hoveredId].inscriptions.manaCost[i];
+            InscriptionsInventory.inscriptionSlots[i].values[17] = slots[SlotInteraction.hoveredId].inscriptions.weaponSize[i];
+            InscriptionsInventory.inscriptionSlots[i].values[18] = slots[SlotInteraction.hoveredId].inscriptions.attackSpeed[i];
+            InscriptionsInventory.inscriptionSlots[i].values[19] = slots[SlotInteraction.hoveredId].inscriptions.tripleAttackChance[i];
+            InscriptionsInventory.inscriptionSlots[i].values[20] = slots[SlotInteraction.hoveredId].inscriptions.secondUsageChance[i];
+            InscriptionsInventory.inscriptionSlots[i].values[21] = slots[SlotInteraction.hoveredId].inscriptions.explosionChance[i];
+            InscriptionsInventory.inscriptionSlots[i].values[22] = slots[SlotInteraction.hoveredId].inscriptions.explosionType[i];
+            InscriptionsInventory.inscriptionSlots[i].values[23] = slots[SlotInteraction.hoveredId].inscriptions.weaponCooldown[i];
+            InscriptionsInventory.inscriptionSlots[i].values[24] = slots[SlotInteraction.hoveredId].inscriptions.createProjectileChance[i];
+            InscriptionsInventory.inscriptionSlots[i].values[25] = slots[SlotInteraction.hoveredId].inscriptions.spikes[i];
+            InscriptionsInventory.inscriptionSlots[i].values[26] = slots[SlotInteraction.hoveredId].inscriptions.pierce[i];
+            InscriptionsInventory.inscriptionSlots[i].values[27] = slots[SlotInteraction.hoveredId].inscriptions.extraPierceChance[i];
+        }
     }
     public void AcceptFeatures()
     {
         //if (slots[SlotInteraction.hoveredId].inscriptions.Count != 0)
             for (int i = 0; i < InscriptionsInventory.inscriptionSlots.Count; i++)
             {
-                slots[SlotInteraction.hoveredId].inscriptions.damage[i] = InscriptionsInventory.inscriptionSlots[i].damage;
-                slots[SlotInteraction.hoveredId].inscriptions.iceDamage[i] = InscriptionsInventory.inscriptionSlots[i].iceDamage;
-                slots[SlotInteraction.hoveredId].inscriptions.igniteDamage[i] = InscriptionsInventory.inscriptionSlots[i].igniteDamage;
-                slots[SlotInteraction.hoveredId].inscriptions.lightningDamage[i] = InscriptionsInventory.inscriptionSlots[i].lightningDamage;
-                slots[SlotInteraction.hoveredId].inscriptions.poisonDamage[i] = InscriptionsInventory.inscriptionSlots[i].poisonDamage;
-                slots[SlotInteraction.hoveredId].inscriptions.voidDamage[i] = InscriptionsInventory.inscriptionSlots[i].voidDamage;
-                slots[SlotInteraction.hoveredId].inscriptions.pureDamage[i] = InscriptionsInventory.inscriptionSlots[i].pureDamage;
-                slots[SlotInteraction.hoveredId].inscriptions.defence[i] = InscriptionsInventory.inscriptionSlots[i].defence;
-                slots[SlotInteraction.hoveredId].inscriptions.iceResist[i] = InscriptionsInventory.inscriptionSlots[i].iceResist;
-                slots[SlotInteraction.hoveredId].inscriptions.igniteResist[i] = InscriptionsInventory.inscriptionSlots[i].igniteResist;
-                slots[SlotInteraction.hoveredId].inscriptions.lightningResist[i] = InscriptionsInventory.inscriptionSlots[i].lightningResist;
-                slots[SlotInteraction.hoveredId].inscriptions.poisonResist[i] = InscriptionsInventory.inscriptionSlots[i].poisonResist;
-                slots[SlotInteraction.hoveredId].inscriptions.voidResist[i] = InscriptionsInventory.inscriptionSlots[i].voidResist;
-                slots[SlotInteraction.hoveredId].inscriptions.pureResist[i] = InscriptionsInventory.inscriptionSlots[i].pureResist;
+                slots[SlotInteraction.hoveredId].inscriptions.damage[i] = InscriptionsInventory.inscriptionSlots[i].values[2];
+                slots[SlotInteraction.hoveredId].inscriptions.iceDamage[i] = InscriptionsInventory.inscriptionSlots[i].values[3];
+                slots[SlotInteraction.hoveredId].inscriptions.igniteDamage[i] = InscriptionsInventory.inscriptionSlots[i].values[4];
+                slots[SlotInteraction.hoveredId].inscriptions.lightningDamage[i] = InscriptionsInventory.inscriptionSlots[i].values[5];
+                slots[SlotInteraction.hoveredId].inscriptions.poisonDamage[i] = InscriptionsInventory.inscriptionSlots[i].values[6];
+                slots[SlotInteraction.hoveredId].inscriptions.voidDamage[i] = InscriptionsInventory.inscriptionSlots[i].values[7];
+                slots[SlotInteraction.hoveredId].inscriptions.pureDamage[i] = InscriptionsInventory.inscriptionSlots[i].values[8];
+                slots[SlotInteraction.hoveredId].inscriptions.defence[i] = InscriptionsInventory.inscriptionSlots[i].values[1];
+                slots[SlotInteraction.hoveredId].inscriptions.iceResist[i] = InscriptionsInventory.inscriptionSlots[i].values[9];
+                slots[SlotInteraction.hoveredId].inscriptions.igniteResist[i] = InscriptionsInventory.inscriptionSlots[i].values[10];
+                slots[SlotInteraction.hoveredId].inscriptions.lightningResist[i] = InscriptionsInventory.inscriptionSlots[i].values[11];
+                slots[SlotInteraction.hoveredId].inscriptions.poisonResist[i] = InscriptionsInventory.inscriptionSlots[i].values[12];
+                slots[SlotInteraction.hoveredId].inscriptions.voidResist[i] = InscriptionsInventory.inscriptionSlots[i].values[13];
                 slots[SlotInteraction.hoveredId].inscriptions.type[i] = InscriptionsInventory.inscriptionSlots[i].type;
                 slots[SlotInteraction.hoveredId].inscriptions.sprite[i] = InscriptionsInventory.inscriptionSlots[i].sprite;
-                slots[SlotInteraction.hoveredId].inscriptions.hp[i] = InscriptionsInventory.inscriptionSlots[i].hp;
-                slots[SlotInteraction.hoveredId].inscriptions.evasionChance[i] = InscriptionsInventory.inscriptionSlots[i].evasionChance;
-                slots[SlotInteraction.hoveredId].inscriptions.criticalChance[i] = InscriptionsInventory.inscriptionSlots[i].criticalChance;
+                slots[SlotInteraction.hoveredId].inscriptions.hp[i] = InscriptionsInventory.inscriptionSlots[i].values[0];
+                slots[SlotInteraction.hoveredId].inscriptions.evasionChance[i] = InscriptionsInventory.inscriptionSlots[i].values[14];
+                slots[SlotInteraction.hoveredId].inscriptions.criticalChance[i] = InscriptionsInventory.inscriptionSlots[i].values[15];
                 slots[SlotInteraction.hoveredId].inscriptions.kind[i] = InscriptionsInventory.inscriptionSlots[i].kind;
-                slots[SlotInteraction.hoveredId].inscriptions.stackAmount[i] = InscriptionsInventory.inscriptionSlots[i].stackAmount;
-                slots[SlotInteraction.hoveredId].inscriptions.stacksAlready[i] = InscriptionsInventory.inscriptionSlots[i].stacksAlready;
-                slots[SlotInteraction.hoveredId].inscriptions.idItem[i] = InscriptionsInventory.inscriptionSlots[i].idItem;
+                slots[SlotInteraction.hoveredId].inscriptions.stackAmount[i] = (int)InscriptionsInventory.inscriptionSlots[i].values[31];
+                slots[SlotInteraction.hoveredId].inscriptions.stacksAlready[i] = (int)InscriptionsInventory.inscriptionSlots[i].values[32];
+                slots[SlotInteraction.hoveredId].inscriptions.idItem[i] = (int)InscriptionsInventory.inscriptionSlots[i].values[28];
                 slots[SlotInteraction.hoveredId].inscriptions.itemDescription[i] = InscriptionsInventory.inscriptionSlots[i].itemDescription;
-                slots[SlotInteraction.hoveredId].inscriptions.manaCost[i] = InscriptionsInventory.inscriptionSlots[i].manaCost;
-                slots[SlotInteraction.hoveredId].inscriptions.weaponSize[i] = InscriptionsInventory.inscriptionSlots[i].weaponSize;
-                slots[SlotInteraction.hoveredId].inscriptions.attackSpeed[i] = InscriptionsInventory.inscriptionSlots[i].attackSpeed;
-                slots[SlotInteraction.hoveredId].inscriptions.tripleAttackChance[i] = InscriptionsInventory.inscriptionSlots[i].tripleAttackChance;
-                slots[SlotInteraction.hoveredId].inscriptions.secondUsageChance[i] = InscriptionsInventory.inscriptionSlots[i].secondUsageChance;
-                slots[SlotInteraction.hoveredId].inscriptions.explosionChance[i] = InscriptionsInventory.inscriptionSlots[i].explosionChance;
-                slots[SlotInteraction.hoveredId].inscriptions.explosionType[i] = InscriptionsInventory.inscriptionSlots[i].explosionType;
-                slots[SlotInteraction.hoveredId].inscriptions.weaponCooldown[i] = InscriptionsInventory.inscriptionSlots[i].weaponCooldown;
-                slots[SlotInteraction.hoveredId].inscriptions.createProjectileChance[i] = InscriptionsInventory.inscriptionSlots[i].createProjectileChance;
-                slots[SlotInteraction.hoveredId].inscriptions.spikes[i] = InscriptionsInventory.inscriptionSlots[i].spikes;
-                slots[SlotInteraction.hoveredId].inscriptions.pierce[i] = InscriptionsInventory.inscriptionSlots[i].pierce;
-                slots[SlotInteraction.hoveredId].inscriptions.extraPierceChance[i] = InscriptionsInventory.inscriptionSlots[i].extraPierceChance;
+                slots[SlotInteraction.hoveredId].inscriptions.manaCost[i] = (int)InscriptionsInventory.inscriptionSlots[i].values[16];
+                slots[SlotInteraction.hoveredId].inscriptions.weaponSize[i] = (int)InscriptionsInventory.inscriptionSlots[i].values[17];
+                slots[SlotInteraction.hoveredId].inscriptions.attackSpeed[i] = (int)InscriptionsInventory.inscriptionSlots[i].values[18];
+                slots[SlotInteraction.hoveredId].inscriptions.tripleAttackChance[i] = (int)InscriptionsInventory.inscriptionSlots[i].values[19];
+                slots[SlotInteraction.hoveredId].inscriptions.secondUsageChance[i] = (int)InscriptionsInventory.inscriptionSlots[i].values[20];
+                slots[SlotInteraction.hoveredId].inscriptions.explosionChance[i] = (int)InscriptionsInventory.inscriptionSlots[i].values[21];
+                slots[SlotInteraction.hoveredId].inscriptions.explosionType[i] = (int)InscriptionsInventory.inscriptionSlots[i].values[22];
+                slots[SlotInteraction.hoveredId].inscriptions.weaponCooldown[i] = InscriptionsInventory.inscriptionSlots[i].values[23];
+                slots[SlotInteraction.hoveredId].inscriptions.createProjectileChance[i] = InscriptionsInventory.inscriptionSlots[i].values[24];
+                slots[SlotInteraction.hoveredId].inscriptions.spikes[i] = (int)InscriptionsInventory.inscriptionSlots[i].values[25];
+                slots[SlotInteraction.hoveredId].inscriptions.pierce[i] = (int)InscriptionsInventory.inscriptionSlots[i].values[26];
+                slots[SlotInteraction.hoveredId].inscriptions.extraPierceChance[i] = (int)InscriptionsInventory.inscriptionSlots[i].values[27];
                 //
             }
     }

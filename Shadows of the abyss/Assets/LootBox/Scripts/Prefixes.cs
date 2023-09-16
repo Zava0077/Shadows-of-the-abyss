@@ -24,17 +24,17 @@ public class Prefixes : MonoBehaviour
     public float evasionChanceSummand;
     public float maxHpSummand;
     public float defenceSummand;
-    public int manaCostSummand;
-    public int weaponSizeSummand;
-    public int attackSpeedSummand;
-    public int secondUsageChanceSummand;
-    public int tripleAttackChanceSummand;
-    public int explChanceSummand;
-    public int explTypeEqualer;
+    public float manaCostSummand;
+    public float weaponSizeSummand;
+    public float attackSpeedSummand;
+    public float secondUsageChanceSummand;
+    public float tripleAttackChanceSummand;
+    public float explChanceSummand;
+    public float explTypeEqualer;
     public float weaponCooldownSummand;
     public float createProjectileChanceSummand;
-    public int spikes;
-    public int inscSummand;
+    public float spikes;
+    public float inscSummand;
     public string extraDescription = "";
     public static Prefixes self;
     public string qualityColor;
@@ -99,7 +99,7 @@ public class Prefixes : MonoBehaviour
                 break;
             case "Fast":
                 damageSummand = -2;
-                attackSpeedSummand = -item.GetComponent<Slot>().attackSpeed / 2;
+                attackSpeedSummand = -item.GetComponent<Slot>().values[18] / 2;
                 weaponCooldownSummand = -0.2f;
                 inscSummand = 1;
                 extraDescription = "<color=#2100a6>Small, but Fast!</color>";
@@ -108,11 +108,12 @@ public class Prefixes : MonoBehaviour
     }
     void DamageDefaulter(GameObject item)
     {
-        item.GetComponent<Slot>().damage = 0;
-        item.GetComponent<Slot>().iceDamage = 0;
-        item.GetComponent<Slot>().voidDamage = 0;
-        item.GetComponent<Slot>().igniteDamage = 0;
-        item.GetComponent<Slot>().pureDamage = 0;
-        item.GetComponent<Slot>().lightningDamage = 0;
+        item.GetComponent<Slot>().values[2] = 0;
+        item.GetComponent<Slot>().values[3] = 0;
+        item.GetComponent<Slot>().values[7] = 0;
+        item.GetComponent<Slot>().values[4] = 0;
+        item.GetComponent<Slot>().values[8] = 0;
+        item.GetComponent<Slot>().values[5] = 0;
+        item.GetComponent<Slot>().values[6] = 0;
     }
 }

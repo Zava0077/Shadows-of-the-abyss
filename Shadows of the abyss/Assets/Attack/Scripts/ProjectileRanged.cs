@@ -7,9 +7,8 @@ public class ProjectileRanged : MonoBehaviour
     float projectileSpeed = 15f;
     Rigidbody2D rb;
     public GameObject projectile;
-    int createProjChance;
-    int piercesCount; //
-    int pierceChance; //
+    float piercesCount; //
+    float pierceChance; //
     public bool isCrit;
     int direction;
     void Awake()
@@ -32,11 +31,6 @@ public class ProjectileRanged : MonoBehaviour
             isCrit = false;
         }
         rb.velocity = transform.right * projectileSpeed;
-    }
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.collider.tag == "Wall")
-            Destroy(gameObject);
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {

@@ -34,7 +34,6 @@ public class MeleeProjectiler : MonoBehaviour
         }
         if (secondAttackChance <= ArmourInventory.self.secondUsageChanceValue)
         {
-            //Attack.self.AttackInvoker();
             Invoke(nameof(Destroying), ArmourInventory.self.attackSpeedValue);
         }
         else

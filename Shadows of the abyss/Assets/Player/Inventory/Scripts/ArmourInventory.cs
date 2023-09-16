@@ -26,18 +26,18 @@ public class ArmourInventory : MonoBehaviour
     public float[] pureResist;
     public float[] evasionChance;
     public float[] criticalChance;
-    public int[] manaCost;
-    public int[] weaponSize;
-    public int[] tripleAttackChance;
-    public int[] secondUsageChance;
-    public int[] attackSpeed;
-    public int[] explosionChance; //
-    public int[] explosionType;//
+    public float[] manaCost;
+    public float[] weaponSize;
+    public float[] tripleAttackChance;
+    public float[] secondUsageChance;
+    public float[] attackSpeed;
+    public float[] explosionChance; //
+    public float[] explosionType;//
     public float[] createProjectileChance;//
     public float[] weaponCooldown;
-    public int[] spikes;//
-    public int[] pierce;//
-    public int[] extraPierceChance;//
+    public float[] spikes;//
+    public float[] pierce;//
+    public float[] extraPierceChance;//
     public float hpValue;
     public float damageValue;
     public float iceDamageValue;
@@ -56,19 +56,19 @@ public class ArmourInventory : MonoBehaviour
     public float evasionChanceValue;
     public float criticalChanceValue;
     public string rareName;
-    public int manaCostValue;
-    public int weaponSizeValue;
-    public int tripleAttackChanceValue;
-    public int secondUsageChanceValue;
+    public float manaCostValue;
+    public float weaponSizeValue;
+    public float tripleAttackChanceValue;
+    public float secondUsageChanceValue;
     public float attackSpeedValue;
-    public int explosionChanceValue;//
-    public int explosionTypeValue;//
+    public float explosionChanceValue;//
+    public float explosionTypeValue;//
     public float weaponCooldownValue;
     public string weaponType;
     public float createProjectileChanceValue;//
-    public int spikesValue;//
-    public int pierceValue;//
-    public int extraPierceChanceValue;//
+    public float spikesValue;//
+    public float pierceValue;//
+    public float extraPierceChanceValue;//
 
     public static ArmourInventory self;
     public ArmourInventory()
@@ -101,18 +101,18 @@ public class ArmourInventory : MonoBehaviour
         pureResist = new float[armourSlots.Count];
         evasionChance = new float[armourSlots.Count];
         criticalChance = new float[armourSlots.Count];
-        manaCost = new int[armourSlots.Count];
-        weaponSize = new int[armourSlots.Count];
-        tripleAttackChance = new int[armourSlots.Count];
-        secondUsageChance = new int[armourSlots.Count];
-        attackSpeed = new int[armourSlots.Count];
-        explosionChance = new int[armourSlots.Count];
-        explosionType = new int[armourSlots.Count];
+        manaCost = new float[armourSlots.Count];
+        weaponSize = new float[armourSlots.Count];
+        tripleAttackChance = new float[armourSlots.Count];
+        secondUsageChance = new float[armourSlots.Count];
+        attackSpeed = new float[armourSlots.Count];
+        explosionChance = new float[armourSlots.Count];
+        explosionType = new float[armourSlots.Count];
         weaponCooldown = new float[armourSlots.Count];
         createProjectileChance = new float[armourSlots.Count];
-        spikes = new int[armourSlots.Count];
-        pierce = new int[armourSlots.Count];
-        extraPierceChance = new int[armourSlots.Count];
+        spikes = new float[armourSlots.Count];
+        pierce = new float[armourSlots.Count];
+        extraPierceChance = new float[armourSlots.Count];
         transform.parent.gameObject.SetActive(false);
     }
     private void FixedUpdate()
@@ -123,35 +123,34 @@ public class ArmourInventory : MonoBehaviour
     {
         for (int i = 0; i < armourSlots.Count; i++)
         {
-            hp[i] = Inventory.slots[i + 16].hp;
-            damage[i] = Inventory.slots[i + 16].damage;
-            iceDamage[i] = Inventory.slots[i + 16].iceDamage;
-            igniteDamage[i] = Inventory.slots[i + 16].igniteDamage;
-            lightningDamage[i] = Inventory.slots[i + 16].lightningDamage;
-            poisonDamage[i] = Inventory.slots[i + 16].poisonDamage;
-            voidDamage[i] = Inventory.slots[i + 16].voidDamage;
-            pureDamage[i] = Inventory.slots[i + 16].pureDamage;
-            defence[i] = Inventory.slots[i + 16].defence;
-            iceResist[i] = Inventory.slots[i + 16].iceResist;
-            igniteResist[i] = Inventory.slots[i + 16].igniteResist;
-            lightningResist[i] = Inventory.slots[i + 16].lightningResist;
-            poisonResist[i] = Inventory.slots[i + 16].poisonResist;
-            voidResist[i] = Inventory.slots[i + 16].voidResist;
-            pureResist[i] = Inventory.slots[i + 16].pureResist;
-            evasionChance[i] = Inventory.slots[i + 16].evasionChance;
-            criticalChance[i] = Inventory.slots[i + 16].criticalChance;
-            manaCost[i] = Inventory.slots[i + 16].manaCost;
-            weaponSize[i] = Inventory.slots[i + 16].weaponSize;
-            attackSpeed[i] = Inventory.slots[i + 16].attackSpeed;
-            tripleAttackChance[i] = Inventory.slots[i + 16].tripleAttackChance;
-            secondUsageChance[i] = Inventory.slots[i + 16].secondUsageChance;
-            explosionChance[i] = Inventory.slots[i + 16].explosionChance;
-            explosionType[i] = Inventory.slots[i + 16].explosionType;
-            weaponCooldown[i] = Inventory.slots[i + 16].weaponCooldown;
-            createProjectileChance[i] = Inventory.slots[i + 16].createProjectileChance;
-            spikes[i] = Inventory.slots[i + 16].spikes;
-            pierce[i] = Inventory.slots[i + 16].pierce;
-            extraPierceChance[i] = Inventory.slots[i + 16].extraPierceChance;
+            hp[i] = Inventory.slots[i + 16].values[0];
+            damage[i] = Inventory.slots[i + 16].values[2];
+            iceDamage[i] = Inventory.slots[i + 16].values[3];
+            igniteDamage[i] = Inventory.slots[i + 16].values[4];
+            lightningDamage[i] = Inventory.slots[i + 16].values[5];
+            poisonDamage[i] = Inventory.slots[i + 16].values[6];
+            voidDamage[i] = Inventory.slots[i + 16].values[7];
+            pureDamage[i] = Inventory.slots[i + 16].values[8];
+            defence[i] = Inventory.slots[i + 16].values[1];
+            iceResist[i] = Inventory.slots[i + 16].values[9];
+            igniteResist[i] = Inventory.slots[i + 16].values[10];
+            lightningResist[i] = Inventory.slots[i + 16].values[11];
+            poisonResist[i] = Inventory.slots[i + 16].values[12];
+            voidResist[i] = Inventory.slots[i + 16].values[13];
+            evasionChance[i] = Inventory.slots[i + 16].values[14];
+            criticalChance[i] = Inventory.slots[i + 16].values[15];
+            manaCost[i] = Inventory.slots[i + 16].values[16];
+            weaponSize[i] = Inventory.slots[i + 16].values[17];
+            attackSpeed[i] = Inventory.slots[i + 16].values[18];
+            tripleAttackChance[i] = Inventory.slots[i + 16].values[19];
+            secondUsageChance[i] = Inventory.slots[i + 16].values[20];
+            explosionChance[i] = Inventory.slots[i + 16].values[21];
+            explosionType[i] = Inventory.slots[i + 16].values[22];
+            weaponCooldown[i] = Inventory.slots[i + 16].values[23];
+            createProjectileChance[i] = Inventory.slots[i + 16].values[24];
+            spikes[i] = Inventory.slots[i + 16].values[25];
+            pierce[i] = Inventory.slots[i + 16].values[26];
+            extraPierceChance[i] = Inventory.slots[i + 16].values[27];
         }
     }
     void CalculateStats()
@@ -190,39 +189,39 @@ public class ArmourInventory : MonoBehaviour
         {
             if (i == 0 || i == 4 || i == 8)
             {
-                damageValue += Inventory.slots[i + 16].damage + Inventory.slots[i + 16].inscriptions.damageValue;
-                iceDamageValue += Inventory.slots[i + 16].iceDamage + Inventory.slots[i + 16].inscriptions.iceDamageValue;
-                igniteDamageValue += Inventory.slots[i + 16].igniteDamage + Inventory.slots[i + 16].inscriptions.igniteDamageValue;
-                lightningDamageValue += Inventory.slots[i + 16].lightningDamage + Inventory.slots[i + 16].inscriptions.lightningDamageValue;
-                poisonDamageValue += Inventory.slots[i + 16].poisonDamage + Inventory.slots[i + 16].inscriptions.poisonDamageValue;
-                voidDamageValue += Inventory.slots[i + 16].voidDamage + Inventory.slots[i + 16].inscriptions.voidDamageValue;
-                pureDamageValue += Inventory.slots[i + 16].pureDamage + Inventory.slots[i + 16].inscriptions.pureDamageValue;
-                manaCostValue += Inventory.slots[i + 16].manaCost + Inventory.slots[i + 16].inscriptions.manaCostValue;
-                weaponSizeValue += Inventory.slots[i + 16].weaponSize + Inventory.slots[i + 16].inscriptions.weaponSizeValue;
-                attackSpeedValue += (float)Inventory.slots[i + 16].attackSpeed / 100 + (float)Inventory.slots[i + 16].inscriptions.attackSpeedValue / 100;
-                tripleAttackChanceValue += Inventory.slots[i + 16].tripleAttackChance + Inventory.slots[i + 16].inscriptions.tripleAttackChanceValue;
-                secondUsageChanceValue += Inventory.slots[i + 16].secondUsageChance + Inventory.slots[i + 16].inscriptions.secondUsageChanceValue;
-                explosionChanceValue += Inventory.slots[i + 16].explosionChance + Inventory.slots[i + 16].inscriptions.explosionChanceValue;
-                explosionTypeValue += Inventory.slots[i + 16].explosionType + Inventory.slots[i + 16].inscriptions.explosionTypeValue;
-                weaponCooldownValue += Inventory.slots[i + 16].weaponCooldown + Inventory.slots[i + 16].inscriptions.weaponCooldownValue;
-                criticalChanceValue += Inventory.slots[i + 16].criticalChance + Inventory.slots[i + 16].inscriptions.criticalChanceValue;
-                createProjectileChanceValue += Inventory.slots[i + 16].createProjectileChance + Inventory.slots[i + 16].inscriptions.createProjectileChanceValue;
-                pierceValue += Inventory.slots[i + 16].pierce + Inventory.slots[i + 16].inscriptions.pierceValue;
-                extraPierceChanceValue += Inventory.slots[i + 16].extraPierceChance + Inventory.slots[i + 16].inscriptions.extraPierceChanceValue;
+                damageValue += damage[i] + Inventory.slots[i + 16].inscriptions.damageValue;
+                iceDamageValue += iceDamage[i] + Inventory.slots[i + 16].inscriptions.iceDamageValue;
+                igniteDamageValue += igniteDamage[i] + Inventory.slots[i + 16].inscriptions.igniteDamageValue;
+                lightningDamageValue += lightningDamage[i] + Inventory.slots[i + 16].inscriptions.lightningDamageValue;
+                poisonDamageValue += poisonDamage[i] + Inventory.slots[i + 16].inscriptions.poisonDamageValue;
+                voidDamageValue += voidDamage[i] + Inventory.slots[i + 16].inscriptions.voidDamageValue;
+                pureDamageValue += pureDamage[i] + Inventory.slots[i + 16].inscriptions.pureDamageValue;
+                manaCostValue += manaCost[i] + Inventory.slots[i + 16].inscriptions.manaCostValue;
+                weaponSizeValue += weaponSize[i] + Inventory.slots[i + 16].inscriptions.weaponSizeValue;
+                attackSpeedValue += attackSpeed[i] / 100 + Inventory.slots[i + 16].inscriptions.attackSpeedValue / 100;
+                tripleAttackChanceValue += tripleAttackChance[i] + Inventory.slots[i + 16].inscriptions.tripleAttackChanceValue;
+                secondUsageChanceValue += secondUsageChance[i] + Inventory.slots[i + 16].inscriptions.secondUsageChanceValue;
+                explosionChanceValue += explosionChance[i] + Inventory.slots[i + 16].inscriptions.explosionChanceValue;
+                explosionTypeValue += explosionType[i] + Inventory.slots[i + 16].inscriptions.explosionTypeValue;
+                weaponCooldownValue += weaponCooldown[i] + Inventory.slots[i + 16].inscriptions.weaponCooldownValue;
+                criticalChanceValue += criticalChance[i] + Inventory.slots[i + 16].inscriptions.criticalChanceValue;
+                createProjectileChanceValue += createProjectileChance[i] + Inventory.slots[i + 16].inscriptions.createProjectileChanceValue;
+                pierceValue += pierce[i] + Inventory.slots[i + 16].inscriptions.pierceValue;
+                extraPierceChanceValue += extraPierceChance[i] + Inventory.slots[i + 16].inscriptions.extraPierceChanceValue;
             }
             if (i == 0 || i == 8 || i == 2 || i == 6 || i == 10 || i == 1 || i == 5 || i == 9)
             {
-                defenceValue += Inventory.slots[i + 16].defence + Inventory.slots[i + 16].inscriptions.defenceValue;
-                iceResistValue += Inventory.slots[i + 16].iceResist + Inventory.slots[i + 16].inscriptions.iceResistValue;
-                igniteResistValue += Inventory.slots[i + 16].igniteResist + Inventory.slots[i + 16].inscriptions.igniteResistValue;
-                lightningResistValue += Inventory.slots[i + 16].lightningResist + Inventory.slots[i + 16].inscriptions.lightningResistValue;
-                poisonResistValue += Inventory.slots[i + 16].poisonResist + Inventory.slots[i + 16].inscriptions.poisonResistValue;
-                voidResistValue += Inventory.slots[i + 16].voidResist + Inventory.slots[i + 16].inscriptions.voidResistValue;
-                pureResistValue += Inventory.slots[i + 16].pureResist + Inventory.slots[i + 16].inscriptions.pureResistValue;
-                evasionChanceValue += Inventory.slots[i + 16].evasionChance + Inventory.slots[i + 16].inscriptions.evasionChanceValue;
-                spikesValue += Inventory.slots[i + 16].spikes + Inventory.slots[i + 16].inscriptions.spikesValue;
+                defenceValue += defence[i] + Inventory.slots[i + 16].inscriptions.defenceValue;
+                iceResistValue += iceResist[i] + Inventory.slots[i + 16].inscriptions.iceResistValue;
+                igniteResistValue += igniteResist[i] + Inventory.slots[i + 16].inscriptions.igniteResistValue;
+                lightningResistValue += lightningResist[i] + Inventory.slots[i + 16].inscriptions.lightningResistValue;
+                poisonResistValue += poisonResist[i] + Inventory.slots[i + 16].inscriptions.poisonResistValue;
+                voidResistValue += voidResist[i] + Inventory.slots[i + 16].inscriptions.voidResistValue;
+                pureResistValue += pureResist[i] + Inventory.slots[i + 16].inscriptions.pureResistValue;
+                evasionChanceValue += evasionChance[i] + Inventory.slots[i + 16].inscriptions.evasionChanceValue;
+                spikesValue += spikes[i] + Inventory.slots[i + 16].inscriptions.spikesValue;
             }
-            hpValue += Inventory.slots[i + 16].hp + Inventory.slots[i + 16].inscriptions.hpValue;
+            hpValue += hp[i] + Inventory.slots[i + 16].inscriptions.hpValue;
             weaponType = armourSlots[4].type;
         }
         CapParameters();
