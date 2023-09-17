@@ -68,6 +68,7 @@ public class SlotInteraction : Slot, IPointerClickHandler
     public static Sprite bufferSprite;
     public static Sprite bufferProjSprite;
     public static Sprite bufferWeaponSprite;
+    static bool isSwitching;
     [SerializeField] GameObject defaultSlot;
     private void Update()
     {
@@ -87,10 +88,18 @@ public class SlotInteraction : Slot, IPointerClickHandler
         switch(eventData.button)
         {
             case PointerEventData.InputButton.Left:
+                if (!isSwitching)
+                {
+                    isSwitching = true;
                     DragItem();
+                } 
                 break;
             case PointerEventData.InputButton.Right:
+                if (!isSwitching)
+                {
+                    isSwitching = true;
                     RightClick();
+                }
                 break;
         }
     }
@@ -100,12 +109,12 @@ public class SlotInteraction : Slot, IPointerClickHandler
         {
             if (slots[gameObject.GetComponent<Slot>().id].values[32] < slots[gameObject.GetComponent<Slot>().id].values[31])
             {//отдать РАЗНИЦУ stacksAlready в слот инвентаря, когда stacksAlready У КУРСОРА становится 0 написать метод сводящий все переменные в дефолт
-                for (; slots[gameObject.GetComponent<Slot>().id].values[32] < slots[gameObject.GetComponent<Slot>().id].values[31] && CursorSlot.self.values[32] > 0;)
-                {
-                    slots[gameObject.GetComponent<Slot>().id].values[32]++;
-                    if (CursorSlot.self.values[32] - 1 >= 0)
-                        CursorSlot.self.values[32]--;
-                }
+                    for (; slots[gameObject.GetComponent<Slot>().id].values[32] < slots[gameObject.GetComponent<Slot>().id].values[31] && CursorSlot.self.values[32] > 0;)
+                    {
+                        slots[gameObject.GetComponent<Slot>().id].values[32]++;
+                        if (CursorSlot.self.values[32] - 1 >= 0)
+                            CursorSlot.self.values[32]--;
+                    }
             }
             else if (slots[gameObject.GetComponent<Slot>().id].values[32] == slots[gameObject.GetComponent<Slot>().id].values[31])
                 Switch(true);
@@ -123,12 +132,15 @@ public class SlotInteraction : Slot, IPointerClickHandler
             Switch(true);
         else if (CursorSlot.self.type == "Empty" && slots[gameObject.GetComponent<Slot>().id].values[30] != 0 && slots[gameObject.GetComponent<Slot>().id].canBeReplaced)
             Switch(false);
+        isSwitching = false;
     }
     void RightClick()
     {
         if (slots[gameObject.GetComponent<Slot>().id].values[32] > 0 && ((CursorSlot.self.values[32] < CursorSlot.self.values[31] && CursorSlot.self.type != "Empty") && gameObject.GetComponent<Slot>().id < 16))
         {
-            CursorSlot.self.values = slots[gameObject.GetComponent<Slot>().id].values; //Применение всех свойств
+            for (int i = 0; i < CursorSlot.self.values.Length; i++)
+                if (CursorSlot.self.valuesNames[i] != "StacksAlready")
+                    CursorSlot.self.values[i] = slots[gameObject.GetComponent<Slot>().id].values[i]; //Применение всех свойств
 
             //CursorSlot.self.damage = slots[gameObject.GetComponent<Slot>().id].damage;
             //CursorSlot.self.iceDamage = slots[gameObject.GetComponent<Slot>().id].iceDamage;
@@ -216,7 +228,9 @@ public class SlotInteraction : Slot, IPointerClickHandler
         }
         else if (CursorSlot.self.type == "Empty" && slots[gameObject.GetComponent<Slot>().id].values[31] > 0 && gameObject.GetComponent<Slot>().id < 16)
         {
-            CursorSlot.self.values = slots[gameObject.GetComponent<Slot>().id].values;
+            for (int i = 0; i < CursorSlot.self.values.Length; i++)
+                if (CursorSlot.self.valuesNames[i] != "StacksAlready")
+                    CursorSlot.self.values[i] = slots[gameObject.GetComponent<Slot>().id].values[i]; //Применение всех свойств
 
             //CursorSlot.self.damage = slots[gameObject.GetComponent<Slot>().id].damage;
             //CursorSlot.self.iceDamage = slots[gameObject.GetComponent<Slot>().id].iceDamage;
@@ -305,7 +319,9 @@ public class SlotInteraction : Slot, IPointerClickHandler
         }
         else if (CursorSlot.self.values[31] > 0 /*&& slots[gameObject.GetComponent<Slot>().id].stackAmount > 0 */&& slots[gameObject.GetComponent<Slot>().id].type == "Empty" && CursorSlot.self.type != "Empty" && gameObject.GetComponent<Slot>().id < 16)
         {
-            slots[gameObject.GetComponent<Slot>().id].values = CursorSlot.self.values;
+            for (int i = 0; i < CursorSlot.self.values.Length; i++)
+                if (CursorSlot.self.valuesNames[i] != "StacksAlready")
+                    CursorSlot.self.values[i] = slots[gameObject.GetComponent<Slot>().id].values[i];
 
             //slots[gameObject.GetComponent<Slot>().id].iceDamage = CursorSlot.self.iceDamage;
             //slots[gameObject.GetComponent<Slot>().id].igniteDamage = CursorSlot.self.igniteDamage;
@@ -398,6 +414,11 @@ public class SlotInteraction : Slot, IPointerClickHandler
             Switch(true);
         else if (CursorSlot.self.type == "Empty" && slots[gameObject.GetComponent<Slot>().id].kind != 0 && slots[gameObject.GetComponent<Slot>().id].canBeReplaced)
             Switch(false);
+        isSwitching = false;
+    }
+    void SwitchReset()
+    {
+        isSwitching = false;
     }
     void Switch(bool puttingAsArmour)
     {
@@ -652,6 +673,7 @@ public class SlotInteraction : Slot, IPointerClickHandler
         switch (i)
         {
             case 0:
+                CursorSlot.self.values = defaultSlot.GetComponent<Slot>().values;
                 //CursorSlot.self.damage = defaultSlot.GetComponent<Slot>().damage;
                 //CursorSlot.self.iceDamage = defaultSlot.GetComponent<Slot>().iceDamage;
                 //CursorSlot.self.igniteDamage = defaultSlot.GetComponent<Slot>().igniteDamage;
@@ -696,6 +718,7 @@ public class SlotInteraction : Slot, IPointerClickHandler
                 //CursorSlot.self.inscriptions = defaultSlot.GetComponent<Slot>().inscriptions;
                 break;
             case 1:
+                slots[gameObject.GetComponent<Slot>().id].values = defaultSlot.GetComponent<Slot>().values;
                 //slots[gameObject.GetComponent<Slot>().id].damage = defaultSlot.GetComponent<Slot>().damage;
                 //slots[gameObject.GetComponent<Slot>().id].iceDamage = defaultSlot.GetComponent<Slot>().iceDamage;
                 //slots[gameObject.GetComponent<Slot>().id].igniteDamage = defaultSlot.GetComponent<Slot>().igniteDamage;
