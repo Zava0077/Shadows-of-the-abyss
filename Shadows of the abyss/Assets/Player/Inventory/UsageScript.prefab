@@ -176,6 +176,7 @@ MonoBehaviour:
   kind: 8
   type: Scroll
   id: 0
+  staticKind: 8
   itemDescription: "\u0414\u0440\u0435\u0432\u043D\u0438\u0439 \u0441\u0432\u0438\u0442\u043E\u043A"
   rareList: []
   rareChances: 

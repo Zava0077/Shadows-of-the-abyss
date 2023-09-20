@@ -88,6 +88,7 @@ public class Prefixes : MonoBehaviour
                 criticalChanceSummand = 5;
                 inscSummand = -2;
                 qualityColor = "#9000ff";
+                attackSpeedSummand = 15;
                 extraDescription = "";
                 break;
             case "Ignite":

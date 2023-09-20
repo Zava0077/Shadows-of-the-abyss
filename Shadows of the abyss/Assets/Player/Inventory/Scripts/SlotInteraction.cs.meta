@@ -3,7 +3,14 @@ guid: 6069a8120268e4b4dbe940fb2c0651b2
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - inscriptions: {instanceID: 0}
+  - projectileSprite: {instanceID: 0}
+  - weaponSprite: {instanceID: 0}
+  - weapon: {instanceID: 0}
+  - emptySprite: {instanceID: 0}
+  - sprite: {instanceID: 0}
+  - defaultSlot: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

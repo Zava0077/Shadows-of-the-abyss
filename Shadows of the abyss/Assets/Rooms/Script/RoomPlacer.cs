@@ -9,7 +9,11 @@ using UnityEngine.AI;
 public class RoomPlacer : MonoBehaviour
 {
     [SerializeField] private NavMeshSurface navMash;
+    int[,] biomMap;
     public Room[] roomPrefabs;
+    public Room[] magicRoomPrefs;
+    public Room[] hellRoomPrefs;
+    public Room[] voidRoomPrefs;
     public Room secretRoom;
     public Room treasureRoom;
     public Room startingRoom;
@@ -22,19 +26,86 @@ public class RoomPlacer : MonoBehaviour
         dungeonSize = 16;
         spawnedRooms = new Room[dungeonSize, dungeonSize];
         spawnedRooms[dungeonSize / 2, dungeonSize / 2] = startingRoom;
-
+        BiomGeneration(4);
         for (int i = 0; i < dungeonSize; i++)
             PlaceOneRoom();
-        CreateTheDoor();
-        SecretRoom();
-        TreasureRoom();
+        CreateTheDoor();                
+        Invoke(nameof(SecretRoom), Time.deltaTime);
+        Invoke(nameof(TreasureRoom), Time.deltaTime);
         Invoke(nameof(NavMeshBulider),Time.deltaTime);
+    }
+    private void Update()
+    {
+        IsThereAnIllegalRoom();
     }
     void NavMeshBulider()
     {
         navMash.BuildNavMesh();
         CancelInvoke(nameof(NavMeshBulider));
     }
+    bool IsThereAnIllegalRoom()
+    {
+        bool isYes = false;
+        for (int x = 0; x < spawnedRooms.GetLength(0); x++)
+            for (int y = 0; y < spawnedRooms.GetLength(1); y++)
+                if (spawnedRooms[x, y] == null) continue;
+                else if (spawnedRooms[x, y].doorCount == 0 && spawnedRooms[x, y] != treasureRoom && spawnedRooms[x, y] != secretRoom)
+                    return true;
+                else if (y == spawnedRooms.GetLength(1)) return false;
+        return isYes;
+    }
+    void BiomGeneration(int biomCount)
+    {
+        bool biomPlaced;
+        float biomSize = (float)dungeonSize / biomCount;
+        int[,] biomMap = new int[Mathf.CeilToInt(biomCount / 2), Mathf.FloorToInt(biomCount / 2)];
+        int[,] bigBiomMap = new int[dungeonSize, dungeonSize];
+        for (int biom = 1; biom <= biomCount; biom++)
+        {
+            biomPlaced = false;
+            for (int x = 0; !biomPlaced;)
+            {
+
+                for (int y = 0; !biomPlaced; y++)
+                {
+                    int random = Random.Range(1, 100);
+                    if (y == biomMap.GetLength(1))
+                    {
+                        x++;
+                        y = 0;
+                        if (x == biomMap.GetLength(0))
+                            x = 0;
+                    }
+                    if (random < 10 && biomMap[x, y] == 0)
+                    {
+                        biomMap[x, y] = biom;
+                        biomPlaced = true;
+                    }
+                    else continue;
+                }
+            }
+        }
+        for (int x = 0; x < bigBiomMap.GetLength(0); x++)
+            for (int y = 0; y < bigBiomMap.GetLength(1); y++)
+            {
+                if (biomMap[Mathf.FloorToInt(x / (bigBiomMap.GetLength(0) / biomMap.GetLength(0))), Mathf.FloorToInt(y / (bigBiomMap.GetLength(1) / biomMap.GetLength(1)))] != 0)
+                    bigBiomMap[x, y] = biomMap[Mathf.FloorToInt(x / (bigBiomMap.GetLength(0)/ biomMap.GetLength(0))), Mathf.FloorToInt(y / (bigBiomMap.GetLength(1)/biomMap.GetLength(1)))];
+            }
+        for (int x = 0; x < bigBiomMap.GetLength(0); x++)
+            for (int y = 0; y < bigBiomMap.GetLength(1); y++)
+            {
+                if (x + 1 < bigBiomMap.GetLength(0) && bigBiomMap[x, y] != bigBiomMap[x + 1, y])
+                    if (Random.Range(1, 100) < 10) bigBiomMap[x, y] = bigBiomMap[x + 1, y];
+                if (y + 1 < bigBiomMap.GetLength(1) && bigBiomMap[x, y] != bigBiomMap[x, y + 1])
+                    if (Random.Range(1, 100) < 10) bigBiomMap[x, y] = bigBiomMap[x, y + 1];
+                if (x - 1 > 0 && bigBiomMap[x - 1, y] != bigBiomMap[x - 1, y])
+                    if (Random.Range(1, 100) < 10) bigBiomMap[x, y] = bigBiomMap[x + 1, y];
+                if (y - 1 > 0 && bigBiomMap[x, y] != bigBiomMap[x, y - 1])
+                    if (Random.Range(1, 100) < 10) bigBiomMap[x, y] = bigBiomMap[x, y - 1];
+            }
+                        this.biomMap = bigBiomMap;
+    }
+
     private void PlaceOneRoom()
     {
         int roomType = Random.Range(0, roomPrefabs.Length);
@@ -51,8 +122,23 @@ public class RoomPlacer : MonoBehaviour
                 if (x < maxX && spawnedRooms[x + 1, y] == null) vacantPlaces.Add(new Vector2Int(x + 1, y));
                 if (y > maxY && spawnedRooms[x, y + 1] == null) vacantPlaces.Add(new Vector2Int(x, y + 1));
             }
-        Room newRoom = Instantiate(roomPrefabs[roomType]);
         Vector2Int position = vacantPlaces.ElementAt(Random.Range(0, vacantPlaces.Count));
+        Room newRoom = new Room();
+        switch (biomMap[position.x,position.y])
+        {
+            case 1:
+                newRoom = Instantiate(roomPrefabs[roomType]);
+                break;
+            case 2:
+                newRoom = Instantiate(magicRoomPrefs[roomType]);
+                break;
+            case 3:
+                newRoom = Instantiate(hellRoomPrefs[roomType]);
+                break;
+            case 4:
+                newRoom = Instantiate(voidRoomPrefs[roomType]);
+                break;
+        }
         newRoom.transform.position = new Vector2(position.x - dungeonSize / 2, position.y - dungeonSize / 2) * 16;
         spawnedRooms[position.x, position.y] = newRoom;
     }
@@ -184,7 +270,7 @@ public class RoomPlacer : MonoBehaviour
                 spawnedRooms[position.x, position.y] = newRoom;
             //}
         }
-   
+        CancelInvoke(nameof(SecretRoom));
     }
     void TreasureRoom()
     {
@@ -212,5 +298,6 @@ public class RoomPlacer : MonoBehaviour
         Room newRoom = Instantiate(treasureRoom);
         newRoom.transform.position = new Vector2(position.x - dungeonSize / 2, position.y - dungeonSize / 2) * 16;
         spawnedRooms[position.x, position.y] = newRoom;
+        CancelInvoke(nameof(TreasureRoom));
     }
 }

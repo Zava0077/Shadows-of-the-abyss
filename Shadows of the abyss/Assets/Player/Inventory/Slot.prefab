@@ -263,45 +263,12 @@ MonoBehaviour:
   - Kind
   - StackAmount
   - StacksAlready
-  hp: 0
-  damage: 0
-  iceDamage: 0
-  igniteDamage: 0
-  lightningDamage: 0
-  poisonDamage: 0
-  voidDamage: 0
-  pureDamage: 0
-  defence: 0
-  iceResist: 0
-  igniteResist: 0
-  lightningResist: 0
-  poisonResist: 0
-  voidResist: 0
-  pureResist: 0
-  evasionChance: 0
-  criticalChance: 0
-  stackAmount: 0
-  stacksAlready: 0
   kind: 0
   type: Empty
   id: 0
-  idItem: 0
   itemDescription: Empty
   rareList: []
   rareChances: 
-  manaCost: 0
-  weaponSize: 0
-  attackSpeed: 0
-  tripleAttackChance: 0
-  secondUsageChance: 0
-  explosionChance: 0
-  explosionType: 0
-  weaponCooldown: 0
-  createProjectileChance: 0
-  spikes: 0
-  pierce: 0
-  extraPierceChance: 0
-  inscriptionNum: 0
   inscriptions: {fileID: 6107744275303425091}
   projectileSprite: {fileID: 0}
   weaponSprite: {fileID: 0}
@@ -322,47 +289,80 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6069a8120268e4b4dbe940fb2c0651b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  values: []
-  valuesNames: []
-  hp: 0
-  damage: 0
-  iceDamage: 0
-  igniteDamage: 0
-  lightningDamage: 0
-  poisonDamage: 0
-  voidDamage: 0
-  pureDamage: 0
-  defence: 0
-  iceResist: 0
-  igniteResist: 0
-  lightningResist: 0
-  poisonResist: 0
-  voidResist: 0
-  pureResist: 0
-  evasionChance: 0
-  criticalChance: 0
-  stackAmount: 0
-  stacksAlready: 0
+  values:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  valuesNames:
+  - Hp
+  - Defence
+  - Damage
+  - IceDamage
+  - IgniteDamage
+  - LightningDamage
+  - PoisonDamage
+  - VoidDamage
+  - PureDamage
+  - IceResist
+  - IgniteResist
+  - LightningDamage
+  - PoisonResist
+  - VoidResist
+  - EvasionChance
+  - CriticalChance
+  - ManaCost
+  - WeaponSize
+  - AttackSpeed
+  - TripleAttackChance
+  - SecondUsageChance
+  - ExplosionChance
+  - ExplosionType
+  - WeaponCoolDown
+  - CreateProjectileChance
+  - Spikes
+  - Pierce
+  - ExtraPierceChance
+  - IdItem
+  - Inscriptions slots
+  - Kind
+  - StackAmount
+  - StacksAlready
   kind: 0
   type: Empty
   id: 0
-  idItem: 0
   itemDescription: 
   rareList: []
   rareChances: 
-  manaCost: 0
-  weaponSize: 0
-  attackSpeed: 0
-  tripleAttackChance: 0
-  secondUsageChance: 0
-  explosionChance: 0
-  explosionType: 0
-  weaponCooldown: 0
-  createProjectileChance: 0
-  spikes: 0
-  pierce: 0
-  extraPierceChance: 0
-  inscriptionNum: 0
   inscriptions: {fileID: 0}
   projectileSprite: {fileID: 0}
   weaponSprite: {fileID: 0}

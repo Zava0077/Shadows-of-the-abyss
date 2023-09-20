@@ -80,6 +80,8 @@ public class CursorSlot : MonoBehaviour
         if (type == "Empty")
             sR.sprite = emptySprite;
         else sR.sprite = sprite;
+        if (type == "Empty")
+            values = new float[values.Length];
         cursor = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         cursor.z = 0;
         gameObject.transform.position = cursor;

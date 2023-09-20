@@ -12,17 +12,12 @@ public class MeleeWaveProj : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        piercesCount = ArmourInventory.self.pierceValue;
+        pierceChance = ArmourInventory.self.extraPierceChanceValue;
     }
     void Update()
     {
         rb.velocity = transform.right * projectileSpeed;
-        piercesCount = ArmourInventory.self.pierceValue;
-        pierceChance = ArmourInventory.self.extraPierceChanceValue;
-    }
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.collider.tag == "Wall")
-            Destroy(gameObject);
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -34,6 +29,7 @@ public class MeleeWaveProj : MonoBehaviour
                 ;
             else piercesCount--;
             enemies.Add(collision.gameObject);
+            //mojno dobavit' mechaniku tip vse pierce prevrashautsa v mnojitel urona.
             if (ArmourInventory.self.damageValue != 0) DamageType.GetDamage(collision.gameObject.GetComponent<Entity>(), ArmourInventory.self.damageValue, DamageType.DamageTypes.Physical);
             if (ArmourInventory.self.iceDamageValue != 0) DamageType.GetDamage(collision.gameObject.GetComponent<Entity>(), ArmourInventory.self.iceDamageValue, DamageType.DamageTypes.Cold);
             if (ArmourInventory.self.igniteDamageValue != 0) DamageType.GetDamage(collision.gameObject.GetComponent<Entity>(), ArmourInventory.self.igniteDamageValue, DamageType.DamageTypes.Fire);
