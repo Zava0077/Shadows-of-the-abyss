@@ -173,6 +173,8 @@ MonoBehaviour:
   - Kind
   - StackAmount
   - StacksAlready
+  settings: 
+  settingsNames: 
   kind: 4
   type: Mage
   id: 0
@@ -183,7 +185,8 @@ MonoBehaviour:
   - Great
   - Distructive
   - Fast
-  rareChances: 210000002100000022000000
+  - Electric
+  rareChances: 19000000190000001900000019000000
   inscriptions: {fileID: -2777852560916092703}
   projectileSprite: {fileID: 21300000, guid: 9fa9ee21573012f48a3f42b2bdeace46, type: 3}
   weaponSprite: {fileID: 21300000, guid: 0e6d2eb08d2c9cb4f9074ebdd35b89a9, type: 3}

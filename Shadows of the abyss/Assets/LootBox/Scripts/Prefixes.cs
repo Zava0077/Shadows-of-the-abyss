@@ -105,6 +105,14 @@ public class Prefixes : MonoBehaviour
                 inscSummand = 1;
                 extraDescription = "<color=#2100a6>Small, but Fast!</color>";
                 break;
+            case "Electric":
+                lightningDamageSummand = rememberDamage + 5;
+                criticalChanceSummand = 5;
+                inscSummand = 1;
+                qualityColor = "#73abff";
+                extraDescription = "<color=#ff5d00>Converts all physical damage into damage by lightning</color>";
+                DamageDefaulter(item);
+                break;
         }
     }
     void DamageDefaulter(GameObject item)

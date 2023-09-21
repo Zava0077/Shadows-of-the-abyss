@@ -48,7 +48,7 @@ public class Inventory : MonoBehaviour
     }
     public static bool IsInventoryFull(GameObject item)
     {
-        for (int i = 0; i < slots.Count; i++)
+        for (int i = 0; i < 16; i++)
         {
             if (slots[i].type == "Empty" || (slots[i].type == item.GetComponent<Slot>().type && slots[i].values[32] < slots[i].values[31]))
             {

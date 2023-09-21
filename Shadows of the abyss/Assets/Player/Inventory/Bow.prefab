@@ -173,6 +173,8 @@ MonoBehaviour:
   - Kind
   - StackAmount
   - StacksAlready
+  settings: 
+  settingsNames: 
   kind: 4
   type: Ranged
   id: 0
@@ -183,7 +185,8 @@ MonoBehaviour:
   - Great
   - Distructive
   - Fast
-  rareChances: 210000002100000022000000
+  - Electric
+  rareChances: 19000000190000001900000019000000
   inscriptions: {fileID: 6751858720800780782}
   projectileSprite: {fileID: 21300000, guid: 2c978a079bdca7944b15148f9b70cfcd, type: 3}
   weaponSprite: {fileID: 21300000, guid: df879b6a4acbff842bc6ae843a4dd07f, type: 3}

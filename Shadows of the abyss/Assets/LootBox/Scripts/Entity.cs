@@ -111,12 +111,12 @@ public class Entity : MonoBehaviour
     public void Drop(GameObject[] gameObjects, int[] chance)
     {
         System.Random rnd = new System.Random();
-        int rareChance = rnd.Next(0, 100);
-        int dropChance = rnd.Next(0, 100);
-
-        string rareName = "";
+     
         for (int i = 0; i < gameObjects.Length; i++)
         {
+            int rareChance = rnd.Next(0, 100);
+            int dropChance = rnd.Next(0, 100);
+            string rareName = "";
             int secondDropChance = 100;
             GameObject article;
             string[] rareList = gameObjects[i].GetComponent<Slot>().rareList;

@@ -10,6 +10,8 @@ public class Slot : Inventory
 {
     [SerializeField] public float[] values;
     [SerializeField] public string[] valuesNames;
+    [SerializeField] public bool[] settings;
+    [SerializeField] public bool[] settingsNames;
     #region oldCode
     [SerializeField] public int kind;
     [SerializeField] public string type;
