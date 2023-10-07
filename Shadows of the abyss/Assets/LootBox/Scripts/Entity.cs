@@ -1,4 +1,4 @@
-﻿using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
@@ -11,14 +11,7 @@ public class Entity : MonoBehaviour
     public int Health;
     public int Armor;
     public float Speed;
-    public double FireRes;
     public bool isInvincible;
-    public float LightningRes;
-    public float ColdRes;
-    public float PoisonRes;
-    public float PhysicalRes;
-    public float VoidRes;
-    public int Evasion;
     public float CriticalChance;
     public float CriticalMultiplier;
     public float LifeRegeneration;
@@ -58,9 +51,17 @@ public class Entity : MonoBehaviour
     public float increasedEvasion;
     public float increasedHealth;
 
+    public double LightningRes;
+    public double ColdRes;
+    public double PoisonRes;
+    public double PhysicalRes;
+    public double FireRes;
+    public double VoidRes;
+    public int Evasion;
+
     public void Limits()
     {
-        #region Îãðàíè÷åíèÿ
+        #region Limit
         if (FireRes > 0.75)
         {
             FireRes = 0.75;
@@ -235,7 +236,7 @@ public class Entity : MonoBehaviour
                 for (int j = 0; j < 10; j++)
                 {
                     //GameObject insc = Instantiate(inscription);
-                    //article.GetComponent<Slot>().inscriptions[j] = insc; //создать скрипт инскрипшионс, там хранить все переменные в виде массива [10] в скрипте слот создать список, хранящий этот скрипт, таким образом он будет переносится из слота в слот.
+                    //article.GetComponent<Slot>().inscriptions[j] = insc; //ÑÐ¾Ð·Ð´Ð°ÑÑ ÑÐºÑÐ¸Ð¿Ñ Ð¸Ð½ÑÐºÑÐ¸Ð¿ÑÐ¸Ð¾Ð½Ñ, ÑÐ°Ð¼ ÑÑÐ°Ð½Ð¸ÑÑ Ð²ÑÐµ Ð¿ÐµÑÐµÐ¼ÐµÐ½Ð½ÑÐµ Ð² Ð²Ð¸Ð´Ðµ Ð¼Ð°ÑÑÐ¸Ð²Ð° [10] Ð² ÑÐºÑÐ¸Ð¿ÑÐµ ÑÐ»Ð¾Ñ ÑÐ¾Ð·Ð´Ð°ÑÑ ÑÐ¿Ð¸ÑÐ¾Ðº, ÑÑÐ°Ð½ÑÑÐ¸Ð¹ ÑÑÐ¾Ñ ÑÐºÑÐ¸Ð¿Ñ, ÑÐ°ÐºÐ¸Ð¼ Ð¾Ð±ÑÐ°Ð·Ð¾Ð¼ Ð¾Ð½ Ð±ÑÐ´ÐµÑ Ð¿ÐµÑÐµÐ½Ð¾ÑÐ¸ÑÑÑ Ð¸Ð· ÑÐ»Ð¾ÑÐ° Ð² ÑÐ»Ð¾Ñ.
                 }
                 //
                 if (description == "" && article.GetComponent<Slot>().itemDescription == "")

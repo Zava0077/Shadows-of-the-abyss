@@ -66,13 +66,13 @@ public class Bat : Mob
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        _oneSecTimer += Time.deltaTime;
-        if(_oneSecTimer >= 1f)
+        if(collision.tag == "Attack")
         {
-            _oneSecTimer -= 1f;
-            if (collision.transform == target.transform)
+            _oneSecTimer += Time.deltaTime;
+            if (_oneSecTimer >= 1f)
             {
                 DamageType.GetDamage(PlayerScript.self, this, DamageType.DamageTypes.Melee);
+                _oneSecTimer -= 1f;
             }
         }
     }

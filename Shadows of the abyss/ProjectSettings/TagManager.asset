@@ -11,6 +11,8 @@ TagManager:
   - InteractionObject
   - Door
   - InscriptionsInventory
+  - Enemy
+  - Attack
   layers:
   - Default
   - TransparentFX

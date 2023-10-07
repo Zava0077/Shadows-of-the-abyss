@@ -1546,6 +1546,34 @@ Transform:
   - {fileID: 1772273070}
   m_Father: {fileID: 264759595}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 805274005}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d872d1ad70447c41af10216073eab21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxHealth: 100
+  Health: 100
+  Armor: 0
+  Speed: 5
+  FireRes: 0
+  LightningRes: 0
+  ColdRes: 0
+  PoisonRes: 0
+  PhysicalRes: 0
+  VoidRes: 0
+  Evasion: 0
+  collider2D: {fileID: 0}
+  rb2d: {fileID: 0}
+  readyToSpeak: 0
+  Mana: 200
+  MaxMana: 200
+  Camera: {fileID: 0}
 --- !u!61 &805274008
 BoxCollider2D:
   m_ObjectHideFlags: 0

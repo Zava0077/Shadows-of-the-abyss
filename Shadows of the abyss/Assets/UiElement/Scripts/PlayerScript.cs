@@ -61,7 +61,7 @@ public class PlayerScript : Entity
         if(screenRect.Contains(Input.mousePosition))
         {
             Vector2 relativeMousePosition = transform.position + (Input.mousePosition - new Vector3(Screen.width * 0.5f, Screen.height* 0.5f));
-            Camera.transform.position = Vector2.Lerp(transform.position, relativeMousePosition*2, 0.002f);
+            Camera.transform.position = Vector2.Lerp(transform.position, relativeMousePosition * 2, 0.002f);
         }
         #endregion
     }
@@ -80,7 +80,6 @@ public class PlayerScript : Entity
             DamageType.GetDamage(collision.GetComponent<Entity>(), this, DamageType.DamageTypes.Melee);
         }
     }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "InteractionObject")
