@@ -9,14 +9,15 @@ using TMPro;
 using UnityEditor.UIElements;
 using UnityEngine.UIElements;
 
-public class PlayerScript : Creature
+public class PlayerScript : Entity
 {
     [SerializeField] private BoxCollider2D collider2D;
     [SerializeField] public Rigidbody2D rb2d;
     public bool readyToSpeak;
     private Vector2 movePosition;
-    public int Mana;
-    public int MaxMana = 200;
+    public int Dexterity;
+    public int Intelligence;
+    public int Strength;
     public static PlayerScript self;
     float _oneSecTimer = 0;
     public Camera Camera;
@@ -24,6 +25,7 @@ public class PlayerScript : Creature
     {
         MaxHealth = 100;
         Health = 100;
+        MaxMana = 200;
         Mana = 200;
         Speed = 5;
 
@@ -51,7 +53,7 @@ public class PlayerScript : Creature
     void Update()
     {
         Limits();
-        #region ������
+        #region Camera
         Vector2 MousePosition = Camera.ScreenToWorldPoint(Input.mousePosition);
         Vector2 moveInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         movePosition = moveInput * Speed;
@@ -75,8 +77,7 @@ public class PlayerScript : Creature
         if (_oneSecTimer >= 1f)
         {
             _oneSecTimer -= 1f;
-            DamageType.GetDamage(collision.GetComponent<Creature>(), 0, DamageType.DamageTypes.Physical);
-
+            DamageType.GetDamage(collision.GetComponent<Entity>(), this, DamageType.DamageTypes.Melee);
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
