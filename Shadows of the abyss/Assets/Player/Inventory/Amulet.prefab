@@ -15,8 +15,9 @@ GameObject:
   - component: {fileID: 1198719410411151621}
   - component: {fileID: -2268303626492903351}
   - component: {fileID: -1957378840449356073}
+  - component: {fileID: 6676806392624426082}
   m_Layer: 5
-  m_Name: Sword
+  m_Name: Amulet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -82,7 +83,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: e130097922112a14fb45cf5e60b3fa9d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b00b3eb98f6505f4882fcb965a092409, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -108,7 +109,6 @@ MonoBehaviour:
   values:
   - 0
   - 0
-  - 8
   - 0
   - 0
   - 0
@@ -121,22 +121,23 @@ MonoBehaviour:
   - 0
   - 0
   - 0
-  - 4
-  - 0
-  - 0
-  - 25
   - 0
   - 0
   - 0
   - 0
-  - 0.5
   - 0
   - 0
-  - 1
   - 0
-  - 2
-  - 4
-  - 4
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 11
+  - 0
+  - 5
   - 0
   - 0
   valuesNames:
@@ -175,23 +176,20 @@ MonoBehaviour:
   - StacksAlready
   settings: 
   settingsNames: 
-  kind: 4
-  type: Melee
+  kind: 5
+  type: Amulet
   id: 0
-  staticKind: 4
-  itemDescription: "\u0416\u0435\u043B\u0435\u0437\u043D\u044B\u0439 \u0447\u043B\u0435\u043D"
+  staticKind: 5
+  itemDescription: "\u0410\u043C\u0443\u043B\u0435\u0442"
   rareList:
   - Ignite
-  - Great
-  - Fast
-  - Electric
-  rareChances: 19000000190000001900000019000000
+  rareChances: 64000000
   inscriptions: {fileID: -1957378840449356073}
-  projectileSprite: {fileID: 21300000, guid: 02723d1dba783df4f87315771dc93c0a, type: 3}
-  weaponSprite: {fileID: 21300000, guid: e130097922112a14fb45cf5e60b3fa9d, type: 3}
+  projectileSprite: {fileID: 0}
+  weaponSprite: {fileID: 0}
   weapon: {fileID: 0}
   emptySprite: {fileID: 21300000, guid: 59a39c1bbaad10949bd53e406701b335, type: 3}
-  sprite: {fileID: 21300000, guid: e130097922112a14fb45cf5e60b3fa9d, type: 3}
+  sprite: {fileID: 21300000, guid: b00b3eb98f6505f4882fcb965a092409, type: 3}
   canBeReplaced: 1
   rareName: 
 --- !u!114 &9047657002591364943
@@ -582,3 +580,49 @@ MonoBehaviour:
   spikesValue: 0
   pierceValue: 0
   extraPierceChanceValue: 0
+--- !u!114 &6676806392624426082
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8283065102806030095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c359160dda823a4287761f54425f145, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageSummand: 0
+  iceDamageSummand: 0
+  igniteDamageSummand: 0
+  voidDamageSummand: 0
+  pureDamageSummand: 0
+  poisonDamageSummand: 0
+  lightningDamageSummand: 0
+  iceResistSummand: 0
+  igniteResistSummand: 0
+  voidResistSummand: 0
+  pureResistSummand: 0
+  poisonResistSummand: 0
+  lightningResistSummand: 0
+  criticalChanceSummand: 0
+  evasionChanceSummand: 0
+  maxHpSummand: 0
+  defenceSummand: 0
+  manaCostSummand: 0
+  weaponSizeSummand: 0
+  attackSpeedSummand: 0
+  secondUsageChanceSummand: 0
+  tripleAttackChanceSummand: 0
+  explChanceSummand: 0
+  explTypeEqualer: 0
+  weaponCooldownSummand: 0
+  createProjectileChanceSummand: 0
+  spikes: 0
+  inscSummand: 0
+  extraDescription: 
+  qualityColor: 
+  manaAdd: 0
+  hpAdd: 0
+  critAdd: 0
+  manaPercent: 0
