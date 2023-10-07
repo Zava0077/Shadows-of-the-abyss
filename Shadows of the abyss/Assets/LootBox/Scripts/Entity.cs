@@ -227,9 +227,9 @@ public class Entity : MonoBehaviour
                 //else
                 //    article.GetComponent<Slot>().itemDescription = description + Prefixes.self.extraDescription;
                 //if (gameObjects[i].GetComponent<Slot>().values[31] > 0) тут хуйня какая-то
-                article.GetComponent<Slot>().spikes += Prefixes.self.spikes;
-                if (article.GetComponent<Slot>().spikes > 0)
-                    description += "Spikes: " + article.GetComponent<Slot>().spikes + "\r\n";
+                //article.GetComponent<Slot>().spikes += Prefixes.self.spikes;
+                //if (article.GetComponent<Slot>().spikes > 0)
+                //    description += "Spikes: " + article.GetComponent<Slot>().spikes + "\r\n";
                 //
                 for (int j = 0; j < 10; j++)
                 {
@@ -243,9 +243,9 @@ public class Entity : MonoBehaviour
                     article.GetComponent<Slot>().itemDescription = article.GetComponent<Slot>().itemDescription;
                 else
                     article.GetComponent<Slot>().itemDescription = description + Prefixes.self.extraDescription;
-                if (gameObjects[i].GetComponent<Slot>().stackAmount > 0)
-                    secondDropChance /= 2;
-                else secondDropChance = 0;
+                //if (gameObjects[i].GetComponent<Slot>().stackAmount > 0)
+                //    secondDropChance /= 2;
+                //else secondDropChance = 0;
                 article.transform.position += new Vector3((float)rnd.Next(-2, 2) / 10, (float)rnd.Next(-2, 2) / 10);
             }
             gameObject.transform.localScale /= 100;

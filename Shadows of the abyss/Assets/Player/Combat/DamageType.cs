@@ -100,53 +100,8 @@ public class DamageType : MonoBehaviour
             }
             if (DoDamage.PoisonDamage > 0)
             {
-                TakeDamage.gameObject.GetComponent<Entity>().PushActivator(TakeDamage.Health, (int)damage, PlayerScript.self.gameObject.transform.position, TakeDamage.transform.position);
-                TakeDamage.Health -= (int)damage;
+
             }
         }
-    }
-    static double CalculateDamage(Entity TakeDamage, float Damage, DamageTypes type)
-    {
-        double TakingDamage = 0;
-        switch (type)
-        {
-            case DamageTypes.Cold:
-                {
-                    TakingDamage = Damage * (1 - TakeDamage.ColdRes) - TakeDamage.Armor;
-                    break;
-                }
-            case DamageTypes.Lightning:
-                {
-                    TakingDamage = Damage * (1 - TakeDamage.LightningRes) - TakeDamage.Armor;
-                    break;
-                }
-            case DamageTypes.Fire:
-                {
-                    TakingDamage = Damage * (1 - TakeDamage.FireRes) - TakeDamage.Armor;
-                    break;
-                }
-            case DamageTypes.Physical:
-                {
-                    TakingDamage = Damage * (1 - TakeDamage.PhysicalRes) - TakeDamage.Armor;
-                    break;
-                }
-            case DamageTypes.Poison:
-                {
-                    TakingDamage = Damage * (1 - TakeDamage.PoisonRes) - TakeDamage.Armor;
-                    break;
-                }
-            case DamageTypes.Void:
-                {
-                    TakingDamage = Damage * (1 - TakeDamage.VoidRes) - TakeDamage.Armor;
-                    break;
-                }
-            case DamageTypes.Pure:
-                {
-                    TakingDamage = Damage;
-                    break;
-                }
-        }
-        TakingDamage = Math.Ceiling(TakingDamage);
-        return TakingDamage;
     }
 }
