@@ -20,40 +20,81 @@ public class Entity : MonoBehaviour
     public int Health;
     public int Armor;
     public float Speed;
-    public double FireRes;
+    
+    public bool isInvincible;
+    public float CriticalChance;
+    public float CriticalMultiplier;
+    public float LifeRegeneration;
+    public float ManaRegeneration;
+    public int Mana;
+    public int MaxMana;
+    public float ProjectileSpeed;
+
+    public float PoisonDuration;
+    public float increasedPoisonDuration;
+    public float increasedDuration;
+
+    public float StatusResistance;
+    public float Luck;
+
+    public float PhysicalDamage;
+    public float FireDamage;
+    public float LightningDamage;
+    public float ColdDamage;
+    public float PoisonDamage;
+    public float VoidDamage;
+
+    public float increasedAllDamage;
+    public float increasedPhysicalDamage;
+    public float increasedFireDamage;
+    public float increasedLightningDamage;
+    public float increasedColdDamage;
+    public float increasedPoisonDamage;
+    public float increasedVoidDamage;
+    public float increasedMeleeDamage;
+    public float increasedSpellDamage;
+
+    public float increasedAttackSpeed;
+    public float increasedCastSpeed;
+    public float icreasedSpeed;
+    public float increasedArmor;
+    public float increasedEvasion;
+    public float increasedHealth;
+    
     public double LightningRes;
     public double ColdRes;
     public double PoisonRes;
     public double PhysicalRes;
+    public double FireRes;
     public double VoidRes;
     public int Evasion;
 
     public void Limits()
     {
-        #region �����������
+        #region Limit
         if (FireRes > 0.75)
         {
             FireRes = 0.75;
         }
         if (ColdRes > 0.75)
         {
-            ColdRes = 0.75;
+            ColdRes = 0.75f;
         }
         if (LightningRes > 0.75)
         {
-            LightningRes = 0.75;
+            LightningRes = 0.75f;
         }
         if (PhysicalRes > 0.75)
         {
-            PhysicalRes = 0.75;
+            PhysicalRes = 0.75f;
         }
         if (PoisonRes > 0.75)
         {
-            PoisonRes = 0.75;
+            PoisonRes = 0.75f;
         }
         if (VoidRes > 0.75)
         {
-            VoidRes = 0.75;
+            VoidRes = 0.75f;
         }
         if (Health > MaxHealth)
         {
@@ -185,7 +226,24 @@ public class Entity : MonoBehaviour
                 //    article.GetComponent<Slot>().itemDescription = article.GetComponent<Slot>().itemDescription;
                 //else
                 //    article.GetComponent<Slot>().itemDescription = description + Prefixes.self.extraDescription;
-                if (gameObjects[i].GetComponent<Slot>().values[31] > 0)
+                //if (gameObjects[i].GetComponent<Slot>().values[31] > 0) тут хуйня какая-то
+                article.GetComponent<Slot>().spikes += Prefixes.self.spikes;
+                if (article.GetComponent<Slot>().spikes > 0)
+                    description += "Spikes: " + article.GetComponent<Slot>().spikes + "\r\n";
+                //
+                for (int j = 0; j < 10; j++)
+                {
+                    //GameObject insc = Instantiate(inscription);
+                    //article.GetComponent<Slot>().inscriptions[j] = insc; //ÑÐ¾Ð·Ð´Ð°ÑÑ ÑÐºÑÐ¸Ð¿Ñ Ð¸Ð½ÑÐºÑÐ¸Ð¿ÑÐ¸Ð¾Ð½Ñ, ÑÐ°Ð¼ Ñ
+                }
+                //
+                if (description == "" && article.GetComponent<Slot>().itemDescription == "")
+                    description = "Empty";
+                else if (description == "")
+                    article.GetComponent<Slot>().itemDescription = article.GetComponent<Slot>().itemDescription;
+                else
+                    article.GetComponent<Slot>().itemDescription = description + Prefixes.self.extraDescription;
+                if (gameObjects[i].GetComponent<Slot>().stackAmount > 0)
                     secondDropChance /= 2;
                 else secondDropChance = 0;
                 article.transform.position += new Vector3((float)rnd.Next(-2, 2) / 10, (float)rnd.Next(-2, 2) / 10);

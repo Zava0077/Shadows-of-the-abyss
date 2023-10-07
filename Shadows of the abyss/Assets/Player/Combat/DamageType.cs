@@ -16,33 +16,89 @@ public class DamageType : MonoBehaviour
     }
     public enum DamageTypes
     {
-        Cold,
-        Lightning,
-        Fire,
-        Physical,
-        Poison,
-        Void,
-        Pure
+        Melee,
+        Spell,
+        Range
     }
-
-    static public void GetDamage(Entity TakeDamage, float Damage, DamageTypes type)
+    static public void GetDamage(Entity TakeDamage, Entity DoDamage, DamageTypes type)
     {
         if (UnityEngine.Random.Range(1, 100) > PlayerScript.self.Evasion)
         {
-            double damage = 0;
-            if (ArmourInventory.self.damageValue != 0) damage += CalculateDamage(TakeDamage, ArmourInventory.self.damageValue, DamageTypes.Physical);
-            if (ArmourInventory.self.iceDamageValue != 0) damage += CalculateDamage(TakeDamage, ArmourInventory.self.iceDamageValue, DamageTypes.Cold);
-            if (ArmourInventory.self.igniteDamageValue != 0) damage += CalculateDamage(TakeDamage, ArmourInventory.self.igniteDamageValue, DamageTypes.Fire);
-            if (ArmourInventory.self.lightningDamageValue != 0) damage += CalculateDamage(TakeDamage, ArmourInventory.self.lightningDamageValue, DamageTypes.Lightning);
-            if (ArmourInventory.self.poisonDamageValue != 0) damage += CalculateDamage(TakeDamage, ArmourInventory.self.poisonDamageValue, DamageTypes.Poison);
-            if (ArmourInventory.self.pureDamageValue != 0) damage += CalculateDamage(TakeDamage, ArmourInventory.self.pureDamageValue, DamageTypes.Pure);
-            if (ArmourInventory.self.voidDamageValue != 0) damage += CalculateDamage(TakeDamage, ArmourInventory.self.voidDamageValue, DamageTypes.Void);
-            if (damage <= 0)
+            float AllIncreas = DoDamage.increasedAllDamage;
+            switch (type)
             {
-                TakeDamage.gameObject.GetComponent<Entity>().PushActivator(TakeDamage.Health, 1, PlayerScript.self.gameObject.transform.position, TakeDamage.transform.position);
-                TakeDamage.Health -= 1;
+                case DamageTypes.Melee:
+                    {
+                        AllIncreas += DoDamage.increasedMeleeDamage;
+                        break;
+                    }
+                case DamageTypes.Spell:
+                    {
+                        AllIncreas += DoDamage.increasedSpellDamage;
+                        break;
+                    }
+                case DamageTypes.Range:
+                    {
+                        
+                        break;
+                    }
             }
-            else
+            if(DoDamage.FireDamage > 0)
+            {
+                if (DoDamage.increasedAllDamage == 0 && DoDamage.increasedFireDamage == 0)
+                {
+                    TakeDamage.Health -= Convert.ToInt32((1 - TakeDamage.FireRes) * DoDamage.FireDamage);
+                }
+                else
+                {
+                    TakeDamage.Health -= Convert.ToInt32((1 - TakeDamage.FireRes) * (DoDamage.FireDamage + (DoDamage.FireDamage * ((AllIncreas + DoDamage.increasedFireDamage) / 100))));
+                }
+            }
+            if (DoDamage.ColdDamage > 0)
+            {
+                if (DoDamage.increasedAllDamage == 0 && DoDamage.increasedColdDamage == 0)
+                {
+                    TakeDamage.Health -= Convert.ToInt32((1 - TakeDamage.VoidRes) * DoDamage.ColdDamage);
+                }
+                else
+                {
+                    TakeDamage.Health -= Convert.ToInt32((1 - TakeDamage.ColdRes) * (DoDamage.ColdDamage + (DoDamage.ColdDamage * ((AllIncreas + DoDamage.increasedColdDamage) / 100))));
+                }
+            }
+            if (DoDamage.VoidDamage > 0)
+            {
+                if (DoDamage.increasedAllDamage == 0 && DoDamage.increasedVoidDamage == 0)
+                {
+                    TakeDamage.Health -= Convert.ToInt32((1 - TakeDamage.VoidRes) * DoDamage.VoidDamage);
+                }
+                else
+                {
+                    TakeDamage.Health -= Convert.ToInt32((1 - TakeDamage.VoidRes) * (DoDamage.VoidDamage + (DoDamage.VoidDamage * ((AllIncreas + DoDamage.increasedVoidDamage) / 100))));
+                }
+            }
+            if (DoDamage.PhysicalDamage > 0)
+            {
+                if(DoDamage.increasedAllDamage == 0 && DoDamage.increasedPhysicalDamage == 0)
+                {
+                    TakeDamage.Health -= Convert.ToInt32((1 - TakeDamage.PhysicalRes) * DoDamage.PhysicalDamage);
+                }
+                else
+                {
+                    TakeDamage.Health -= Convert.ToInt32((1 - TakeDamage.PhysicalRes) * (DoDamage.PhysicalDamage + (DoDamage.PhysicalDamage * ((AllIncreas + DoDamage.increasedPhysicalDamage) / 100))));
+                }
+            }
+            if (DoDamage.LightningDamage > 0)
+            {
+                if (DoDamage.increasedAllDamage == 0 && DoDamage.increasedLightningDamage == 0)
+                {
+                    TakeDamage.Health -= Convert.ToInt32((1 - TakeDamage.LightningRes) * DoDamage.LightningDamage);
+                }
+                else
+                {
+                    TakeDamage.Health -= Convert.ToInt32((1 - TakeDamage.LightningRes) * (DoDamage.LightningDamage + (DoDamage.LightningDamage * ((AllIncreas + DoDamage.increasedLightningDamage) / 100))));
+                }
+            }
+            if (DoDamage.PoisonDamage > 0)
             {
                 TakeDamage.gameObject.GetComponent<Entity>().PushActivator(TakeDamage.Health, (int)damage, PlayerScript.self.gameObject.transform.position, TakeDamage.transform.position);
                 TakeDamage.Health -= (int)damage;
