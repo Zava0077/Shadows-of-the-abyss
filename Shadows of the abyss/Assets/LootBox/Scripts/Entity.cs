@@ -84,7 +84,7 @@ public class Entity : MonoBehaviour
         pushFrom = from;
         pushTo = to;
         gameObject.GetComponent<NavMeshAgent>().enabled = false;
-        if(Attack.isAbleToAttack)
+        if (Attack.isAbleToAttack)
             _numberCreated = false;
         Invoke(nameof(PushReset), 0.1f);
     }
@@ -94,7 +94,7 @@ public class Entity : MonoBehaviour
         {
             gameObject.GetComponentInChildren<SpriteRenderer>().color = Color.white;
             transform.position += Vector3.Lerp(Vector3.zero, new Vector2(pushTo.x - pushFrom.x, pushTo.y - pushFrom.y).normalized * pushingCoefficient, Time.deltaTime);
-        }         
+        }
     }
     void PushReset()
     {
@@ -111,7 +111,7 @@ public class Entity : MonoBehaviour
     public void Drop(GameObject[] gameObjects, int[] chance)
     {
         System.Random rnd = new System.Random();
-     
+
         for (int i = 0; i < gameObjects.Length; i++)
         {
             int rareChance = rnd.Next(0, 100);

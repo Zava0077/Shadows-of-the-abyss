@@ -9,7 +9,7 @@ public class Other : Offhands //разделить на подклассы
     // Start is called before the first frame update
     void Start()
     {
-        
+        //миньоны
     }
 
     // Update is called once per frame

@@ -140,10 +140,23 @@ MonoBehaviour:
   - 5
   - 0
   - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
   valuesNames:
   - Hp
   - Defence
-  - Damage
+  - BaseDamageToAttacks
   - IceDamage
   - IgniteDamage
   - LightningDamage
@@ -174,6 +187,19 @@ MonoBehaviour:
   - Kind
   - StackAmount
   - StacksAlready
+  - BaseCrit
+  - BaseAttackSpeed
+  - GlobalCritMulti
+  - BaseDamageToSpells
+  - CastSpeed
+  - CritToSpells
+  - MaxMana
+  - HPRegen
+  - MPRegen
+  - HPPerc
+  - MPPerc
+  - ProjSpeed
+  - MovementSpeed
   settings: 
   settingsNames: 
   kind: 5
@@ -592,6 +618,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c359160dda823a4287761f54425f145, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  critMultiSummand: 0
+  hpRegenSummand: 0
+  manaRegenSummand: 0
+  projSpeedSummand: 0
+  baseSpellDamageSummand: 0
+  baseSpellCritSummand: 0
+  baseCastSpeedSummand: 0
+  maxHpPercSummand: 0
+  maxManaPercSummand: 0
+  maxHpSummand: 0
+  maxManaSummand: 0
   damageSummand: 0
   iceDamageSummand: 0
   igniteDamageSummand: 0
@@ -607,7 +644,6 @@ MonoBehaviour:
   lightningResistSummand: 0
   criticalChanceSummand: 0
   evasionChanceSummand: 0
-  maxHpSummand: 0
   defenceSummand: 0
   manaCostSummand: 0
   weaponSizeSummand: 0

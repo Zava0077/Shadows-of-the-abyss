@@ -139,10 +139,23 @@ MonoBehaviour:
   - 0
   - 3
   - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
   valuesNames:
   - Hp
   - Defence
-  - Damage
+  - BaseDamageToAttacks
   - IceDamage
   - IgniteDamage
   - LightningDamage
@@ -151,7 +164,7 @@ MonoBehaviour:
   - PureDamage
   - IceResist
   - IgniteResist
-  - LightningDamage
+  - LightningResist
   - PoisonResist
   - VoidResist
   - EvasionChance
@@ -173,9 +186,25 @@ MonoBehaviour:
   - Kind
   - StackAmount
   - StacksAlready
+  - BaseCrit
+  - BaseAttackSpeed
+  - GlobalCritMulti
+  - BaseDamageToSpells
+  - CastSpeed
+  - CritToSpells
+  - MaxMana
+  - HPRegen
+  - MPRegen
+  - HPPerc
+  - MPPerc
+  - ProjSpeed
+  - MovementSpeed
+  settings: 
+  settingsNames: 
   kind: 0
   type: Usable
   id: 0
+  staticKind: 0
   itemDescription: Heals <color=red>10 HP</color>
   rareList: []
   rareChances: 

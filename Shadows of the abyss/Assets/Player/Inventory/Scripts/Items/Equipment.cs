@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Equipment : Prefixes
 {
-    // Start is called before the first frame update
+    public float icreaseAllDamage;
     void Start()
     {
         

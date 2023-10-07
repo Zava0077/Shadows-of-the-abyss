@@ -5,6 +5,12 @@ using UnityEngine;
 public class Weapon : Equipment
 {
     public float baseDamageToAttack;
+    public float baseIceDamageSummand;
+    public float baseIgniteDamageSummand;
+    public float baseLightningDamageSummand;
+    public float basePoisonDamageSummand;
+    public float baseVoidDamageSummand;
+    public float basePureDamageSummand;
     public float baseAttackSpeed;
     public float baseCrit;
     public float globalCritMulti;

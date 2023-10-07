@@ -7,6 +7,18 @@ using UnityEngine;
 public class Prefixes : MonoBehaviour
 {
     float rememberDamage;
+    public float movementSpeedSummand;
+    public float critMultiSummand;
+    public float hpRegenSummand;
+    public float manaRegenSummand;
+    public float projSpeedSummand;
+    public float baseSpellDamageSummand;
+    public float baseSpellCritSummand;
+    public float baseCastSpeedSummand;
+    public float maxHpPercSummand;
+    public float maxManaPercSummand;
+    public float maxHpSummand;
+    public float maxManaSummand;
     public float damageSummand;
     public float iceDamageSummand;
     public float igniteDamageSummand;
@@ -22,7 +34,6 @@ public class Prefixes : MonoBehaviour
     public float lightningResistSummand;
     public float criticalChanceSummand;
     public float evasionChanceSummand;
-    public float maxHpSummand;
     public float defenceSummand;
     public float manaCostSummand;
     public float weaponSizeSummand;

@@ -139,10 +139,23 @@ MonoBehaviour:
   - 4
   - 0
   - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
   valuesNames:
   - Hp
   - Defence
-  - Damage
+  - BaseDamageToAttacks
   - IceDamage
   - IgniteDamage
   - LightningDamage
@@ -173,6 +186,19 @@ MonoBehaviour:
   - Kind
   - StackAmount
   - StacksAlready
+  - BaseCrit
+  - BaseAttackSpeed
+  - GlobalCritMulti
+  - BaseDamageToSpells
+  - CastSpeed
+  - CritToSpells
+  - MaxMana
+  - HPRegen
+  - MPRegen
+  - HPPerc
+  - MPPerc
+  - ProjSpeed
+  - MovementSpeed
   settings: 
   settingsNames: 
   kind: 4
