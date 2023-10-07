@@ -12,6 +12,8 @@ public class Bat : Mob
     System.Random rand = new System.Random();
     Rigidbody2D rb;
     [SerializeField] private Transform target;
+    public GameObject[] drop;
+    public int[] dropChances;
     NavMeshAgent agent;
     bool CanDash = true;
     bool isDashing = false;
@@ -24,9 +26,9 @@ public class Bat : Mob
     float DashToPlayer = 3;
     void Start()
     {
-        Health = 10;
-        MaxHealth = 10;
-        Armor = 1;
+        Health = 30;
+        MaxHealth = 30;
+        Armor = 5;
         Speed = 2;
         //resistance
         FireRes = 0.1f;
@@ -50,6 +52,10 @@ public class Bat : Mob
     private void Update()
     {
         Limits();
+        GetComponentInChildren<SpriteRenderer>().color = Color.black;
+        Pushing();
+        if (Health <= 0)
+            Die(drop,dropChances);
         HealthBar.fillAmount = (float)Health / (float)MaxHealth;
         agent.SetDestination(target.position);
         DashToPlayer -= Time.deltaTime;

@@ -13,6 +13,7 @@ TagManager:
   - InscriptionsInventory
   - Enemy
   - Attack
+  - Wall
   layers:
   - Default
   - TransparentFX

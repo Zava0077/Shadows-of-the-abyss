@@ -105,55 +105,120 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a80ffead4ec418649a36b032a7d3cb67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 0
-  damage: 8
-  iceDamage: 0
-  igniteDamage: 0
-  lightningDamage: 0
-  poisonDamage: 0
-  voidDamage: 0
-  pureDamage: 0
-  defence: 0
-  iceResist: 0
-  igniteResist: 0
-  lightningResist: 0
-  poisonResist: 0
-  voidResist: 0
-  pureResist: 0
-  evasionChance: 0
-  criticalChance: 4
-  stackAmount: 0
-  stacksAlready: 0
+  values:
+  - 0
+  - 0
+  - 8
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 4
+  - 0
+  - 0
+  - 25
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0.5
+  - 0
+  - 0
+  - 1
+  - 0
+  - 2
+  - 4
+  - 4
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  valuesNames:
+  - Hp
+  - Defence
+  - BaseDamageToAttacks
+  - IceDamage
+  - IgniteDamage
+  - LightningDamage
+  - PoisonDamage
+  - VoidDamage
+  - PureDamage
+  - IceResist
+  - IgniteResist
+  - LightningResist
+  - PoisonResist
+  - VoidResist
+  - EvasionChance
+  - CriticalChance
+  - ManaCost
+  - WeaponSize
+  - AttackSpeed
+  - TripleAttackChance
+  - SecondUsageChance
+  - ExplosionChance
+  - ExplosionType
+  - WeaponCoolDown
+  - CreateProjectileChance
+  - Spikes
+  - Pierce
+  - ExtraPierceChance
+  - IdItem
+  - Inscription slots
+  - Kind
+  - StackAmount
+  - StacksAlready
+  - BaseCrit
+  - BaseAttackSpeed
+  - GlobalCritMulti
+  - BaseDamageToSpells
+  - CastSpeed
+  - CritToSpells
+  - MaxMana
+  - HPRegen
+  - MPRegen
+  - HPPerc
+  - MPPerc
+  - ProjSpeed
+  - MovementSpeed
+  settings: 
+  settingsNames: 
   kind: 4
   type: Ranged
-  weapon: {fileID: 0}
-  emptySprite: {fileID: 21300000, guid: 59a39c1bbaad10949bd53e406701b335, type: 3}
-  sprite: {fileID: 21300000, guid: df879b6a4acbff842bc6ae843a4dd07f, type: 3}
   id: 0
-  idItem: 3
+  staticKind: 4
   itemDescription: "\u0414\u0435\u0440\u0435\u0432\u044F\u043D\u043D\u044B\u0439
     \u043B\u0443\u043A"
   rareList:
   - Great
   - Distructive
   - Fast
-  rareChances: 210000002100000022000000
-  manaCost: 0
-  weaponSize: 1
-  attackSpeed: 50
-  tripleAttackChance: 0
-  secondUsageChance: 0
-  explosionChance: 0
-  explosionType: 0
-  weaponCooldown: 0.5
-  createProjectileChance: 0
-  spikes: 0
-  pierce: 0
-  extraPierceChance: 0
+  - Electric
+  rareChances: 19000000190000001900000019000000
   inscriptions: {fileID: 6751858720800780782}
   projectileSprite: {fileID: 21300000, guid: 2c978a079bdca7944b15148f9b70cfcd, type: 3}
   weaponSprite: {fileID: 21300000, guid: df879b6a4acbff842bc6ae843a4dd07f, type: 3}
-  inscriptionNum: 4
+  weapon: {fileID: 0}
+  emptySprite: {fileID: 21300000, guid: 59a39c1bbaad10949bd53e406701b335, type: 3}
+  sprite: {fileID: 21300000, guid: df879b6a4acbff842bc6ae843a4dd07f, type: 3}
   canBeReplaced: 1
   rareName: 
 --- !u!114 &9047657002591364943
