@@ -1,4 +1,4 @@
-using System.Collections;
+п»їusing System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
@@ -7,6 +7,105 @@ using Unity.VisualScripting;
 public class Entity : MonoBehaviour
 {
     [SerializeField] GameObject inscription;
+    public int MaxHealth;
+    public int Health;
+    public int Armor;
+    public float Speed;
+    public double FireRes;
+    public bool isInvincible;
+    public float LightningRes;
+    public float ColdRes;
+    public float PoisonRes;
+    public float PhysicalRes;
+    public float VoidRes;
+    public int Evasion;
+    public float CriticalChance;
+    public float CriticalMultiplier;
+    public float LifeRegeneration;
+    public float ManaRegeneration;
+    public int Mana;
+    public int MaxMana;
+    public float ProjectileSpeed;
+
+    public float PoisonDuration;
+    public float increasedPoisonDuration;
+    public float increasedDuration;
+
+    public float StatusResistance;
+    public float Luck;
+
+    public float PhysicalDamage;
+    public float FireDamage;
+    public float LightningDamage;
+    public float ColdDamage;
+    public float PoisonDamage;
+    public float VoidDamage;
+
+    public float increasedAllDamage;
+    public float increasedPhysicalDamage;
+    public float increasedFireDamage;
+    public float increasedLightningDamage;
+    public float increasedColdDamage;
+    public float increasedPoisonDamage;
+    public float increasedVoidDamage;
+    public float increasedMeleeDamage;
+    public float increasedSpellDamage;
+
+    public float increasedAttackSpeed;
+    public float increasedCastSpeed;
+    public float icreasedSpeed;
+    public float increasedArmor;
+    public float increasedEvasion;
+    public float increasedHealth;
+
+    public void Limits()
+    {
+        #region ГЋГЈГ°Г Г­ГЁГ·ГҐГ­ГЁГї
+        if (FireRes > 0.75)
+        {
+            FireRes = 0.75;
+        }
+        if (ColdRes > 0.75)
+        {
+            ColdRes = 0.75f;
+        }
+        if (LightningRes > 0.75)
+        {
+            LightningRes = 0.75f;
+        }
+        if (PhysicalRes > 0.75)
+        {
+            PhysicalRes = 0.75f;
+        }
+        if (PoisonRes > 0.75)
+        {
+            PoisonRes = 0.75f;
+        }
+        if (VoidRes > 0.75)
+        {
+            VoidRes = 0.75f;
+        }
+        if (Health > MaxHealth)
+        {
+            Health = MaxHealth;
+        }
+        if (Evasion > 50)
+        {
+            Evasion = 50;
+        }
+        #endregion
+        if (Health <= 0)
+        {
+            if (gameObject.tag == "Player")
+            {
+                Debug.Log("hhui");
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
+        }
+    }
     public void Die(GameObject[] gameObjects, int[] chance)
     {
         Drop(gameObjects, chance);
@@ -136,7 +235,7 @@ public class Entity : MonoBehaviour
                 for (int j = 0; j < 10; j++)
                 {
                     //GameObject insc = Instantiate(inscription);
-                    //article.GetComponent<Slot>().inscriptions[j] = insc; //создать скрипт инскрипшионс, там хранить все переменные в виде массива [10] в скрипте слот создать список, хранящий этот скрипт, таким образом он будет переносится из слота в слот.
+                    //article.GetComponent<Slot>().inscriptions[j] = insc; //СЃРѕР·РґР°С‚СЊ СЃРєСЂРёРїС‚ РёРЅСЃРєСЂРёРїС€РёРѕРЅСЃ, С‚Р°Рј С…СЂР°РЅРёС‚СЊ РІСЃРµ РїРµСЂРµРјРµРЅРЅС‹Рµ РІ РІРёРґРµ РјР°СЃСЃРёРІР° [10] РІ СЃРєСЂРёРїС‚Рµ СЃР»РѕС‚ СЃРѕР·РґР°С‚СЊ СЃРїРёСЃРѕРє, С…СЂР°РЅСЏС‰РёР№ СЌС‚РѕС‚ СЃРєСЂРёРїС‚, С‚Р°РєРёРј РѕР±СЂР°Р·РѕРј РѕРЅ Р±СѓРґРµС‚ РїРµСЂРµРЅРѕСЃРёС‚СЃСЏ РёР· СЃР»РѕС‚Р° РІ СЃР»РѕС‚.
                 }
                 //
                 if (description == "" && article.GetComponent<Slot>().itemDescription == "")
