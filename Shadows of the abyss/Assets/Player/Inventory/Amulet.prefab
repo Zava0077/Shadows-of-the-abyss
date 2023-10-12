@@ -153,6 +153,7 @@ MonoBehaviour:
   - 0
   - 0
   - 0
+  - 0
   valuesNames:
   - Hp
   - Defence
@@ -200,6 +201,7 @@ MonoBehaviour:
   - MPPerc
   - ProjSpeed
   - MovementSpeed
+  - Luck
   settings: 
   settingsNames: 
   kind: 5
@@ -615,9 +617,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 8283065102806030095}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c359160dda823a4287761f54425f145, type: 3}
+  m_Script: {fileID: 11500000, guid: 4897bc4568a7967478beccc72cc8b968, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  luckSummand: 0
+  movementSpeedSummand: 0
   critMultiSummand: 0
   hpRegenSummand: 0
   manaRegenSummand: 0
@@ -658,7 +662,19 @@ MonoBehaviour:
   inscSummand: 0
   extraDescription: 
   qualityColor: 
+  icreaseAllDamage: 0
+  incripSlots: 0
   manaAdd: 0
   hpAdd: 0
-  critAdd: 0
-  manaPercent: 0
+  baseIceResistSummand: 0
+  baseIgniteResistSummand: 0
+  baseLightningResistSummand: 0
+  basePoisonResistSummand: 0
+  baseVoidResistSummand: 0
+  basePureResistSummand: 0
+  baseEvasionChance: 0
+  baseDefence: 0
+  luck: 12
+  greed: 0
+  critAdd: 5
+  manaPercent: 5

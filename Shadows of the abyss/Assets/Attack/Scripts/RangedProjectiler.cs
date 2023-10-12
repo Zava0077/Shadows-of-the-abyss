@@ -33,10 +33,10 @@ public class RangedProjectiler : MonoBehaviour
         }
         if (Random.Range(1, 100) <= secondAttackChance)
         {
-            Invoke(nameof(Destroying), ArmourInventory.self.attackSpeedValue);
+            Invoke(nameof(Destroying), 1/ArmourInventory.self.attackSpeedValue);
         }
         else
-            Invoke(nameof(FullDestroying), ArmourInventory.self.attackSpeedValue);
+            Invoke(nameof(FullDestroying), 1/ArmourInventory.self.attackSpeedValue);
     }
     void FullDestroying()
     {

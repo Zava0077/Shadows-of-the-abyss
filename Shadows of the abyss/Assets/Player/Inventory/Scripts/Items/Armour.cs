@@ -13,6 +13,7 @@ public class Armour : Equipment
     public float baseVoidResistSummand;
     public float basePureResistSummand;
     public float baseEvasionChance;
+    public float baseDefence;
     // Start is called before the first frame update
     void Start()
     {

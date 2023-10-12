@@ -7,6 +7,7 @@ using UnityEngine;
 public class Prefixes : MonoBehaviour
 {
     float rememberDamage;
+    public float luckSummand;
     public float movementSpeedSummand;
     public float critMultiSummand;
     public float hpRegenSummand;
@@ -83,6 +84,19 @@ public class Prefixes : MonoBehaviour
         createProjectileChanceSummand = 0;
         spikes = 0;
         inscSummand = 0;
+        movementSpeedSummand = 0;
+        critMultiSummand = 0;
+        hpRegenSummand = 0;
+        manaRegenSummand = 0;
+        projSpeedSummand = 0;
+        baseSpellDamageSummand = 0;
+        baseSpellCritSummand = 0;
+        baseCastSpeedSummand = 0;
+        maxHpPercSummand = 0;
+        maxManaPercSummand = 0;
+        maxHpSummand = 0;
+        maxManaSummand = 0;
+
         qualityColor = "#b80000";
         extraDescription = "";
         switch (prefix)
@@ -99,7 +113,7 @@ public class Prefixes : MonoBehaviour
                 criticalChanceSummand = 5;
                 inscSummand = -2;
                 qualityColor = "#9000ff";
-                attackSpeedSummand = 15;
+                attackSpeedSummand = 0.5f;
                 extraDescription = "";
                 break;
             case "Ignite":
@@ -111,7 +125,7 @@ public class Prefixes : MonoBehaviour
                 break;
             case "Fast":
                 damageSummand = -2;
-                attackSpeedSummand = -item.GetComponent<Slot>().values[18] / 2;
+                attackSpeedSummand = 1;
                 weaponCooldownSummand = -0.2f;
                 inscSummand = 1;
                 extraDescription = "<color=#2100a6>Small, but Fast!</color>";

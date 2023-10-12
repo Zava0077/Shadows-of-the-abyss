@@ -5,6 +5,7 @@ using UnityEngine;
 public class Equipment : Prefixes
 {
     public float icreaseAllDamage;
+    public float incripSlots;
     void Start()
     {
         

@@ -242,6 +242,7 @@ MonoBehaviour:
   - 0
   - 0
   - 0
+  - 0
   valuesNames:
   - Hp
   - Defence
@@ -289,6 +290,7 @@ MonoBehaviour:
   - MPPerc
   - ProjSpeed
   - MovementSpeed
+  - Luck
   settings: 
   settingsNames: 
   kind: 0

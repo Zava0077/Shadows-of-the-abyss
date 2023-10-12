@@ -166,86 +166,29 @@ public class Entity : MonoBehaviour
             int ifChance = 0;
             if (dropChance < chance[i])
             {
+      
                 article = Instantiate(gameObjects[i], gameObject.transform.position, Quaternion.identity);
                 string description = "";
                 rareName = "";
                 Prefixes.self.extraDescription = "";
-                //if (gameObjects[i].GetComponent<Slot>().type != "Usable" && gameObjects[i].GetComponent<Slot>().type != "Empty" && gameObjects[i].GetComponent<Slot>().type != "Scroll")
-                //    for (int k = 0; k < rareList.Length; k++)
-                //    {
-                //        ifChance += rareChances[k];
-                //        if (rareChance < ifChance)
-                //        {
-                //            rareName = rareList[k];
-                //            ifChance = 0;
-                //            break;
-                //        }
-                //        else continue;
-                //    }
                 article.GetComponent<Slot>().sprite = gameObjects[i].GetComponent<Slot>().sprite;
-                //article.GetComponent<Slot>().rareName = rareName;
-                //Prefixes.self.PrefixChooser(rareName, gameObjects[i].GetComponent<Slot>().values[2], article);
-                //description += "<color=" + Prefixes.self.qualityColor + ">" + article.GetComponent<Slot>().rareName + "</color>" + " " + article.GetComponent<Slot>().itemDescription + "\r\n";
-                //article.GetComponent<Slot>().values[2] += Prefixes.self.damageSummand;
-                //article.GetComponent<Slot>().values[3] += Prefixes.self.iceDamageSummand;
-                //article.GetComponent<Slot>().values[4] += Prefixes.self.igniteDamageSummand;
-                //article.GetComponent<Slot>().values[5] += Prefixes.self.lightningDamageSummand;
-                //article.GetComponent<Slot>().values[6] += Prefixes.self.poisonDamageSummand;
-                //article.GetComponent<Slot>().values[7] += Prefixes.self.voidDamageSummand;
-                //article.GetComponent<Slot>().values[8] += Prefixes.self.pureDamageSummand;
-                //article.GetComponent<Slot>().values[1] += Prefixes.self.defenceSummand;
-                //article.GetComponent<Slot>().values[9] += Prefixes.self.iceResistSummand;
-                //article.GetComponent<Slot>().values[10] += Prefixes.self.igniteResistSummand;
-                //article.GetComponent<Slot>().values[11] += Prefixes.self.lightningResistSummand;
-                //article.GetComponent<Slot>().values[12] += Prefixes.self.poisonResistSummand;
-                //article.GetComponent<Slot>().values[13] += Prefixes.self.voidResistSummand;
-                //article.GetComponent<Slot>().values[0] += Prefixes.self.maxHpSummand;
-                //article.GetComponent<Slot>().values[14] += Prefixes.self.evasionChanceSummand;
-                //article.GetComponent<Slot>().values[15] += Prefixes.self.criticalChanceSummand;
                 article.GetComponent<Slot>().values[30] = gameObjects[i].GetComponent<Slot>().kind;
                 article.GetComponent<Slot>().values[28] = gameObjects[i].GetComponent<Slot>().values[28];
+                
+                
+           
                 //
-                //article.GetComponent<Slot>().values[16] += Prefixes.self.manaCostSummand;
-                //article.GetComponent<Slot>().values[17] += Prefixes.self.weaponSizeSummand;
-                //article.GetComponent<Slot>().values[18] += Prefixes.self.attackSpeedSummand;
-                //article.GetComponent<Slot>().values[19] += Prefixes.self.secondUsageChanceSummand;
-                //article.GetComponent<Slot>().values[20] += Prefixes.self.tripleAttackChanceSummand;
-                //article.GetComponent<Slot>().values[21] += Prefixes.self.explChanceSummand;
-                //article.GetComponent<Slot>().values[22] = Prefixes.self.explTypeEqualer;
-                //article.GetComponent<Slot>().values[23] += Prefixes.self.weaponCooldownSummand;
-                //article.GetComponent<Slot>().values[24] += Prefixes.self.createProjectileChanceSummand;
+                //
 
-                //article.GetComponent<Slot>().values[25] += Prefixes.self.spikes;
-                //article.GetComponent<Slot>().values[29] += Prefixes.self.inscSummand;
-                //for (int k = 0; k < article.GetComponent<Slot>().values.Length; k++)
-                //    if (article.GetComponent<Slot>().values[k] != 0 && k != 28 && k != 30 && k != 31 && k != 32)
-                //        description += article.GetComponent<Slot>().valuesNames[k] + ": <b>" + "<color=red>" + article.GetComponent<Slot>().values[k] + "</color>" + "</b>" + "\r\n";
-                //if (description == "" && article.GetComponent<Slot>().itemDescription == "")
-                //    description = "Empty";
-                //else if (description == "")
-                //    article.GetComponent<Slot>().itemDescription = article.GetComponent<Slot>().itemDescription;
-                //else
-                //    article.GetComponent<Slot>().itemDescription = description + Prefixes.self.extraDescription;
-                //if (gameObjects[i].GetComponent<Slot>().values[31] > 0) тут хуйня какая-то
-                //article.GetComponent<Slot>().spikes += Prefixes.self.spikes;
-                //if (article.GetComponent<Slot>().spikes > 0)
-                //    description += "Spikes: " + article.GetComponent<Slot>().spikes + "\r\n";
-                //
-                for (int j = 0; j < 10; j++)
-                {
-                    //GameObject insc = Instantiate(inscription);
-                    //article.GetComponent<Slot>().inscriptions[j] = insc; //ÑÐ¾Ð·Ð´Ð°ÑÑ ÑÐºÑÐ¸Ð¿Ñ Ð¸Ð½ÑÐºÑÐ¸Ð¿ÑÐ¸Ð¾Ð½Ñ, ÑÐ°Ð¼ Ñ
-                }
-                //
                 if (description == "" && article.GetComponent<Slot>().itemDescription == "")
                     description = "Empty";
                 else if (description == "")
                     article.GetComponent<Slot>().itemDescription = article.GetComponent<Slot>().itemDescription;
                 else
                     article.GetComponent<Slot>().itemDescription = description + Prefixes.self.extraDescription;
-                //if (gameObjects[i].GetComponent<Slot>().stackAmount > 0)
-                //    secondDropChance /= 2;
-                //else secondDropChance = 0;
+                if (gameObjects[i].GetComponent<Slot>().values[31] > 0)
+                    secondDropChance /= 2;
+                else secondDropChance = 0;
                 article.transform.position += new Vector3((float)rnd.Next(-2, 2) / 10, (float)rnd.Next(-2, 2) / 10);
             }
             gameObject.transform.localScale /= 100;

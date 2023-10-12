@@ -198,7 +198,7 @@ public class ArmourInventory : MonoBehaviour
                 pureDamageValue += pureDamage[i] + Inventory.slots[i + 16].inscriptions.pureDamageValue;
                 manaCostValue += manaCost[i] + Inventory.slots[i + 16].inscriptions.manaCostValue;
                 weaponSizeValue += weaponSize[i] + Inventory.slots[i + 16].inscriptions.weaponSizeValue;
-                attackSpeedValue += attackSpeed[i] / 100 + Inventory.slots[i + 16].inscriptions.attackSpeedValue / 100;
+                attackSpeedValue += attackSpeed[i] + Inventory.slots[i + 16].inscriptions.attackSpeedValue;
                 tripleAttackChanceValue += tripleAttackChance[i] + Inventory.slots[i + 16].inscriptions.tripleAttackChanceValue;
                 secondUsageChanceValue += secondUsageChance[i] + Inventory.slots[i + 16].inscriptions.secondUsageChanceValue;
                 explosionChanceValue += explosionChance[i] + Inventory.slots[i + 16].inscriptions.explosionChanceValue;

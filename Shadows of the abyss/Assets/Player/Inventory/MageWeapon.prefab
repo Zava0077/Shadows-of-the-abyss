@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 1198719410411151621}
   - component: {fileID: -2268303626492903351}
   - component: {fileID: -2777852560916092703}
+  - component: {fileID: 5601727143624166840}
   m_Layer: 5
   m_Name: MageWeapon
   m_TagString: Untagged
@@ -108,7 +109,6 @@ MonoBehaviour:
   values:
   - 0
   - 0
-  - 8
   - 0
   - 0
   - 0
@@ -121,22 +121,24 @@ MonoBehaviour:
   - 0
   - 0
   - 0
-  - 4
-  - 25
-  - 0
-  - 25
   - 0
   - 0
   - 0
   - 0
-  - 0.5
   - 0
   - 0
-  - 1
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
   - 0
   - 2
+  - 0
   - 4
-  - 4
+  - 0
   - 0
   - 0
   - 0
@@ -199,6 +201,7 @@ MonoBehaviour:
   - MPPerc
   - ProjSpeed
   - MovementSpeed
+  - Luck
   settings: 
   settingsNames: 
   kind: 4
@@ -609,3 +612,72 @@ MonoBehaviour:
   spikesValue: 0
   pierceValue: 0
   extraPierceChanceValue: 0
+--- !u!114 &5601727143624166840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8283065102806030095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 372978a2890dae748a072bcc9a56ad63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  luckSummand: 0
+  movementSpeedSummand: 0
+  critMultiSummand: 0
+  hpRegenSummand: 0
+  manaRegenSummand: 0
+  projSpeedSummand: 0
+  baseSpellDamageSummand: 0
+  baseSpellCritSummand: 0
+  baseCastSpeedSummand: 0
+  maxHpPercSummand: 0
+  maxManaPercSummand: 0
+  maxHpSummand: 0
+  maxManaSummand: 0
+  damageSummand: 0
+  iceDamageSummand: 0
+  igniteDamageSummand: 0
+  voidDamageSummand: 0
+  pureDamageSummand: 0
+  poisonDamageSummand: 0
+  lightningDamageSummand: 0
+  iceResistSummand: 0
+  igniteResistSummand: 0
+  voidResistSummand: 0
+  pureResistSummand: 0
+  poisonResistSummand: 0
+  lightningResistSummand: 0
+  criticalChanceSummand: 0
+  evasionChanceSummand: 0
+  defenceSummand: 0
+  manaCostSummand: 0
+  weaponSizeSummand: 0
+  attackSpeedSummand: 0
+  secondUsageChanceSummand: 0
+  tripleAttackChanceSummand: 0
+  explChanceSummand: 0
+  explTypeEqualer: 0
+  weaponCooldownSummand: 0
+  createProjectileChanceSummand: 0
+  spikes: 0
+  inscSummand: 0
+  extraDescription: 
+  qualityColor: 
+  icreaseAllDamage: 0
+  incripSlots: 2
+  baseDamageToAttack: 0
+  baseIceDamageSummand: 0
+  baseIgniteDamageSummand: 0
+  baseLightningDamageSummand: 0
+  basePoisonDamageSummand: 0
+  baseVoidDamageSummand: 0
+  basePureDamageSummand: 0
+  baseAttackSpeed: 0
+  baseCrit: 0
+  globalCritMulti: 0
+  baseDamageToSpells: 4
+  castSpeed: 0
+  critToSpells: 5

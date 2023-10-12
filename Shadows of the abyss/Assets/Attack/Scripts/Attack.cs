@@ -60,7 +60,7 @@ public class Attack : MonoBehaviour
     }
     public void AttackInvoker()
     {
-        Invoke(nameof(Attacking), ArmourInventory.self.attackSpeedValue);
+        Invoke(nameof(Attacking), 1 / ArmourInventory.self.attackSpeedValue);
     }
     public void Attacking()
     {

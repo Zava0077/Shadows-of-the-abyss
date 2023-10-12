@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Ability : MonoBehaviour
 {
+    public bool _isActive;
+    public bool _isStart = true;
     public GameObject[] abilities = new GameObject[10];
     int abilityLevel = 0;
     public void UseAbility(GameObject ability)

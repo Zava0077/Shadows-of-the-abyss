@@ -742,15 +742,49 @@ MonoBehaviour:
   Health: 0
   Armor: 0
   Speed: 0
-  FireRes: 0
+  isInvincible: 0
+  CriticalChance: 0
+  CriticalMultiplier: 0
+  LifeRegeneration: 0
+  ManaRegeneration: 0
+  Mana: 0
+  MaxMana: 0
+  ProjectileSpeed: 0
+  PoisonDuration: 0
+  increasedPoisonDuration: 0
+  increasedDuration: 0
+  StatusResistance: 0
+  Luck: 0
+  PhysicalDamage: 0
+  FireDamage: 0
+  LightningDamage: 0
+  ColdDamage: 0
+  PoisonDamage: 0
+  VoidDamage: 0
+  increasedAllDamage: 0
+  increasedPhysicalDamage: 0
+  increasedFireDamage: 0
+  increasedLightningDamage: 0
+  increasedColdDamage: 0
+  increasedPoisonDamage: 0
+  increasedVoidDamage: 0
+  increasedMeleeDamage: 0
+  increasedSpellDamage: 0
+  increasedAttackSpeed: 0
+  increasedCastSpeed: 0
+  icreasedSpeed: 0
+  increasedArmor: 0
+  increasedEvasion: 0
+  increasedHealth: 0
   LightningRes: 0
   ColdRes: 0
   PoisonRes: 0
   PhysicalRes: 0
+  FireRes: 0
   VoidRes: 0
   Evasion: 0
   gameObjects:
-  - {fileID: 8283065102806030095, guid: ab43b17e74beb3b45b8fa624f0f5ccb3, type: 3}
+  - {fileID: 8283065102806030095, guid: 8d128d32fea60f44bb8c407aa36248d5, type: 3}
   chance: 64000000
 --- !u!114 &89106861
 MonoBehaviour:
@@ -771,11 +805,45 @@ MonoBehaviour:
   Health: 0
   Armor: 0
   Speed: 0
-  FireRes: 0
+  isInvincible: 0
+  CriticalChance: 0
+  CriticalMultiplier: 0
+  LifeRegeneration: 0
+  ManaRegeneration: 0
+  Mana: 0
+  MaxMana: 0
+  ProjectileSpeed: 0
+  PoisonDuration: 0
+  increasedPoisonDuration: 0
+  increasedDuration: 0
+  StatusResistance: 0
+  Luck: 0
+  PhysicalDamage: 0
+  FireDamage: 0
+  LightningDamage: 0
+  ColdDamage: 0
+  PoisonDamage: 0
+  VoidDamage: 0
+  increasedAllDamage: 0
+  increasedPhysicalDamage: 0
+  increasedFireDamage: 0
+  increasedLightningDamage: 0
+  increasedColdDamage: 0
+  increasedPoisonDamage: 0
+  increasedVoidDamage: 0
+  increasedMeleeDamage: 0
+  increasedSpellDamage: 0
+  increasedAttackSpeed: 0
+  increasedCastSpeed: 0
+  icreasedSpeed: 0
+  increasedArmor: 0
+  increasedEvasion: 0
+  increasedHealth: 0
   LightningRes: 0
   ColdRes: 0
   PoisonRes: 0
   PhysicalRes: 0
+  FireRes: 0
   VoidRes: 0
   Evasion: 0
 --- !u!114 &89106862
@@ -790,6 +858,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27e59e12eb7485040b3cea580b30df98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  luckSummand: 0
+  movementSpeedSummand: 0
+  critMultiSummand: 0
+  hpRegenSummand: 0
+  manaRegenSummand: 0
+  projSpeedSummand: 0
+  baseSpellDamageSummand: 0
+  baseSpellCritSummand: 0
+  baseCastSpeedSummand: 0
+  maxHpPercSummand: 0
+  maxManaPercSummand: 0
+  maxHpSummand: 0
+  maxManaSummand: 0
   damageSummand: 0
   iceDamageSummand: 0
   igniteDamageSummand: 0
@@ -805,7 +886,6 @@ MonoBehaviour:
   lightningResistSummand: 0
   criticalChanceSummand: 0
   evasionChanceSummand: 0
-  maxHpSummand: 0
   defenceSummand: 0
   manaCostSummand: 0
   weaponSizeSummand: 0
@@ -5258,22 +5338,60 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d872d1ad70447c41af10216073eab21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inscription: {fileID: 0}
+  damageNumber: {fileID: 0}
+  isPushing: 0
   MaxHealth: 100
   Health: 100
   Armor: 0
   Speed: 5
-  FireRes: 0
+  isInvincible: 0
+  CriticalChance: 0
+  CriticalMultiplier: 0
+  LifeRegeneration: 0
+  ManaRegeneration: 0
+  Mana: 200
+  MaxMana: 200
+  ProjectileSpeed: 0
+  PoisonDuration: 0
+  increasedPoisonDuration: 0
+  increasedDuration: 0
+  StatusResistance: 0
+  Luck: 0
+  PhysicalDamage: 0
+  FireDamage: 0
+  LightningDamage: 0
+  ColdDamage: 0
+  PoisonDamage: 0
+  VoidDamage: 0
+  increasedAllDamage: 0
+  increasedPhysicalDamage: 0
+  increasedFireDamage: 0
+  increasedLightningDamage: 0
+  increasedColdDamage: 0
+  increasedPoisonDamage: 0
+  increasedVoidDamage: 0
+  increasedMeleeDamage: 0
+  increasedSpellDamage: 0
+  increasedAttackSpeed: 0
+  increasedCastSpeed: 0
+  icreasedSpeed: 0
+  increasedArmor: 0
+  increasedEvasion: 0
+  increasedHealth: 0
   LightningRes: 0
   ColdRes: 0
   PoisonRes: 0
   PhysicalRes: 0
+  FireRes: 0
   VoidRes: 0
   Evasion: 0
   collider2D: {fileID: 805274008}
   rb2d: {fileID: 805274009}
   readyToSpeak: 0
-  Mana: 200
-  MaxMana: 200
+  Dexterity: 0
+  Intelligence: 0
+  Strength: 0
   Camera: {fileID: 519420031}
 --- !u!61 &805274008
 BoxCollider2D:
