@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Quiver : Offhands
 {
-    public float damageAdd;
+    public float attackDamage;
     public float projSpeed;
     // Start is called before the first frame update
     void Awake()
@@ -84,8 +84,8 @@ public class Quiver : Offhands
                             break;
                     }
             }
-            gameObject.GetComponent<Slot>().values[2] += damageAdd + damageSummand + rarity.attackDamage;
-            gameObject.GetComponent<Slot>().values[44] += projSpeed + projSpeedSummand + rarity.projSpeed;
+            gameObject.GetComponent<Slot>().values[2] += attackDamage + attackDamageSummand + rarity.attackDamageRare;
+            gameObject.GetComponent<Slot>().values[44] += projSpeed + projSpeedSummand + rarity.projSpeedRare;
             //
             for (int k = 0; k < gameObject.GetComponent<Slot>().values.Length; k++)
                 if (gameObject.GetComponent<Slot>().values[k] != 0 && k != 28 && k != 30 && k != 31 && k != 32)

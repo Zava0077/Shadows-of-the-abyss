@@ -91,22 +91,26 @@ public class CastWeapon : Weapon
 
         for (int i = 0; i < _properties.Length; i++)
         {
-            int num = rnd.Next(1, 11); //11 is number of parameters down bellow;
-            _properties[i] = !_properties.Contains(num) ? num : rnd.Next(1, 100) < 50 ? rnd.Next(num, 11) : rnd.Next(1, num);
+            int num = rnd.Next(1, 6); //11 is number of parameters down bellow;
+            _properties[i] = !_properties.Contains(num) ? num : rnd.Next(1, 100) < 50 ? rnd.Next(num, 6) : rnd.Next(1, num);
         }
-        gameObject.GetComponent<Slot>().values[36] += baseDamageToSpells + baseSpellDamageSummand + rarity.castDamage;
-        gameObject.GetComponent<Slot>().values[37] += castSpeed != 0 || _properties.Contains(1) ? castSpeed + baseCastSpeedSummand + rarity.castSpeed : 0;
-        gameObject.GetComponent<Slot>().values[38] += critToSpells + baseSpellCritSummand + rarity.castCrit;
-        gameObject.GetComponent<Slot>().values[15] += baseCrit != 0 || _properties.Contains(2) ? baseCrit + criticalChanceSummand + rarity.globalCrit : 0; //
-        gameObject.GetComponent<Slot>().values[2] += baseDamageToAttack != 0 || _properties.Contains(3) ? baseDamageToAttack + damageSummand + rarity.attackDamage : 0; //
-        gameObject.GetComponent<Slot>().values[18] += baseAttackSpeed != 0 || _properties.Contains(4) ? baseAttackSpeed + attackSpeedSummand + rarity.attackSpeed : 0; //
-        gameObject.GetComponent<Slot>().values[35] += globalCritMulti != 0 || _properties.Contains(5) ? globalCritMulti + critMultiSummand + rarity.globalCritMulti : 0;
-        gameObject.GetComponent<Slot>().values[3] += baseIceDamageSummand != 0 || _properties.Contains(6) ? baseIceDamageSummand + iceDamageSummand + rarity.iceDamage : 0;
-        gameObject.GetComponent<Slot>().values[4] += baseIgniteDamageSummand != 0 || _properties.Contains(7) ? baseIgniteDamageSummand + igniteDamageSummand + rarity.igniteDamage : 0;
-        gameObject.GetComponent<Slot>().values[5] += baseLightningDamageSummand != 0 || _properties.Contains(8) ? baseLightningDamageSummand + lightningDamageSummand + rarity.lightningDamage : 0;
-        gameObject.GetComponent<Slot>().values[6] += basePoisonDamageSummand != 0 || _properties.Contains(9) ? basePoisonDamageSummand + poisonDamageSummand + rarity.poisonDamage : 0;
-        gameObject.GetComponent<Slot>().values[7] += baseVoidDamageSummand != 0 || _properties.Contains(10) ? baseVoidDamageSummand + voidDamageSummand + rarity.voidDamage : 0;
-        gameObject.GetComponent<Slot>().values[8] += basePureDamageSummand != 0 || _properties.Contains(11) ? basePureDamageSummand + pureDamageSummand + rarity.pureDamage : 0;
+        gameObject.GetComponent<Slot>().values[36] += castDamage + castDamageSummand + rarity.castDamageRare;
+        gameObject.GetComponent<Slot>().values[37] += castSpeed != 0 || _properties.Contains(1) ? castSpeed + castSpeedSummand + rarity.castSpeedRare : 0;
+        gameObject.GetComponent<Slot>().values[38] += castCrit + castCritSummand + rarity.castCritRare;
+        gameObject.GetComponent<Slot>().values[15] += globalCrit != 0 || _properties.Contains(2) ? globalCritSummand + rarity.globalCritRare : 0; //
+        gameObject.GetComponent<Slot>().values[2] += attackDamage != 0 || _properties.Contains(3) ? attackDamageSummand + rarity.attackDamageRare : 0; //
+        gameObject.GetComponent<Slot>().values[18] += attackSpeed != 0 || _properties.Contains(4) ? attackSpeedSummand + rarity.attackSpeedRare : 0; //
+        gameObject.GetComponent<Slot>().values[35] += globalCritMulti != 0 || _properties.Contains(5) ? globalCritMultiSummand + rarity.globalCritMultiRare : 0;
+        for (int tier = 0; tier < (rarity.rarityTier > 2 ? 1 : rarity.rarityTier > 3 ? 2 : 0) && _properties.Contains(2); tier++)
+            for (int i = 0; rarity.rarityTier > 2; i++)
+            {
+                if (Random.Range(0, 5) == 0) { gameObject.GetComponent<Slot>().values[3] += iceDamage != 0 ? iceDamageSummand + rarity.iceDamageRare : 0; break; }
+                if (Random.Range(0, 5) == 1) { gameObject.GetComponent<Slot>().values[4] += igniteDamage != 0 ? igniteDamageSummand + rarity.igniteDamageRare : 0; break; }
+                if (Random.Range(0, 5) == 2) { gameObject.GetComponent<Slot>().values[5] += lightningDamage != 0 ? lightningDamageSummand + rarity.lightningDamageRare : 0; break; }
+                if (Random.Range(0, 5) == 3) { gameObject.GetComponent<Slot>().values[6] += poisonDamage != 0 ? poisonDamageSummand + rarity.poisonDamageRare : 0; break; }
+                if (Random.Range(0, 5) == 4) { gameObject.GetComponent<Slot>().values[7] += voidDamage != 0 ? voidDamageSummand + rarity.voidDamageRare : 0; break; }
+                if (Random.Range(0, 5) == 5) { gameObject.GetComponent<Slot>().values[8] += pureDamage != 0 ? pureDamageSummand + rarity.pureDamageRare : 0; break; }
+            }
         gameObject.GetComponent<Slot>().values[29] += incripSlots + inscSummand + rarity.inscriptionAdded;
         //
         for (int k = 0; k < gameObject.GetComponent<Slot>().values.Length; k++)

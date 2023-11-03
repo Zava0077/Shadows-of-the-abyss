@@ -617,7 +617,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8283065102806030095}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c359160dda823a4287761f54425f145, type: 3}
+  m_Script: {fileID: 11500000, guid: 8b25cffeeca907b44844e613ab5b7bfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   luckSummand: 0
@@ -662,7 +662,8 @@ MonoBehaviour:
   inscSummand: 0
   extraDescription: 
   qualityColor: 
-  icreaseAllDamage: 2
+  icreaseAllDamage: 0
+  incripSlots: 0
   manaAdd: 0
   hpAdd: 0
   baseIceResistSummand: 0
@@ -672,7 +673,10 @@ MonoBehaviour:
   baseVoidResistSummand: 0
   basePureResistSummand: 0
   baseEvasionChance: 0
-  luck: 2
-  greed: 5
-  critAdd: 0
-  manaPercent: 0
+  baseDefence: 0
+  luck: 5
+  greed: 12
+  attackSpeed: 4
+  castSpeed: 4
+  regenHP: 0
+  regenMP: 0

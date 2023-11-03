@@ -675,6 +675,6 @@ MonoBehaviour:
   baseEvasionChance: 0
   baseDefence: 0
   luck: 12
-  greed: 0
+  greed: 5
   critAdd: 5
   manaPercent: 5

@@ -86,9 +86,9 @@ public class Sheild : Offhands
                         break;
                 }
         }
-        gameObject.GetComponent<Slot>().values[14] += blockChance + evasionChanceSummand + rarity.evasionChance;
-        gameObject.GetComponent<Slot>().values[18] += attackSpeed + attackSpeedSummand + rarity.attackSpeed;
-        gameObject.GetComponent<Slot>().values[37] += castSpeed + baseCastSpeedSummand + rarity.castSpeed;
+        gameObject.GetComponent<Slot>().values[14] += blockChance + evasionChanceSummand + rarity.evasionChanceRare;
+        gameObject.GetComponent<Slot>().values[18] += attackSpeed + attackSpeedSummand + rarity.attackSpeedRare;
+        gameObject.GetComponent<Slot>().values[37] += castSpeed + castSpeedSummand + rarity.castSpeedRare;
         //
         for (int k = 0; k < gameObject.GetComponent<Slot>().values.Length; k++)
             if (gameObject.GetComponent<Slot>().values[k] != 0 && k != 28 && k != 30 && k != 31 && k != 32)

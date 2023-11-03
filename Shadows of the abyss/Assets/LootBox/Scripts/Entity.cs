@@ -155,7 +155,6 @@ public class Entity : MonoBehaviour
 
         for (int i = 0; i < gameObjects.Length; i++)
         {
-            int rareChance = rnd.Next(0, 100);
             int dropChance = rnd.Next(0, 100);
             string rareName = "";
             int secondDropChance = 100;

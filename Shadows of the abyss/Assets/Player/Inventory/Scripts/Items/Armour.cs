@@ -4,16 +4,15 @@ using UnityEngine;
 
 public class Armour : Equipment
 {
-    public float manaAdd;
-    public float hpAdd;
-    public float baseIceResistSummand;
-    public float baseIgniteResistSummand;
-    public float baseLightningResistSummand;
-    public float basePoisonResistSummand;
-    public float baseVoidResistSummand;
-    public float basePureResistSummand;
-    public float baseEvasionChance;
-    public float baseDefence;
+    public float maxMP;
+    public float maxHP;
+    public float defence;
+    public float iceResist;
+    public float igniteResist;
+    public float lightningResist;
+    public float poisonResist;
+    public float evasionChance;
+    public float voidResist;
     // Start is called before the first frame update
     void Start()
     {

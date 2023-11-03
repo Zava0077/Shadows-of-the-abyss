@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
+using UnityEditor.SearchService;
 using UnityEngine;
 
 public class Ring : Jewelery
@@ -95,18 +97,21 @@ public class Ring : Jewelery
             int num = rnd.Next(1, 12); //12 is number of parameters down bellow;
             _properties[i] = !_properties.Contains(num) ? num : rnd.Next(1, 100) < 50 ? rnd.Next(num, 12) : rnd.Next(1, num);
         }
-        gameObject.GetComponent<Slot>().values[0] += hpAdd != 0 || _properties.Contains(1) ? hpAdd + maxHpSummand + rarity.maxHP : 0;
-        gameObject.GetComponent<Slot>().values[39] += manaAdd != 0 || _properties.Contains(2) ? manaAdd + maxManaSummand + rarity.maxMP : 0;
-        gameObject.GetComponent<Slot>().values[18] += attackSpeed != 0 || _properties.Contains(3) ? attackSpeed + attackSpeedSummand + rarity.attackSpeed : 0;
-        gameObject.GetComponent<Slot>().values[37] += castSpeed != 0 || _properties.Contains(4) ? castSpeed + baseCastSpeedSummand + rarity.castSpeed : 0;
-        gameObject.GetComponent<Slot>().values[40] += regenHP != 0 || _properties.Contains(5) ? regenHP + hpRegenSummand + rarity.HPRegen : 0;
-        gameObject.GetComponent<Slot>().values[41] += regenMP != 0 || _properties.Contains(6) ? regenMP + manaRegenSummand + rarity.MPRegen : 0;
-        gameObject.GetComponent<Slot>().values[10] += baseIgniteResistSummand != 0 || _properties.Contains(7) ? baseIgniteResistSummand + igniteResistSummand + rarity.igniteResist : 0;
-        gameObject.GetComponent<Slot>().values[9] += baseIceResistSummand != 0 || _properties.Contains(8) ? baseIceResistSummand + iceResistSummand + rarity.iceResist : 0;
-        gameObject.GetComponent<Slot>().values[11] += baseLightningResistSummand != 0 || _properties.Contains(9) ? baseLightningResistSummand + lightningResistSummand + rarity.lightningResist : 0;
-        gameObject.GetComponent<Slot>().values[12] += basePoisonResistSummand != 0 || _properties.Contains(10) ? basePoisonResistSummand + poisonResistSummand + rarity.poisonResist : 0;
-        gameObject.GetComponent<Slot>().values[14] += baseEvasionChance != 0 || _properties.Contains(11) ? baseEvasionChance + evasionChanceSummand + rarity.evasionChance : 0;
-        gameObject.GetComponent<Slot>().values[13] += baseVoidResistSummand != 0 || _properties.Contains(12) ? baseVoidResistSummand + voidResistSummand + rarity.voidResist : 0;
+        gameObject.GetComponent<Slot>().values[0] += maxHP != 0 || _properties.Contains(1) ? maxHPSummand + rarity.maxHPRare : 0;
+        gameObject.GetComponent<Slot>().values[39] += maxMP != 0 || _properties.Contains(2) ? maxMPSummand + rarity.maxMPRare : 0;
+        gameObject.GetComponent<Slot>().values[18] += attackSpeed != 0 || _properties.Contains(3) ? attackSpeedSummand + rarity.attackSpeedRare : 0;
+        gameObject.GetComponent<Slot>().values[37] += castSpeed != 0 || _properties.Contains(4) ? castSpeedSummand + rarity.castSpeedRare : 0;
+        gameObject.GetComponent<Slot>().values[40] += regenHP != 0 || _properties.Contains(5) ? HPRegenSummand + rarity.HPRegenRare : 0;
+        gameObject.GetComponent<Slot>().values[41] += regenMP != 0 || _properties.Contains(6) ? MPRegenSummand + rarity.MPRegenRare : 0;
+        gameObject.GetComponent<Slot>().values[46] += luck + luckSummand - greed + rarity.luckRare;//сделать проверку на свойство Greedy
+        gameObject.GetComponent<Slot>().values[29] += incripSlots + inscSummand + rarity.inscriptionAdded;
+        gameObject.GetComponent<Slot>().values[10] += igniteResist != 0 || _properties.Contains(2) ? igniteResistSummand + rarity.igniteResistRare : 0;
+        gameObject.GetComponent<Slot>().values[9] += iceResist != 0 || _properties.Contains(3) ? iceResistSummand + rarity.iceResistRare : 0;
+        gameObject.GetComponent<Slot>().values[11] += lightningResist != 0 || _properties.Contains(4) ? lightningResistSummand + rarity.lightningResistRare : 0;
+        gameObject.GetComponent<Slot>().values[12] += poisonResist != 0 || _properties.Contains(5) ? poisonResistSummand + rarity.poisonResistRare : 0;
+        gameObject.GetComponent<Slot>().values[14] += evasionChance != 0 || _properties.Contains(6) ? evasionChanceSummand + rarity.evasionChanceRare : 0;
+        gameObject.GetComponent<Slot>().values[13] += voidResist != 0 || _properties.Contains(7) ? voidResistSummand + rarity.voidResistRare : 0;
+
 
         //
         for (int k = 0; k < gameObject.GetComponent<Slot>().values.Length; k++)

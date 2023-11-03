@@ -6,46 +6,46 @@ using UnityEngine;
 
 public class Prefixes : MonoBehaviour
 {
-    float rememberDamage;
-    public float luckSummand;
-    public float movementSpeedSummand;
-    public float critMultiSummand;
-    public float hpRegenSummand;
-    public float manaRegenSummand;
-    public float projSpeedSummand;
-    public float baseSpellDamageSummand;
-    public float baseSpellCritSummand;
-    public float baseCastSpeedSummand;
-    public float maxHpPercSummand;
-    public float maxManaPercSummand;
-    public float maxHpSummand;
-    public float maxManaSummand;
-    public float damageSummand;
+    public float globalCritSummand;
+    public float globalCritMultiSummand;
+    public float attackCritSummand;
+    public float castCritSummand;
+    public float globalDamageSummand;
+    public float attackDamageSummand;
+    public float castDamageSummand;
     public float iceDamageSummand;
     public float igniteDamageSummand;
-    public float voidDamageSummand;
-    public float pureDamageSummand;
-    public float poisonDamageSummand;
     public float lightningDamageSummand;
+    public float poisonDamageSummand;
+    public float pureDamageSummand;
+    public float voidDamageSummand;
+    public float attackSpeedSummand;
+    public float castSpeedSummand;
+    public float projSpeedSummand;
+    public float maxHPSummand;
+    public float maxHPPercentSummand;
+    public float maxMPSummand;
+    public float maxMPPercentSummand;
+    public float HPRegenSummand;
+    public float MPRegenSummand;
+    public float defenceSummand;
     public float iceResistSummand;
     public float igniteResistSummand;
-    public float voidResistSummand;
-    public float pureResistSummand;
-    public float poisonResistSummand;
     public float lightningResistSummand;
-    public float criticalChanceSummand;
+    public float poisonResistSummand;
     public float evasionChanceSummand;
-    public float defenceSummand;
+    public float voidResistSummand;
+    public float moveSpeedSummand;
+    public float luckSummand;
     public float manaCostSummand;
     public float weaponSizeSummand;
-    public float attackSpeedSummand;
     public float secondUsageChanceSummand;
     public float tripleAttackChanceSummand;
     public float explChanceSummand;
     public float explTypeEqualer;
     public float weaponCooldownSummand;
     public float createProjectileChanceSummand;
-    public float spikes;
+    public float spikesEqualer;
     public float inscSummand;
     public string extraDescription = "";
     public static Prefixes self;
@@ -56,7 +56,7 @@ public class Prefixes : MonoBehaviour
     }
     public void PrefixChooser(string prefix, float rememberDamage, GameObject item)
     {
-        damageSummand = 0;
+        attackDamageSummand = 0;
         iceDamageSummand = 0;
         igniteDamageSummand = 0;
         voidDamageSummand = 0;
@@ -66,12 +66,13 @@ public class Prefixes : MonoBehaviour
         iceResistSummand = 0;
         igniteResistSummand = 0;
         voidResistSummand = 0;
-        pureResistSummand = 0;
         poisonResistSummand = 0;
         lightningResistSummand = 0;
-        criticalChanceSummand = 0;
+        globalCritSummand = 0;
+        attackCritSummand = 0;
+        castCritSummand = 0;
         evasionChanceSummand = 0;
-        maxHpSummand = 0;
+        maxHPSummand = 0;
         defenceSummand = 0;
         manaCostSummand = 0;
         weaponSizeSummand = 0;
@@ -82,60 +83,65 @@ public class Prefixes : MonoBehaviour
         explTypeEqualer = 0;
         weaponCooldownSummand = 0;
         createProjectileChanceSummand = 0;
-        spikes = 0;
+        spikesEqualer = 0;
         inscSummand = 0;
-        movementSpeedSummand = 0;
-        critMultiSummand = 0;
-        hpRegenSummand = 0;
-        manaRegenSummand = 0;
+        moveSpeedSummand = 0;
+        globalCritMultiSummand = 0;
+        HPRegenSummand = 0;
+        MPRegenSummand = 0;
         projSpeedSummand = 0;
-        baseSpellDamageSummand = 0;
-        baseSpellCritSummand = 0;
-        baseCastSpeedSummand = 0;
-        maxHpPercSummand = 0;
-        maxManaPercSummand = 0;
-        maxHpSummand = 0;
-        maxManaSummand = 0;
+        castDamageSummand = 0;
+        castCritSummand = 0;
+        castSpeedSummand = 0;
+        maxMPPercentSummand = 0;
+        maxMPPercentSummand = 0;
+        maxHPSummand = 0;
+        maxMPPercentSummand = 0;
 
         qualityColor = "#b80000";
         extraDescription = "";
         switch (prefix)
         {
             case "Distructive":
-                damageSummand = 5;
-                criticalChanceSummand = 10;
+                attackDamageSummand = 5;
+                attackCritSummand = 10;
+                castCritSummand = 10;
                 inscSummand = -1;
                 qualityColor = "#ff1e00";
                 extraDescription = "";
                 break;
             case "Great":
-                damageSummand = 10;
-                criticalChanceSummand = 5;
+                attackDamageSummand = 10;
+                attackCritSummand = 10;
+                castCritSummand = 10;
                 inscSummand = -2;
                 qualityColor = "#9000ff";
                 attackSpeedSummand = 0.5f;
                 extraDescription = "";
                 break;
             case "Ignite":
-                igniteDamageSummand = rememberDamage + 5;
-                criticalChanceSummand = 5;
+                igniteDamageSummand = 5;
+                attackCritSummand = 5;
+                castCritSummand = 5;
+                igniteResistSummand = 5;
+                luckSummand = 2;
                 inscSummand = 1;
-                extraDescription = "<color=#ff5d00>Converts all physical damage into damage by fire</color>";
                 DamageDefaulter(item);
                 break;
             case "Fast":
-                damageSummand = -2;
+                attackDamageSummand = -2;
+                castDamageSummand = -2;
+                castSpeedSummand = 1;
                 attackSpeedSummand = 1;
                 weaponCooldownSummand = -0.2f;
                 inscSummand = 1;
-                extraDescription = "<color=#2100a6>Small, but Fast!</color>";
                 break;
             case "Electric":
-                lightningDamageSummand = rememberDamage + 5;
-                criticalChanceSummand = 5;
+                lightningDamageSummand = 5;
+                attackCritSummand = 5;
+                castCritSummand = 5;
                 inscSummand = 1;
                 qualityColor = "#73abff";
-                extraDescription = "<color=#ff5d00>Converts all physical damage into damage by lightning</color>";
                 DamageDefaulter(item);
                 break;
         }

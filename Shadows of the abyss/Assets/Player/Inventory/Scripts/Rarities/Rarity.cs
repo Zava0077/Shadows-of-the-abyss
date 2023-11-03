@@ -4,44 +4,46 @@ using UnityEngine;
 
 public class Rarity : MonoBehaviour
 {
-    public float globalCrit;
-    public float globalCritMulti;
-    public float attackCrit;
-    public float castCrit;
-    public float globalDamage;
-    public float attackDamage;
-    public float castDamage;
-    public float iceDamage;
-    public float igniteDamage;
-    public float lightningDamage;
-    public float poisonDamage;
-    public float pureDamage;
-    public float voidDamage;
-    public float attackSpeed;
-    public float castSpeed;
-    public float projSpeed;
-    public float maxHP;
-    public float maxHPPercent;
-    public float maxMP;
-    public float maxMPPercent;
+    public float globalCritRare;
+    public float globalCritMultiRare;
+    public float attackCritRare;
+    public float castCritRare;
+    public float globalDamageRare;
+    public float attackDamageRare;
+    public float castDamageRare;
+    public float iceDamageRare;
+    public float igniteDamageRare;
+    public float lightningDamageRare;
+    public float poisonDamageRare;
+    public float pureDamageRare;
+    public float voidDamageRare;
+    public float attackSpeedRare;
+    public float castSpeedRare;
+    public float projSpeedRare;
+    public float maxHPRare;
+    public float maxHPPercentRare;
+    public float maxMPRare;
+    public float maxMPPercentRare;
 
-    public float HPRegen;
-    public float MPRegen;
+    public float HPRegenRare;
+    public float MPRegenRare;
 
-    public float defence;
-    public float iceResist;
-    public float igniteResist;
-    public float lightningResist;
-    public float poisonResist;
-    public float evasionChance;
-    public float voidResist;
-    public float moveSpeed;
+    public float defenceRare;
+    public float iceResistRare;
+    public float igniteResistRare;
+    public float lightningResistRare;
+    public float poisonResistRare;
+    public float evasionChanceRare;
+    public float voidResistRare;
+    public float moveSpeedRare;
 
-    public float luck;
+    public float luckRare;
 
     public float inscriptionAdded;
 
     public int propertiesNum;
+    public int propertiesTier;
+    public int rarityTier;
 
     public string rarityName;
 }

@@ -4,15 +4,19 @@ using UnityEngine;
 
 public class Weapon : Equipment
 {
-    public float baseDamageToAttack;
-    public float baseIceDamageSummand;
-    public float baseIgniteDamageSummand;
-    public float baseLightningDamageSummand;
-    public float basePoisonDamageSummand;
-    public float baseVoidDamageSummand;
-    public float basePureDamageSummand;
-    public float baseAttackSpeed;
-    public float baseCrit;
+    public float globalDamage;
+    public float attackDamage;
+    public float castDamage;
+    public float iceDamage;
+    public float igniteDamage;
+    public float lightningDamage;
+    public float poisonDamage;
+    public float pureDamage;
+    public float voidDamage;
+    public float attackSpeed;
+    public float attackCrit;
+    public float castCrit;
+    public float globalCrit;
     public float globalCritMulti;
     // Start is called before the first frame update
     void Start()

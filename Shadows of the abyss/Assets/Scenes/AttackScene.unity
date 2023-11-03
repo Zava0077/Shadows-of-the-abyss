@@ -784,7 +784,7 @@ MonoBehaviour:
   VoidRes: 0
   Evasion: 0
   gameObjects:
-  - {fileID: 8283065102806030095, guid: 8d128d32fea60f44bb8c407aa36248d5, type: 3}
+  - {fileID: 8283065102806030095, guid: ab43b17e74beb3b45b8fa624f0f5ccb3, type: 3}
   chance: 64000000
 --- !u!114 &89106861
 MonoBehaviour:
