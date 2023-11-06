@@ -50,6 +50,21 @@ public class Prefixes : MonoBehaviour
     public string extraDescription = "";
     public static Prefixes self;
     public string qualityColor;
+    public Dictionary<string, float> prefixedStats = new Dictionary<string, float>
+    {
+        //{ "iceDamageGranted",0},
+        //{ "igniteDamageGranted",0},
+        //{ "lightningDamageGranted",0},
+        //{ "poisonDamageGranted",0},
+        //{ "pureDamageGranted",0},
+        //{ "voidDamageGranted",0},
+        //{ "iceResistGranted",0},
+        //{ "igniteResistGranted",0},
+        //{ "lightningResistGranted",0},
+        //{ "poisonResistGranted",0},
+        //{ "evasionChanceGranted",0},
+        //{ "voidResistGranted",0},
+    };
     public Prefixes()
     {
         self = this;
@@ -120,10 +135,10 @@ public class Prefixes : MonoBehaviour
                 extraDescription = "";
                 break;
             case "Ignite":
-                igniteDamageSummand = 5;
+                igniteDamageSummand = 5; prefixedStats["igniteDamagePrefixed"] = 3;
                 attackCritSummand = 5;
                 castCritSummand = 5;
-                igniteResistSummand = 5;
+                igniteResistSummand = 5; prefixedStats["igniteResistPrefixed"] = 3;
                 luckSummand = 2;
                 inscSummand = 1;
                 DamageDefaulter(item);

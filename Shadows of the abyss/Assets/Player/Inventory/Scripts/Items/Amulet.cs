@@ -15,13 +15,36 @@ public class Amulet : Jewelery
     void Awake()
     {
         System.Random rnd = new System.Random();
-        string[] floats = new string[] {"maxHP","maxHPPercent","globalCrit","luck", "igniteResist","iceResist","lightningResist","poisonResist","evasionResist","voidResist"};
-        string description = "";
-        int rareChance = rnd.Next(0, 100);
-        string rareName = "";
+        FieldInfo[] rarityFields = typeof(Rarity).GetFields();
+        FieldInfo[] itemFields = typeof(Amulet).GetFields();
+        FieldInfo[] prefixFields = typeof(Prefixes).GetFields();
+        var rarity = new Rarity();
+        string[] floats = new string[] {"maxHP","maxMP","maxMPPercent","globalCrit", "luck", "igniteResist","iceResist","lightningResist","poisonResist","evasionChance","voidResist"};
+        string[] itemFieldNames = new string[floats.Length];
+        string[] prefixFieldNames = new string[prefixFields.Length];
         string[] rareList = gameObject.GetComponent<Slot>().rareList;
+        string rareName = "";
+        string description = "";
+        int[] offset = new int[floats.Length];
         int[] rareChances = gameObject.GetComponent<Slot>().rareChances;
         int ifChance = 0;
+        int rareChance = rnd.Next(0, 100);
+
+        Dictionary<string, int> links = new Dictionary<string, int>//Перенести словарь в класс Equipment со всеми ссылками
+        {
+            {floats[0],0},
+            {floats[1],39},
+            {floats[2],43},
+            {floats[3],15},
+            {floats[4],46},
+            {floats[5],10},
+            {floats[6],9},
+            {floats[7],11},
+            {floats[8],12},
+            {floats[9],14},
+            {floats[10],13},
+        };
+
         extraDescription = "";
         if (gameObject.GetComponent<Slot>().type != "Usable" && gameObject.GetComponent<Slot>().type != "Empty" && gameObject.GetComponent<Slot>().type != "Scroll")
         {
@@ -60,10 +83,10 @@ public class Amulet : Jewelery
                     break;
             }
         }
+        
         gameObject.GetComponent<Slot>().rareName = rareName;
         PrefixChooser(rareName, gameObject.GetComponent<Slot>().values[2], gameObject);
         description += "<color=" + qualityColor + ">" + gameObject.GetComponent<Slot>().rareName + "</color>" + " " + gameObject.GetComponent<Slot>().itemDescription + "\r\n";
-        var rarity = new Rarity();
 
         for (int i = 0; i < 6; i++)
         {
@@ -94,51 +117,32 @@ public class Amulet : Jewelery
 
         for (int i = 0; i < _properties.Length; i++)
         {
-            int num = rnd.Next(1, floats.Length); //8 is number of parameters down bellow;
+            int num = rnd.Next(1, floats.Length);
             _properties[i] = !_properties.Contains(num) ? num : rnd.Next(1, 100) < 50 ? rnd.Next(num, 10) : rnd.Next(1, num);
         }
-        int[] offset = new int[floats.Length];
-        //
-        FieldInfo[] rarityFields = typeof(Rarity).GetFields();
-        FieldInfo[] itemFields = typeof(Amulet).GetFields();
-        FieldInfo[] prefixFields = typeof(Prefixes).GetFields();
-        string[] itemFieldNames = new string[itemFields.Length];
-        string[] prefixFieldNames = new string[prefixFields.Length];
+       
         for (int i = 0; i < prefixFields.Length; i++)
             prefixFieldNames[i] = prefixFields[i].Name;
-        for (int i = 0; i < itemFields.Length; i++)
-            itemFieldNames[i] = itemFields[i].Name;
+        for (int i = 0, k = 0; i < itemFieldNames.Length; i++, k++)
+            if (itemFields[k].Name != "greed")
+                itemFieldNames[i] = itemFields[k].Name;
+            else i--;
 
+        foreach (FieldInfo field1 in itemFields)
+            if (field1.ToString().StartsWith("System.Single") && floats.Contains(field1.Name) && (float)field1.GetValue(gameObject.GetComponent<Amulet>()) != 0)
+                description += field1.Name + ": <b>" + "<color=red>" + Convert.ToString((float)field1.GetValue(gameObject.GetComponent<Amulet>())) + "</color>" + "</b>" + "\r\n";
         for (int i = 0; i < floats.Length; i++)
         {
-            if (_properties.Contains(i) && itemFieldNames.Contains(floats[i]))
+            if ((_properties.Contains(i) && itemFieldNames.Contains(floats[i])) || prefixedStats.ContainsKey(floats[i] + "Prefixed"))
             {
                 offset[i] = 1;
                 typeof(Amulet).GetField(floats[i]).SetValue(this, Convert.ToInt32(typeof(Amulet).GetField(floats[i]).GetValue(this)) + offset[i]);
             }
         }
-        //мана, хп, крит%, мана%.
-        gameObject.GetComponent<Slot>().values[0] += maxHP != 0 ? maxHPSummand + (offset[0] != 0 ? rarity.maxHPRare : 0) - offset[0] : 0;
-        gameObject.GetComponent<Slot>().values[39] += maxMP != 0 ? maxMPSummand + (offset[1] != 0 ? rarity.maxMPRare : 0) - offset[1] : 0;
-        gameObject.GetComponent<Slot>().values[43] += maxMPPercent != 0 ? maxMPPercentSummand + (offset[2] != 0 ? rarity.maxMPPercentRare : 0) - offset[2] : 0;
-        gameObject.GetComponent<Slot>().values[15] += globalCrit != 0 ? globalCritSummand + (offset[3] != 0 ? rarity.globalCritRare : 0) - offset[3] : 0;
-        gameObject.GetComponent<Slot>().values[46] += luck != 0 ? luckSummand - greed + (offset[4] != 0 ? rarity.luckRare : 0) - offset[4] : 0;//сделать профеку на свойство Greedy
-        gameObject.GetComponent<Slot>().values[10] += igniteResist != 0 ? igniteResistSummand + (offset[5] != 0 ? rarity.igniteResistRare : 0) - offset[5] : 0;
-        gameObject.GetComponent<Slot>().values[9] += iceResist != 0 ? iceResistSummand + (offset[6] != 0 ? rarity.iceResistRare : 0) - offset[6] : 0;
-        gameObject.GetComponent<Slot>().values[11] += lightningResist != 0 ? lightningResistSummand + (offset[7] != 0 ? rarity.lightningResistRare : 0) - offset[7] : 0;
-        gameObject.GetComponent<Slot>().values[12] += poisonResist != 0 ? poisonResistSummand + (offset[8] != 0 ? rarity.poisonResistRare : 0) - offset[8] : 0;
-        gameObject.GetComponent<Slot>().values[14] += evasionChance != 0 ? evasionChanceSummand + (offset[9] != 0 ? rarity.evasionChanceRare : 0) - offset[9] : 0;
-        gameObject.GetComponent<Slot>().values[13] += voidResist != 0 ? voidResistSummand + (offset[0] != 0 ? rarity.voidResistRare : 0) - offset[10] : 0;
-        //
-       
-        //for (int k = 0; k < gameObject.GetComponent<Slot>().values.Length; k++)
-        //    if (gameObject.GetComponent<Slot>().values[k] != 0 && k != 28 && k != 30 && k != 31 && k != 32)
-        //        description += gameObject.GetComponent<Slot>().valuesNames[k] + ": <b>" + "<color=red>" + gameObject.GetComponent<Slot>().values[k] + "</color>" + "</b>" + "\r\n";
-      
+        float tsfg = (float)typeof(Rarity).GetField(floats[0] + "Rare").GetValue(rarity);
+        for (int i = 0; i < floats.Length;i++)
+            gameObject.GetComponent<Slot>().values[links[floats[i]]] += (float)typeof(Amulet).GetField(floats[i]).GetValue(this) != 0 ? (float)typeof(Amulet).GetField(floats[i]+"Summand").GetValue(this) + (offset[i] != 0 && !prefixedStats.ContainsKey(floats[i] + "Prefixed") ? (float)typeof(Rarity).GetField(floats[i]+"Rare").GetValue(rarity) : 0) - offset[0] : 0;
         
-        foreach (FieldInfo field1 in itemFields)
-            if (field1.ToString().StartsWith("System.Single") && !prefixFieldNames.Contains(field1.Name) && (float)field1.GetValue(gameObject.GetComponent<Amulet>()) != 0)
-                description += field1.Name + ": <b>" + "<color=red>" + Convert.ToString((float)field1.GetValue(gameObject.GetComponent<Amulet>())) + "</color>" + "</b>" + "\r\n";
         description += "-----Gained by Rarity-----\r\n";
         foreach (FieldInfo field1 in rarityFields)
             if (field1.ToString().StartsWith("System.Single") && itemFieldNames.Contains(field1.Name[..^4]) && (float)((typeof(Amulet).GetField(field1.Name[..^4])).GetValue(gameObject.GetComponent<Amulet>())) != 0)
