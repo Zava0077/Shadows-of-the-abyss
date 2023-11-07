@@ -17,6 +17,7 @@ public class Belt : Jewelery
         string[] rareList = gameObject.GetComponent<Slot>().rareList;
         int[] rareChances = gameObject.GetComponent<Slot>().rareChances;
         int ifChance = 0;
+        string[] floats = new string[] {"maxHP" , "maxHPPercent", "maxMP", "igniteResist", "iceResist", "lightningResist", "poisonResist", "evasionChance", "voidResist"};
         extraDescription = "";
         if (gameObject.GetComponent<Slot>().type != "Usable" && gameObject.GetComponent<Slot>().type != "Empty" && gameObject.GetComponent<Slot>().type != "Scroll")
         {

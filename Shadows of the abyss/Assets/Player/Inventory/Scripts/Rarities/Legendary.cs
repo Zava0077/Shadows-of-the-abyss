@@ -24,7 +24,7 @@ public class Legendary : Rarity
         iceResistRare = (float)Random.Range(0, 100) / 2;
         igniteDamageRare = (float)Random.Range(0, 100) / 2;
         igniteResistRare = (float)Random.Range(0, 100) / 2;
-        inscriptionAdded = (float)Random.Range(4, 2);
+        inscSlotsRare = (float)Random.Range(4, 2);
         lightningDamageRare = (float)Random.Range(0, 100) / 2;
         lightningResistRare = (float)Random.Range(0, 100) / 2;
         luckRare = (float)Random.Range(0, 100) / 50;

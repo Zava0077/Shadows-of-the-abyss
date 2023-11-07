@@ -12,6 +12,7 @@ public class Helmet : Armour
         int rareChance = rnd.Next(0, 100);
         string rareName = "";
         string[] rareList = gameObject.GetComponent<Slot>().rareList;
+        string[] floats = new string[] { "maxHP", "defence", "inscSlots", "igniteResist", "iceResist", "lightningResist", "poisonResist", "evasionResist", "voidResist" };
         int[] rareChances = gameObject.GetComponent<Slot>().rareChances;
         int ifChance = 0;
         extraDescription = "";
@@ -91,7 +92,7 @@ public class Helmet : Armour
         }
         gameObject.GetComponent<Slot>().values[1] += defence + defenceSummand + rarity.defenceRare;
         gameObject.GetComponent<Slot>().values[0] += maxHP != 0 || _properties.Contains(1) ? maxHPSummand + rarity.maxHPRare : 0;
-        gameObject.GetComponent<Slot>().values[29] += incripSlots + inscSummand + rarity.inscriptionAdded;
+        gameObject.GetComponent<Slot>().values[29] += inscSlots + inscSlotsSummand + rarity.inscSlotsRare;
         gameObject.GetComponent<Slot>().values[10] += igniteResist != 0 || _properties.Contains(2) ? igniteResistSummand + rarity.igniteResistRare : 0;
         gameObject.GetComponent<Slot>().values[9] += iceResist != 0 || _properties.Contains(3) ? iceResistSummand + rarity.iceResistRare : 0;
         gameObject.GetComponent<Slot>().values[11] += lightningResist != 0 || _properties.Contains(4) ? lightningResistSummand + rarity.lightningResistRare : 0;

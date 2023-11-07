@@ -46,7 +46,7 @@ public class Prefixes : MonoBehaviour
     public float weaponCooldownSummand;
     public float createProjectileChanceSummand;
     public float spikesEqualer;
-    public float inscSummand;
+    public float inscSlotsSummand;
     public string extraDescription = "";
     public static Prefixes self;
     public string qualityColor;
@@ -99,7 +99,7 @@ public class Prefixes : MonoBehaviour
         weaponCooldownSummand = 0;
         createProjectileChanceSummand = 0;
         spikesEqualer = 0;
-        inscSummand = 0;
+        inscSlotsSummand = 0;
         moveSpeedSummand = 0;
         globalCritMultiSummand = 0;
         HPRegenSummand = 0;
@@ -121,7 +121,7 @@ public class Prefixes : MonoBehaviour
                 attackDamageSummand = 5;
                 attackCritSummand = 10;
                 castCritSummand = 10;
-                inscSummand = -1;
+                inscSlotsSummand = -1;
                 qualityColor = "#ff1e00";
                 extraDescription = "";
                 break;
@@ -129,7 +129,7 @@ public class Prefixes : MonoBehaviour
                 attackDamageSummand = 10;
                 attackCritSummand = 10;
                 castCritSummand = 10;
-                inscSummand = -2;
+                inscSlotsSummand = -2;
                 qualityColor = "#9000ff";
                 attackSpeedSummand = 0.5f;
                 extraDescription = "";
@@ -140,7 +140,7 @@ public class Prefixes : MonoBehaviour
                 castCritSummand = 5;
                 igniteResistSummand = 5; prefixedStats["igniteResistPrefixed"] = 3;
                 luckSummand = 2;
-                inscSummand = 1;
+                inscSlotsSummand = 1;
                 DamageDefaulter(item);
                 break;
             case "Fast":
@@ -149,13 +149,13 @@ public class Prefixes : MonoBehaviour
                 castSpeedSummand = 1;
                 attackSpeedSummand = 1;
                 weaponCooldownSummand = -0.2f;
-                inscSummand = 1;
+                inscSlotsSummand = 1;
                 break;
             case "Electric":
                 lightningDamageSummand = 5;
                 attackCritSummand = 5;
                 castCritSummand = 5;
-                inscSummand = 1;
+                inscSlotsSummand = 1;
                 qualityColor = "#73abff";
                 DamageDefaulter(item);
                 break;

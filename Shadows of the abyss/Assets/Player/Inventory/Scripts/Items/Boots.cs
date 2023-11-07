@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Boots : Armour
 {
-    public float addSpeed;
+    public float moveSpeed;
     // Start is called before the first frame update
     void Awake()
     {
@@ -14,6 +14,7 @@ public class Boots : Armour
         int rareChance = rnd.Next(0, 100);
         string rareName = "";
         string[] rareList = gameObject.GetComponent<Slot>().rareList;
+        string[] floats = new string[] { "maxHP", "defence", "inscSlots", "igniteResist", "iceResist", "lightningResist", "poisonResist", "evasionResist", "voidResist", "moveSpeed"};
         int[] rareChances = gameObject.GetComponent<Slot>().rareChances;
         int ifChance = 0;
         extraDescription = "";
@@ -93,14 +94,14 @@ public class Boots : Armour
         }
         gameObject.GetComponent<Slot>().values[1] += defence + defenceSummand + rarity.defenceRare;
         gameObject.GetComponent<Slot>().values[0] += maxHP != 0 || _properties.Contains(1) ? maxHPSummand + rarity.maxHPRare : 0;
-        gameObject.GetComponent<Slot>().values[29] += incripSlots + inscSummand + rarity.inscriptionAdded;
+        gameObject.GetComponent<Slot>().values[29] += inscSlots + inscSlotsSummand + rarity.inscSlotsRare;
         gameObject.GetComponent<Slot>().values[10] += igniteResist != 0 || _properties.Contains(2) ? igniteResistSummand + rarity.igniteResistRare : 0;
         gameObject.GetComponent<Slot>().values[9] += iceResist != 0 || _properties.Contains(3) ? iceResistSummand + rarity.iceResistRare : 0;
         gameObject.GetComponent<Slot>().values[11] += lightningResist != 0 || _properties.Contains(4) ? lightningResistSummand + rarity.lightningResistRare : 0;
         gameObject.GetComponent<Slot>().values[12] += poisonResist != 0 || _properties.Contains(5) ? poisonResistSummand + rarity.poisonResistRare : 0;
         gameObject.GetComponent<Slot>().values[14] += evasionChance != 0 || _properties.Contains(6) ? evasionChanceSummand + rarity.evasionChanceRare : 0;
         gameObject.GetComponent<Slot>().values[13] += voidResist != 0 || _properties.Contains(7) ? voidResistSummand + rarity.voidResistRare : 0;
-        gameObject.GetComponent<Slot>().values[45] += addSpeed != 0 || _properties.Contains(2) ? moveSpeedSummand + rarity.moveSpeedRare : 0;
+        gameObject.GetComponent<Slot>().values[45] += moveSpeed != 0 || _properties.Contains(2) ? moveSpeedSummand + rarity.moveSpeedRare : 0;
         //
         for (int k = 0; k < gameObject.GetComponent<Slot>().values.Length; k++)
             if (gameObject.GetComponent<Slot>().values[k] != 0 && k != 28 && k != 30 && k != 31 && k != 32)

@@ -24,7 +24,7 @@ public class Rare : Rarity
         iceResistRare = (float)Random.Range(0, 100) / 10;
         igniteDamageRare = (float)Random.Range(0, 100) / 10;
         igniteResistRare = (float)Random.Range(0, 100) / 10;
-        inscriptionAdded = 2;
+        inscSlotsRare = 2;
         lightningDamageRare = (float)Random.Range(0, 100) / 10;
         lightningResistRare = (float)Random.Range(0, 100) / 10;
         luckRare = (float)Random.Range(0, 100) / 100;

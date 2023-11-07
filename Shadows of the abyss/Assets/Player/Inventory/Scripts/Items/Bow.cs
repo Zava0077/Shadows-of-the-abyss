@@ -19,6 +19,20 @@ public class Bow : Weapon
         int rareChance = rnd.Next(0, 100);
         string rareName = "";
         string[] rareList = gameObject.GetComponent<Slot>().rareList;
+        string[] floats = new string[] { "globalCrit", "attackDamage", "attackSpeed","globalCritMulti" ,"igniteDamage", "iceDamage", "lightningDamage", "poisonDamage", "pureDamage", "voidDamage", "inscSlots" };
+        //globalCrit + globalCritSummand + rarity.globalCritRare
+        //ttackDamage + attackDamageSummand + rarity.attackDamag
+        //attackSpeed + attackSpeedSummand + rarity.attackSpeedR
+        //globalCritMulti != 0 || _properties.Contains(1) ? glob
+        // 2 ? 1 : rarity.rarityTier > 3 ? 2 : 0) && _properties
+        //)
+        
+        //ect.GetComponent<Slot>().values[3] += iceDamage != 0 ?
+        //ect.GetComponent<Slot>().values[4] += igniteDamage !=
+        //ect.GetComponent<Slot>().values[5] += lightningDamage
+        //ect.GetComponent<Slot>().values[6] += poisonDamage !=
+        //ect.GetComponent<Slot>().values[7] += voidDamage != 0
+        //ect.GetComponent<Slot>().values[8] += pureDamage != 0
         int[] rareChances = gameObject.GetComponent<Slot>().rareChances;
         int ifChance = 0;
         extraDescription = "";
@@ -113,7 +127,7 @@ public class Bow : Weapon
                 if (Random.Range(0, 5) == 4) { gameObject.GetComponent<Slot>().values[7] += voidDamage != 0 ? voidDamageSummand + rarity.voidDamageRare : 0; break; }
                 if (Random.Range(0, 5) == 5) { gameObject.GetComponent<Slot>().values[8] += pureDamage != 0 ? pureDamageSummand + rarity.pureDamageRare : 0; break; }
             }
-        gameObject.GetComponent<Slot>().values[29] += incripSlots + inscSummand + rarity.inscriptionAdded;
+        gameObject.GetComponent<Slot>().values[29] += inscSlots + inscSlotsSummand + rarity.inscSlotsRare;
         //
         for (int k = 0; k < gameObject.GetComponent<Slot>().values.Length; k++)
             if (gameObject.GetComponent<Slot>().values[k] != 0 && k != 28 && k != 30 && k != 31 && k != 32)

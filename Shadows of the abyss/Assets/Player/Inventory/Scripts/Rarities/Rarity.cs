@@ -39,7 +39,7 @@ public class Rarity : MonoBehaviour
 
     public float luckRare;
 
-    public float inscriptionAdded;
+    public float inscSlotsRare;
 
     public int propertiesNum;
     public int propertiesTier;

@@ -111,7 +111,7 @@ public class CastWeapon : Weapon
                 if (Random.Range(0, 5) == 4) { gameObject.GetComponent<Slot>().values[7] += voidDamage != 0 ? voidDamageSummand + rarity.voidDamageRare : 0; break; }
                 if (Random.Range(0, 5) == 5) { gameObject.GetComponent<Slot>().values[8] += pureDamage != 0 ? pureDamageSummand + rarity.pureDamageRare : 0; break; }
             }
-        gameObject.GetComponent<Slot>().values[29] += incripSlots + inscSummand + rarity.inscriptionAdded;
+        gameObject.GetComponent<Slot>().values[29] += inscSlots + inscSlotsSummand + rarity.inscSlotsRare;
         //
         for (int k = 0; k < gameObject.GetComponent<Slot>().values.Length; k++)
             if (gameObject.GetComponent<Slot>().values[k] != 0 && k != 28 && k != 30 && k != 31 && k != 32)

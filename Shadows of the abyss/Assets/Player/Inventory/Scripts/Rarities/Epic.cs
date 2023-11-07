@@ -24,7 +24,7 @@ public class Epic : Rarity
         iceResistRare = (float)Random.Range(0, 100) / 6;
         igniteDamageRare = (float)Random.Range(0, 100) / 6;
         igniteResistRare = (float)Random.Range(0, 100) / 6;
-        inscriptionAdded = (float)Random.Range(3,4);
+        inscSlotsRare = (float)Random.Range(3,4);
         lightningDamageRare = (float)Random.Range(0, 100) / 6;
         lightningResistRare = (float)Random.Range(0, 100) / 6;
         luckRare = (float)Random.Range(0, 100) / 50;

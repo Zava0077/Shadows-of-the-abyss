@@ -15,6 +15,7 @@ public class Quiver : Offhands
         int rareChance = rnd.Next(0, 100);
         string rareName = "";
         string[] rareList = gameObject.GetComponent<Slot>().rareList;
+        string[] floats = new string[] {"attackDamage", "projSpeed" };
         int[] rareChances = gameObject.GetComponent<Slot>().rareChances;
         int ifChance = 0;
         extraDescription = "";

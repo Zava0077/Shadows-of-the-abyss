@@ -23,7 +23,7 @@ public class Common : Rarity
         iceResistRare = (float)Random.Range(0,100)/ 50;
         igniteDamageRare = (float)Random.Range(0,100)/ 50;
         igniteResistRare = (float)Random.Range(0,100)/ 50;
-        inscriptionAdded = 1;
+        inscSlotsRare = 1;
         lightningDamageRare = (float)Random.Range(0,100)/ 50;
         lightningResistRare = (float)Random.Range(0,100)/ 50;
         luckRare = (float)Random.Range(0,100)/100;
