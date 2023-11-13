@@ -3,8 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Security.Cryptography;
+using System.Transactions;
+using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class Equipment : Prefixes
 {
@@ -12,7 +16,7 @@ public class Equipment : Prefixes
     public FieldInfo[] prefixFields = typeof(Prefixes).GetFields();
     public FieldInfo[] itemFields;
     Equipment _item;
-    string[] floats; 
+    string[] floats;
     public float icreaseAllDamage;
     public float inscSlots;
     public void EquipmentConstructor(string[] floats)
@@ -85,17 +89,17 @@ public class Equipment : Prefixes
     public void EquipmentAwake()
     {
         System.Random rnd = new System.Random();
-        
+
         string[] prefixFieldNames = new string[prefixFields.Length];
+        string[] rarityFieldNames = new string[rarityFields.Length];
         string[] itemFieldNames = new string[floats.Length];
         string[] rareList = gameObject.GetComponent<Slot>().rareList;
         string rareName = "";
         string description = "";
-        int[] offset = new int[floats.Length];
+        var rarity = RarityClass();
         int[] rareChances = gameObject.GetComponent<Slot>().rareChances;
         int rareChance = rnd.Next(0, 100);
         int ifChance = 0;
-        
 
         if (gameObject.GetComponent<Slot>().type != "Usable" && gameObject.GetComponent<Slot>().type != "Empty" && gameObject.GetComponent<Slot>().type != "Scroll")
         {
@@ -116,13 +120,19 @@ public class Equipment : Prefixes
         PrefixChooser(rareName, gameObject.GetComponent<Slot>().values[2], gameObject);
         description += "<color=" + qualityColor + ">" + gameObject.GetComponent<Slot>().rareName + "</color>" + " " + gameObject.GetComponent<Slot>().itemDescription + "\r\n";
         float[] _properties = new float[RarityClass().propertiesNum];
+        List<int> ints = new List<int>();
+        for (int i = 0; i < floats.Length; i++)
+            ints.Add(i);
         for (int i = 0; i < _properties.Length; i++)
         {
-            int num = rnd.Next(1, floats.Length);
-            _properties[i] = !_properties.Contains(num) ? num : rnd.Next(1, 100) < 50 ? rnd.Next(num, 10) : rnd.Next(1, num);
+            int num = rnd.Next(1, ints.Count - 1);
+            _properties[i] = ints[num];
+            ints.Remove(ints[num]);
         }
         for (int i = 0; i < prefixFields.Length; i++)
             prefixFieldNames[i] = prefixFields[i].Name;
+        for (int i = 0; i < rarityFields.Length; i++)
+            rarityFieldNames[i] = rarityFields[i].Name;
         for (int i = 0, k = 0; i < itemFieldNames.Length; i++, k++)
             if (itemFields[k].Name != "greed")
                 itemFieldNames[i] = itemFields[k].Name;
@@ -130,30 +140,83 @@ public class Equipment : Prefixes
         foreach (FieldInfo field1 in itemFields)
             if (field1.ToString().StartsWith("System.Single") && floats.Contains(field1.Name) && (float)field1.GetValue(_item) != 0)
                 description += field1.Name + ": <b>" + "<color=red>" + Convert.ToString((float)field1.GetValue(_item)) + "</color>" + "</b>" + "\r\n";
-        for (int i = 0; i < floats.Length; i++)
+        List<string> damages = new List<string>();
+        List<string> resists = new List<string>();
+        List<string> newFloats = new List<string>();       
+        int count = 0;
+        int phase = 0;
+        int _num = RarityClass().propertiesTier > 2 ? 2 : 1;
+        int id = 0;
+        int _j = 0;
+        while (true)
         {
-            if ((_properties.Contains(i) && itemFieldNames.Contains(floats[i])) || prefixedStats.ContainsKey(floats[i] + "Prefixed"))
+            if (phase == 0)
+            {
+            
+                if (id >= prefixedStats.Count)
+                    phase++;
+                    for(; id < prefixedStats.Count; id++, _j++)
+                        for (int i = 0; i < floats.Length; i++)
+                            if (floats[i] == prefixedStats.ElementAt(_j).Key[..^8])
+                            {
+                                id = i;
+                                break;
+                            }
+                id--;
+                if (_j > prefixedStats.Count)
+                    phase++;
+            }
+     
+            if (phase == 1) id = rnd.Next(0, floats.Length - 1);
+            if (count == _num) break;
+
+            if (!damages.Contains(floats[id]) && floats[id].Contains("Damage")) damages.Add(floats[id]);
+            else if (!resists.Contains(floats[id]) && (floats[id].Contains("Resist") || floats[id] == "evasionChance")) resists.Add(floats[id]);
+            else continue;
+
+            if (!prefixedStats.ContainsKey(floats[id] + "Prefixed"))
+                count++;
+        }
+        foreach (string _float in floats)
+        {
+            if ((_float.Contains("Damage") && !damages.Contains(_float)) || (_float.Contains("Resist") || _float == "evasionChance") && !resists.Contains(_float)) continue;
+            newFloats.Add(_float);
+        }
+        int[] offset = new int[newFloats.Count];
+        for (int i = 0; i < newFloats.Count; i++)
+        {
+            if ((_properties.Contains(i) && itemFieldNames.Contains(newFloats[i])) || prefixedStats.ContainsKey(newFloats[i] + "Prefixed"))
             {
                 offset[i] = 1;
-                _item.GetType().GetField(floats[i]).SetValue(this, Convert.ToInt32(_item.GetType().GetField(floats[i]).GetValue(_item)) + offset[i]);//добавить в словарь для дальнейшего вывода в описание
+                _item.GetType().GetField(newFloats[i]).SetValue(this, Convert.ToInt32(_item.GetType().GetField(newFloats[i]).GetValue(_item)) + offset[i]);//добавить в словарь для дальнейшего вывода в описание
             }
         }
-        for (int i = 0; i < floats.Length; i++)//если строка не гарантирована, но дарована префиксом, даётся в полной мере, если гарантирована, то не суммируется с полным баффом от префикса.
-            gameObject.GetComponent<Slot>().values[links[floats[i]]] += (float)_item.GetType().GetField(floats[i]).GetValue(_item) != 0 ? (float)_item.GetType().GetField(floats[i]).GetValue(_item) + (float)_item.GetType().GetField(floats[i] + "Summand").GetValue(_item) + (offset[i] != 0 && !prefixedStats.ContainsKey(floats[i] + "Prefixed") ? (float)typeof(Rarity).GetField(floats[i] + "Rare").GetValue(RarityClass()) : 0) - offset[i] : 0;
+        List<string> rarityDesc = new List<string>();
+        List<string> prefixDesc = new List<string>();
+        for (int i = 0; i < newFloats.Count; i++)//если строка не гарантирована, но дарована префиксом, даётся в полной мере, если гарантирована, то не суммируется с полным баффом от префикса.
+        {
+            gameObject.GetComponent<Slot>().values[links[newFloats[i]]] += (float)_item.GetType().GetField(newFloats[i]).GetValue(_item) != 0 ? (float)_item.GetType().GetField(newFloats[i]).GetValue(_item) + (float)_item.GetType().GetField(newFloats[i] + "Summand").GetValue(_item) + (!prefixedStats.ContainsKey(newFloats[i] + "Prefixed") ? (float)typeof(Rarity).GetField(newFloats[i] + "Rare").GetValue(rarity) : 0) - offset[i] : 0;
+            if (gameObject.GetComponent<Slot>().values[links[newFloats[i]]] != 0)
+            {
+                if (rarityFieldNames.Contains(newFloats[i] + "Rare") && !prefixedStats.ContainsKey(newFloats[i] + "Prefixed") && (float)typeof(Rarity).GetField(newFloats[i] + "Rare").GetValue(rarity) != 0)
+                    rarityDesc.Add( descriptionLayersExamples[newFloats[i]] + Convert.ToString(typeof(Rarity).GetField(newFloats[i] + "Rare").GetValue(rarity)) + "\r\n");       
+                if (prefixFieldNames.Contains(newFloats[i] + "Summand") && (float)typeof(Prefixes).GetField(newFloats[i] + "Summand").GetValue(gameObject.GetComponent<Prefixes>()) != 0)
+                    prefixDesc.Add(descriptionLayersExamples[newFloats[i]] + Convert.ToString(typeof(Prefixes).GetField(newFloats[i] + "Summand").GetValue(gameObject.GetComponent<Prefixes>())) + "\r\n");
+            }  
+        }
         description += "-----Gained by Prefix-----\r\n";
-        foreach (FieldInfo field1 in prefixFields)
-            if (field1.ToString().StartsWith("System.Single") && itemFieldNames.Contains(field1.Name[..^7]) && (float)((_item.GetType().GetField(field1.Name[..^7])).GetValue(_item)) != 0)
-                description += (float)field1.GetValue(gameObject.GetComponent<Prefixes>()) != 0 ? field1.Name + ": <b>" + "<color=red>" + Convert.ToString((float)field1.GetValue(gameObject.GetComponent<Prefixes>())) + "</color>" + "</b>" + "\r\n" : "";
+        foreach (string prefix in prefixDesc)
+                description += prefix;
         description += "-----Gained by Rarity-----\r\n";
-        foreach (FieldInfo field1 in rarityFields)
-            if (field1.ToString().StartsWith("System.Single") && itemFieldNames.Contains(field1.Name[..^4]) && (float)((_item.GetType().GetField(field1.Name[..^4])).GetValue(_item)) != 0)
-                description += (float)field1.GetValue(gameObject.GetComponent<Rarity>()) != 0 ? field1.Name + ": <b>" + "<color=red>" + Convert.ToString((float)field1.GetValue(gameObject.GetComponent<Rarity>())) + "</color>" + "</b>" + "\r\n" : "";
+        foreach (string _rarity in rarityDesc)
+            description += _rarity;
         description += "-----STATS-----\r\n";
         for (int i = 0; i < floats.Length; i++)
             if (gameObject.GetComponent<Slot>().values[links[floats[i]]] != 0)
                 description += descriptionLayersExamples[floats[i]] + gameObject.GetComponent<Slot>().values[links[floats[i]]] + "\r\n";
-        gameObject.GetComponent<Slot>().itemDescription = RarityClass().rarityName + " " + description;
+        gameObject.GetComponent<Slot>().itemDescription = rarity.rarityName + " " + description;
     }
+
     public void CurrentItem(Equipment item)
     {
         _item = item;
