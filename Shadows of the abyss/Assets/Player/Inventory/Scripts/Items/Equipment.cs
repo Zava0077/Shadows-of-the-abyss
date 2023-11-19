@@ -55,7 +55,7 @@ public class Equipment : Prefixes
             {"moveSpeed",45},
             {"luck",46},
         };
-    public Dictionary<string, string> descriptionLayersExamples = new Dictionary<string, string>
+    public Dictionary<string, string> descriptionLayersExamples = new Dictionary<string, string> 
         {
             {"maxHP","Increases max HP "},
             {"defence","Increases defence "},
@@ -85,6 +85,35 @@ public class Equipment : Prefixes
             {"projSpeed","Increases projectile speed by "},
             {"moveSpeed","Increases your speed by "},
             {"luck","Increases your luckiness by "},
+
+            {"maxHPPrefixed" ,"Grants max HP "},
+            {"defencePrefixed","Grants defence "},
+            {"attackDamagePrefixed","Grants damage from attacks by "},
+            {"iceDamagePrefixed","Grants damage from ice by "},
+            {"igniteDamagePrefixed","Grants damage from ignite by "},
+            {"lightningDamagePrefixed","Grants damage from lightning by "},
+            {"poisonDamagePrefixed","Grants poisoning damage by "},
+            {"voidDamagePrefixed","Grants void damage by "},
+            {"pureDamagePrefixed","Grants amount of pure damage by "},
+            {"iceResistPrefixed","Grants resistance to ice by "},
+            {"igniteResistPrefixed","Grants resistance to ignite by "},
+            {"lightningResistPrefixed","Grants resistance to lightning by "},
+            {"poisonResistPrefixed","Grants resistance to poisoning by "},
+            {"voidResistPrefixed","Grants resistance to all voids by "},
+            {"evasionChancePrefixed","Grants chance to dodge attacks "},
+            {"globalCritPrefixed","Grants global chance of critical attack by "},
+            {"attackSpeedPrefixed","Grants attack speed by "},
+            {"inscSlotsPrefixed","Grants additional slots for inscriptions: "},
+            {"globalCritMultiPrefixed","Grants global crit damage "},
+            {"castDamagePrefixed","Grants damage from cast by "},
+            {"castSpeedPrefixed","Grants cast speed by "},
+            {"castCritPrefixed","Grants chance to deal more damage from cast by "},
+            {"maxMPPrefixed","Grants max MP "},
+            {"maxHPPercentPrefixed","Grants HP above yours by "},
+            {"maxMPPercentPrefixed","Grants MP above yours by "},
+            {"projSpeedPrefixed","Grants projectile speed by "},
+            {"moveSpeedPrefixed","Grants your speed by "},
+            {"luckPrefixed","Grants your luckiness by "},
         };
     public void EquipmentAwake()
     {
@@ -119,16 +148,7 @@ public class Equipment : Prefixes
         gameObject.GetComponent<Slot>().rareName = rareName;
         PrefixChooser(rareName, gameObject.GetComponent<Slot>().values[2], gameObject);
         description += "<color=" + qualityColor + ">" + gameObject.GetComponent<Slot>().rareName + "</color>" + " " + gameObject.GetComponent<Slot>().itemDescription + "\r\n";
-        float[] _properties = new float[RarityClass().propertiesNum];
-        List<int> ints = new List<int>();
-        for (int i = 0; i < floats.Length; i++)
-            ints.Add(i);
-        for (int i = 0; i < _properties.Length; i++)
-        {
-            int num = rnd.Next(1, ints.Count - 1);
-            _properties[i] = ints[num];
-            ints.Remove(ints[num]);
-        }
+        
         for (int i = 0; i < prefixFields.Length; i++)
             prefixFieldNames[i] = prefixFields[i].Name;
         for (int i = 0; i < rarityFields.Length; i++)
@@ -152,7 +172,6 @@ public class Equipment : Prefixes
         {
             if (phase == 0)
             {
-            
                 if (id >= prefixedStats.Count)
                     phase++;
                     for(; id < prefixedStats.Count; id++, _j++)
@@ -166,10 +185,8 @@ public class Equipment : Prefixes
                 if (_j > prefixedStats.Count)
                     phase++;
             }
-     
             if (phase == 1) id = rnd.Next(0, floats.Length - 1);
             if (count == _num) break;
-
             if (!damages.Contains(floats[id]) && floats[id].Contains("Damage")) damages.Add(floats[id]);
             else if (!resists.Contains(floats[id]) && (floats[id].Contains("Resist") || floats[id] == "evasionChance")) resists.Add(floats[id]);
             else continue;
@@ -182,34 +199,51 @@ public class Equipment : Prefixes
             if ((_float.Contains("Damage") && !damages.Contains(_float)) || (_float.Contains("Resist") || _float == "evasionChance") && !resists.Contains(_float)) continue;
             newFloats.Add(_float);
         }
+        float[] _properties = new float[rarity.propertiesNum];
+        List<int> ints = new List<int>();
+        for (int i = 0; i < newFloats.Count; i++)
+            ints.Add(i);
+        for (int i = 0; i < _properties.Length; i++) //даёт от рарки
+        {
+            int num = rnd.Next(1, ints.Count - 1);
+            _properties[i] = ints[num];
+            ints.Remove(ints[num]);
+        }
         int[] offset = new int[newFloats.Count];
+        int[] rareOffset = new int[newFloats.Count];
+        int[] prefixOffset = new int[newFloats.Count];
         for (int i = 0; i < newFloats.Count; i++)
         {
-            if ((_properties.Contains(i) && itemFieldNames.Contains(newFloats[i])) || prefixedStats.ContainsKey(newFloats[i] + "Prefixed"))
-            {
-                offset[i] = 1;
-                _item.GetType().GetField(newFloats[i]).SetValue(this, Convert.ToInt32(_item.GetType().GetField(newFloats[i]).GetValue(_item)) + offset[i]);//добавить в словарь для дальнейшего вывода в описание
-            }
+            if (_properties.Contains(i) && itemFieldNames.Contains(newFloats[i]))
+                rareOffset[i] = 1; //добавить отдельный оффсет для префикса и рарити || БАГ: ПРЕФИКС УХОДИТ В НЕСУЩЕСТВУЮЩИЕ И НЕ ДАЁТ ИХ НА РЕЗУЛЬТАТЕ
+            if (prefixedStats.ContainsKey(newFloats[i] + "Prefixed"))
+                prefixOffset[i] = 1;
         }
         List<string> rarityDesc = new List<string>();
         List<string> prefixDesc = new List<string>();
         for (int i = 0; i < newFloats.Count; i++)//если строка не гарантирована, но дарована префиксом, даётся в полной мере, если гарантирована, то не суммируется с полным баффом от префикса.
         {
-            gameObject.GetComponent<Slot>().values[links[newFloats[i]]] += (float)_item.GetType().GetField(newFloats[i]).GetValue(_item) != 0 ? (float)_item.GetType().GetField(newFloats[i]).GetValue(_item) + (float)_item.GetType().GetField(newFloats[i] + "Summand").GetValue(_item) + (!prefixedStats.ContainsKey(newFloats[i] + "Prefixed") ? (float)typeof(Rarity).GetField(newFloats[i] + "Rare").GetValue(rarity) : 0) - offset[i] : 0;
+            gameObject.GetComponent<Slot>().values[links[newFloats[i]]] += (float)_item.GetType().GetField(newFloats[i]).GetValue(_item) != 0 || offset[i] != 0 || rareOffset[i] != 0 || prefixOffset[i] != 0 ? (float)_item.GetType().GetField(newFloats[i]).GetValue(_item) + (prefixOffset[i] != 0 || (float)_item.GetType().GetField(newFloats[i] + "Summand").GetValue(_item) != 0 ? (float)_item.GetType().GetField(newFloats[i] + "Summand").GetValue(_item) : 0) + (rareOffset[i] != 0 ? (float)typeof(Rarity).GetField(newFloats[i] + "Rare").GetValue(rarity) : 0) : 0;
             if (gameObject.GetComponent<Slot>().values[links[newFloats[i]]] != 0)
             {
-                if (rarityFieldNames.Contains(newFloats[i] + "Rare") && !prefixedStats.ContainsKey(newFloats[i] + "Prefixed") && (float)typeof(Rarity).GetField(newFloats[i] + "Rare").GetValue(rarity) != 0)
-                    rarityDesc.Add( descriptionLayersExamples[newFloats[i]] + Convert.ToString(typeof(Rarity).GetField(newFloats[i] + "Rare").GetValue(rarity)) + "\r\n");       
-                if (prefixFieldNames.Contains(newFloats[i] + "Summand") && (float)typeof(Prefixes).GetField(newFloats[i] + "Summand").GetValue(gameObject.GetComponent<Prefixes>()) != 0)
+                if (/*rarityFieldNames.Contains(newFloats[i] + "Rare")  && */rareOffset[i] != 0 && (float)typeof(Rarity).GetField(newFloats[i] + "Rare").GetValue(rarity) != 0)
+                    rarityDesc.Add(descriptionLayersExamples[newFloats[i]] + Convert.ToString(typeof(Rarity).GetField(newFloats[i] + "Rare").GetValue(rarity)) + "\r\n");       
+                if (/*prefixFieldNames.Contains(newFloats[i] + "Summand") &&*/ (float)typeof(Prefixes).GetField(newFloats[i] + "Summand").GetValue(gameObject.GetComponent<Prefixes>()) != 0)
                     prefixDesc.Add(descriptionLayersExamples[newFloats[i]] + Convert.ToString(typeof(Prefixes).GetField(newFloats[i] + "Summand").GetValue(gameObject.GetComponent<Prefixes>())) + "\r\n");
             }  
         }
-        description += "-----Gained by Prefix-----\r\n";
-        foreach (string prefix in prefixDesc)
-                description += prefix;
-        description += "-----Gained by Rarity-----\r\n";
-        foreach (string _rarity in rarityDesc)
-            description += _rarity;
+        if(prefixDesc.Count != 0)
+        {
+            description += $"<color={qualityColor}>------------------{rareName}-----------------</color>\r\n";
+                 foreach (string prefix in prefixDesc)
+                       description += prefix;
+        }
+        if (rarityDesc.Count != 0)
+        {
+            description += $"-------------{rarity.ToString().Split(" ")[1].Replace("(","").Replace(")", "")}-------------\r\n";
+            foreach (string _rarity in rarityDesc)
+                description += _rarity;
+        }
         description += "-----STATS-----\r\n";
         for (int i = 0; i < floats.Length; i++)
             if (gameObject.GetComponent<Slot>().values[links[floats[i]]] != 0)
