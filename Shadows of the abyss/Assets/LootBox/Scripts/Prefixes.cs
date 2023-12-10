@@ -52,18 +52,7 @@ public class Prefixes : MonoBehaviour
     public string qualityColor;
     public Dictionary<string, float> prefixedStats = new Dictionary<string, float>
     {
-        //{ "iceDamageGranted",0},
-        //{ "igniteDamageGranted",0},
-        //{ "lightningDamageGranted",0},
-        //{ "poisonDamageGranted",0},
-        //{ "pureDamageGranted",0},
-        //{ "voidDamageGranted",0},
-        //{ "iceResistGranted",0},
-        //{ "igniteResistGranted",0},
-        //{ "lightningResistGranted",0},
-        //{ "poisonResistGranted",0},
-        //{ "evasionChanceGranted",0},
-        //{ "voidResistGranted",0},
+
     };
     public Prefixes()
     {

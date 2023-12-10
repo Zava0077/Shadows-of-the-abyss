@@ -208,7 +208,7 @@ MonoBehaviour:
   type: Armour
   id: 0
   staticKind: 2
-  itemDescription: "\u0416\u0435\u043B\u0435\u0437\u043D\u044B\u0439 \u0447\u043B\u0435\u043D"
+  itemDescription: "\u0416\u0435\u043B\u0435\u0437\u043D\u044B\u0439 \u043D\u0430\u0433\u0440\u0443\u0434\u043D\u0438\u043A"
   rareList: []
   rareChances: 
   inscriptions: {fileID: -1957378840449356073}
@@ -619,57 +619,57 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 994daa8f4abcef349af04fe914922fa5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  luckSummand: 0
-  movementSpeedSummand: 0
-  critMultiSummand: 0
-  hpRegenSummand: 0
-  manaRegenSummand: 0
-  projSpeedSummand: 0
-  baseSpellDamageSummand: 0
-  baseSpellCritSummand: 0
-  baseCastSpeedSummand: 0
-  maxHpPercSummand: 0
-  maxManaPercSummand: 0
-  maxHpSummand: 0
-  maxManaSummand: 0
-  damageSummand: 0
+  globalCritSummand: 0
+  globalCritMultiSummand: 0
+  attackCritSummand: 0
+  castCritSummand: 0
+  globalDamageSummand: 0
+  attackDamageSummand: 0
+  castDamageSummand: 0
   iceDamageSummand: 0
   igniteDamageSummand: 0
-  voidDamageSummand: 0
-  pureDamageSummand: 0
-  poisonDamageSummand: 0
   lightningDamageSummand: 0
+  poisonDamageSummand: 0
+  pureDamageSummand: 0
+  voidDamageSummand: 0
+  attackSpeedSummand: 0
+  castSpeedSummand: 0
+  projSpeedSummand: 0
+  maxHPSummand: 0
+  maxHPPercentSummand: 0
+  maxMPSummand: 0
+  maxMPPercentSummand: 0
+  HPRegenSummand: 0
+  MPRegenSummand: 0
+  defenceSummand: 0
   iceResistSummand: 0
   igniteResistSummand: 0
-  voidResistSummand: 0
-  pureResistSummand: 0
-  poisonResistSummand: 0
   lightningResistSummand: 0
-  criticalChanceSummand: 0
+  poisonResistSummand: 0
   evasionChanceSummand: 0
-  defenceSummand: 0
+  voidResistSummand: 0
+  moveSpeedSummand: 0
+  luckSummand: 0
   manaCostSummand: 0
   weaponSizeSummand: 0
-  attackSpeedSummand: 0
   secondUsageChanceSummand: 0
   tripleAttackChanceSummand: 0
   explChanceSummand: 0
   explTypeEqualer: 0
   weaponCooldownSummand: 0
   createProjectileChanceSummand: 0
-  spikes: 0
-  inscSummand: 0
+  spikesEqualer: 0
+  inscSlotsSummand: 0
   extraDescription: 
   qualityColor: 
   icreaseAllDamage: 0
-  incripSlots: 2
-  manaAdd: 0
-  hpAdd: 0
-  baseIceResistSummand: 0
-  baseIgniteResistSummand: 0
-  baseLightningResistSummand: 0
-  basePoisonResistSummand: 0
-  baseVoidResistSummand: 0
-  basePureResistSummand: 0
-  baseEvasionChance: 0
-  baseDefence: 5
+  inscSlots: 0
+  maxMP: 0
+  maxHP: 0
+  defence: 5
+  iceResist: 0
+  igniteResist: 0
+  lightningResist: 0
+  poisonResist: 0
+  evasionChance: 0
+  voidResist: 0

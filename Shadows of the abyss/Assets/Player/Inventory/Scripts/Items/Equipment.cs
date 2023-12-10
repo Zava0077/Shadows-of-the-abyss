@@ -54,66 +54,72 @@ public class Equipment : Prefixes
             {"projSpeed",44},
             {"moveSpeed",45},
             {"luck",46},
+            {"regenHP",40},
+            {"regenMP",41},
         };
     public Dictionary<string, string> descriptionLayersExamples = new Dictionary<string, string> 
         {
-            {"maxHP","Increases max HP "},
-            {"defence","Increases defence "},
-            {"attackDamage","Increases damage from attacks by "},
-            {"iceDamage","Increases damage from ice by "},
-            {"igniteDamage","Increases damage from ignite by "},
-            {"lightningDamage","Increases damage from lightning by "},
-            {"poisonDamage","Increases poisoning damage by "},
-            {"voidDamage","Increases void damage by "},
-            {"pureDamage","Increases amount of pure damage by "},
-            {"iceResist","Increases resistance to ice by "},
-            {"igniteResist","Increases resistance to ignite by "},
-            {"lightningResist","Increases resistance to lightning by "},
-            {"poisonResist","Increases resistance to poisoning by "},
-            {"voidResist","Increases resistance to all voids by "},
-            {"evasionChance","Increases chance to dodge attacks "},
-            {"globalCrit","Increases global chance of critical attack by "},
-            {"attackSpeed","Increases attack speed by "},
-            {"inscSlots","Gives additional slots for inscriptions: "},
-            {"globalCritMulti","Increases global crit damage "},
-            {"castDamage","Increases damage from cast by "},
-            {"castSpeed","Increases cast speed by "},
-            {"castCrit","Increases chance to deal more damage from cast by "},
-            {"maxMP","Increases max MP "},
-            {"maxHPPercent","Multiplies max HP by "},
-            {"maxMPPercent","Multiplies max MP by "},
-            {"projSpeed","Increases projectile speed by "},
-            {"moveSpeed","Increases your speed by "},
-            {"luck","Increases your luckiness by "},
+            {"maxHP","Увеличивает макс хп на "},
+            {"defence","Увеличивает защиту на "},
+            {"attackDamage","Увеличивает урон от атак на "},
+            {"iceDamage","Увеличивает урон льдом на "},
+            {"igniteDamage","Увеличивает урон огнём на "},
+            {"lightningDamage","Увеличивает урон молнией на "},
+            {"poisonDamage","Увеличивает урон ядом на "},
+            {"voidDamage","Увеличивает пустотный урон на "},
+            {"pureDamage","Увеличивает чистый урон на "},
+            {"iceResist","Увеличивает сопротивление ко льду на "},
+            {"igniteResist","Увеличивает сопротивление к огню на "},
+            {"lightningResist","Увеличивает сопротивление к току на "},
+            {"poisonResist","Увеличивает сопротивление к яду на "},
+            {"voidResist","Увеличивает сопротивление ко всем пустотам на "},
+            {"evasionChance","Увеличивает шанс уклонится на "},
+            {"globalCrit","Увеличивает глобальный шанс крита "},
+            {"attackSpeed","Увеличивает скорость атаки "},
+            {"inscSlots","Дополнительные слоты надписей: "},
+            {"globalCritMulti","Увеличивает глобальный урон крита "},
+            {"castDamage","Увеличивает урон чар на "},
+            {"castSpeed","Увеличивает скорость сотворения чар на "},
+            {"castCrit","Увеличивает шанс сотворить чудо на "},
+            {"maxMP","Увеличивает макс ману на "},
+            {"maxHPPercent","Множитель макс хп "},
+            {"maxMPPercent","Множитель макс мп "},
+            {"projSpeed","Увеличивает скорость снарядов на "},
+            {"moveSpeed","Увеличивает скорость передвижения на "},
+            {"luck","Увеличивает вашу удачу на "},
+            {"regenHP","Увеличивает вашу регенерацию ХП на "},
+            {"regenMP","Увеличивает вашу регенерацию МП на "},
 
-            {"maxHPPrefixed" ,"Grants max HP "},
-            {"defencePrefixed","Grants defence "},
-            {"attackDamagePrefixed","Grants damage from attacks by "},
-            {"iceDamagePrefixed","Grants damage from ice by "},
-            {"igniteDamagePrefixed","Grants damage from ignite by "},
-            {"lightningDamagePrefixed","Grants damage from lightning by "},
-            {"poisonDamagePrefixed","Grants poisoning damage by "},
-            {"voidDamagePrefixed","Grants void damage by "},
-            {"pureDamagePrefixed","Grants amount of pure damage by "},
-            {"iceResistPrefixed","Grants resistance to ice by "},
-            {"igniteResistPrefixed","Grants resistance to ignite by "},
-            {"lightningResistPrefixed","Grants resistance to lightning by "},
-            {"poisonResistPrefixed","Grants resistance to poisoning by "},
-            {"voidResistPrefixed","Grants resistance to all voids by "},
-            {"evasionChancePrefixed","Grants chance to dodge attacks "},
-            {"globalCritPrefixed","Grants global chance of critical attack by "},
-            {"attackSpeedPrefixed","Grants attack speed by "},
-            {"inscSlotsPrefixed","Grants additional slots for inscriptions: "},
-            {"globalCritMultiPrefixed","Grants global crit damage "},
-            {"castDamagePrefixed","Grants damage from cast by "},
-            {"castSpeedPrefixed","Grants cast speed by "},
-            {"castCritPrefixed","Grants chance to deal more damage from cast by "},
-            {"maxMPPrefixed","Grants max MP "},
-            {"maxHPPercentPrefixed","Grants HP above yours by "},
-            {"maxMPPercentPrefixed","Grants MP above yours by "},
-            {"projSpeedPrefixed","Grants projectile speed by "},
-            {"moveSpeedPrefixed","Grants your speed by "},
-            {"luckPrefixed","Grants your luckiness by "},
+            {"maxHPPrefixed" ,"Гарантирует максимального хп "},
+            {"defencePrefixed","Гарантирует защиты "},
+            {"attackDamagePrefixed","Гарантирует урона атаками "},
+            {"iceDamagePrefixed","Гарантирует урона льдом "},
+            {"igniteDamagePrefixed","Гарантирует урона огнём "},
+            {"lightningDamagePrefixed","Гарантирует урона током "},
+            {"poisonDamagePrefixed","Гарантирует урона ядом "},
+            {"voidDamagePrefixed","Гарантирует урона пустотой "},
+            {"pureDamagePrefixed","Гарантирует чистого урон "},
+            {"iceResistPrefixed","Гарантирует сопротивления к льду "},
+            {"igniteResistPrefixed","Гарантирует сопротивления к огню "},
+            {"lightningResistPrefixed","Гарантирует сопротивления к току "},
+            {"poisonResistPrefixed","Гарантирует сопротивления к ядам "},
+            {"voidResistPrefixed","Гарантирует сопротивления к всем пустотам "},
+            {"evasionChancePrefixed","Гарантирует шанса уворота "},
+            {"globalCritPrefixed","Гарантирует глобального шанс крита "},
+            {"attackSpeedPrefixed","Гарантирует скорости атаки "},
+            {"inscSlotsPrefixed","Гарантированных слотов зачарований: "},
+            {"globalCritMultiPrefixed","Гарантирует дополнительного урона критом "},
+            {"castDamagePrefixed","Гарантирует урона чарами "},
+            {"castSpeedPrefixed","Гарантирует скорости сотворения чар "},
+            {"castCritPrefixed","Гарантирует шанса сотворить чудо "},
+            {"maxMPPrefixed","Гарантирует сверх маны "},
+            {"maxHPPercentPrefixed","Гарантирует множителя хп "},
+            {"maxMPPercentPrefixed","Гарантирует множителя мп "},
+            {"projSpeedPrefixed","Гарантирует скорости снарядов "},
+            {"moveSpeedPrefixed","Гарантирует скорости перемещения "},
+            {"luckPrefixed","Гарантирует удачи "},
+            {"regenHPPrefixed","Гарантирует регенерации ХП на "},
+            {"regenMPPrefixed","Гарантирует регенерации МП на "},
         };
     public void EquipmentAwake()
     {
@@ -159,13 +165,13 @@ public class Equipment : Prefixes
             else i--;
         foreach (FieldInfo field1 in itemFields)
             if (field1.ToString().StartsWith("System.Single") && floats.Contains(field1.Name) && (float)field1.GetValue(_item) != 0)
-                description += field1.Name + ": <b>" + "<color=red>" + Convert.ToString((float)field1.GetValue(_item)) + "</color>" + "</b>" + "\r\n";
+                description += descriptionLayersExamples[field1.ToString().TrimStart("System.Single ")] + field1.GetValue(_item) + "\r\n"; 
         List<string> damages = new List<string>();
         List<string> resists = new List<string>();
         List<string> newFloats = new List<string>();       
         int count = 0;
         int phase = 0;
-        int _num = RarityClass().propertiesTier > 2 ? 2 : 1;
+        int _num = rarity.propertiesTier > 2 ? 2 : 1;
         int id = 0;
         int _j = 0;
         while (true)
@@ -199,36 +205,43 @@ public class Equipment : Prefixes
             if ((_float.Contains("Damage") && !damages.Contains(_float)) || (_float.Contains("Resist") || _float == "evasionChance") && !resists.Contains(_float)) continue;
             newFloats.Add(_float);
         }
-        float[] _properties = new float[rarity.propertiesNum];
+        float[] _properties = new float[rarity.propertiesNum > newFloats.Count ? newFloats.Count : rarity.propertiesNum];
         List<int> ints = new List<int>();
-        for (int i = 0; i < newFloats.Count; i++)
+        for (int i = 0; i < newFloats.Count; i++) 
             ints.Add(i);
-        for (int i = 0; i < _properties.Length; i++) //даёт от рарки
+        for (int i = 0; i < _properties.Length; i++) //was properties;
         {
-            int num = rnd.Next(1, ints.Count - 1);
+            int num = rnd.Next(0, ints.Count - 1);
             _properties[i] = ints[num];
             ints.Remove(ints[num]);
         }
-        int[] offset = new int[newFloats.Count];
-        int[] rareOffset = new int[newFloats.Count];
-        int[] prefixOffset = new int[newFloats.Count];
+        bool[] offset = new bool[newFloats.Count];
+        bool[] rareOffset = new bool[newFloats.Count];
+        bool[] prefixOffset = new bool[newFloats.Count];
         for (int i = 0; i < newFloats.Count; i++)
         {
             if (_properties.Contains(i) && itemFieldNames.Contains(newFloats[i]))
-                rareOffset[i] = 1; //добавить отдельный оффсет для префикса и рарити || БАГ: ПРЕФИКС УХОДИТ В НЕСУЩЕСТВУЮЩИЕ И НЕ ДАЁТ ИХ НА РЕЗУЛЬТАТЕ
+                rareOffset[i] = true; //добавить отдельный оффсет для префикса и рарити || БАГ: ПРЕФИКС УХОДИТ В НЕСУЩЕСТВУЮЩИЕ И НЕ ДАЁТ ИХ НА РЕЗУЛЬТАТЕ
             if (prefixedStats.ContainsKey(newFloats[i] + "Prefixed"))
-                prefixOffset[i] = 1;
+                prefixOffset[i] = true;
         }
         List<string> rarityDesc = new List<string>();
         List<string> prefixDesc = new List<string>();
         for (int i = 0; i < newFloats.Count; i++)//если строка не гарантирована, но дарована префиксом, даётся в полной мере, если гарантирована, то не суммируется с полным баффом от префикса.
         {
-            gameObject.GetComponent<Slot>().values[links[newFloats[i]]] += (float)_item.GetType().GetField(newFloats[i]).GetValue(_item) != 0 || offset[i] != 0 || rareOffset[i] != 0 || prefixOffset[i] != 0 ? (float)_item.GetType().GetField(newFloats[i]).GetValue(_item) + (prefixOffset[i] != 0 || (float)_item.GetType().GetField(newFloats[i] + "Summand").GetValue(_item) != 0 ? (float)_item.GetType().GetField(newFloats[i] + "Summand").GetValue(_item) : 0) + (rareOffset[i] != 0 ? (float)typeof(Rarity).GetField(newFloats[i] + "Rare").GetValue(rarity) : 0) : 0;
+            gameObject.GetComponent<Slot>().values[links[newFloats[i]]] += (float)_item.GetType().GetField(newFloats[i]).GetValue(_item) + 
+                (rareOffset[i] && rarityFieldNames.Contains(newFloats[i] + "Rare") ? (float)typeof(Rarity).GetField(newFloats[i] + "Rare").GetValue(rarity) : 0)
+                + (prefixOffset[i] || (float)_item.GetType().GetField(newFloats[i]).GetValue(_item) != 0 ? prefixedStats.ContainsKey(newFloats[i]+"Prefixed") ? prefixedStats[newFloats[i]+"Prefixed"] : (float)_item.GetType().GetField(newFloats[i] + "Summand").GetValue(_item) : 0);
             if (gameObject.GetComponent<Slot>().values[links[newFloats[i]]] != 0)
             {
-                if (/*rarityFieldNames.Contains(newFloats[i] + "Rare")  && */rareOffset[i] != 0 && (float)typeof(Rarity).GetField(newFloats[i] + "Rare").GetValue(rarity) != 0)
-                    rarityDesc.Add(descriptionLayersExamples[newFloats[i]] + Convert.ToString(typeof(Rarity).GetField(newFloats[i] + "Rare").GetValue(rarity)) + "\r\n");       
-                if (/*prefixFieldNames.Contains(newFloats[i] + "Summand") &&*/ (float)typeof(Prefixes).GetField(newFloats[i] + "Summand").GetValue(gameObject.GetComponent<Prefixes>()) != 0)
+                if (rareOffset[i] && (float)typeof(Rarity).GetField(newFloats[i] + "Rare").GetValue(rarity) != 0)
+                    rarityDesc.Add(descriptionLayersExamples[newFloats[i]] + Convert.ToString(typeof(Rarity).GetField(newFloats[i] + "Rare").GetValue(rarity)) + "\r\n");
+                if (prefixedStats.ContainsKey(newFloats[i]+"Prefixed"))
+                {
+                    prefixDesc.Add(descriptionLayersExamples[newFloats[i] + "Prefixed"] + prefixedStats[newFloats[i] + "Prefixed"] + "\r\n");
+                    continue;
+                }
+                if ((float)typeof(Prefixes).GetField(newFloats[i] + "Summand").GetValue(gameObject.GetComponent<Prefixes>()) != 0)
                     prefixDesc.Add(descriptionLayersExamples[newFloats[i]] + Convert.ToString(typeof(Prefixes).GetField(newFloats[i] + "Summand").GetValue(gameObject.GetComponent<Prefixes>())) + "\r\n");
             }  
         }
@@ -244,10 +257,10 @@ public class Equipment : Prefixes
             foreach (string _rarity in rarityDesc)
                 description += _rarity;
         }
-        description += "-----STATS-----\r\n";
-        for (int i = 0; i < floats.Length; i++)
-            if (gameObject.GetComponent<Slot>().values[links[floats[i]]] != 0)
-                description += descriptionLayersExamples[floats[i]] + gameObject.GetComponent<Slot>().values[links[floats[i]]] + "\r\n";
+        //description += "-----СТАТЫ-----\r\n";
+        //for (int i = 0; i < floats.Length; i++)
+        //    if (gameObject.GetComponent<Slot>().values[links[floats[i]]] != 0)
+        //        description += descriptionLayersExamples[floats[i]] + gameObject.GetComponent<Slot>().values[links[floats[i]]] + "\r\n";
         gameObject.GetComponent<Slot>().itemDescription = rarity.rarityName + " " + description;
     }
 
