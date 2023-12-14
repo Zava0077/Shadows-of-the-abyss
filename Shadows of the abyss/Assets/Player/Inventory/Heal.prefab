@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8283065102806030089}
   - component: {fileID: 8283065102806030090}
   - component: {fileID: 9047657002591364943}
+  - component: {fileID: 887212789210257067}
   - component: {fileID: -1560226198522981260}
   - component: {fileID: -2268303626492903351}
   - component: {fileID: -1682586637156180201}
@@ -153,6 +154,7 @@ MonoBehaviour:
   - 0
   - 0
   - 0
+  - 0
   valuesNames:
   - Hp
   - Defence
@@ -201,11 +203,13 @@ MonoBehaviour:
   - ProjSpeed
   - MovementSpeed
   - Luck
+  - BloodyCoin
   settings: 
-  settingsNames: 
+  settingsNames: []
+  usable: {fileID: 887212789210257067}
   kind: 0
   type: Usable
-  id: 0
+  id: 1
   staticKind: 0
   itemDescription: Heals <color=red>10 HP</color>
   rareList: []
@@ -228,6 +232,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 41b0bc5d7dd171f40b77733d21edf797, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &887212789210257067
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8283065102806030095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ebf7e1b121c66b4dbb639417a0c2e96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!50 &-1560226198522981260

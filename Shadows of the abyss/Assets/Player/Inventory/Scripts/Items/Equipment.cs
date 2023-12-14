@@ -15,6 +15,7 @@ public class Equipment : Prefixes
     public FieldInfo[] rarityFields = typeof(Rarity).GetFields();
     public FieldInfo[] prefixFields = typeof(Prefixes).GetFields();
     public FieldInfo[] itemFields;
+    public bool isTrinket;
     Equipment _item;
     string[] floats;
     public float icreaseAllDamage;
@@ -56,6 +57,7 @@ public class Equipment : Prefixes
             {"luck",46},
             {"regenHP",40},
             {"regenMP",41},
+            {"bloodyCoin",47}
         };
     public Dictionary<string, string> descriptionLayersExamples = new Dictionary<string, string> 
         {
@@ -120,6 +122,8 @@ public class Equipment : Prefixes
             {"luckPrefixed","Гарантирует удачи "},
             {"regenHPPrefixed","Гарантирует регенерации ХП на "},
             {"regenMPPrefixed","Гарантирует регенерации МП на "},
+
+            {"bloodyCoin","Вы наносите дополнительный урон за ваши монеты.\r\nВесь наносимый урон уменьшен на 50%"}
         };
     public void EquipmentAwake()
     {
@@ -153,7 +157,7 @@ public class Equipment : Prefixes
         extraDescription = "";
         gameObject.GetComponent<Slot>().rareName = rareName;
         PrefixChooser(rareName, gameObject.GetComponent<Slot>().values[2], gameObject);
-        description += "<color=" + qualityColor + ">" + gameObject.GetComponent<Slot>().rareName + "</color>" + " " + gameObject.GetComponent<Slot>().itemDescription + "\r\n";
+        description += (rareName != "" ? "<color=" + qualityColor + ">" + rareName + "</color> " : "") + gameObject.GetComponent<Slot>().itemDescription + "\r\n";
         
         for (int i = 0; i < prefixFields.Length; i++)
             prefixFieldNames[i] = prefixFields[i].Name;
@@ -165,13 +169,15 @@ public class Equipment : Prefixes
             else i--;
         foreach (FieldInfo field1 in itemFields)
             if (field1.ToString().StartsWith("System.Single") && floats.Contains(field1.Name) && (float)field1.GetValue(_item) != 0)
-                description += descriptionLayersExamples[field1.ToString().TrimStart("System.Single ")] + field1.GetValue(_item) + "\r\n"; 
+                description += descriptionLayersExamples[field1.ToString().TrimStart("System.Single ")] + (!isTrinket ? field1.GetValue(_item) : "") + "\r\n";
         List<string> damages = new List<string>();
         List<string> resists = new List<string>();
-        List<string> newFloats = new List<string>();       
+        List<string> newFloats = new List<string>();
         int count = 0;
         int phase = 0;
-        int _num = rarity.propertiesTier > 2 ? 2 : 1;
+        int _num = 0;
+        if (!isTrinket)
+            _num = rarity.propertiesTier > 2 ? 2 : 1;
         int id = 0;
         int _j = 0;
         while (true)
@@ -192,7 +198,7 @@ public class Equipment : Prefixes
                     phase++;
             }
             if (phase == 1) id = rnd.Next(0, floats.Length - 1);
-            if (count == _num) break;
+            if (count == _num || (damages.Count == 0 && resists.Count == 0)) break;
             if (!damages.Contains(floats[id]) && floats[id].Contains("Damage")) damages.Add(floats[id]);
             else if (!resists.Contains(floats[id]) && (floats[id].Contains("Resist") || floats[id] == "evasionChance")) resists.Add(floats[id]);
             else continue;
@@ -205,7 +211,9 @@ public class Equipment : Prefixes
             if ((_float.Contains("Damage") && !damages.Contains(_float)) || (_float.Contains("Resist") || _float == "evasionChance") && !resists.Contains(_float)) continue;
             newFloats.Add(_float);
         }
-        float[] _properties = new float[rarity.propertiesNum > newFloats.Count ? newFloats.Count : rarity.propertiesNum];
+        float[] _properties = new float[0];
+        if(!isTrinket)
+            _properties = new float[rarity.propertiesNum > newFloats.Count ? newFloats.Count : rarity.propertiesNum];
         List<int> ints = new List<int>();
         for (int i = 0; i < newFloats.Count; i++) 
             ints.Add(i);
@@ -220,8 +228,9 @@ public class Equipment : Prefixes
         bool[] prefixOffset = new bool[newFloats.Count];
         for (int i = 0; i < newFloats.Count; i++)
         {
-            if (_properties.Contains(i) && itemFieldNames.Contains(newFloats[i]))
-                rareOffset[i] = true; //добавить отдельный оффсет для префикса и рарити || БАГ: ПРЕФИКС УХОДИТ В НЕСУЩЕСТВУЮЩИЕ И НЕ ДАЁТ ИХ НА РЕЗУЛЬТАТЕ
+            if(!isTrinket)
+                if (_properties.Contains(i) && itemFieldNames.Contains(newFloats[i]))
+                    rareOffset[i] = true; //добавить отдельный оффсет для префикса и рарити || БАГ: ПРЕФИКС УХОДИТ В НЕСУЩЕСТВУЮЩИЕ И НЕ ДАЁТ ИХ НА РЕЗУЛЬТАТЕ
             if (prefixedStats.ContainsKey(newFloats[i] + "Prefixed"))
                 prefixOffset[i] = true;
         }
@@ -229,9 +238,16 @@ public class Equipment : Prefixes
         List<string> prefixDesc = new List<string>();
         for (int i = 0; i < newFloats.Count; i++)//если строка не гарантирована, но дарована префиксом, даётся в полной мере, если гарантирована, то не суммируется с полным баффом от префикса.
         {
-            gameObject.GetComponent<Slot>().values[links[newFloats[i]]] += (float)_item.GetType().GetField(newFloats[i]).GetValue(_item) + 
+            gameObject.GetComponent<Slot>().values[links[newFloats[i]]] += (float)_item.GetType().GetField(newFloats[i]).GetValue(_item);
+            if(!isTrinket)
+            {
+                gameObject.GetComponent<Slot>().values[links[newFloats[i]]] +=
                 (rareOffset[i] && rarityFieldNames.Contains(newFloats[i] + "Rare") ? (float)typeof(Rarity).GetField(newFloats[i] + "Rare").GetValue(rarity) : 0)
-                + (prefixOffset[i] || (float)_item.GetType().GetField(newFloats[i]).GetValue(_item) != 0 ? prefixedStats.ContainsKey(newFloats[i]+"Prefixed") ? prefixedStats[newFloats[i]+"Prefixed"] : (float)_item.GetType().GetField(newFloats[i] + "Summand").GetValue(_item) : 0);
+                + (prefixOffset[i] || (float)_item.GetType().GetField(newFloats[i]).GetValue(_item) != 0 ? prefixedStats.ContainsKey(newFloats[i] + "Prefixed") ? prefixedStats[newFloats[i] + "Prefixed"] : (float)_item.GetType().GetField(newFloats[i] + "Summand").GetValue(_item) : 0);
+                if ((float)typeof(Prefixes).GetField(newFloats[i] + "Summand").GetValue(gameObject.GetComponent<Prefixes>()) != 0)
+                    prefixDesc.Add(descriptionLayersExamples[newFloats[i]] + Convert.ToString(typeof(Prefixes).GetField(newFloats[i] + "Summand").GetValue(gameObject.GetComponent<Prefixes>())) + "\r\n");
+
+            }
             if (gameObject.GetComponent<Slot>().values[links[newFloats[i]]] != 0)
             {
                 if (rareOffset[i] && (float)typeof(Rarity).GetField(newFloats[i] + "Rare").GetValue(rarity) != 0)
@@ -241,8 +257,6 @@ public class Equipment : Prefixes
                     prefixDesc.Add(descriptionLayersExamples[newFloats[i] + "Prefixed"] + prefixedStats[newFloats[i] + "Prefixed"] + "\r\n");
                     continue;
                 }
-                if ((float)typeof(Prefixes).GetField(newFloats[i] + "Summand").GetValue(gameObject.GetComponent<Prefixes>()) != 0)
-                    prefixDesc.Add(descriptionLayersExamples[newFloats[i]] + Convert.ToString(typeof(Prefixes).GetField(newFloats[i] + "Summand").GetValue(gameObject.GetComponent<Prefixes>())) + "\r\n");
             }  
         }
         if(prefixDesc.Count != 0)
@@ -261,17 +275,26 @@ public class Equipment : Prefixes
         //for (int i = 0; i < floats.Length; i++)
         //    if (gameObject.GetComponent<Slot>().values[links[floats[i]]] != 0)
         //        description += descriptionLayersExamples[floats[i]] + gameObject.GetComponent<Slot>().values[links[floats[i]]] + "\r\n";
-        gameObject.GetComponent<Slot>().itemDescription = rarity.rarityName + " " + description;
+        gameObject.GetComponent<Slot>().itemDescription = (!isTrinket ? rarity.rarityName : "")+ " " + description;
     }
 
     public void CurrentItem(Equipment item)
     {
         _item = item;
         itemFields = _item.GetType().GetFields();
+        foreach (FieldInfo field in itemFields)
+            if (field.ToString().Contains("isTrinket"))
+            {
+                isTrinket = true;
+                break;
+            }
+                
     }
     public Rarity RarityClass()
     {
         System.Random rnd = new System.Random();
+        if (isTrinket)
+            return null;
         if (GetComponent<Unique>() == null)
         {
             switch (rnd.Next(0, 4))

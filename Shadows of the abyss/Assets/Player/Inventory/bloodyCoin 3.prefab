@@ -15,9 +15,8 @@ GameObject:
   - component: {fileID: 1198719410411151621}
   - component: {fileID: -2268303626492903351}
   - component: {fileID: -1957378840449356073}
-  - component: {fileID: 6676806392624426082}
   m_Layer: 5
-  m_Name: Ring
+  m_Name: bloodyCoin 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -83,7 +82,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: 46179686877011240b22a259b7fac66b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bafc2f61ebaca3a458449ea567df1597, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -135,7 +134,7 @@ MonoBehaviour:
   - 0
   - 0
   - 0
-  - 12
+  - 13
   - 0
   - 5
   - 0
@@ -205,21 +204,20 @@ MonoBehaviour:
   - Luck
   - BloodyCoin
   settings: 
-  settingsNames: 
-  kind: 5
-  type: Amulet
-  id: 0
-  staticKind: 5
-  itemDescription: "\u0417\u043E\u043B\u043E\u0442\u043E\u0435 \u043A\u043E\u043B\u044C\u0446\u043E"
-  rareList:
-  - Ignite
-  rareChances: 64000000
+  settingsNames: []
+  kind: 0
+  type: Usable
+  id: 16
+  staticKind: 0
+  itemDescription: "\u041A\u0440\u043E\u0432\u0430\u0432\u0430\u044F \u043C\u043E\u043D\u0435\u0442\u0430"
+  rareList: []
+  rareChances: 
   inscriptions: {fileID: -1957378840449356073}
   projectileSprite: {fileID: 0}
   weaponSprite: {fileID: 0}
   weapon: {fileID: 0}
   emptySprite: {fileID: 21300000, guid: 59a39c1bbaad10949bd53e406701b335, type: 3}
-  sprite: {fileID: 21300000, guid: 46179686877011240b22a259b7fac66b, type: 3}
+  sprite: {fileID: 21300000, guid: bafc2f61ebaca3a458449ea567df1597, type: 3}
   canBeReplaced: 1
   rareName: 
 --- !u!114 &9047657002591364943
@@ -610,75 +608,3 @@ MonoBehaviour:
   spikesValue: 0
   pierceValue: 0
   extraPierceChanceValue: 0
---- !u!114 &6676806392624426082
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8283065102806030095}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b25cffeeca907b44844e613ab5b7bfa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  globalCritSummand: 0
-  globalCritMultiSummand: 0
-  attackCritSummand: 0
-  castCritSummand: 0
-  globalDamageSummand: 0
-  attackDamageSummand: 0
-  castDamageSummand: 0
-  iceDamageSummand: 0
-  igniteDamageSummand: 0
-  lightningDamageSummand: 0
-  poisonDamageSummand: 0
-  pureDamageSummand: 0
-  voidDamageSummand: 0
-  attackSpeedSummand: 0
-  castSpeedSummand: 0
-  projSpeedSummand: 0
-  maxHPSummand: 0
-  maxHPPercentSummand: 0
-  maxMPSummand: 0
-  maxMPPercentSummand: 0
-  HPRegenSummand: 0
-  MPRegenSummand: 0
-  defenceSummand: 0
-  iceResistSummand: 0
-  igniteResistSummand: 0
-  lightningResistSummand: 0
-  poisonResistSummand: 0
-  evasionChanceSummand: 0
-  voidResistSummand: 0
-  moveSpeedSummand: 0
-  luckSummand: 0
-  manaCostSummand: 0
-  weaponSizeSummand: 0
-  secondUsageChanceSummand: 0
-  tripleAttackChanceSummand: 0
-  explChanceSummand: 0
-  explTypeEqualer: 0
-  weaponCooldownSummand: 0
-  createProjectileChanceSummand: 0
-  spikesEqualer: 0
-  inscSlotsSummand: 0
-  extraDescription: 
-  qualityColor: 
-  icreaseAllDamage: 0
-  inscSlots: 0
-  maxMP: 0
-  maxHP: 0
-  defence: 0
-  iceResist: 0
-  igniteResist: 0
-  lightningResist: 0
-  poisonResist: 0
-  evasionChance: 0
-  voidResist: 0
-  luck: 5
-  greed: 12
-  attackSpeed: 4
-  castSpeed: 4
-  regenHP: 0
-  regenMP: 0

@@ -13,6 +13,7 @@ public class SlotInteraction : Slot, IPointerClickHandler
     bool isFolowing;
 
     [SerializeField] public float[] bufferValues;
+    public Usable.UsableEvent bufferUseEvent;
     #region OldCode
     public static float bufferHp;
     public static float bufferDamage;
@@ -70,18 +71,15 @@ public class SlotInteraction : Slot, IPointerClickHandler
     public static Sprite bufferWeaponSprite;
     static bool isSwitching;
     [SerializeField] GameObject defaultSlot; //поменять
+    
     private void Update()
     {
         cursor = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         cursor.z = 0;
         if (Input.GetButtonDown("Fire1") && !isHovered && CursorSlot.self.type == "Usable")
         {
-            ;//Event Switch case
+            CursorSlot.self.useEvent(); //Вызывать метод ивент прямо из класса объекта
         }
-    }
-    private void FixedUpdate()
-    {
-     
     }
     public void OnPointerClick(PointerEventData eventData)
     {
@@ -116,7 +114,6 @@ public class SlotInteraction : Slot, IPointerClickHandler
                         slots[gameObject.GetComponent<Slot>().id].values[32]++;
                         if (CursorSlot.self.values[32] - 1 >= 0)
                             CursorSlot.self.values[32]--;
-
                     }
                 }
             }
@@ -338,6 +335,7 @@ public class SlotInteraction : Slot, IPointerClickHandler
         bufferRareList = CursorSlot.self.rareList;
         bufferRareChances = CursorSlot.self.rareChances;
         bufferRareName = CursorSlot.self.rareName;
+        bufferUseEvent = CursorSlot.self.useEvent;
 
         bufferInscriptions.damage = CursorSlot.self.inscriptions.damage;
         bufferInscriptions.iceDamage = CursorSlot.self.inscriptions.iceDamage;
@@ -385,6 +383,7 @@ public class SlotInteraction : Slot, IPointerClickHandler
         CursorSlot.self.rareName = slots[gameObject.GetComponent<Slot>().id].rareName;
         CursorSlot.self.weaponSprite = slots[gameObject.GetComponent<Slot>().id].weaponSprite;
         CursorSlot.self.projectileSprite = slots[gameObject.GetComponent<Slot>().id].projectileSprite;
+        CursorSlot.self.useEvent = slots[gameObject.GetComponent<Slot>().id].useEvent;
         //
         CursorSlot.self.inscriptions.damage = slots[gameObject.GetComponent<Slot>().id].inscriptions.damage;
         CursorSlot.self.inscriptions.iceDamage = slots[gameObject.GetComponent<Slot>().id].inscriptions.iceDamage;
@@ -432,6 +431,7 @@ public class SlotInteraction : Slot, IPointerClickHandler
         slots[gameObject.GetComponent<Slot>().id].rareName = bufferRareName;
         slots[gameObject.GetComponent<Slot>().id].weaponSprite = bufferWeaponSprite;
         slots[gameObject.GetComponent<Slot>().id].projectileSprite = bufferProjSprite;
+        slots[gameObject.GetComponent<Slot>().id].useEvent = bufferUseEvent;
         //
         slots[gameObject.GetComponent<Slot>().id].inscriptions.damage = bufferInscriptions.damage;
         slots[gameObject.GetComponent<Slot>().id].inscriptions.iceDamage = bufferInscriptions.iceDamage;
@@ -470,7 +470,7 @@ public class SlotInteraction : Slot, IPointerClickHandler
         slots[gameObject.GetComponent<Slot>().id].inscriptions.extraPierceChance = bufferInscriptions.extraPierceChance;
         //
     } 
-    void ToDefault(int i)
+    public void ToDefault(int i)
     {
         GameObject defSlot = defaultSlot;
         switch (i)
@@ -485,6 +485,7 @@ public class SlotInteraction : Slot, IPointerClickHandler
                 CursorSlot.self.rareName = defSlot.GetComponent<Slot>().rareName;
                 CursorSlot.self.weaponSprite = defSlot.GetComponent<Slot>().weaponSprite;
                 CursorSlot.self.projectileSprite = defSlot.GetComponent<Slot>().projectileSprite;
+                CursorSlot.self.useEvent = defSlot.GetComponent<Slot>().useEvent;
                 break;
             case 1:
                 slots[gameObject.GetComponent<Slot>().id].values = new float[slots[gameObject.GetComponent<Slot>().id].values.Length];
@@ -496,6 +497,7 @@ public class SlotInteraction : Slot, IPointerClickHandler
                 slots[gameObject.GetComponent<Slot>().id].rareName = defSlot.GetComponent<Slot>().rareName;
                 slots[gameObject.GetComponent<Slot>().id].weaponSprite = defSlot.GetComponent<Slot>().weaponSprite;
                 slots[gameObject.GetComponent<Slot>().id].projectileSprite = defSlot.GetComponent<Slot>().projectileSprite;
+                slots[gameObject.GetComponent<Slot>().id].useEvent = defSlot.GetComponent<Slot>().useEvent;
                 break;
         }
     }

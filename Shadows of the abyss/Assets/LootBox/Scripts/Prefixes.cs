@@ -141,7 +141,8 @@ public class Prefixes : MonoBehaviour
                 inscSlotsSummand = 1;
                 break;
             case "Electric":
-                lightningDamageSummand = 5;
+                lightningDamageSummand = 5; prefixedStats["lightningDamagePrefixed"] = 3;
+                lightningResistSummand = 5; prefixedStats["lightningResistPrefixed"] = 3;
                 attackCritSummand = 5;
                 castCritSummand = 5;
                 inscSlotsSummand = 1;

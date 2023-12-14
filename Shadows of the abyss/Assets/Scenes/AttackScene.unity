@@ -784,15 +784,8 @@ MonoBehaviour:
   VoidRes: 0
   Evasion: 0
   gameObjects:
-  - {fileID: 8283065102806030095, guid: 24dfadbc24ae1084caa3695ed696083f, type: 3}
-  - {fileID: 8283065102806030095, guid: 24dfadbc24ae1084caa3695ed696083f, type: 3}
-  - {fileID: 8283065102806030095, guid: 24dfadbc24ae1084caa3695ed696083f, type: 3}
-  - {fileID: 8283065102806030095, guid: 24dfadbc24ae1084caa3695ed696083f, type: 3}
-  - {fileID: 8283065102806030095, guid: 24dfadbc24ae1084caa3695ed696083f, type: 3}
-  - {fileID: 8283065102806030095, guid: 24dfadbc24ae1084caa3695ed696083f, type: 3}
-  - {fileID: 8283065102806030095, guid: 24dfadbc24ae1084caa3695ed696083f, type: 3}
-  - {fileID: 8283065102806030095, guid: 24dfadbc24ae1084caa3695ed696083f, type: 3}
-  chance: 6400000064000000640000006400000064000000640000006400000064000000
+  - {fileID: 8283065102806030095, guid: 4f0e945cf3598fb4b8f60d8332ad4ca3, type: 3}
+  chance: 64000000
 --- !u!114 &89106861
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -5,6 +5,8 @@ using UnityEngine;
 using UnityEngine.VFX;
 using System;
 using Unity.Mathematics;
+using Unity.VisualScripting;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 
 public class Inventory : MonoBehaviour
 {
@@ -69,49 +71,15 @@ public class Inventory : MonoBehaviour
         else
         {
             slots[firstFreeSlot].values = item.GetComponent<Slot>().values; //Применение всех свойств
-
-            //slots[firstFreeSlot].damage = item.GetComponent<Slot>().damage;
-            //slots[firstFreeSlot].iceDamage = item.GetComponent<Slot>().iceDamage;
-            //slots[firstFreeSlot].igniteDamage = item.GetComponent<Slot>().igniteDamage;
-            //slots[firstFreeSlot].lightningDamage = item.GetComponent<Slot>().lightningDamage;
-            //slots[firstFreeSlot].poisonDamage = item.GetComponent<Slot>().poisonDamage;
-            //slots[firstFreeSlot].voidDamage = item.GetComponent<Slot>().voidDamage;
-            //slots[firstFreeSlot].pureDamage = item.GetComponent<Slot>().pureDamage;
-            //slots[firstFreeSlot].defence = item.GetComponent<Slot>().defence;
-            //slots[firstFreeSlot].iceResist = item.GetComponent<Slot>().iceResist;
-            //slots[firstFreeSlot].igniteResist = item.GetComponent<Slot>().igniteResist;
-            //slots[firstFreeSlot].lightningResist = item.GetComponent<Slot>().lightningResist;
-            //slots[firstFreeSlot].poisonResist = item.GetComponent<Slot>().poisonResist;
-            //slots[firstFreeSlot].voidResist = item.GetComponent<Slot>().voidResist;
-            //slots[firstFreeSlot].pureResist = item.GetComponent<Slot>().pureResist;
             slots[firstFreeSlot].type = item.GetComponent<Slot>().type;
             slots[firstFreeSlot].sprite = item.GetComponent<Slot>().sprite;
-            //slots[firstFreeSlot].hp = item.GetComponent<Slot>().hp;
-            //slots[firstFreeSlot].evasionChance = item.GetComponent<Slot>().evasionChance;
-            //slots[firstFreeSlot].criticalChance = item.GetComponent<Slot>().criticalChance;
-            //slots[firstFreeSlot].kind = item.GetComponent<Slot>().kind;
-            //slots[firstFreeSlot].stackAmount = item.GetComponent<Slot>().stackAmount;
-            //slots[firstFreeSlot].stacksAlready = item.GetComponent<Slot>().stacksAlready;
-            //slots[firstFreeSlot].idItem = item.GetComponent<Slot>().idItem;
             slots[firstFreeSlot].itemDescription = item.GetComponent<Slot>().itemDescription.Replace("\\n","\n");
             slots[firstFreeSlot].rareList = item.GetComponent<Slot>().rareList;
             slots[firstFreeSlot].rareChances = item.GetComponent<Slot>().rareChances;
             slots[firstFreeSlot].rareName = rareName;
-            //slots[firstFreeSlot].manaCost = item.GetComponent<Slot>().manaCost;
-            //slots[firstFreeSlot].weaponSize = item.GetComponent<Slot>().weaponSize;
-            //slots[firstFreeSlot].attackSpeed = item.GetComponent<Slot>().attackSpeed;
-            //slots[firstFreeSlot].tripleAttackChance = item.GetComponent<Slot>().tripleAttackChance;
-            //slots[firstFreeSlot].secondUsageChance = item.GetComponent<Slot>().secondUsageChance;
-            //slots[firstFreeSlot].explosionChance = item.GetComponent<Slot>().explosionChance;
-            //slots[firstFreeSlot].explosionType = item.GetComponent<Slot>().explosionType;
-            //slots[firstFreeSlot].weaponCooldown = item.GetComponent<Slot>().weaponCooldown;
             slots[firstFreeSlot].weaponSprite = item.GetComponent<Slot>().weaponSprite;
             slots[firstFreeSlot].projectileSprite = item.GetComponent<Slot>().projectileSprite;
-            //slots[firstFreeSlot].createProjectileChance = item.GetComponent<Slot>().createProjectileChance;
-            //slots[firstFreeSlot].spikes = item.GetComponent<Slot>().spikes;
-            //slots[firstFreeSlot].pierce = item.GetComponent<Slot>().pierce;
-            //slots[firstFreeSlot].extraPierceChance = item.GetComponent<Slot>().extraPierceChance;
-            //slots[firstFreeSlot].inscriptionNum = item.GetComponent<Slot>().inscriptionNum;
+            slots[firstFreeSlot].useEvent = item.GetComponent<Slot>().useEvent;
             //
             slots[firstFreeSlot].inscriptions.iceDamage = item.GetComponent<Slot>().inscriptions.iceDamage;
             slots[firstFreeSlot].inscriptions.igniteDamage = item.GetComponent<Slot>().inscriptions.igniteDamage;
@@ -156,7 +124,6 @@ public class Inventory : MonoBehaviour
     }
     public void GetFeatures()
     {
-        //if (slots[SlotInteraction.hoveredId].GetComponent<Slot>().inscriptions.Count != 0)
         for (int i = 0; i < InscriptionsInventory.inscriptionSlots.Count; i++)
         {
             //
@@ -194,12 +161,11 @@ public class Inventory : MonoBehaviour
             InscriptionsInventory.inscriptionSlots[i].values[24] = slots[SlotInteraction.hoveredId].inscriptions.createProjectileChance[i];
             InscriptionsInventory.inscriptionSlots[i].values[25] = slots[SlotInteraction.hoveredId].inscriptions.spikes[i];
             InscriptionsInventory.inscriptionSlots[i].values[26] = slots[SlotInteraction.hoveredId].inscriptions.pierce[i];
-            InscriptionsInventory.inscriptionSlots[i].values[27] = slots[SlotInteraction.hoveredId].inscriptions.extraPierceChance[i];
+            InscriptionsInventory.inscriptionSlots[i].values[27] = slots[SlotInteraction.hoveredId].inscriptions.extraPierceChance[i];      
         }
     }
     public void AcceptFeatures()
     {
-        //if (slots[SlotInteraction.hoveredId].inscriptions.Count != 0)
             for (int i = 0; i < InscriptionsInventory.inscriptionSlots.Count; i++)
             {
                 slots[SlotInteraction.hoveredId].inscriptions.damage[i] = InscriptionsInventory.inscriptionSlots[i].values[2];

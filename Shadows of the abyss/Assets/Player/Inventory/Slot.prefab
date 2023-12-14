@@ -243,6 +243,7 @@ MonoBehaviour:
   - 0
   - 0
   - 0
+  - 0
   valuesNames:
   - Hp
   - Defence
@@ -291,6 +292,7 @@ MonoBehaviour:
   - ProjSpeed
   - MovementSpeed
   - Luck
+  - BloodyCoin
   settings: 
   settingsNames: 
   kind: 0

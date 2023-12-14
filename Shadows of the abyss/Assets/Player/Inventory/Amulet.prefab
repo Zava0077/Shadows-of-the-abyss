@@ -154,6 +154,7 @@ MonoBehaviour:
   - 0
   - 0
   - 0
+  - 0
   valuesNames:
   - Hp
   - Defence
@@ -202,6 +203,7 @@ MonoBehaviour:
   - ProjSpeed
   - MovementSpeed
   - Luck
+  - BloodyCoin
   settings: 
   settingsNames: 
   kind: 5
@@ -660,11 +662,11 @@ MonoBehaviour:
   weaponCooldownSummand: 0
   createProjectileChanceSummand: 0
   spikesEqualer: 0
-  inscSummand: 0
+  inscSlotsSummand: 0
   extraDescription: 
   qualityColor: 
   icreaseAllDamage: 0
-  incripSlots: 0
+  inscSlots: 0
   maxMP: 0
   maxHP: 0
   defence: 0

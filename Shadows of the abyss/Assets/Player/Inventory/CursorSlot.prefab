@@ -137,6 +137,20 @@ MonoBehaviour:
   - 0
   - 0
   - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
   valuesNames:
   - Hp
   - Defence
@@ -170,6 +184,20 @@ MonoBehaviour:
   - Inscription slots
   - Kind
   - StackAmount
+  - StacksAlready
+  - StacksAlready
+  - StacksAlready
+  - StacksAlready
+  - StacksAlready
+  - StacksAlready
+  - StacksAlready
+  - StacksAlready
+  - StacksAlready
+  - StacksAlready
+  - StacksAlready
+  - StacksAlready
+  - StacksAlready
+  - StacksAlready
   - StacksAlready
   kind: 0
   type: Empty
