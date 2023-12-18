@@ -11,6 +11,8 @@ public class CursorSlot : MonoBehaviour
     [SerializeField] public float[] values;
     [SerializeField] public string[] valuesNames;
     public Usable.UsableEvent useEvent;
+    public GameObject originalItem;
+    public GameObject defaultSlot;
     #region OldCode
     //[SerializeField] public float hp;
     //[SerializeField] public float damage;

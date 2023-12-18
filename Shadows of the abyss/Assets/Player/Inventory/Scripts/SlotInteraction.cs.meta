@@ -4,13 +4,15 @@ MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences:
+  - originalItem: {instanceID: 0}
   - inscriptions: {instanceID: 0}
   - projectileSprite: {instanceID: 0}
   - weaponSprite: {instanceID: 0}
   - weapon: {instanceID: 0}
   - emptySprite: {instanceID: 0}
   - sprite: {instanceID: 0}
-  - defaultSlot: {instanceID: 0}
+  - bufferOriginalItem: {instanceID: 0}
+  - defaultSlot: {fileID: 1584044522010320967, guid: 0c97c6d812d38d5459116509ab90b091, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

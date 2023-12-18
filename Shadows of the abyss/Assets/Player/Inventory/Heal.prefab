@@ -206,7 +206,8 @@ MonoBehaviour:
   - BloodyCoin
   settings: 
   settingsNames: []
-  usable: {fileID: 887212789210257067}
+  originalItem: {fileID: 0}
+  defaultSlot: {fileID: 1584044522010320967, guid: 0c97c6d812d38d5459116509ab90b091, type: 3}
   kind: 0
   type: Usable
   id: 1
@@ -246,6 +247,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ebf7e1b121c66b4dbb639417a0c2e96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  values: []
+  valuesNames: []
+  settings: 
+  settingsNames: []
+  originalItem: {fileID: 0}
+  defaultSlot: {fileID: 1584044522010320967, guid: 0c97c6d812d38d5459116509ab90b091, type: 3}
+  kind: 0
+  type: 
+  id: 0
+  staticKind: 0
+  itemDescription: 
+  rareList: []
+  rareChances: 
+  inscriptions: {fileID: 0}
+  projectileSprite: {fileID: 0}
+  weaponSprite: {fileID: 0}
+  weapon: {fileID: 0}
+  emptySprite: {fileID: 0}
+  sprite: {fileID: 0}
+  canBeReplaced: 1
+  rareName: 
+  bufferValues: []
+  bufferOriginalItem: {fileID: 0}
+  bufferDefaultSlot: {fileID: 0}
+  _defaultSlot: {fileID: 0}
 --- !u!50 &-1560226198522981260
 Rigidbody2D:
   serializedVersion: 4

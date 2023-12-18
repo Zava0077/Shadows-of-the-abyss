@@ -294,7 +294,9 @@ MonoBehaviour:
   - Luck
   - BloodyCoin
   settings: 
-  settingsNames: 
+  settingsNames: []
+  originalItem: {fileID: 0}
+  defaultSlot: {fileID: 1584044522010320967}
   kind: 0
   type: Empty
   id: 0
@@ -391,7 +393,9 @@ MonoBehaviour:
   - StackAmount
   - StacksAlready
   settings: 
-  settingsNames: 
+  settingsNames: []
+  originalItem: {fileID: 0}
+  defaultSlot: {fileID: 0}
   kind: 0
   type: Empty
   id: 0
@@ -408,7 +412,8 @@ MonoBehaviour:
   canBeReplaced: 1
   rareName: 
   bufferValues: []
-  defaultSlot: {fileID: 0}
+  bufferOriginalItem: {fileID: 0}
+  bufferDefaultSlot: {fileID: 0}
 --- !u!114 &6107744275303425091
 MonoBehaviour:
   m_ObjectHideFlags: 0

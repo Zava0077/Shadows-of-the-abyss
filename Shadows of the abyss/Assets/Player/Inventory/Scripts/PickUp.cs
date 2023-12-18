@@ -28,7 +28,8 @@ public class PickUp : MonoBehaviour
         {
             Inventory.IsInventoryFull(collision.otherCollider.gameObject);
             Inventory.self.PickUpItem(collision.otherCollider.gameObject);
-            Destroy(collision.otherCollider.gameObject);
+            collision.otherCollider.gameObject.SetActive(false);
+            //Destroy(collision.otherCollider.gameObject);
         }
     }
 }

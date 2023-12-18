@@ -65,6 +65,7 @@ public class Inventory : MonoBehaviour
     public void PickUpItem(GameObject item) //
     {
         System.Random rnd = new System.Random();
+        GameObject _ref = new GameObject();
         string rareName = "";
         if (slots[firstFreeSlot].values[32] < slots[firstFreeSlot].values[31] && slots[firstFreeSlot].values[32] > 0 && slots[firstFreeSlot].values[28] == item.GetComponent<Slot>().values[28])
             slots[firstFreeSlot].values[32]++;
@@ -80,6 +81,8 @@ public class Inventory : MonoBehaviour
             slots[firstFreeSlot].weaponSprite = item.GetComponent<Slot>().weaponSprite;
             slots[firstFreeSlot].projectileSprite = item.GetComponent<Slot>().projectileSprite;
             slots[firstFreeSlot].useEvent = item.GetComponent<Slot>().useEvent;
+            slots[firstFreeSlot].originalItem = item.GetComponent<Slot>().gameObject;
+            slots[firstFreeSlot].defaultSlot = item.GetComponent<Slot>().defaultSlot;
             //
             slots[firstFreeSlot].inscriptions.iceDamage = item.GetComponent<Slot>().inscriptions.iceDamage;
             slots[firstFreeSlot].inscriptions.igniteDamage = item.GetComponent<Slot>().inscriptions.igniteDamage;

@@ -295,6 +295,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 1584044522010320962, guid: 0c97c6d812d38d5459116509ab90b091, type: 3}
+      propertyPath: defaultSlot
+      value: 
+      objectReference: {fileID: 1584044522010320967, guid: 0c97c6d812d38d5459116509ab90b091, type: 3}
+    - target: {fileID: 1584044522010320962, guid: 0c97c6d812d38d5459116509ab90b091, type: 3}
       propertyPath: itemDescription
       value: Empty
       objectReference: {fileID: 0}
@@ -784,8 +788,9 @@ MonoBehaviour:
   VoidRes: 0
   Evasion: 0
   gameObjects:
-  - {fileID: 8283065102806030095, guid: 4f0e945cf3598fb4b8f60d8332ad4ca3, type: 3}
-  chance: 64000000
+  - {fileID: 8283065102806030095, guid: ab43b17e74beb3b45b8fa624f0f5ccb3, type: 3}
+  - {fileID: 8283065102806030095, guid: 1d78f4350609c2d41b7fe0127e7ef6f0, type: 3}
+  chance: 6400000064000000
 --- !u!114 &89106861
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -941,6 +946,10 @@ PrefabInstance:
       propertyPath: weapon
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 1584044522010320962, guid: 0c97c6d812d38d5459116509ab90b091, type: 3}
+      propertyPath: defaultSlot
+      value: 
+      objectReference: {fileID: 1584044522010320967, guid: 0c97c6d812d38d5459116509ab90b091, type: 3}
     - target: {fileID: 1584044522010320962, guid: 0c97c6d812d38d5459116509ab90b091, type: 3}
       propertyPath: itemDescription
       value: Empty
@@ -2816,6 +2825,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 1584044522010320962, guid: 0c97c6d812d38d5459116509ab90b091, type: 3}
+      propertyPath: defaultSlot
+      value: 
+      objectReference: {fileID: 1584044522010320967, guid: 0c97c6d812d38d5459116509ab90b091, type: 3}
+    - target: {fileID: 1584044522010320962, guid: 0c97c6d812d38d5459116509ab90b091, type: 3}
       propertyPath: values.Array.data[32]
       value: 0
       objectReference: {fileID: 0}
@@ -3231,6 +3244,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 1584044522010320962, guid: 0c97c6d812d38d5459116509ab90b091, type: 3}
+      propertyPath: defaultSlot
+      value: 
+      objectReference: {fileID: 1584044522010320967, guid: 0c97c6d812d38d5459116509ab90b091, type: 3}
+    - target: {fileID: 1584044522010320962, guid: 0c97c6d812d38d5459116509ab90b091, type: 3}
       propertyPath: values.Array.data[32]
       value: 0
       objectReference: {fileID: 0}
@@ -3447,6 +3464,10 @@ PrefabInstance:
       propertyPath: weapon
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 1584044522010320962, guid: 0c97c6d812d38d5459116509ab90b091, type: 3}
+      propertyPath: defaultSlot
+      value: 
+      objectReference: {fileID: 1584044522010320967, guid: 0c97c6d812d38d5459116509ab90b091, type: 3}
     - target: {fileID: 1584044522010320962, guid: 0c97c6d812d38d5459116509ab90b091, type: 3}
       propertyPath: itemDescription
       value: Empty
@@ -4071,6 +4092,10 @@ PrefabInstance:
       propertyPath: weapon
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 1584044522010320962, guid: 0c97c6d812d38d5459116509ab90b091, type: 3}
+      propertyPath: defaultSlot
+      value: 
+      objectReference: {fileID: 1584044522010320967, guid: 0c97c6d812d38d5459116509ab90b091, type: 3}
     - target: {fileID: 1584044522010320962, guid: 0c97c6d812d38d5459116509ab90b091, type: 3}
       propertyPath: itemDescription
       value: Empty
@@ -9797,6 +9822,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 1584044522010320962, guid: 0c97c6d812d38d5459116509ab90b091, type: 3}
+      propertyPath: defaultSlot
+      value: 
+      objectReference: {fileID: 1584044522010320967, guid: 0c97c6d812d38d5459116509ab90b091, type: 3}
+    - target: {fileID: 1584044522010320962, guid: 0c97c6d812d38d5459116509ab90b091, type: 3}
       propertyPath: itemDescription
       value: Empty
       objectReference: {fileID: 0}
@@ -10493,6 +10522,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 1584044522010320962, guid: 0c97c6d812d38d5459116509ab90b091, type: 3}
+      propertyPath: defaultSlot
+      value: 
+      objectReference: {fileID: 1584044522010320967, guid: 0c97c6d812d38d5459116509ab90b091, type: 3}
+    - target: {fileID: 1584044522010320962, guid: 0c97c6d812d38d5459116509ab90b091, type: 3}
       propertyPath: itemDescription
       value: Empty
       objectReference: {fileID: 0}
@@ -10701,6 +10734,10 @@ PrefabInstance:
       propertyPath: weapon
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 1584044522010320962, guid: 0c97c6d812d38d5459116509ab90b091, type: 3}
+      propertyPath: defaultSlot
+      value: 
+      objectReference: {fileID: 1584044522010320967, guid: 0c97c6d812d38d5459116509ab90b091, type: 3}
     - target: {fileID: 1584044522010320962, guid: 0c97c6d812d38d5459116509ab90b091, type: 3}
       propertyPath: itemDescription
       value: Empty
@@ -13085,6 +13122,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 1584044522010320962, guid: 0c97c6d812d38d5459116509ab90b091, type: 3}
+      propertyPath: defaultSlot
+      value: 
+      objectReference: {fileID: 1584044522010320967, guid: 0c97c6d812d38d5459116509ab90b091, type: 3}
+    - target: {fileID: 1584044522010320962, guid: 0c97c6d812d38d5459116509ab90b091, type: 3}
       propertyPath: itemDescription
       value: Empty
       objectReference: {fileID: 0}
@@ -13816,6 +13857,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 1584044522010320962, guid: 0c97c6d812d38d5459116509ab90b091, type: 3}
+      propertyPath: defaultSlot
+      value: 
+      objectReference: {fileID: 1584044522010320967, guid: 0c97c6d812d38d5459116509ab90b091, type: 3}
+    - target: {fileID: 1584044522010320962, guid: 0c97c6d812d38d5459116509ab90b091, type: 3}
       propertyPath: itemDescription
       value: Empty
       objectReference: {fileID: 0}
@@ -14036,6 +14081,10 @@ PrefabInstance:
       propertyPath: weapon
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 1584044522010320962, guid: 0c97c6d812d38d5459116509ab90b091, type: 3}
+      propertyPath: defaultSlot
+      value: 
+      objectReference: {fileID: 1584044522010320967, guid: 0c97c6d812d38d5459116509ab90b091, type: 3}
     - target: {fileID: 1584044522010320962, guid: 0c97c6d812d38d5459116509ab90b091, type: 3}
       propertyPath: itemDescription
       value: Empty
@@ -14459,6 +14508,10 @@ PrefabInstance:
       propertyPath: weapon
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 1584044522010320962, guid: 0c97c6d812d38d5459116509ab90b091, type: 3}
+      propertyPath: defaultSlot
+      value: 
+      objectReference: {fileID: 1584044522010320967, guid: 0c97c6d812d38d5459116509ab90b091, type: 3}
     - target: {fileID: 1584044522010320962, guid: 0c97c6d812d38d5459116509ab90b091, type: 3}
       propertyPath: itemDescription
       value: Empty
@@ -15078,6 +15131,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 1584044522010320962, guid: 0c97c6d812d38d5459116509ab90b091, type: 3}
+      propertyPath: defaultSlot
+      value: 
+      objectReference: {fileID: 1584044522010320967, guid: 0c97c6d812d38d5459116509ab90b091, type: 3}
+    - target: {fileID: 1584044522010320962, guid: 0c97c6d812d38d5459116509ab90b091, type: 3}
       propertyPath: itemDescription
       value: Empty
       objectReference: {fileID: 0}
@@ -15649,6 +15706,10 @@ PrefabInstance:
       propertyPath: weapon
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 1584044522010320962, guid: 0c97c6d812d38d5459116509ab90b091, type: 3}
+      propertyPath: defaultSlot
+      value: 
+      objectReference: {fileID: 1584044522010320967, guid: 0c97c6d812d38d5459116509ab90b091, type: 3}
     - target: {fileID: 1584044522010320962, guid: 0c97c6d812d38d5459116509ab90b091, type: 3}
       propertyPath: itemDescription
       value: Empty
@@ -16389,6 +16450,10 @@ PrefabInstance:
       propertyPath: weapon
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 1584044522010320962, guid: 0c97c6d812d38d5459116509ab90b091, type: 3}
+      propertyPath: defaultSlot
+      value: 
+      objectReference: {fileID: 1584044522010320967, guid: 0c97c6d812d38d5459116509ab90b091, type: 3}
     - target: {fileID: 1584044522010320962, guid: 0c97c6d812d38d5459116509ab90b091, type: 3}
       propertyPath: rareList.Array.size
       value: 0

@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: -2268303626492903351}
   - component: {fileID: -1957378840449356073}
   m_Layer: 5
-  m_Name: bloodyCoin 4
+  m_Name: upgrader
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -82,7 +82,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: 03156367c0a662d4f91f5e457ea28b13, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bafc2f61ebaca3a458449ea567df1597, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -205,9 +205,11 @@ MonoBehaviour:
   - BloodyCoin
   settings: 
   settingsNames: []
+  originalItem: {fileID: 0}
+  defaultSlot: {fileID: 1584044522010320967, guid: 0c97c6d812d38d5459116509ab90b091, type: 3}
   kind: 0
   type: Usable
-  id: 17
+  id: 16
   staticKind: 0
   itemDescription: "\u041A\u0440\u043E\u0432\u0430\u0432\u0430\u044F \u043C\u043E\u043D\u0435\u0442\u0430"
   rareList: []
@@ -217,7 +219,7 @@ MonoBehaviour:
   weaponSprite: {fileID: 0}
   weapon: {fileID: 0}
   emptySprite: {fileID: 21300000, guid: 59a39c1bbaad10949bd53e406701b335, type: 3}
-  sprite: {fileID: 21300000, guid: 03156367c0a662d4f91f5e457ea28b13, type: 3}
+  sprite: {fileID: 21300000, guid: bafc2f61ebaca3a458449ea567df1597, type: 3}
   canBeReplaced: 1
   rareName: 
 --- !u!114 &9047657002591364943

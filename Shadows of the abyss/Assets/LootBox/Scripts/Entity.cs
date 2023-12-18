@@ -173,9 +173,9 @@ public class Entity : MonoBehaviour
                 article.GetComponent<Slot>().sprite = gameObjects[i].GetComponent<Slot>().sprite;
                 article.GetComponent<Slot>().values[30] = gameObjects[i].GetComponent<Slot>().kind;
                 article.GetComponent<Slot>().values[28] = gameObjects[i].GetComponent<Slot>().values[28];
-                
-                
-           
+                article.GetComponent<Slot>().defaultSlot = gameObjects[i].GetComponent<Slot>().defaultSlot;
+
+
                 //
                 //
 

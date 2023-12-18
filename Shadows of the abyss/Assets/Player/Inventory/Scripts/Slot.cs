@@ -12,6 +12,8 @@ public class Slot : Inventory
     [SerializeField] public string[] valuesNames;
     [SerializeField] public bool[] settings;
     [SerializeField] public string[] settingsNames;
+    public GameObject originalItem;
+    public GameObject defaultSlot;
     public Usable.UsableEvent useEvent;
     #region oldCode
     [SerializeField] public int kind;

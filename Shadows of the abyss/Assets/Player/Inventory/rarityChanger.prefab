@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: -2268303626492903351}
   - component: {fileID: -1957378840449356073}
   m_Layer: 5
-  m_Name: bloodyCoin 2
+  m_Name: rarityChanger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -205,6 +205,8 @@ MonoBehaviour:
   - BloodyCoin
   settings: 
   settingsNames: []
+  originalItem: {fileID: 0}
+  defaultSlot: {fileID: 1584044522010320967, guid: 0c97c6d812d38d5459116509ab90b091, type: 3}
   kind: 0
   type: Usable
   id: 15

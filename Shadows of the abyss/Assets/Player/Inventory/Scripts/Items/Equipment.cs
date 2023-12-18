@@ -285,10 +285,9 @@ public class Equipment : Prefixes
         foreach (FieldInfo field in itemFields)
             if (field.ToString().Contains("isTrinket"))
             {
-                isTrinket = true;
+                isTrinket = Convert.ToBoolean(field.GetValue(_item));
                 break;
-            }
-                
+            }   
     }
     public Rarity RarityClass()
     {

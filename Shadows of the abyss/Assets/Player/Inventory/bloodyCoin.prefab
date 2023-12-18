@@ -206,6 +206,8 @@ MonoBehaviour:
   - BloodyCoin
   settings: 
   settingsNames: []
+  originalItem: {fileID: 0}
+  defaultSlot: {fileID: 1584044522010320967, guid: 0c97c6d812d38d5459116509ab90b091, type: 3}
   kind: 5
   type: Trinket
   id: 13

@@ -205,7 +205,9 @@ MonoBehaviour:
   - Luck
   - BloodyCoin
   settings: 
-  settingsNames: 
+  settingsNames: []
+  originalItem: {fileID: 0}
+  defaultSlot: {fileID: 1584044522010320967, guid: 0c97c6d812d38d5459116509ab90b091, type: 3}
   kind: 2
   type: Armour
   id: 0
@@ -666,6 +668,7 @@ MonoBehaviour:
   inscSlotsSummand: 0
   extraDescription: 
   qualityColor: 
+  isTrinket: 0
   icreaseAllDamage: 0
   inscSlots: 0
   maxMP: 0

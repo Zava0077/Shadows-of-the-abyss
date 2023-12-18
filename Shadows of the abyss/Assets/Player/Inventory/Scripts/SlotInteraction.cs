@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Runtime.InteropServices;
 using Unity.VisualScripting;
 using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
@@ -12,8 +13,15 @@ public class SlotInteraction : Slot, IPointerClickHandler
     Vector3 cursor;
     bool isFolowing;
 
+    public static SlotInteraction slotInt;
+    public SlotInteraction()
+    {
+        slotInt = this;
+    }
+
     [SerializeField] public float[] bufferValues;
     public Usable.UsableEvent bufferUseEvent;
+    public GameObject bufferOriginalItem;
     #region OldCode
     public static float bufferHp;
     public static float bufferDamage;
@@ -70,36 +78,41 @@ public class SlotInteraction : Slot, IPointerClickHandler
     public static Sprite bufferProjSprite;
     public static Sprite bufferWeaponSprite;
     static bool isSwitching;
-    [SerializeField] GameObject defaultSlot; //поменять
+    [SerializeField] GameObject bufferDefaultSlot; //поменять
     
     private void Update()
     {
         cursor = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         cursor.z = 0;
-        if (Input.GetButtonDown("Fire1") && !isHovered && CursorSlot.self.type == "Usable")
-        {
-            CursorSlot.self.useEvent(); //Вызывать метод ивент прямо из класса объекта
-        }
     }
     public void OnPointerClick(PointerEventData eventData)
     {
-        switch(eventData.button)
-        {
-            case PointerEventData.InputButton.Left:
-                if (!isSwitching)
-                {
-                    isSwitching = true;
-                    DragItem();
-                } 
-                break;
-            case PointerEventData.InputButton.Right:
-                if (!isSwitching)
-                {
-                    isSwitching = true;
-                    RightClick();
-                }
-                break;
-        }
+        if(isHovered)
+            switch (eventData.button)
+            {
+                case PointerEventData.InputButton.Left:
+                    if (PrefixChangerObject._ref)
+                    {
+                        PrefixChangerObject._ref.ClickEvent(gameObject, gameObject.GetComponent<Slot>().id);
+                        break;
+                    }
+                    if (!isSwitching)
+                    {
+                        isSwitching = true;
+                        DragItem();
+                    }
+                    break;
+                case PointerEventData.InputButton.Right:
+                    if (slots[gameObject.GetComponent<Slot>().id].type == "Usable")
+                        slots[gameObject.GetComponent<Slot>().id].useEvent(gameObject);
+                    else
+                   if (!isSwitching)
+                    {
+                        isSwitching = true;
+                        RightClick();
+                    }
+                    break;
+            }
     }
     public void DragItem()
     {
@@ -336,6 +349,8 @@ public class SlotInteraction : Slot, IPointerClickHandler
         bufferRareChances = CursorSlot.self.rareChances;
         bufferRareName = CursorSlot.self.rareName;
         bufferUseEvent = CursorSlot.self.useEvent;
+        bufferOriginalItem = CursorSlot.self.originalItem;
+        bufferDefaultSlot = CursorSlot.self.defaultSlot;
 
         bufferInscriptions.damage = CursorSlot.self.inscriptions.damage;
         bufferInscriptions.iceDamage = CursorSlot.self.inscriptions.iceDamage;
@@ -384,6 +399,8 @@ public class SlotInteraction : Slot, IPointerClickHandler
         CursorSlot.self.weaponSprite = slots[gameObject.GetComponent<Slot>().id].weaponSprite;
         CursorSlot.self.projectileSprite = slots[gameObject.GetComponent<Slot>().id].projectileSprite;
         CursorSlot.self.useEvent = slots[gameObject.GetComponent<Slot>().id].useEvent;
+        CursorSlot.self.originalItem = slots[gameObject.GetComponent<Slot>().id].originalItem;
+        CursorSlot.self.defaultSlot = slots[gameObject.GetComponent<Slot>().id].defaultSlot;
         //
         CursorSlot.self.inscriptions.damage = slots[gameObject.GetComponent<Slot>().id].inscriptions.damage;
         CursorSlot.self.inscriptions.iceDamage = slots[gameObject.GetComponent<Slot>().id].inscriptions.iceDamage;
@@ -432,6 +449,8 @@ public class SlotInteraction : Slot, IPointerClickHandler
         slots[gameObject.GetComponent<Slot>().id].weaponSprite = bufferWeaponSprite;
         slots[gameObject.GetComponent<Slot>().id].projectileSprite = bufferProjSprite;
         slots[gameObject.GetComponent<Slot>().id].useEvent = bufferUseEvent;
+        slots[gameObject.GetComponent<Slot>().id].originalItem = bufferOriginalItem;
+        slots[gameObject.GetComponent<Slot>().id].defaultSlot = bufferDefaultSlot;
         //
         slots[gameObject.GetComponent<Slot>().id].inscriptions.damage = bufferInscriptions.damage;
         slots[gameObject.GetComponent<Slot>().id].inscriptions.iceDamage = bufferInscriptions.iceDamage;
@@ -470,8 +489,9 @@ public class SlotInteraction : Slot, IPointerClickHandler
         slots[gameObject.GetComponent<Slot>().id].inscriptions.extraPierceChance = bufferInscriptions.extraPierceChance;
         //
     } 
-    public void ToDefault(int i)
+    public void ToDefault(int i, int id = -1)
     {
+        int index = id != -1 ? id : gameObject.GetComponent<Slot>().id;
         GameObject defSlot = defaultSlot;
         switch (i)
         {
@@ -486,18 +506,20 @@ public class SlotInteraction : Slot, IPointerClickHandler
                 CursorSlot.self.weaponSprite = defSlot.GetComponent<Slot>().weaponSprite;
                 CursorSlot.self.projectileSprite = defSlot.GetComponent<Slot>().projectileSprite;
                 CursorSlot.self.useEvent = defSlot.GetComponent<Slot>().useEvent;
+                CursorSlot.self.originalItem = defSlot.GetComponent<Slot>().originalItem;
                 break;
             case 1:
-                slots[gameObject.GetComponent<Slot>().id].values = new float[slots[gameObject.GetComponent<Slot>().id].values.Length];
-                slots[gameObject.GetComponent<Slot>().id].type = defSlot.GetComponent<Slot>().type;
-                slots[gameObject.GetComponent<Slot>().id].sprite = defSlot.GetComponent<Slot>().sprite;
-                slots[gameObject.GetComponent<Slot>().id].itemDescription = defSlot.GetComponent<Slot>().itemDescription;
-                slots[gameObject.GetComponent<Slot>().id].rareList = defSlot.GetComponent<Slot>().rareList;
-                slots[gameObject.GetComponent<Slot>().id].rareChances = defSlot.GetComponent<Slot>().rareChances;
-                slots[gameObject.GetComponent<Slot>().id].rareName = defSlot.GetComponent<Slot>().rareName;
-                slots[gameObject.GetComponent<Slot>().id].weaponSprite = defSlot.GetComponent<Slot>().weaponSprite;
-                slots[gameObject.GetComponent<Slot>().id].projectileSprite = defSlot.GetComponent<Slot>().projectileSprite;
-                slots[gameObject.GetComponent<Slot>().id].useEvent = defSlot.GetComponent<Slot>().useEvent;
+                slots[index].values = new float[CursorSlot.self.values.Length];
+                slots[index].type = defSlot.GetComponent<Slot>().type;
+                slots[index].sprite = defSlot.GetComponent<Slot>().sprite;
+                slots[index].itemDescription = defSlot.GetComponent<Slot>().itemDescription;
+                slots[index].rareList = defSlot.GetComponent<Slot>().rareList;
+                slots[index].rareChances = defSlot.GetComponent<Slot>().rareChances;
+                slots[index].rareName = defSlot.GetComponent<Slot>().rareName;
+                slots[index].weaponSprite = defSlot.GetComponent<Slot>().weaponSprite;
+                slots[index].projectileSprite = defSlot.GetComponent<Slot>().projectileSprite;
+                slots[index].useEvent = defSlot.GetComponent<Slot>().useEvent;
+                slots[index].originalItem = defSlot.GetComponent<Slot>().originalItem;
                 break;
         }
     }
