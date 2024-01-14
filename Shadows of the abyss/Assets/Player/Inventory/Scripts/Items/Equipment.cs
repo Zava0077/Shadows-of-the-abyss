@@ -125,7 +125,7 @@ public class Equipment : Prefixes
 
             {"bloodyCoin","Вы наносите дополнительный урон за ваши монеты.\r\nВесь наносимый урон уменьшен на 50%"}
         };
-    public void EquipmentAwake()
+    public void EquipmentAwake() //продолжить здесь
     {
         System.Random rnd = new System.Random();
 
