@@ -60,6 +60,7 @@ public class Prefixes : MonoBehaviour
     }
     public void PrefixChooser(string prefix, float rememberDamage, GameObject item)
     {
+        prefixedStats.Clear();
         attackDamageSummand = 0;
         iceDamageSummand = 0;
         igniteDamageSummand = 0;

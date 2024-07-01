@@ -14,6 +14,7 @@ public class PrefixChanger : Usable
     {
         _self = this;
     }
+
     UsableEvent prfChanger = (GameObject thisSlot) =>
     {
         Debug.Log("Вызван метод из класса PrefixChanger");
@@ -32,15 +33,19 @@ public class PrefixChanger : Usable
     }
     UsableEvent prfChangerEvent = (GameObject thisSlot) =>
     {
-        if (thisSlot.GetComponent<Slot>().type == "Usable") //сместить провреку в момент вызова делегата
+        if (thisSlot.GetComponent<Slot>().type == "Usable" || thisSlot.GetComponent<Slot>().type == "Empty" ) //сместить провреку в момент вызова делегата
         {
             Debug.Log("Невозможно использовать на данном предмете!");
             return;
         }
-        thisSlot.GetComponent<Slot>().originalItem.SetActive(true);
+        thisSlot.GetComponent<Slot>().originalItem.SetActive(true);//
+        //GameObject def = thisSlot.GetComponent<Slot>().defaultSlot; это для рарити
+        //thisSlot.GetComponent<Slot>().originalItem.GetComponent<Equipment>().RarityChanger(def); 
+        GameObject def = thisSlot.GetComponent<Slot>().defaultSlot;
+        thisSlot.GetComponent<Slot>().originalItem.GetComponent<Equipment>().PrefixChanger(def);
         self.PickUpItem(thisSlot.GetComponent<Slot>().originalItem);
         thisSlot.GetComponent<Slot>().originalItem.SetActive(false);
-        slotInt.ToDefault(1,PrefixChangerObject._id);
+        slotInt.ToDefault(1, PrefixChangerObject._id);
         Debug.Log("Вы успешно сменили зачарование на предмете!");
     };
 }

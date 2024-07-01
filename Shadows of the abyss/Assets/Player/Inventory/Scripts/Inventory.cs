@@ -64,61 +64,63 @@ public class Inventory : MonoBehaviour
     }
     public void PickUpItem(GameObject item) //
     {
-        System.Random rnd = new System.Random();
-        GameObject _ref = new GameObject();
-        string rareName = "";
-        if (slots[firstFreeSlot].values[32] < slots[firstFreeSlot].values[31] && slots[firstFreeSlot].values[32] > 0 && slots[firstFreeSlot].values[28] == item.GetComponent<Slot>().values[28])
-            slots[firstFreeSlot].values[32]++;
-        else
+        if (!IsInventoryFull(item))
         {
-            slots[firstFreeSlot].values = item.GetComponent<Slot>().values; //Применение всех свойств
-            slots[firstFreeSlot].type = item.GetComponent<Slot>().type;
-            slots[firstFreeSlot].sprite = item.GetComponent<Slot>().sprite;
-            slots[firstFreeSlot].itemDescription = item.GetComponent<Slot>().itemDescription.Replace("\\n","\n");
-            slots[firstFreeSlot].rareList = item.GetComponent<Slot>().rareList;
-            slots[firstFreeSlot].rareChances = item.GetComponent<Slot>().rareChances;
-            slots[firstFreeSlot].rareName = rareName;
-            slots[firstFreeSlot].weaponSprite = item.GetComponent<Slot>().weaponSprite;
-            slots[firstFreeSlot].projectileSprite = item.GetComponent<Slot>().projectileSprite;
-            slots[firstFreeSlot].useEvent = item.GetComponent<Slot>().useEvent;
-            slots[firstFreeSlot].originalItem = item.GetComponent<Slot>().gameObject;
-            slots[firstFreeSlot].defaultSlot = item.GetComponent<Slot>().defaultSlot;
-            //
-            slots[firstFreeSlot].inscriptions.iceDamage = item.GetComponent<Slot>().inscriptions.iceDamage;
-            slots[firstFreeSlot].inscriptions.igniteDamage = item.GetComponent<Slot>().inscriptions.igniteDamage;
-            slots[firstFreeSlot].inscriptions.lightningDamage = item.GetComponent<Slot>().inscriptions.lightningDamage;
-            slots[firstFreeSlot].inscriptions.poisonDamage = item.GetComponent<Slot>().inscriptions.poisonDamage;
-            slots[firstFreeSlot].inscriptions.voidDamage = item.GetComponent<Slot>().inscriptions.voidDamage;
-            slots[firstFreeSlot].inscriptions.pureDamage = item.GetComponent<Slot>().inscriptions.pureDamage;
-            slots[firstFreeSlot].inscriptions.defence = item.GetComponent<Slot>().inscriptions.defence;
-            slots[firstFreeSlot].inscriptions.iceResist = item.GetComponent<Slot>().inscriptions.iceResist;
-            slots[firstFreeSlot].inscriptions.igniteResist = item.GetComponent<Slot>().inscriptions.igniteResist;
-            slots[firstFreeSlot].inscriptions.lightningResist = item.GetComponent<Slot>().inscriptions.lightningResist;
-            slots[firstFreeSlot].inscriptions.poisonResist = item.GetComponent<Slot>().inscriptions.poisonResist;
-            slots[firstFreeSlot].inscriptions.voidResist = item.GetComponent<Slot>().inscriptions.voidResist;
-            slots[firstFreeSlot].inscriptions.pureResist = item.GetComponent<Slot>().inscriptions.pureResist;
-            slots[firstFreeSlot].inscriptions.type = item.GetComponent<Slot>().inscriptions.type;
-            slots[firstFreeSlot].inscriptions.sprite = item.GetComponent<Slot>().inscriptions.sprite;
-            slots[firstFreeSlot].inscriptions.hp = item.GetComponent<Slot>().inscriptions.hp;
-            slots[firstFreeSlot].inscriptions.evasionChance = item.GetComponent<Slot>().inscriptions.evasionChance;
-            slots[firstFreeSlot].inscriptions.criticalChance = item.GetComponent<Slot>().inscriptions.criticalChance;
-            slots[firstFreeSlot].inscriptions.kind = item.GetComponent<Slot>().inscriptions.kind;
-            slots[firstFreeSlot].inscriptions.stackAmount = item.GetComponent<Slot>().inscriptions.stackAmount;
-            slots[firstFreeSlot].inscriptions.idItem = item.GetComponent<Slot>().inscriptions.idItem;
-            slots[firstFreeSlot].inscriptions.itemDescription = item.GetComponent<Slot>().inscriptions.itemDescription;
-            slots[firstFreeSlot].inscriptions.manaCost = item.GetComponent<Slot>().inscriptions.manaCost;
-            slots[firstFreeSlot].inscriptions.weaponSize = item.GetComponent<Slot>().inscriptions.weaponSize;
-            slots[firstFreeSlot].inscriptions.attackSpeed = item.GetComponent<Slot>().inscriptions.attackSpeed;
-            slots[firstFreeSlot].inscriptions.tripleAttackChance = item.GetComponent<Slot>().inscriptions.tripleAttackChance;
-            slots[firstFreeSlot].inscriptions.secondUsageChance = item.GetComponent<Slot>().inscriptions.secondUsageChance;
-            slots[firstFreeSlot].inscriptions.explosionChance = item.GetComponent<Slot>().inscriptions.explosionChance;
-            slots[firstFreeSlot].inscriptions.explosionType = item.GetComponent<Slot>().inscriptions.explosionType;
-            slots[firstFreeSlot].inscriptions.weaponCooldown = item.GetComponent<Slot>().inscriptions.weaponCooldown;
-            slots[firstFreeSlot].inscriptions.createProjectileChance = item.GetComponent<Slot>().inscriptions.createProjectileChance;
-            slots[firstFreeSlot].inscriptions.spikes = item.GetComponent<Slot>().inscriptions.spikes;
-            slots[firstFreeSlot].inscriptions.pierce = item.GetComponent<Slot>().inscriptions.pierce;
-            slots[firstFreeSlot].inscriptions.extraPierceChance = item.GetComponent<Slot>().inscriptions.extraPierceChance;
-            //
+            System.Random rnd = new System.Random();
+            GameObject _ref = new GameObject();
+            string rareName = "";
+            if (slots[firstFreeSlot].values[32] < slots[firstFreeSlot].values[31] && slots[firstFreeSlot].values[32] > 0 && slots[firstFreeSlot].values[28] == item.GetComponent<Slot>().values[28])
+                slots[firstFreeSlot].values[32]++;
+            else
+            {
+                slots[firstFreeSlot].values = item.GetComponent<Slot>().values; //Применение всех свойств
+                slots[firstFreeSlot].type = item.GetComponent<Slot>().type;
+                slots[firstFreeSlot].sprite = item.GetComponent<Slot>().sprite;
+                slots[firstFreeSlot].itemDescription = item.GetComponent<Slot>().itemDescription.Replace("\\n", "\n");
+                slots[firstFreeSlot].rareList = item.GetComponent<Slot>().rareList;
+                slots[firstFreeSlot].rareChances = item.GetComponent<Slot>().rareChances;
+                slots[firstFreeSlot].rareName = rareName;
+                slots[firstFreeSlot].weaponSprite = item.GetComponent<Slot>().weaponSprite;
+                slots[firstFreeSlot].projectileSprite = item.GetComponent<Slot>().projectileSprite;
+                slots[firstFreeSlot].useEvent = item.GetComponent<Slot>().useEvent;
+                slots[firstFreeSlot].originalItem = item.GetComponent<Slot>().gameObject;
+                slots[firstFreeSlot].defaultSlot = item.GetComponent<Slot>().defaultSlot;
+                //
+                slots[firstFreeSlot].inscriptions.iceDamage = item.GetComponent<Slot>().inscriptions.iceDamage;
+                slots[firstFreeSlot].inscriptions.igniteDamage = item.GetComponent<Slot>().inscriptions.igniteDamage;
+                slots[firstFreeSlot].inscriptions.lightningDamage = item.GetComponent<Slot>().inscriptions.lightningDamage;
+                slots[firstFreeSlot].inscriptions.poisonDamage = item.GetComponent<Slot>().inscriptions.poisonDamage;
+                slots[firstFreeSlot].inscriptions.voidDamage = item.GetComponent<Slot>().inscriptions.voidDamage;
+                slots[firstFreeSlot].inscriptions.pureDamage = item.GetComponent<Slot>().inscriptions.pureDamage;
+                slots[firstFreeSlot].inscriptions.defence = item.GetComponent<Slot>().inscriptions.defence;
+                slots[firstFreeSlot].inscriptions.iceResist = item.GetComponent<Slot>().inscriptions.iceResist;
+                slots[firstFreeSlot].inscriptions.igniteResist = item.GetComponent<Slot>().inscriptions.igniteResist;
+                slots[firstFreeSlot].inscriptions.lightningResist = item.GetComponent<Slot>().inscriptions.lightningResist;
+                slots[firstFreeSlot].inscriptions.poisonResist = item.GetComponent<Slot>().inscriptions.poisonResist;
+                slots[firstFreeSlot].inscriptions.voidResist = item.GetComponent<Slot>().inscriptions.voidResist;
+                slots[firstFreeSlot].inscriptions.pureResist = item.GetComponent<Slot>().inscriptions.pureResist;
+                slots[firstFreeSlot].inscriptions.type = item.GetComponent<Slot>().inscriptions.type;
+                slots[firstFreeSlot].inscriptions.sprite = item.GetComponent<Slot>().inscriptions.sprite;
+                slots[firstFreeSlot].inscriptions.hp = item.GetComponent<Slot>().inscriptions.hp;
+                slots[firstFreeSlot].inscriptions.evasionChance = item.GetComponent<Slot>().inscriptions.evasionChance;
+                slots[firstFreeSlot].inscriptions.criticalChance = item.GetComponent<Slot>().inscriptions.criticalChance;
+                slots[firstFreeSlot].inscriptions.kind = item.GetComponent<Slot>().inscriptions.kind;
+                slots[firstFreeSlot].inscriptions.stackAmount = item.GetComponent<Slot>().inscriptions.stackAmount;
+                slots[firstFreeSlot].inscriptions.idItem = item.GetComponent<Slot>().inscriptions.idItem;
+                slots[firstFreeSlot].inscriptions.itemDescription = item.GetComponent<Slot>().inscriptions.itemDescription;
+                slots[firstFreeSlot].inscriptions.manaCost = item.GetComponent<Slot>().inscriptions.manaCost;
+                slots[firstFreeSlot].inscriptions.weaponSize = item.GetComponent<Slot>().inscriptions.weaponSize;
+                slots[firstFreeSlot].inscriptions.attackSpeed = item.GetComponent<Slot>().inscriptions.attackSpeed;
+                slots[firstFreeSlot].inscriptions.tripleAttackChance = item.GetComponent<Slot>().inscriptions.tripleAttackChance;
+                slots[firstFreeSlot].inscriptions.secondUsageChance = item.GetComponent<Slot>().inscriptions.secondUsageChance;
+                slots[firstFreeSlot].inscriptions.explosionChance = item.GetComponent<Slot>().inscriptions.explosionChance;
+                slots[firstFreeSlot].inscriptions.explosionType = item.GetComponent<Slot>().inscriptions.explosionType;
+                slots[firstFreeSlot].inscriptions.weaponCooldown = item.GetComponent<Slot>().inscriptions.weaponCooldown;
+                slots[firstFreeSlot].inscriptions.createProjectileChance = item.GetComponent<Slot>().inscriptions.createProjectileChance;
+                slots[firstFreeSlot].inscriptions.spikes = item.GetComponent<Slot>().inscriptions.spikes;
+                slots[firstFreeSlot].inscriptions.pierce = item.GetComponent<Slot>().inscriptions.pierce;
+                slots[firstFreeSlot].inscriptions.extraPierceChance = item.GetComponent<Slot>().inscriptions.extraPierceChance;
+            }
         }
     }
     static void FreeSlotDetector(int freeSlotId)

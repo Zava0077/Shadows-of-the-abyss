@@ -215,7 +215,8 @@ MonoBehaviour:
   itemDescription: "\u0410\u043C\u0443\u043B\u0435\u0442"
   rareList:
   - Ignite
-  rareChances: 64000000
+  - Electric
+  rareChances: 3200000032000000
   inscriptions: {fileID: -1957378840449356073}
   projectileSprite: {fileID: 0}
   weaponSprite: {fileID: 0}
@@ -667,6 +668,9 @@ MonoBehaviour:
   inscSlotsSummand: 0
   extraDescription: 
   qualityColor: 
+  rarityMemory: {fileID: 0}
+  prefixMemory: 
+  descriptionMemory: 
   isTrinket: 0
   icreaseAllDamage: 0
   inscSlots: 0

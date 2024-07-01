@@ -20,7 +20,7 @@ public class Slot : Inventory
     [SerializeField] public string type;
     [SerializeField] public int id;
     [SerializeField] public int staticKind;
-    [SerializeField] public string itemDescription;
+    [Multiline] [SerializeField] public string itemDescription;
     [SerializeField] public string[] rareList;
     [SerializeField] public int[] rareChances;
     [SerializeField] public Insctiprions inscriptions = new Insctiprions();

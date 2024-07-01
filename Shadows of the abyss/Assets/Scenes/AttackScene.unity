@@ -790,7 +790,9 @@ MonoBehaviour:
   gameObjects:
   - {fileID: 8283065102806030095, guid: ab43b17e74beb3b45b8fa624f0f5ccb3, type: 3}
   - {fileID: 8283065102806030095, guid: 1d78f4350609c2d41b7fe0127e7ef6f0, type: 3}
-  chance: 6400000064000000
+  - {fileID: 8283065102806030095, guid: 1d78f4350609c2d41b7fe0127e7ef6f0, type: 3}
+  - {fileID: 8283065102806030095, guid: 1d78f4350609c2d41b7fe0127e7ef6f0, type: 3}
+  chance: 64000000640000006400000064000000
 --- !u!114 &89106861
 MonoBehaviour:
   m_ObjectHideFlags: 0
